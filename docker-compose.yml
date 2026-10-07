@@ -1,0 +1,40 @@
+services:
+  c1-review-engine:
+    build: ./services/c1-review-engine
+    ports:
+      - "8001:8001"
+    env_file:
+      - path: .env
+        required: false
+
+  c2-hotel-recommender:
+    build: ./services/c2-hotel-recommender
+    ports:
+      - "8002:8002"
+    env_file:
+      - path: .env
+        required: false
+
+  c3-itinerary-planner:
+    build: ./services/c3-itinerary-planner
+    ports:
+      - "8003:8003"
+    env_file:
+      - path: .env
+        required: false
+
+  c4-agent:
+    build: ./services/c4-agent
+    ports:
+      - "8004:8004"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      C1_URL: http://c1-review-engine:8001
+      C2_URL: http://c2-hotel-recommender:8002
+      C3_URL: http://c3-itinerary-planner:8003
+    depends_on:
+      - c1-review-engine
+      - c2-hotel-recommender
+      - c3-itinerary-planner

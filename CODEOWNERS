@@ -1,0 +1,12 @@
+# Who reviews changes to which part of the repo.
+# Add each teammate's GitHub username once they have access to the repo.
+
+/services/c4-agent/                @Kavindu03-dev
+# /services/c1-review-engine/      @<dissanayake-github-username>
+# /services/c2-hotel-recommender/  @<hansada-github-username>
+# /services/c3-itinerary-planner/  @<bandara-github-username>
+
+# Shared files: add all four owners here so every change is reviewed by the group
+/contracts/                        @Kavindu03-dev
+/docker-compose.yml                @Kavindu03-dev
+/.github/                          @Kavindu03-dev

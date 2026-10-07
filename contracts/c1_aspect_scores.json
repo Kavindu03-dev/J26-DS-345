@@ -1,0 +1,60 @@
+{
+  "title": "C1 Aspect Scores",
+  "version": "0.1.0-draft",
+  "status": "DRAFT built from the C1 proposal (Table 3). Agree on it in a pull request before anyone builds against it.",
+  "owner": "c1-review-engine",
+  "consumers": ["c2-hotel-recommender", "c3-itinerary-planner", "c4-agent"],
+  "endpoint": {
+    "method": "GET",
+    "path": "/hotels/{hotel_id}/aspect-scores"
+  },
+  "response": {
+    "type": "object",
+    "required": [
+      "hotel_id",
+      "aspect_scores",
+      "overall_trust_score",
+      "time_decay_rating",
+      "verified_aspect_facts",
+      "last_updated"
+    ],
+    "properties": {
+      "hotel_id": { "type": "string" },
+      "aspect_scores": {
+        "type": "object",
+        "required": ["food", "staff", "room", "cleanliness", "location", "wifi"],
+        "properties": {
+          "food": { "type": "number", "minimum": 0, "maximum": 5 },
+          "staff": { "type": "number", "minimum": 0, "maximum": 5 },
+          "room": { "type": "number", "minimum": 0, "maximum": 5 },
+          "cleanliness": { "type": "number", "minimum": 0, "maximum": 5 },
+          "location": { "type": "number", "minimum": 0, "maximum": 5 },
+          "wifi": { "type": "number", "minimum": 0, "maximum": 5 }
+        }
+      },
+      "overall_trust_score": { "type": "number", "minimum": 0, "maximum": 10 },
+      "time_decay_rating": { "type": "number", "minimum": 1, "maximum": 5 },
+      "verified_aspect_facts": { "type": "array", "items": { "type": "string" } },
+      "last_updated": { "type": "string", "format": "date-time" }
+    }
+  },
+  "example": {
+    "hotel_id": "h_0001",
+    "aspect_scores": {
+      "food": 4.2,
+      "staff": 4.5,
+      "room": 3.9,
+      "cleanliness": 4.4,
+      "location": 4.1,
+      "wifi": 3.2
+    },
+    "overall_trust_score": 8.3,
+    "time_decay_rating": 4.3,
+    "verified_aspect_facts": ["Breakfast was fresh and served until 10 am."],
+    "last_updated": "2026-10-07T10:00:00Z"
+  },
+  "open_questions": [
+    "The C1 proposal gives aspect scores as 0.0 to 5.0 in Section 4.2 but 0.0 to 10.0 in Section 5.3. This draft uses 0.0 to 5.0. Confirm with C1.",
+    "Aspect keys are snake_case here (wifi, not Wi-Fi). Confirm with C1, C2 and C3."
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "title": "C3 Itinerary",
+  "version": "0.1.0-draft",
+  "status": "DRAFT built from the C3 proposal (Sections 3 to 5 and the ER diagram). Agree on it in a pull request before anyone builds against it.",
+  "owner": "c3-itinerary-planner",
+  "consumers": ["c4-agent"],
+  "endpoint": {
+    "method": "POST",
+    "path": "/itineraries"
+  },
+  "request": {
+    "type": "object",
+    "required": ["hotel_id", "trip_days"],
+    "properties": {
+      "hotel_id": { "type": "string" },
+      "trip_days": { "type": "integer", "minimum": 1 },
+      "start_date": { "type": "string", "format": "date" },
+      "daily_time_limit_hours": { "type": "number", "minimum": 1 },
+      "interests": { "type": "array", "items": { "type": "string" } },
+      "restaurant_preferences": { "type": "array", "items": { "type": "string" } }
+    }
+  },
+  "response": {
+    "type": "object",
+    "required": ["days", "total_distance_km", "total_travel_minutes"],
+    "properties": {
+      "days": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["day_number", "stops", "restaurants", "route"],
+          "properties": {
+            "day_number": { "type": "integer", "minimum": 1 },
+            "stops": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["attraction_id", "name", "latitude", "longitude", "arrival_time", "departure_time"],
+                "properties": {
+                  "attraction_id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "latitude": { "type": "number" },
+                  "longitude": { "type": "number" },
+                  "arrival_time": { "type": "string", "format": "time" },
+                  "departure_time": { "type": "string", "format": "time" }
+                }
+              }
+            },
+            "restaurants": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["restaurant_id", "name", "detour_minutes"],
+                "properties": {
+                  "restaurant_id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "detour_minutes": { "type": "number", "minimum": 0 },
+                  "aspect_scores": {
+                    "type": "object",
+                    "properties": {
+                      "food": { "type": "number" },
+                      "service": { "type": "number" },
+                      "ambience": { "type": "number" },
+                      "price": { "type": "number" },
+                      "location": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            },
+            "route": {
+              "type": "object",
+              "required": ["distance_km", "travel_minutes"],
+              "properties": {
+                "distance_km": { "type": "number", "minimum": 0 },
+                "travel_minutes": { "type": "number", "minimum": 0 },
+                "geometry": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "total_distance_km": { "type": "number", "minimum": 0 },
+      "total_travel_minutes": { "type": "number", "minimum": 0 }
+    }
+  },
+  "example_request": {
+    "hotel_id": "h_0001",
+    "trip_days": 3,
+    "daily_time_limit_hours": 8,
+    "interests": ["tea plantations", "waterfalls"],
+    "restaurant_preferences": ["local food"]
+  },
+  "open_questions": [
+    "How does C3 get the hotel's coordinates: from C2's output, from the shared database, or in the request? This draft takes only hotel_id.",
+    "The C3 proposal describes its own BERT-based sentiment analysis for restaurants. Confirm that restaurant aspect scores come from C3 and not from C1."
+  ]
+}
