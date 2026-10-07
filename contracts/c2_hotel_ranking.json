@@ -1,0 +1,110 @@
+{
+  "title": "C2 Hotel Ranking",
+  "version": "0.1.0-draft",
+  "status": "DRAFT built from the C2 proposal (Sections 4 and 5). Agree on it in a pull request before anyone builds against it.",
+  "owner": "c2-hotel-recommender",
+  "consumers": ["c3-itinerary-planner", "c4-agent"],
+  "endpoint": {
+    "method": "POST",
+    "path": "/recommendations"
+  },
+  "request": {
+    "type": "object",
+    "required": ["destination"],
+    "properties": {
+      "destination": { "type": "string" },
+      "check_in": { "type": "string", "format": "date" },
+      "check_out": { "type": "string", "format": "date" },
+      "adults": { "type": "integer", "minimum": 1 },
+      "children": { "type": "integer", "minimum": 0 },
+      "budget_lkr": {
+        "type": "object",
+        "properties": {
+          "min": { "type": "number", "minimum": 0 },
+          "max": { "type": "number", "minimum": 0 }
+        }
+      },
+      "travel_purpose": { "type": "string" },
+      "interests": { "type": "array", "items": { "type": "string" } },
+      "accessibility_needs": { "type": "array", "items": { "type": "string" } },
+      "top_k": { "type": "integer", "minimum": 1, "default": 5 }
+    }
+  },
+  "response": {
+    "type": "object",
+    "required": ["ranked_hotels"],
+    "properties": {
+      "ranked_hotels": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["hotel_id", "name", "rank", "score", "price", "explanation"],
+          "properties": {
+            "hotel_id": { "type": "string" },
+            "name": { "type": "string" },
+            "rank": { "type": "integer", "minimum": 1 },
+            "score": { "type": "number" },
+            "price": {
+              "type": "object",
+              "required": ["expected_price_lkr", "price_status", "best_platform", "offers"],
+              "properties": {
+                "expected_price_lkr": { "type": "number" },
+                "price_status": {
+                  "type": "string",
+                  "enum": ["Within Expected Price Range", "Potentially Overpriced"]
+                },
+                "best_platform": { "type": "string" },
+                "offers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["platform", "price_lkr"],
+                    "properties": {
+                      "platform": { "type": "string", "enum": ["Booking.com", "Agoda", "Trip.com"] },
+                      "price_lkr": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            },
+            "explanation": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "example_request": {
+    "destination": "Nuwara Eliya",
+    "check_in": "2026-12-20",
+    "check_out": "2026-12-23",
+    "adults": 2,
+    "children": 2,
+    "budget_lkr": { "min": 15000, "max": 30000 },
+    "interests": ["tea plantations", "local food"],
+    "top_k": 2
+  },
+  "example_response": {
+    "ranked_hotels": [
+      {
+        "hotel_id": "h_0001",
+        "name": "Example Hill Hotel",
+        "rank": 1,
+        "score": 0.87,
+        "price": {
+          "expected_price_lkr": 22000,
+          "price_status": "Within Expected Price Range",
+          "best_platform": "Agoda",
+          "offers": [
+            { "platform": "Booking.com", "price_lkr": 23500 },
+            { "platform": "Agoda", "price_lkr": 21800 }
+          ]
+        },
+        "explanation": "Fits your budget, has strong cleanliness and food scores, and is close to the tea plantations."
+      }
+    ]
+  },
+  "open_questions": [
+    "The C2 proposal says C2 extracts features from the tourist's text prompt itself, while C4 also reads the user's message. Decide who turns free text into the structured request above. This draft assumes C4 does and C2 receives structured fields.",
+    "Is the price for the whole stay or per night? This draft does not say yet."
+  ]
+}

@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Data (keep the folder, not the contents)
+data/*
+!data/.gitkeep
+
+# Model files and checkpoints
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+*.onnx
+*.joblib
+*.pkl
+checkpoints/
+models/
+
+# Frontend
+node_modules/
+dist/
+build/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
