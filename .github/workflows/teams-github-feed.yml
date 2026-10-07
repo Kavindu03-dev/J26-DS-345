@@ -14,51 +14,111 @@ jobs:
           TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK_URL }}
           REPO: ${{ github.repository }}
           BRANCH: ${{ github.ref_name }}
-          AUTHOR: ${{ github.actor }}
-          COMMIT_MSG: ${{ github.event.head_commit.message }}
-          COMMIT_URL: ${{ github.event.head_commit.url }}
+          ACTOR: ${{ github.actor }}
+          SERVER_URL: ${{ github.server_url }}
+          DISPLAY_TZ: Asia/Colombo
+          MAX_COMMITS: 5
         run: |
-          PAYLOAD=$(jq -n \
+          if [ -z "$TEAMS_WEBHOOK" ]; then
+            echo "::warning::TEAMS_WEBHOOK_URL secret is not set. Skipping the Teams notification."
+            exit 0
+          fi
+
+          PUSHED_AT="$(TZ="$DISPLAY_TZ" date +'%d %b %Y, %I:%M %p')"
+
+          # Build the card from the full push event so every commit in the push is shown.
+          PAYLOAD=$(jq \
             --arg repo "$REPO" \
             --arg branch "$BRANCH" \
-            --arg author "$AUTHOR" \
-            --arg msg "$COMMIT_MSG" \
-            --arg url "$COMMIT_URL" \
-            '{
-              "type": "message",
-              "attachments": [
-                {
-                  "contentType": "application/vnd.microsoft.card.adaptive",
-                  "content": {
-                    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-                    "type": "AdaptiveCard",
-                    "version": "1.4",
-                    "body": [
-                      {
-                        "type": "TextBlock",
-                        "size": "Medium",
-                        "weight": "Bolder",
-                        "text": "🐙 GitHub Commit: \($repo)"
-                      },
-                      {
-                        "type": "FactSet",
-                        "facts": [
-                          {"title": "Branch:", "value": $branch},
-                          {"title": "Author:", "value": $author},
-                          {"title": "Message:", "value": $msg}
-                        ]
-                      }
-                    ],
-                    "actions": [
-                      {
-                        "type": "Action.OpenUrl",
-                        "title": "View in GitHub",
-                        "url": $url
-                      }
-                    ]
-                  }
-                }
-              ]
-            }')
+            --arg actor "$ACTOR" \
+            --arg server "$SERVER_URL" \
+            --arg pushed_at "$PUSHED_AT" \
+            --argjson max "$MAX_COMMITS" \
+            '
+            def clean: gsub("\r"; "");
+            def clip($n): if length > $n then .[0:$n] + "…" else . end;
+            def subject: (clean | split("\n")[0] // "") | clip(200);
+            def body: (clean | split("\n")[1:] | join("\n") | gsub("^\\s+|\\s+$"; "")) | clip(600);
+            def n_files($k): ((.[$k] // []) | length | tostring);
 
-          curl -H "Content-Type: application/json" -d "$PAYLOAD" "$TEAMS_WEBHOOK"
+            def commit_card:
+              (.message // "") as $m
+              | ($m | body) as $b
+              | {
+                  "type": "Container",
+                  "separator": true,
+                  "spacing": "Medium",
+                  "items": (
+                    [ {"type": "TextBlock", "text": ($m | subject), "weight": "Bolder", "wrap": true} ]
+                    + (if $b != "" then
+                        [ {"type": "TextBlock", "text": ($b | gsub("\n"; "\n\n")), "isSubtle": true, "wrap": true, "spacing": "Small"} ]
+                       else [] end)
+                    + [ {
+                          "type": "TextBlock",
+                          "text": ("👤 " + (.author.name // "Unknown")
+                                   + (if .author.username then " (@" + .author.username + ")" else "" end)
+                                   + "  ·  🔗 [" + .id[0:7] + "](" + .url + ")"
+                                   + "  ·  📄 " + n_files("added") + " added, " + n_files("modified") + " modified, " + n_files("removed") + " removed"),
+                          "size": "Small",
+                          "wrap": true,
+                          "spacing": "Small"
+                        } ]
+                  )
+                };
+
+            ($server + "/" + $repo) as $repo_url
+            | (.commits // []) as $commits
+            | ($commits | length) as $n
+            | (if $n > 0 then ($commits | reverse | .[0:$max])
+               elif .head_commit and (.deleted | not) then [.head_commit]
+               else [] end) as $shown
+            | (if .deleted then "🗑️ Branch deleted: " + $branch
+               elif $n == 0 and .created then "🌿 Branch created: " + $branch
+               elif $n == 0 then "🐙 Push to " + $branch + " (no new commits)"
+               elif $n == 1 then "🐙 New commit on " + $branch
+               else "🐙 " + ($n | tostring) + " new commits on " + $branch end) as $title
+            | (if $n > 1 then .compare else ($shown[0].url // .compare) end // $repo_url) as $view_url
+            | {
+                "type": "message",
+                "attachments": [
+                  {
+                    "contentType": "application/vnd.microsoft.card.adaptive",
+                    "contentUrl": null,
+                    "content": {
+                      "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                      "type": "AdaptiveCard",
+                      "version": "1.4",
+                      "msteams": { "width": "Full" },
+                      "body": (
+                        [ {"type": "TextBlock", "text": $title, "size": "Medium", "weight": "Bolder", "wrap": true},
+                          {"type": "FactSet", "facts": [
+                            {"title": "Repository", "value": ("[" + $repo + "](" + $repo_url + ")")},
+                            {"title": "Branch", "value": (if .deleted then $branch else "[" + $branch + "](" + $repo_url + "/tree/" + $branch + ")" end)},
+                            {"title": "Pushed by", "value": $actor},
+                            {"title": "Pushed at", "value": $pushed_at}
+                          ]} ]
+                        + (if $n == 0 and ($shown | length) > 0 then
+                            [ {"type": "TextBlock", "text": "Latest commit on this branch:", "isSubtle": true, "wrap": true, "spacing": "Medium"} ]
+                           else [] end)
+                        + ($shown | map(commit_card))
+                        + (if $n > $max then
+                            [ {"type": "TextBlock", "text": ("…and " + (($n - $max) | tostring) + " more commit(s). Use the button below to see everything."), "isSubtle": true, "wrap": true, "spacing": "Small"} ]
+                           else [] end)
+                      ),
+                      "actions": (
+                        if .deleted then []
+                        else [
+                          {"type": "Action.OpenUrl", "title": (if $n > 1 then "View all changes" elif $n == 0 then "View latest commit" else "View commit" end), "url": $view_url},
+                          {"type": "Action.OpenUrl", "title": "Open branch", "url": ($repo_url + "/tree/" + $branch)}
+                        ] end
+                      )
+                    }
+                  }
+                ]
+              }
+            ' "$GITHUB_EVENT_PATH")
+
+          curl --silent --show-error --fail-with-body \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" \
+            "$TEAMS_WEBHOOK"
