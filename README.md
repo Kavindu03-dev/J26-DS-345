@@ -7,7 +7,7 @@ SLIIT B.Sc. (Hons) IT, Data Science research project. Four components built by f
 | C1: Trust-aware review analysis and aspect sentiment engine | `services/c1-review-engine` | Dissanayake L.G.D.P.M. |
 | C2: Personalized multi-criteria hotel recommendation and price intelligence | `services/c2-hotel-recommender` | Hansada S.A.B. |
 | C3: Spatial-temporal itinerary optimization and route-based restaurant recommendation | `services/c3-itinerary-planner` | Bandara H.A.N.D. |
-| C4: LLM agent with function calling (calls C1, C2 and C3 as tools) | `services/c4-agent` | Kavindu Gajanayaka |
+| C4: LLM agent with function calling (calls C1, C2 and C3 as tools) | `services/c4-agent` | Gajanayaka K.R.K.V. |
 
 Supervisor: Prof. Samantha Thelijjagoda. Co-supervisor: Dr. Junius Anjana.
 
