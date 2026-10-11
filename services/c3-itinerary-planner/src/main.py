@@ -30,6 +30,7 @@ app = FastAPI(
 #
 # Therefore parents[1] gives:
 # services/c3-itinerary-planner
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -54,6 +55,27 @@ RESTAURANT_FILE = (
     / "Data"
     / "processed"
     / "final_ranked_restaurants.csv"
+)
+
+
+# ============================================================
+# MEDICAL PIPELINE SCRIPT
+# ============================================================
+
+# This script is NOT part of the normal fixed pipeline.
+#
+# It is executed only when:
+#
+# medical_support.required = true
+#
+# It computes road-based hospital accessibility for POIs
+# before itinerary optimization.
+
+MEDICAL_ACCESS_SCRIPT = (
+    PROJECT_ROOT
+    / "src"
+    / "medical"
+    / "02_compute_poi_medical_access.py"
 )
 
 
@@ -96,6 +118,7 @@ PIPELINE_SCRIPTS = [
 
 # Prevent two API requests from modifying the same
 # pipeline files at the same time.
+
 PIPELINE_LOCK = threading.Lock()
 
 
@@ -262,6 +285,45 @@ class RestaurantPreferences(BaseModel):
         return value
 
 
+# ============================================================
+# OPTIONAL MEDICAL SUPPORT INPUT
+# ============================================================
+
+class MedicalSupportInput(BaseModel):
+
+    # False means normal itinerary planning.
+    required: bool = False
+
+    # Supported priorities:
+    # normal
+    # high
+    priority: str = "normal"
+
+    @field_validator(
+        "priority"
+    )
+    @classmethod
+    def validate_priority(
+        cls,
+        value,
+    ):
+
+        value = value.lower().strip()
+
+        allowed = {
+            "normal",
+            "high",
+        }
+
+        if value not in allowed:
+            raise ValueError(
+                "medical_support priority "
+                "must be 'normal' or 'high'."
+            )
+
+        return value
+
+
 class PlanRequest(BaseModel):
 
     trip_id: str
@@ -276,6 +338,18 @@ class PlanRequest(BaseModel):
 
     restaurant_preferences: (
         RestaurantPreferences
+    )
+
+    # Optional medical-support-aware routing.
+    #
+    # If the field is omitted completely,
+    # the system behaves as:
+    #
+    # required = False
+    # priority = normal
+
+    medical_support: MedicalSupportInput = Field(
+        default_factory=MedicalSupportInput
     )
 
     @field_validator(
@@ -421,7 +495,45 @@ def plan_itinerary(
 
             for script in PIPELINE_SCRIPTS:
 
-                output = run_script(
+                # ----------------------------------------
+                # OPTIONAL MEDICAL ACCESS STAGE
+                # ----------------------------------------
+                #
+                # Run medical-access computation after
+                # POI scoring and immediately before
+                # itinerary optimization.
+                #
+                # Normal tourists skip this stage.
+
+                if (
+                    script.name
+                    == "04_optimize_multi_day.py"
+                    and request.medical_support.required
+                ):
+
+                    run_script(
+                        MEDICAL_ACCESS_SCRIPT
+                    )
+
+                    pipeline_logs.append(
+                        {
+                            "stage":
+                                MEDICAL_ACCESS_SCRIPT.name,
+
+                            "status":
+                                "success",
+
+                            "reason":
+                                "medical_support_required",
+                        }
+                    )
+
+
+                # ----------------------------------------
+                # NORMAL COMPONENT 3 PIPELINE STAGE
+                # ----------------------------------------
+
+                run_script(
                     script
                 )
 
@@ -475,6 +587,7 @@ def plan_itinerary(
 
 
             # Top 5 restaurants for each day.
+
             top_restaurants_df = (
                 restaurants_df[
                     restaurants_df[
@@ -532,7 +645,9 @@ def plan_itinerary(
                 days.append(
                     {
                         "day":
-                            int(day_number),
+                            int(
+                                day_number
+                            ),
 
                         "stops":
                             dataframe_to_records(
@@ -545,6 +660,73 @@ def plan_itinerary(
                             ),
                     }
                 )
+
+
+            # --------------------------------------------
+            # MEDICAL SUMMARY FOR API RESPONSE
+            # --------------------------------------------
+
+            medical_summary = {
+                "required":
+                    request.medical_support.required,
+
+                "priority":
+                    request.medical_support.priority,
+
+                "average_hospital_access_min":
+                    None,
+
+                "best_hospital_access_min":
+                    None,
+
+                "worst_hospital_access_min":
+                    None,
+            }
+
+
+            if (
+                request.medical_support.required
+                and
+                "emergency_hospital_travel_time_min"
+                in itinerary_df.columns
+            ):
+
+                medical_times = pd.to_numeric(
+                    itinerary_df[
+                        "emergency_hospital_travel_time_min"
+                    ],
+                    errors="coerce",
+                ).dropna()
+
+
+                if not medical_times.empty:
+
+                    medical_summary[
+                        "average_hospital_access_min"
+                    ] = round(
+                        float(
+                            medical_times.mean()
+                        ),
+                        2,
+                    )
+
+                    medical_summary[
+                        "best_hospital_access_min"
+                    ] = round(
+                        float(
+                            medical_times.min()
+                        ),
+                        2,
+                    )
+
+                    medical_summary[
+                        "worst_hospital_access_min"
+                    ] = round(
+                        float(
+                            medical_times.max()
+                        ),
+                        2,
+                    )
 
 
             # --------------------------------------------
@@ -564,6 +746,9 @@ def plan_itinerary(
                 "trip":
                     request.trip.model_dump(),
 
+                "medical_support":
+                    medical_summary,
+
                 "days":
                     days,
 
@@ -576,5 +761,7 @@ def plan_itinerary(
 
             raise HTTPException(
                 status_code=500,
-                detail=str(error),
+                detail=str(
+                    error
+                ),
             )
