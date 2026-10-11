@@ -38,3 +38,7 @@ build/
 Thumbs.db
 .vscode/
 .idea/
+
+# Component 3 runtime/generated data
+services/c3-itinerary-planner/Data/*
+services/c3-itinerary-planner/ABSA/output/*
