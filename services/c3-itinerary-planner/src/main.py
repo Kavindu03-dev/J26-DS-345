@@ -8,7 +8,9 @@ import threading
 import pandas as pd
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
+
+from .adapters.c2_adapter import adapt_c2_to_c3
 
 
 # ============================================================
@@ -146,6 +148,8 @@ class HotelInput(BaseModel):
 
 
 class TripInput(BaseModel):
+
+    want_to_visit: list[str] | None = None
 
     num_days: int = Field(
         ge=1,
@@ -326,6 +330,17 @@ class MedicalSupportInput(BaseModel):
 
 class PlanRequest(BaseModel):
 
+    context: dict | None = None
+
+    accessibility: dict[str, bool] | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def adapt_external_c2(cls, value):
+        if isinstance(value, dict) and "selected_hotel" in value:
+            return adapt_c2_to_c3(value)
+        return value
+
     trip_id: str
 
     hotel: HotelInput
@@ -470,7 +485,7 @@ def plan_itinerary(
             )
 
             request_data = (
-                request.model_dump()
+                request.model_dump(exclude_none=True)
             )
 
             with open(
@@ -744,7 +759,7 @@ def plan_itinerary(
                     request.hotel.model_dump(),
 
                 "trip":
-                    request.trip.model_dump(),
+                    request.trip.model_dump(exclude_none=True),
 
                 "medical_support":
                     medical_summary,
