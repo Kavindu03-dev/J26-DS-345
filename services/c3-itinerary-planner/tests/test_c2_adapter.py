@@ -2,7 +2,6 @@
 
 from copy import deepcopy
 import json
-from pathlib import Path
 
 from fastapi.testclient import TestClient
 import pytest
@@ -14,6 +13,40 @@ from src.adapters.c2_adapter import (
     map_interests_to_preferences,
 )
 from src import main
+
+
+@pytest.fixture
+def internal_request():
+    """Legacy C3 contract, independent of runtime inputs and adapter defaults."""
+    return {
+        "trip_id": "TEST_TRIP_001",
+        "hotel": {
+            "hotel_id": "TEST_HOTEL_001", "name": "Kandy Test Depot",
+            "latitude": 7.294373, "longitude": 80.641486, "district": "Kandy",
+        },
+        "trip": {
+            "num_days": 3, "day_start_hour": 9, "day_end_hour": 18,
+            "travel_mode": "driving",
+        },
+        "attraction_preferences": {
+            "history_culture": 1.0, "nature_wildlife": 5.0,
+            "beach_coastal": 1.0, "religious": 1.0,
+            "adventure_recreation": 5.0, "urban_leisure": 2.0,
+        },
+        "restaurant_preferences": {
+            "aspect_importance": {
+                "food": 5.0, "service": 4.0, "ambience": 3.0,
+                "value": 5.0, "location": 3.0,
+            },
+            "cuisine_preferences": {
+                "sri_lankan": 5.0, "local": 5.0, "indian": 4.0,
+                "south_indian": 4.0, "asian": 4.0, "thai": 3.0,
+                "chinese": 3.0, "international": 3.0, "pizza": 2.0,
+                "italian": 2.0,
+            },
+        },
+        "medical_support": {"required": False, "priority": "normal"},
+    }
 
 
 @pytest.fixture
@@ -98,10 +131,9 @@ def test_absent_health_and_interests(ella):
     assert set(adapted["attraction_preferences"].values()) == {1.0}
 
 
-def test_restaurant_defaults_match_internal_input(ella):
-    internal = json.loads(main.INPUT_FILE.read_text(encoding="utf-8"))
+def test_restaurant_defaults_match_internal_input(ella, internal_request):
     adapted = adapt_c2_to_c3(ella)
-    assert adapted["restaurant_preferences"] == internal["restaurant_preferences"]
+    assert adapted["restaurant_preferences"] == internal_request["restaurant_preferences"]
     adapted["restaurant_preferences"]["aspect_importance"]["food"] = 1
     assert adapt_c2_to_c3(ella)["restaurant_preferences"] == DEFAULT_RESTAURANT_PREFERENCES
 
@@ -184,14 +216,12 @@ def test_api_external_input_persists_metadata_and_skips_medical(ella, isolated_p
     assert main.MEDICAL_ACCESS_SCRIPT not in calls
 
 
-def test_api_internal_contract_unchanged(isolated_pipeline):
-    internal_path = Path(main.PROJECT_ROOT) / "Data/input/c2_c3_input.json"
-    internal = json.loads(internal_path.read_text(encoding="utf-8"))
+def test_api_internal_contract_unchanged(isolated_pipeline, internal_request):
     client, calls = isolated_pipeline
-    response = client.post("/plan-itinerary", json=internal)
+    response = client.post("/plan-itinerary", json=internal_request)
     assert response.status_code == 200
-    assert json.loads(main.INPUT_FILE.read_text(encoding="utf-8")) == internal
-    assert response.json()["trip"] == internal["trip"]
+    assert json.loads(main.INPUT_FILE.read_text(encoding="utf-8")) == internal_request
+    assert response.json()["trip"] == internal_request["trip"]
     assert calls == main.PIPELINE_SCRIPTS
 
 
