@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import json
+import os
 import subprocess
 import sys
 import threading
@@ -402,6 +403,10 @@ def run_script(
             f"{script_path}"
         )
 
+    child_env = os.environ.copy()
+    child_env["PYTHONIOENCODING"] = "utf-8"
+    child_env["PYTHONUTF8"] = "1"
+
     result = subprocess.run(
         [
             sys.executable,
@@ -412,6 +417,7 @@ def run_script(
         text=True,
         encoding="utf-8",
         errors="replace",
+        env=child_env,
     )
 
     if result.returncode != 0:
