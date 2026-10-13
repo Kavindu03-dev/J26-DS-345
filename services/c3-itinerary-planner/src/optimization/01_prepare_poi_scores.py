@@ -1,6 +1,12 @@
 from pathlib import Path
 import re
+import sys
 import pandas as pd
+
+
+# Preserve Unicode POI names when reporting through Windows console pipes.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 
 # ============================================================
@@ -10,7 +16,7 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 INPUT_FILE = (
-    PROJECT_ROOT / "Data" / "processed" / "tourist_pois.csv"
+    PROJECT_ROOT / "Data" / "processed" / "destination_master_road_access.csv"
 )
 
 OUTPUT_FILE = (
@@ -22,78 +28,24 @@ OUTPUT_FILE = (
 # INTEREST CATEGORIES
 # ============================================================
 
-CATEGORY_KEYWORDS = {
+CATEGORY_COLUMNS = [
+    "history_culture",
+    "nature_wildlife",
+    "beach_coastal",
+    "religious",
+    "adventure_recreation",
+    "urban_leisure",
+]
 
-    "history_culture": [
-        "ancient", "history", "historical", "historic",
-        "heritage", "archaeological", "archaeology",
-        "museum", "fort", "fortress", "palace",
-        "king", "queen", "royal", "memorial",
-        "monument", "ruins", "colonial",
-        "traditional", "tradition",
-        "culture", "cultural",
-        "art", "theatre", "carving",
-        "indigenous", "walawwa",
-        "ambalama", "canal"
-    ],
+VALID_PRIMARY_CATEGORIES = [
+    category for category in CATEGORY_COLUMNS if category != "beach_coastal"
+]
 
-    "nature_wildlife": [
-        "waterfall", "falls", "ella",
-        "lake", "river", "reservoir",
-        "forest", "mountain", "hill",
-        "garden", "park", "plains",
-        "grassland", "swamp",
-        "wildlife", "wild", "horse",
-        "elephant", "bird",
-        "sanctuary", "reserve",
-        "nature", "natural",
-        "cave", "rock",
-        "spring", "springs",
-        "water", "aquatic"
-    ],
-
-    "beach_coastal": [
-        "beach", "bay", "coast", "coastal",
-        "shore", "sea", "ocean",
-        "lagoon", "island", "marine",
-        "lighthouse", "light house",
-        "point"
-    ],
-
-    "religious": [
-        "temple", "monastery",
-        "buddha", "buddhist",
-        "devalaya", "kovil",
-        "viharaya", "viharava",
-        "church", "mosque",
-        "shrine", "sacred",
-        "pilgrim", "religious",
-        "bodhi", "bodhiya",
-        "stupa", "pagoda",
-        "meditation"
-    ],
-
-    "adventure_recreation": [
-        "hiking", "hike",
-        "trekking", "trek",
-        "surfing", "surf",
-        "climbing", "climb",
-        "diving", "snorkeling",
-        "rafting", "cycling",
-        "adventure", "camping",
-        "recreation"
-    ],
-
-    "urban_leisure": [
-        "shopping", "shop",
-        "market", "racecourse",
-        "event", "events",
-        "relax", "chill",
-        "jewellery", "jewelry",
-        "gem", "gems",
-        "city", "square"
-    ]
-}
+BEACH_COASTAL_KEYWORDS = [
+    "beach", "bay", "coast", "coastal",
+    "shore", "sea", "ocean", "lagoon",
+    "island", "marine", "lighthouse", "light house", "point",
+]
 
 
 # ============================================================
@@ -147,7 +99,7 @@ def category_score(text, keywords):
     Multi-label binary classification.
 
     Returns 1 if at least one keyword belonging to the
-    category occurs in the POI name/description.
+    category occurs in the normalized classification text.
     Otherwise returns 0.
     """
 
@@ -182,6 +134,16 @@ def get_matched_categories(row, category_columns):
 
 pois = pd.read_csv(INPUT_FILE)
 
+required_columns = {
+    "poi_id", "name", "district", "latitude", "longitude", "description",
+    "primary_category", "itinerary_category",
+}
+missing_columns = required_columns - set(pois.columns)
+if missing_columns:
+    raise ValueError(
+        f"Missing required input columns: {sorted(missing_columns)}"
+    )
+
 print("\nPreparing POI interest features...")
 print("-----------------------------------------")
 print(f"POIs loaded: {len(pois)}")
@@ -191,14 +153,14 @@ print(f"POIs loaded: {len(pois)}")
 # PREPARE CLASSIFICATION TEXT
 # ============================================================
 
-# Both attraction name and description are used because
-# the name itself often contains important information:
-# e.g. "Alankuda Beach", "Bambarakanda Falls", etc.
-
+# Only the secondary beach/coastal label is inferred from text.
+# The cleaned itinerary_category is authoritative for primary labels.
 pois["classification_text"] = (
     pois["name"].fillna("").astype(str)
     + " "
     + pois["description"].fillna("").astype(str)
+    + " "
+    + pois["primary_category"].fillna("").astype(str)
 ).apply(normalize_text)
 
 
@@ -206,20 +168,16 @@ pois["classification_text"] = (
 # MULTI-LABEL CLASSIFICATION
 # ============================================================
 
-for category, keywords in CATEGORY_KEYWORDS.items():
+category_columns = CATEGORY_COLUMNS
 
-    pois[category] = pois[
-        "classification_text"
-    ].apply(
-        lambda text: category_score(
-            text,
-            keywords
-        )
-    )
+for category in category_columns:
+    pois[category] = 0
 
+for category in VALID_PRIMARY_CATEGORIES:
+    pois[category] = (pois["itinerary_category"] == category).astype(int)
 
-category_columns = list(
-    CATEGORY_KEYWORDS.keys()
+pois["beach_coastal"] = pois["classification_text"].apply(
+    lambda text: category_score(text, BEACH_COASTAL_KEYWORDS)
 )
 
 
@@ -262,7 +220,7 @@ for category in category_columns:
     )
 
     percentage = (
-        count / len(pois)
+        count / len(pois) if len(pois) else 0
     ) * 100
 
     print(
@@ -277,7 +235,7 @@ classified_count = (
 )
 
 classified_percentage = (
-    classified_count / len(pois)
+    classified_count / len(pois) if len(pois) else 0
 ) * 100
 
 
@@ -321,6 +279,8 @@ output_columns = [
     "matched_categories"
 ]
 
+
+OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 pois[
     output_columns
