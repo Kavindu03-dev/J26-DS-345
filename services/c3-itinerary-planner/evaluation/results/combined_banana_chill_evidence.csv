@@ -1,0 +1,4 @@
+day,production_rank,detour_only_rank,rank_shift,final_score,detour_min,scoring_mode,weighted_absa,food,service,ambience,value,location
+1,7,35.0,28.0,0.8951,0.51,absa+cuisine+detour,0.8065,0.8072,0.9927,0.988,0.5479,
+2,7,1.0,-6.0,0.9129,0.0,absa+cuisine+detour,0.8065,0.8072,0.9927,0.988,0.5479,
+3,5,19.0,14.0,0.8713,1.19,absa+cuisine+detour,0.8065,0.8072,0.9927,0.988,0.5479,

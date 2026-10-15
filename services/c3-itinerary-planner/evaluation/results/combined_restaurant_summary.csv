@@ -1,0 +1,2 @@
+total_restaurants,route_corridor_restaurants,route_filter_reduction,route_filter_reduction_percent,restaurant_day_candidates,valid_detour_rows,min_detour_min,median_detour_min,mean_detour_min,max_detour_min,ranked_rows,unique_ranked_restaurants,absa_rows,fallback_rows,absa_percent,fallback_percent
+3239,87,3152,97.31398579808582,223,179,0.0,0.91,1.3731284916201116,7.39,179,69,3,176,1.675977653631285,98.32402234636872

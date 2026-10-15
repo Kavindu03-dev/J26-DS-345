@@ -1,0 +1,7 @@
+region,method,pois_visited,preference_utility,road_distance_km,driving_time_min
+Colombo,greedy,16,80,19.92,35.59
+Colombo,optimizer,16,80,15.92,28.0
+Kandy,greedy,14,70,140.16,245.8
+Kandy,optimizer,15,75,130.29,245.0
+Ella,greedy,14,70,98.32,153.79
+Ella,optimizer,15,75,111.7,159.0
