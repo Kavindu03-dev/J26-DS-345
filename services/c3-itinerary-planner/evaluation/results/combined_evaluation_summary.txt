@@ -1,0 +1,40 @@
+BASELINE VS OPTIMIZER
+Changes below are optimizer minus greedy.
+Colombo: POIs +0; utility +0; distance -4.00 km (-20.08%); driving -7.59 min (-21.33%).
+Kandy: POIs +1; utility +5; distance -9.87 km (-7.04%); driving -0.80 min (-0.33%).
+Ella: POIs +1; utility +5; distance +13.38 km (+13.61%); driving +5.21 min (+3.39%).
+Colombo: same POIs and utility with lower road distance and driving time.
+Kandy: +1 POI and +5 utility, with lower distance and similar driving time.
+Ella: +1 POI and +5 utility, requiring more distance and time: a utility/coverage trade-off.
+
+MEDICAL-ACCESS TRADE-OFF
+Kandy medical_high versus medical_disabled: POIs -2; utility -10; distance +118.35 km; driving +117 min; visit time -180 min.
+Medical-access-aware selection incorporates modeled hospital access; high-scenario selected-POI access: average 17.38, best 3.47, worst 35.90 min.
+Disabled hospital-access values are missing, so no measured reduction in hospital-access time can be inferred.
+
+RESTAURANT PIPELINE
+Route filtering: 3239 to 87 unique restaurants; reduction 3152 (97.31%).
+223 restaurant/day corridor rows; 179 valid detour rows; 179 ranked rows representing 69 unique restaurants.
+Modeled detour minutes: min 0.00, median 0.91, mean 1.3731, max 7.39.
+ABSA evidence available: 3 rows (1.68%); transparent cuisine+detour fallback: 176 rows (98.32%).
+Banana Chill Day 1: detour-only rank 35 -> production rank 7; shift +28; final score 0.8951; modeled detour 0.51 min.
+Banana Chill Day 2: detour-only rank 1 -> production rank 7; shift -6; final score 0.9129; modeled detour 0.00 min.
+Banana Chill Day 3: detour-only rank 19 -> production rank 5; shift +14; final score 0.8713; modeled detour 1.19 min.
+
+KEY FINDINGS
+Optimizer results show region-dependent coverage/travel trade-offs rather than uniform distance reduction.
+Medical-access-aware weighting changes route selection and increases travel in this controlled scenario.
+Route filtering substantially narrows the candidate space; detour candidates generally have low modeled insertion times.
+Production uses ABSA-aware ranking when review evidence is available and fallback ranking when it is unavailable.
+Banana Chill ordering differs from detour-only ordering; ABSA alone cannot be credited for the rank shifts.
+
+LIMITATIONS
+The three-region evaluation is a prototype-stage sample, not full nationwide validation.
+The medical experiment is one controlled Kandy scenario. Hospital access values are modeled road travel times and do not guarantee emergency response.
+Restaurant ABSA coverage is limited: one unique Kandy restaurant on this route had ABSA evidence, appearing on three days.
+Ranking effects cannot isolate ABSA from cuisine preference. Detour-only ties share minimum rank; production ranks are day-specific.
+Missing location sentiment remains missing; no sentiment evidence was invented.
+The earlier historical OR-Tools 14-POI control discrepancy remains unexplained; current repeated runs were stable.
+Greedy driving times retain fractional minutes; optimizer driving times use production rounded-per-leg minutes, so small differences need cautious interpretation.
+Filtering counts use unique restaurants; detour/ranking counts use restaurant/day rows. Corridor reduction also includes production coordinate cleaning.
+Regional figures use the user's approved valid results embedded in this reporting script; medical and restaurant figures come from the existing source CSVs. No evaluations were rerun.

@@ -1,0 +1,180 @@
+evaluation_rank,day,osm_id,name,cuisine,opening_hours,addr_city,latitude,longitude,distance_to_route_m,insert_after_stop_order,insert_after,insert_before,detour_time_min,detour_distance_km,detour_score,cuisine_preference_score,food_score,service_score,ambience_score,value_score,location_score,total_review_count,available_aspect_count,absa_quality_score,weighted_absa_score,weighted_absa_aspects,has_absa_data,review_evidence_status,final_restaurant_score,scoring_mode,final_day_rank,detour_only_day_rank,rank_shift_vs_detour_only
+1,1,node/3238078987,Lyon's Cafe,asian;local,,,7.287438,80.6228672,520.6,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,1.0,,,,,,,,,,0.0,False,unavailable,1.0,cuisine+detour,1,1.0,0.0
+2,2,way/398328085,Stuffed Cafe,sri_lankan,,,7.2868579,80.64208441666666,9.5,2,Arthur’s Seat,Devil's Seat,0.0,0.0,1.0,1.0,,,,,,,,,,0.0,False,unavailable,1.0,cuisine+detour,1,1.0,0.0
+3,2,node/3238078987,Lyon's Cafe,asian;local,,,7.287438,80.6228672,9.7,4,Ambalammana Peak,Primrose Hill,0.0,0.0,1.0,1.0,,,,,,,,,,0.0,False,unavailable,1.0,cuisine+detour,2,1.0,-1.0
+4,1,node/13031778691,Lemon Tree,asian,,,7.2857296,80.6284602,12.6,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.8,,,,,,,,,,0.0,False,unavailable,0.9273,cuisine+detour,2,1.0,-1.0
+5,1,node/13551262044,Hotel Saumiya,indian,,,7.2938845,80.6382374,28.6,1,Kandy Test Depot,Gira Hote Cave,0.0,0.06,1.0,0.8,,,,,,,,,,0.0,False,unavailable,0.9273,cuisine+detour,3,1.0,-2.0
+6,1,node/4362468889,Balaji Dosai,regional;indian,,Kandy,7.2937909,80.6382584,35.9,1,Kandy Test Depot,Gira Hote Cave,0.0,0.06,1.0,0.8,,,,,,,,,,0.0,False,unavailable,0.9273,cuisine+detour,4,1.0,-3.0
+7,1,node/5549361824,Vegetarian Restaurant,curry;indian,Mo-Su 06:30-22:00,Kandy,7.2883564,80.628939,199.9,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.8,,,,,,,,,,0.0,False,unavailable,0.9273,cuisine+detour,5,1.0,-4.0
+8,2,node/12604338101,Dosai Kingdom,south_indian,,,7.2929585,80.6329455,7.9,4,Ambalammana Peak,Primrose Hill,0.0,0.0,1.0,0.8,,,,,,,,,,0.0,False,unavailable,0.9273,cuisine+detour,3,1.0,-2.0
+9,2,node/5549361824,Vegetarian Restaurant,curry;indian,Mo-Su 06:30-22:00,Kandy,7.2883564,80.628939,10.1,4,Ambalammana Peak,Primrose Hill,0.0,0.0,1.0,0.8,,,,,,,,,,0.0,False,unavailable,0.9273,cuisine+detour,4,1.0,-3.0
+10,2,node/4362468889,Balaji Dosai,regional;indian,,Kandy,7.2937909,80.6382584,35.9,1,Kandy Test Depot,Arthur’s Seat,0.0,0.06,1.0,0.8,,,,,,,,,,0.0,False,unavailable,0.9273,cuisine+detour,5,1.0,-4.0
+11,2,node/13551262044,Hotel Saumiya,indian,,,7.2938845,80.6382374,45.6,1,Kandy Test Depot,Arthur’s Seat,0.0,0.06,1.0,0.8,,,,,,,,,,0.0,False,unavailable,0.9273,cuisine+detour,6,1.0,-5.0
+12,1,node/12604338101,Dosai Kingdom,south_indian,,,7.2929585,80.6329455,129.6,6,Hantana 2,Kandy Test Depot,0.04,0.06,0.996,0.8,,,,,,,,,,0.0,False,unavailable,0.9247,cuisine+detour,6,26.0,20.0
+13,3,node/13818129001,Indian Summer,indian,,,7.2964932,80.6365553,90.7,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.11,0.0,0.989,0.8,,,,,,,,,,0.0,False,unavailable,0.9203,cuisine+detour,1,3.0,2.0
+14,2,node/5573266221,Café Banana Chill,international;breakfast;coffee_shop;local,,Kandy,7.290551,80.63668,8.1,1,Kandy Test Depot,Arthur’s Seat,0.0,0.0,1.0,1.0,0.8072,0.9927,0.988,0.5479,,10.0,4.0,0.834,0.8065,4.0,True,available,0.9129,absa+cuisine+detour,7,1.0,-6.0
+15,3,node/13551262044,Hotel Saumiya,indian,,,7.2938845,80.6382374,127.5,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.34,0.27,0.966,0.8,,,,,,,,,,0.0,False,unavailable,0.9056,cuisine+detour,2,5.0,3.0
+16,3,node/4362468889,Balaji Dosai,regional;indian,,Kandy,7.2937909,80.6382584,137.6,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.34,0.27,0.966,0.8,,,,,,,,,,0.0,False,unavailable,0.9056,cuisine+detour,3,5.0,2.0
+17,3,node/12604338101,Dosai Kingdom,south_indian,,,7.2929585,80.6329455,293.8,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.42,0.25,0.958,0.8,,,,,,,,,,0.0,False,unavailable,0.9005,cuisine+detour,4,12.0,8.0
+18,1,node/5573266221,Café Banana Chill,international;breakfast;coffee_shop;local,,Kandy,7.290551,80.63668,112.3,1,Kandy Test Depot,Gira Hote Cave,0.51,0.27,0.949,1.0,0.8072,0.9927,0.988,0.5479,,10.0,4.0,0.834,0.8065,4.0,True,available,0.8951,absa+cuisine+detour,7,35.0,28.0
+19,1,node/13818129001,Indian Summer,indian,,,7.2964932,80.6365553,245.2,6,Hantana 2,Kandy Test Depot,0.81,0.69,0.919,0.8,,,,,,,,,,0.0,False,unavailable,0.8757,cuisine+detour,8,39.0,31.0
+20,3,node/5573266221,Café Banana Chill,international;breakfast;coffee_shop;local,,Kandy,7.290551,80.63668,511.5,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,1.19,0.6,0.881,1.0,0.8072,0.9927,0.988,0.5479,,10.0,4.0,0.834,0.8065,4.0,True,available,0.8713,absa+cuisine+detour,5,19.0,14.0
+21,2,node/13031778691,Lemon Tree,asian,,,7.2857296,80.6284602,206.3,4,Ambalammana Peak,Primrose Hill,0.91,0.53,0.909,0.8,,,,,,,,,,0.0,False,unavailable,0.8694,cuisine+detour,8,30.0,22.0
+22,1,way/398328085,Stuffed Cafe,sri_lankan,,,7.2868579,80.64208441666666,309.6,1,Kandy Test Depot,Gira Hote Cave,2.26,0.92,0.774,1.0,,,,,,,,,,0.0,False,unavailable,0.8562,cuisine+detour,9,54.0,45.0
+23,2,node/13818129001,Indian Summer,indian,,,7.2964932,80.6365553,109.9,1,Kandy Test Depot,Arthur’s Seat,1.35,1.02,0.865,0.8,,,,,,,,,,0.0,False,unavailable,0.8414,cuisine+detour,9,45.0,36.0
+24,1,node/3269996616,Sriram Indian Restaurant,,,Kandy,7.294316,80.6377157,11.0,6,Hantana 2,Kandy Test Depot,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,10,1.0,-9.0
+25,1,node/3513600849,Victory Hotel Bar & Restaurant,,,Kandy,7.2941167,80.6376472,11.8,6,Hantana 2,Kandy Test Depot,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,11,1.0,-10.0
+26,1,way/583660192,The Garden Cafe,,,Kandy,7.2869732,80.64758844285714,12.7,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,12,1.0,-11.0
+27,1,node/11710591769,hideout lounge,,,,7.2873407,80.6465179,12.8,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,13,1.0,-12.0
+28,1,node/11021340205,Devons Kandy,,,,7.2929438,80.6364607,14.1,6,Hantana 2,Kandy Test Depot,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,14,1.0,-13.0
+29,1,node/13605724257,Siri Ramya Restaurant,,,,7.2932012,80.6365823,14.7,6,Hantana 2,Kandy Test Depot,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,15,1.0,-14.0
+30,1,node/12628429320,Udaya hotel,,,,7.2800182,80.6210316,17.1,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,16,1.0,-15.0
+31,1,node/13516943746,Sinhala Hotel,,,,7.2932412,80.6355517,17.3,6,Hantana 2,Kandy Test Depot,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,17,1.0,-16.0
+32,1,node/8592872415,Olivia,,,Kandy,7.2834128,80.6519655,45.6,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,18,1.0,-17.0
+33,1,node/4036057939,Five Five Nine Restaurent,,,Kandy,7.2830777,80.6229067,127.7,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,19,1.0,-18.0
+34,1,node/5188302226,Grand Cafe,,8:30 AM-10 PM,Kandy,7.2855675,80.6259798,152.4,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,20,1.0,-19.0
+35,1,node/12538959174,My Momo,,,,7.2857237,80.6261285,155.8,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,21,1.0,-20.0
+36,1,node/6049077087,The Urban Grub,,,Kandy,7.2884713,80.6288775,214.3,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,22,1.0,-21.0
+37,1,node/8595863701,Skyloft,,,Kandy,7.2729994,80.6248909,380.0,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,23,1.0,-22.0
+38,1,node/6296619889,Balaji dosai,,,,7.2877108,80.6239289,478.7,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,24,1.0,-23.0
+39,1,way/1146258054,Delight Baker and Spice Court,,,,7.28769262,80.62368081999999,493.8,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,25,1.0,-24.0
+40,1,node/3238071778,Dine-More,,,,7.2874726,80.6232776,498.4,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,26,1.0,-25.0
+41,1,node/6390396197,Royal Mall Food Court,,,,7.2739388,80.6131873,685.3,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,27,1.0,-26.0
+42,1,node/3258712529,Vijayan's Take Away,,,,7.28665,80.6192065,693.8,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,28,1.0,-27.0
+43,2,node/6296619889,Balaji dosai,,,,7.2877108,80.6239289,2.3,4,Ambalammana Peak,Primrose Hill,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,10,1.0,-9.0
+44,2,node/6049077087,The Urban Grub,,,Kandy,7.2884713,80.6288775,3.7,4,Ambalammana Peak,Primrose Hill,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,11,1.0,-10.0
+45,2,node/13540678380,June Bistro,,,,7.2972819,80.6374505,9.9,6,Asgiriya,Kandy Test Depot,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,12,1.0,-11.0
+46,2,way/1146258054,Delight Baker and Spice Court,,,,7.28769262,80.62368081999999,10.8,4,Ambalammana Peak,Primrose Hill,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,13,1.0,-12.0
+47,2,way/583660192,The Garden Cafe,,,Kandy,7.2869732,80.64758844285714,12.7,4,Ambalammana Peak,Primrose Hill,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,14,1.0,-13.0
+48,2,node/11710591769,hideout lounge,,,,7.2873407,80.6465179,12.8,4,Ambalammana Peak,Primrose Hill,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,15,1.0,-14.0
+49,2,node/3238071778,Dine-More,,,,7.2874726,80.6232776,22.3,4,Ambalammana Peak,Primrose Hill,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,16,1.0,-15.0
+50,2,node/8592857060,Golden Crown,,,Kandy,7.2758269,80.6568364,39.0,2,Arthur’s Seat,Devil's Seat,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,17,1.0,-16.0
+51,2,node/8592872415,Olivia,,,Kandy,7.2834128,80.6519655,45.6,2,Arthur’s Seat,Devil's Seat,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,18,1.0,-17.0
+52,2,node/3258709471,Happy Family Food Court,,,,7.2957612,80.627944,366.7,5,Primrose Hill,Asgiriya,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,19,1.0,-18.0
+53,2,node/3258708526,The Wok,,,,7.2952108,80.6267591,374.1,5,Primrose Hill,Asgiriya,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,20,1.0,-19.0
+54,3,node/13540678380,June Bistro,,,,7.2972819,80.6374505,9.9,6,Chithithavisuddi Cave,Kandy Test Depot,0.0,0.0,1.0,0.5,,,,,,,,,,0.0,False,unavailable,0.8182,cuisine+detour,6,1.0,-5.0
+55,1,way/398328052,No.Name,indian,,,7.28792894,80.64280566,171.2,1,Kandy Test Depot,Gira Hote Cave,1.75,0.67,0.825,0.8,,,,,,,,,,0.0,False,unavailable,0.8159,cuisine+detour,29,50.0,21.0
+56,1,node/5898821585,Ganga,,,Kandy,7.2945421,80.6362296,86.5,6,Hantana 2,Kandy Test Depot,0.07,0.0,0.993,0.5,,,,,,,,,,0.0,False,unavailable,0.8137,cuisine+detour,30,27.0,-3.0
+57,3,way/857783960,Aroma Food Corner,,,Kandy,7.307651760000001,80.6429172,10.5,6,Chithithavisuddi Cave,Kandy Test Depot,0.08,0.02,0.992,0.5,,,,,,,,,,0.0,False,unavailable,0.8131,cuisine+detour,7,2.0,-5.0
+58,2,way/398328052,No.Name,indian,,,7.28792894,80.64280566,95.6,4,Ambalammana Peak,Primrose Hill,1.83,0.67,0.817,0.8,,,,,,,,,,0.0,False,unavailable,0.8108,cuisine+detour,21,52.0,31.0
+59,1,node/7192739586,Hela Bojun,,,,7.290579,80.6321919,76.8,6,Hantana 2,Kandy Test Depot,0.14,0.07,0.986,0.5,,,,,,,,,,0.0,False,unavailable,0.8093,cuisine+detour,31,28.0,-3.0
+60,1,way/816784299,Cafetaria,,,,7.295453740000001,80.64096065999999,34.3,1,Kandy Test Depot,Gira Hote Cave,0.16,0.04,0.984,0.5,,,,,,,,,,0.0,False,unavailable,0.808,cuisine+detour,32,29.0,-3.0
+61,2,way/816784299,Cafetaria,,,,7.295453740000001,80.64096065999999,34.3,1,Kandy Test Depot,Arthur’s Seat,0.16,0.04,0.984,0.5,,,,,,,,,,0.0,False,unavailable,0.808,cuisine+detour,22,20.0,-2.0
+62,3,way/816784299,Cafetaria,,,,7.295453740000001,80.64096065999999,34.3,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.16,0.04,0.984,0.5,,,,,,,,,,0.0,False,unavailable,0.808,cuisine+detour,8,4.0,-4.0
+63,2,node/3258712529,Vijayan's Take Away,,,,7.28665,80.6192065,27.0,5,Primrose Hill,Asgiriya,0.23,0.06,0.977,0.5,,,,,,,,,,0.0,False,unavailable,0.8035,cuisine+detour,23,21.0,-2.0
+64,1,node/11425560741,La Mulberry,,,,7.2939685,80.6380503,22.0,6,Hantana 2,Kandy Test Depot,0.29,0.04,0.971,0.5,,,,,,,,,,0.0,False,unavailable,0.7997,cuisine+detour,33,30.0,-3.0
+65,1,node/8592857060,Golden Crown,,,Kandy,7.2758269,80.6568364,276.0,1,Kandy Test Depot,Gira Hote Cave,0.3,0.0,0.97,0.5,,,,,,,,,,0.0,False,unavailable,0.7991,cuisine+detour,34,31.0,-3.0
+66,1,node/13516943745,Kandy Muslim Hotel,,,,7.2932918,80.6353599,22.8,6,Hantana 2,Kandy Test Depot,0.31,0.04,0.969,0.5,,,,,,,,,,0.0,False,unavailable,0.7985,cuisine+detour,35,32.0,-3.0
+67,2,node/12538959174,My Momo,,,,7.2857237,80.6261285,159.6,4,Ambalammana Peak,Primrose Hill,0.33,0.34,0.967,0.5,,,,,,,,,,0.0,False,unavailable,0.7972,cuisine+detour,24,22.0,-2.0
+68,2,node/5188302226,Grand Cafe,,8:30 AM-10 PM,Kandy,7.2855675,80.6259798,169.6,4,Ambalammana Peak,Primrose Hill,0.33,0.34,0.967,0.5,,,,,,,,,,0.0,False,unavailable,0.7972,cuisine+detour,25,22.0,-3.0
+69,3,node/10686142675,Soul Food,,,,7.2925492,80.6358786,302.4,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.34,0.2,0.966,0.5,,,,,,,,,,0.0,False,unavailable,0.7965,cuisine+detour,9,5.0,-4.0
+70,3,node/6366515085,"Food court - Chinese, Indian, Thai & Italian food",,,,7.2923077,80.6372568,311.3,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.34,0.2,0.966,0.5,,,,,,,,,,0.0,False,unavailable,0.7965,cuisine+detour,10,5.0,-5.0
+71,3,node/5422881322,Worldspice,,,Kandy,7.2921405,80.6369893,333.0,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.34,0.2,0.966,0.5,,,,,,,,,,0.0,False,unavailable,0.7965,cuisine+detour,11,5.0,-6.0
+72,3,node/5234901826,Hela Bojun Hala,,,Kandy,7.2918991,80.6367174,362.9,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.34,0.2,0.966,0.5,,,,,,,,,,0.0,False,unavailable,0.7965,cuisine+detour,12,5.0,-7.0
+73,2,node/13153063420,Oak Ray,,,,7.2884825,80.6395765,9.8,2,Arthur’s Seat,Devil's Seat,0.37,0.15,0.963,0.5,,,,,,,,,,0.0,False,unavailable,0.7946,cuisine+detour,26,24.0,-2.0
+74,3,node/5549361824,Vegetarian Restaurant,curry;indian,Mo-Su 06:30-22:00,Kandy,7.2883564,80.628939,928.0,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,2.14,1.62,0.786,0.8,,,,,,,,,,0.0,False,unavailable,0.7911,cuisine+detour,13,32.0,19.0
+75,1,node/12800035602,Organica Lounge Kandy (Vegan),,,,7.2935928,80.6353672,50.8,6,Hantana 2,Kandy Test Depot,0.43,0.02,0.957,0.5,,,,,,,,,,0.0,False,unavailable,0.7908,cuisine+detour,36,33.0,-3.0
+76,1,node/6731567986,Route 66,,,,7.2939491,80.6373152,30.4,6,Hantana 2,Kandy Test Depot,0.47,0.08,0.953,0.5,,,,,,,,,,0.0,False,unavailable,0.7883,cuisine+detour,37,34.0,-3.0
+77,2,node/11469395713,Senani Restaurant,,,,7.2883838,80.6394475,12.1,2,Arthur’s Seat,Devil's Seat,0.47,0.18,0.953,0.5,,,,,,,,,,0.0,False,unavailable,0.7883,cuisine+detour,27,25.0,-2.0
+78,2,node/4036057939,Five Five Nine Restaurent,,,Kandy,7.2830777,80.6229067,305.2,4,Ambalammana Peak,Primrose Hill,0.52,0.46,0.948,0.5,,,,,,,,,,0.0,False,unavailable,0.7851,cuisine+detour,28,26.0,-2.0
+79,3,node/13840039701,The Dope House,,,,7.2950694,80.6359898,24.1,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.54,0.13,0.946,0.5,,,,,,,,,,0.0,False,unavailable,0.7838,cuisine+detour,14,13.0,-1.0
+80,3,node/5898825385,Shri Bhawan Dosa,,,Kandy,7.2947522,80.6360047,58.8,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.54,0.13,0.946,0.5,,,,,,,,,,0.0,False,unavailable,0.7838,cuisine+detour,15,13.0,-2.0
+81,1,node/13540678380,June Bistro,,,,7.2972819,80.6374505,329.9,6,Hantana 2,Kandy Test Depot,0.56,0.5,0.944,0.5,,,,,,,,,,0.0,False,unavailable,0.7825,cuisine+detour,38,36.0,-2.0
+82,1,node/13516943744,Pizza Hut,pizza,,,7.293615,80.6385517,8.2,1,Kandy Test Depot,Gira Hote Cave,0.0,0.0,1.0,0.4,,,,,,,,,,0.0,False,unavailable,0.7818,cuisine+detour,39,1.0,-38.0
+83,2,node/13516943744,Pizza Hut,pizza,,,7.293615,80.6385517,8.2,1,Kandy Test Depot,Arthur’s Seat,0.0,0.0,1.0,0.4,,,,,,,,,,0.0,False,unavailable,0.7818,cuisine+detour,29,1.0,-28.0
+84,1,node/5898825385,Shri Bhawan Dosa,,,Kandy,7.2947522,80.6360047,118.0,6,Hantana 2,Kandy Test Depot,0.62,0.08,0.938,0.5,,,,,,,,,,0.0,False,unavailable,0.7787,cuisine+detour,40,37.0,-3.0
+85,2,node/11425549206,Marinate,,,,7.29433,80.6298674,323.5,5,Primrose Hill,Asgiriya,0.65,0.33,0.935,0.5,,,,,,,,,,0.0,False,unavailable,0.7768,cuisine+detour,30,27.0,-3.0
+86,3,node/14144834228,Waul Kade,,Mo-Fr 7:00am-9:00pm,,7.3176106,80.6461707,460.7,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,0.65,0.24,0.935,0.5,,,,,,,,,,0.0,False,unavailable,0.7768,cuisine+detour,16,15.0,-1.0
+87,1,node/13840039701,The Dope House,,,,7.2950694,80.6359898,137.4,6,Hantana 2,Kandy Test Depot,0.68,0.61,0.932,0.5,,,,,,,,,,0.0,False,unavailable,0.7749,cuisine+detour,41,38.0,-3.0
+88,1,way/1077602460,Siri Ramya Resturants,,,,7.294627277777778,80.63715175555555,36.6,6,Hantana 2,Kandy Test Depot,0.81,0.69,0.919,0.5,,,,,,,,,,0.0,False,unavailable,0.7666,cuisine+detour,42,39.0,-3.0
+89,1,node/12599830101,Siri Ramya Hotel & Caterers,,,,7.297194,80.6365996,320.9,6,Hantana 2,Kandy Test Depot,0.81,0.69,0.919,0.5,,,,,,,,,,0.0,False,unavailable,0.7666,cuisine+detour,43,39.0,-4.0
+90,3,way/1077602460,Siri Ramya Resturants,,,,7.294627277777778,80.63715175555555,57.7,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.81,0.43,0.919,0.5,,,,,,,,,,0.0,False,unavailable,0.7666,cuisine+detour,17,16.0,-1.0
+91,1,node/4035870284,Lake Classical Guesthouse,,,Kandy,7.2901646,80.6401524,23.4,1,Kandy Test Depot,Gira Hote Cave,0.82,0.25,0.918,0.5,,,,,,,,,,0.0,False,unavailable,0.766,cuisine+detour,44,42.0,-2.0
+92,2,node/12599830101,Siri Ramya Hotel & Caterers,,,,7.297194,80.6365996,82.7,6,Asgiriya,Kandy Test Depot,0.83,0.46,0.917,0.5,,,,,,,,,,0.0,False,unavailable,0.7654,cuisine+detour,31,28.0,-3.0
+93,3,node/12599830101,Siri Ramya Hotel & Caterers,,,,7.297194,80.6365996,82.7,6,Chithithavisuddi Cave,Kandy Test Depot,0.83,0.46,0.917,0.5,,,,,,,,,,0.0,False,unavailable,0.7654,cuisine+detour,18,17.0,-1.0
+94,2,node/4035870284,Lake Classical Guesthouse,,,Kandy,7.2901646,80.6401524,23.4,4,Ambalammana Peak,Primrose Hill,0.88,0.25,0.912,0.5,,,,,,,,,,0.0,False,unavailable,0.7622,cuisine+detour,32,29.0,-3.0
+95,3,node/13516943744,Pizza Hut,pizza,,,7.293615,80.6385517,154.3,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,0.34,0.2,0.966,0.4,,,,,,,,,,0.0,False,unavailable,0.7602,cuisine+detour,19,5.0,-14.0
+96,2,node/3269996616,Sriram Indian Restaurant,,,Kandy,7.294316,80.6377157,88.9,1,Kandy Test Depot,Arthur’s Seat,0.95,0.56,0.905,0.5,,,,,,,,,,0.0,False,unavailable,0.7577,cuisine+detour,33,31.0,-2.0
+97,2,node/3513600849,Victory Hotel Bar & Restaurant,,,Kandy,7.2941167,80.6376472,110.5,1,Kandy Test Depot,Arthur’s Seat,0.95,0.56,0.905,0.5,,,,,,,,,,0.0,False,unavailable,0.7577,cuisine+detour,34,31.0,-3.0
+98,2,node/13516943745,Kandy Muslim Hotel,,,,7.2932918,80.6353599,49.5,4,Ambalammana Peak,Primrose Hill,1.08,0.33,0.892,0.5,,,,,,,,,,0.0,False,unavailable,0.7495,cuisine+detour,35,33.0,-2.0
+99,2,node/12800035602,Organica Lounge Kandy (Vegan),,,,7.2935928,80.6353672,69.9,4,Ambalammana Peak,Primrose Hill,1.08,0.33,0.892,0.5,,,,,,,,,,0.0,False,unavailable,0.7495,cuisine+detour,36,33.0,-3.0
+100,2,node/7192739586,Hela Bojun,,,,7.290579,80.6321919,131.3,4,Ambalammana Peak,Primrose Hill,1.12,0.54,0.888,0.5,,,,,,,,,,0.0,False,unavailable,0.7469,cuisine+detour,37,35.0,-2.0
+101,2,node/13516943746,Sinhala Hotel,,,,7.2932412,80.6355517,65.4,6,Asgiriya,Kandy Test Depot,1.15,0.48,0.885,0.5,,,,,,,,,,0.0,False,unavailable,0.745,cuisine+detour,38,36.0,-2.0
+102,2,node/13605724257,Siri Ramya Restaurant,,,,7.2932012,80.6365823,130.1,6,Asgiriya,Kandy Test Depot,1.15,0.48,0.885,0.5,,,,,,,,,,0.0,False,unavailable,0.745,cuisine+detour,39,36.0,-3.0
+103,2,node/11021340205,Devons Kandy,,,,7.2929438,80.6364607,138.8,6,Asgiriya,Kandy Test Depot,1.15,0.48,0.885,0.5,,,,,,,,,,0.0,False,unavailable,0.745,cuisine+detour,40,36.0,-4.0
+104,2,node/5898821585,Ganga,,,Kandy,7.2945421,80.6362296,206.6,6,Asgiriya,Kandy Test Depot,1.22,0.49,0.878,0.5,,,,,,,,,,0.0,False,unavailable,0.7405,cuisine+detour,41,39.0,-2.0
+105,2,node/11425560741,La Mulberry,,,,7.2939685,80.6380503,65.9,1,Kandy Test Depot,Arthur’s Seat,1.24,0.61,0.876,0.5,,,,,,,,,,0.0,False,unavailable,0.7393,cuisine+detour,42,40.0,-2.0
+106,1,node/6366515085,"Food court - Chinese, Indian, Thai & Italian food",,,,7.2923077,80.6372568,39.7,1,Kandy Test Depot,Gira Hote Cave,1.25,0.83,0.875,0.5,,,,,,,,,,0.0,False,unavailable,0.7386,cuisine+detour,45,43.0,-2.0
+107,1,node/10686142675,Soul Food,,,,7.2925492,80.6358786,59.1,1,Kandy Test Depot,Gira Hote Cave,1.25,0.83,0.875,0.5,,,,,,,,,,0.0,False,unavailable,0.7386,cuisine+detour,46,43.0,-3.0
+108,1,node/5422881322,Worldspice,,,Kandy,7.2921405,80.6369893,65.1,1,Kandy Test Depot,Gira Hote Cave,1.25,0.83,0.875,0.5,,,,,,,,,,0.0,False,unavailable,0.7386,cuisine+detour,47,43.0,-4.0
+109,1,node/5234901826,Hela Bojun Hala,,,Kandy,7.2918991,80.6367174,89.6,1,Kandy Test Depot,Gira Hote Cave,1.25,0.83,0.875,0.5,,,,,,,,,,0.0,False,unavailable,0.7386,cuisine+detour,48,43.0,-5.0
+110,2,node/6366515085,"Food court - Chinese, Indian, Thai & Italian food",,,,7.2923077,80.6372568,39.7,4,Ambalammana Peak,Primrose Hill,1.25,0.77,0.875,0.5,,,,,,,,,,0.0,False,unavailable,0.7386,cuisine+detour,43,41.0,-2.0
+111,2,node/5234901826,Hela Bojun Hala,,,Kandy,7.2918991,80.6367174,60.4,4,Ambalammana Peak,Primrose Hill,1.25,0.77,0.875,0.5,,,,,,,,,,0.0,False,unavailable,0.7386,cuisine+detour,44,41.0,-3.0
+112,2,node/5422881322,Worldspice,,,Kandy,7.2921405,80.6369893,65.1,4,Ambalammana Peak,Primrose Hill,1.25,0.77,0.875,0.5,,,,,,,,,,0.0,False,unavailable,0.7386,cuisine+detour,45,41.0,-4.0
+113,2,node/10686142675,Soul Food,,,,7.2925492,80.6358786,92.3,4,Ambalammana Peak,Primrose Hill,1.25,0.77,0.875,0.5,,,,,,,,,,0.0,False,unavailable,0.7386,cuisine+detour,46,41.0,-5.0
+114,3,node/3269996616,Sriram Indian Restaurant,,,Kandy,7.294316,80.6377157,85.0,6,Chithithavisuddi Cave,Kandy Test Depot,1.27,0.75,0.873,0.5,,,,,,,,,,0.0,False,unavailable,0.7374,cuisine+detour,20,20.0,0.0
+115,3,node/3513600849,Victory Hotel Bar & Restaurant,,,Kandy,7.2941167,80.6376472,107.7,6,Chithithavisuddi Cave,Kandy Test Depot,1.27,0.75,0.873,0.5,,,,,,,,,,0.0,False,unavailable,0.7374,cuisine+detour,21,20.0,-1.0
+116,3,node/13516943746,Sinhala Hotel,,,,7.2932412,80.6355517,230.4,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,1.27,0.88,0.873,0.5,,,,,,,,,,0.0,False,unavailable,0.7374,cuisine+detour,22,20.0,-2.0
+117,3,node/6731567986,Route 66,,,,7.2939491,80.6373152,130.2,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,1.28,0.51,0.872,0.5,,,,,,,,,,0.0,False,unavailable,0.7367,cuisine+detour,23,23.0,0.0
+118,1,node/13760628335,Roots'n'beans,,Mo-Su 07:00-21:00,,7.291529,80.6431012,162.9,1,Kandy Test Depot,Gira Hote Cave,1.39,0.0,0.861,0.5,,,,,,,,,,0.0,False,unavailable,0.7297,cuisine+detour,49,47.0,-2.0
+119,3,node/13605724257,Siri Ramya Restaurant,,,,7.2932012,80.6365823,221.3,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,1.41,0.96,0.859,0.5,,,,,,,,,,0.0,False,unavailable,0.7285,cuisine+detour,24,24.0,0.0
+120,3,node/11021340205,Devons Kandy,,,,7.2929438,80.6364607,251.1,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,1.41,0.96,0.859,0.5,,,,,,,,,,0.0,False,unavailable,0.7285,cuisine+detour,25,24.0,-1.0
+121,2,node/6731567986,Route 66,,,,7.2939491,80.6373152,112.1,1,Kandy Test Depot,Arthur’s Seat,1.42,0.64,0.858,0.5,,,,,,,,,,0.0,False,unavailable,0.7278,cuisine+detour,47,46.0,-1.0
+122,3,node/12800035602,Organica Lounge Kandy (Vegan),,,,7.2935928,80.6353672,196.2,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,1.42,0.53,0.858,0.5,,,,,,,,,,0.0,False,unavailable,0.7278,cuisine+detour,26,26.0,0.0
+123,3,node/13516943745,Kandy Muslim Hotel,,,,7.2932918,80.6353599,228.7,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,1.42,0.53,0.858,0.5,,,,,,,,,,0.0,False,unavailable,0.7278,cuisine+detour,27,26.0,-1.0
+124,3,way/541611701,Pizza Hut,pizza,,,7.317507871428572,80.62954088571428,861.8,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,0.91,2.33,0.909,0.4,,,,,,,,,,0.0,False,unavailable,0.7239,cuisine+detour,28,18.0,-10.0
+125,1,node/12691109990,Mango Garden,,,,7.28817,80.6424527,184.4,1,Kandy Test Depot,Gira Hote Cave,1.52,0.58,0.848,0.5,,,,,,,,,,0.0,False,unavailable,0.7215,cuisine+detour,50,48.0,-2.0
+126,2,node/5898825385,Shri Bhawan Dosa,,,Kandy,7.2947522,80.6360047,213.2,1,Kandy Test Depot,Arthur’s Seat,1.56,0.55,0.844,0.5,,,,,,,,,,0.0,False,unavailable,0.7189,cuisine+detour,48,47.0,-1.0
+127,3,node/11425560741,La Mulberry,,,,7.2939685,80.6380503,119.8,6,Chithithavisuddi Cave,Kandy Test Depot,1.56,0.8,0.844,0.5,,,,,,,,,,0.0,False,unavailable,0.7189,cuisine+detour,29,28.0,-1.0
+128,2,node/12691109990,Mango Garden,,,,7.28817,80.6424527,123.5,4,Ambalammana Peak,Primrose Hill,1.61,0.58,0.839,0.5,,,,,,,,,,0.0,False,unavailable,0.7157,cuisine+detour,49,48.0,-1.0
+129,3,node/5898821585,Ganga,,,Kandy,7.2945421,80.6362296,78.9,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,1.65,0.97,0.835,0.5,,,,,,,,,,0.0,False,unavailable,0.7132,cuisine+detour,30,29.0,-1.0
+130,1,way/398328055,Radisson Hotel Kandy,,,Kandy,7.288180211111111,80.64286907777779,148.7,1,Kandy Test Depot,Gira Hote Cave,1.69,0.64,0.831,0.5,,,,,,,,,,0.0,False,unavailable,0.7106,cuisine+detour,51,49.0,-2.0
+131,2,way/1077602460,Siri Ramya Resturants,,,,7.294627277777778,80.63715175555555,107.9,1,Kandy Test Depot,Arthur’s Seat,1.77,0.81,0.823,0.5,,,,,,,,,,0.0,False,unavailable,0.7055,cuisine+detour,50,49.0,-1.0
+132,2,way/398328055,Radisson Hotel Kandy,,,Kandy,7.288180211111111,80.64286907777779,124.1,4,Ambalammana Peak,Primrose Hill,1.77,0.64,0.823,0.5,,,,,,,,,,0.0,False,unavailable,0.7055,cuisine+detour,51,49.0,-2.0
+133,3,node/7192739586,Hela Bojun,,,,7.290579,80.6321919,566.6,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,1.8,0.94,0.82,0.5,,,,,,,,,,0.0,False,unavailable,0.7036,cuisine+detour,31,30.0,-1.0
+134,2,node/13840039701,The Dope House,,,,7.2950694,80.6359898,215.1,6,Asgiriya,Kandy Test Depot,1.82,1.1,0.818,0.5,,,,,,,,,,0.0,False,unavailable,0.7024,cuisine+detour,52,51.0,-1.0
+135,1,node/4156996891,Mango Garden,regional,,,7.2880419,80.6424538,194.4,1,Kandy Test Depot,Gira Hote Cave,1.91,0.73,0.809,0.5,,,,,,,,,,0.0,False,unavailable,0.6966,cuisine+detour,52,51.0,-1.0
+136,2,node/4156996891,Mango Garden,regional,,,7.2880419,80.6424538,109.6,4,Ambalammana Peak,Primrose Hill,1.99,0.73,0.801,0.5,,,,,,,,,,0.0,False,unavailable,0.6915,cuisine+detour,53,53.0,0.0
+137,1,node/6611417522,History Restaurant,,,,7.2908846,80.6450846,206.1,1,Kandy Test Depot,Gira Hote Cave,2.1,0.35,0.79,0.5,,,,,,,,,,0.0,False,unavailable,0.6845,cuisine+detour,53,53.0,0.0
+138,3,way/398328085,Stuffed Cafe,sri_lankan,,,7.2868579,80.64208441666666,923.5,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,4.96,2.54,0.504,1.0,,,,,,,,,,0.0,False,unavailable,0.6844,cuisine+detour,32,49.0,17.0
+139,3,node/6049077087,The Urban Grub,,,Kandy,7.2884713,80.6288775,920.5,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,2.13,1.61,0.787,0.5,,,,,,,,,,0.0,False,unavailable,0.6826,cuisine+detour,33,31.0,-2.0
+140,3,node/4035870284,Lake Classical Guesthouse,,,Kandy,7.2901646,80.6401524,533.5,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,2.15,1.12,0.785,0.5,,,,,,,,,,0.0,False,unavailable,0.6814,cuisine+detour,34,33.0,-1.0
+141,2,node/13760628335,Roots'n'beans,,Mo-Su 07:00-21:00,,7.291529,80.6431012,162.9,4,Ambalammana Peak,Primrose Hill,2.22,0.17,0.778,0.5,,,,,,,,,,0.0,False,unavailable,0.6769,cuisine+detour,54,55.0,1.0
+142,2,node/12628429320,Udaya hotel,,,,7.2800182,80.6210316,449.4,4,Ambalammana Peak,Primrose Hill,2.38,1.78,0.762,0.5,,,,,,,,,,0.0,False,unavailable,0.6667,cuisine+detour,55,56.0,1.0
+143,3,way/398328052,No.Name,indian,,,7.28792894,80.64280566,822.2,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,4.13,2.21,0.587,0.8,,,,,,,,,,0.0,False,unavailable,0.6645,cuisine+detour,35,43.0,8.0
+144,1,node/12691117869,Pizzeria Vito,pizza,,,7.287806,80.6424907,207.1,1,Kandy Test Depot,Gira Hote Cave,1.95,0.75,0.805,0.4,,,,,,,,,,0.0,False,unavailable,0.6577,cuisine+detour,54,52.0,-2.0
+145,1,node/11425549206,Marinate,,,,7.29433,80.6298674,499.5,6,Hantana 2,Kandy Test Depot,2.54,1.32,0.746,0.5,,,,,,,,,,0.0,False,unavailable,0.6565,cuisine+detour,55,55.0,0.0
+146,3,node/6649834386,Orient Restaurant,,,,7.2912254,80.6473007,413.0,4,Hunnasgiriya,Kodimale Peak,2.55,1.5,0.745,0.5,,,,,,,,,,0.0,False,unavailable,0.6559,cuisine+detour,36,34.0,-2.0
+147,2,node/12691117869,Pizzeria Vito,pizza,,,7.287806,80.6424907,83.3,4,Ambalammana Peak,Primrose Hill,2.03,0.75,0.797,0.4,,,,,,,,,,0.0,False,unavailable,0.6526,cuisine+detour,56,54.0,-2.0
+148,1,node/6153672585,Ivy Banks restaurant,,,,7.287428,80.6424375,237.8,1,Kandy Test Depot,Gira Hote Cave,2.61,0.91,0.739,0.5,,,,,,,,,,0.0,False,unavailable,0.6521,cuisine+detour,56,56.0,0.0
+149,1,node/6649834386,Orient Restaurant,,,,7.2912254,80.6473007,374.6,1,Kandy Test Depot,Gira Hote Cave,2.61,0.32,0.739,0.5,,,,,,,,,,0.0,False,unavailable,0.6521,cuisine+detour,57,56.0,-1.0
+150,2,node/6153672585,Ivy Banks restaurant,,,,7.287428,80.6424375,46.8,4,Ambalammana Peak,Primrose Hill,2.69,0.91,0.731,0.5,,,,,,,,,,0.0,False,unavailable,0.647,cuisine+detour,57,57.0,0.0
+151,1,node/13153063420,Oak Ray,,,,7.2884825,80.6395765,196.3,1,Kandy Test Depot,Gira Hote Cave,2.7,1.05,0.73,0.5,,,,,,,,,,0.0,False,unavailable,0.6464,cuisine+detour,58,58.0,0.0
+152,3,way/583660192,The Garden Cafe,,,Kandy,7.2869732,80.64758844285714,847.0,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,2.7,1.62,0.73,0.5,,,,,,,,,,0.0,False,unavailable,0.6464,cuisine+detour,37,35.0,-2.0
+153,3,node/11710591769,hideout lounge,,,,7.2873407,80.6465179,840.5,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,2.71,1.62,0.729,0.5,,,,,,,,,,0.0,False,unavailable,0.6457,cuisine+detour,38,36.0,-2.0
+154,3,node/11425549206,Marinate,,,,7.29433,80.6298674,389.3,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,2.73,1.36,0.727,0.5,,,,,,,,,,0.0,False,unavailable,0.6445,cuisine+detour,39,37.0,-2.0
+155,1,node/11469395713,Senani Restaurant,,,,7.2883838,80.6394475,208.9,1,Kandy Test Depot,Gira Hote Cave,2.79,1.09,0.721,0.5,,,,,,,,,,0.0,False,unavailable,0.6406,cuisine+detour,59,59.0,0.0
+156,2,node/6611417522,History Restaurant,,,,7.2908846,80.6450846,206.1,4,Ambalammana Peak,Primrose Hill,2.92,0.75,0.708,0.5,,,,,,,,,,0.0,False,unavailable,0.6324,cuisine+detour,58,58.0,0.0
+157,3,node/13760628335,Roots'n'beans,,Mo-Su 07:00-21:00,,7.291529,80.6431012,462.2,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,2.96,0.85,0.704,0.5,,,,,,,,,,0.0,False,unavailable,0.6298,cuisine+detour,40,38.0,-2.0
+158,3,node/6611417522,History Restaurant,,,,7.2908846,80.6450846,598.9,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,2.96,0.85,0.704,0.5,,,,,,,,,,0.0,False,unavailable,0.6298,cuisine+detour,41,38.0,-3.0
+159,2,node/6649834386,Orient Restaurant,,,,7.2912254,80.6473007,374.6,4,Ambalammana Peak,Primrose Hill,3.18,1.52,0.682,0.5,,,,,,,,,,0.0,False,unavailable,0.6158,cuisine+detour,59,59.0,0.0
+160,1,node/3258709471,Happy Family Food Court,,,,7.2957612,80.627944,762.7,6,Hantana 2,Kandy Test Depot,3.5,1.87,0.65,0.5,,,,,,,,,,0.0,False,unavailable,0.5955,cuisine+detour,60,60.0,0.0
+161,2,node/8418237940,Cafe Paprica,,,,7.2858279,80.661441,968.8,2,Arthur’s Seat,Devil's Seat,3.69,2.44,0.631,0.5,,,,,,,,,,0.0,False,unavailable,0.5834,cuisine+detour,60,60.0,0.0
+162,3,node/3258709471,Happy Family Food Court,,,,7.2957612,80.627944,572.5,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,3.69,1.91,0.631,0.5,,,,,,,,,,0.0,False,unavailable,0.5834,cuisine+detour,42,40.0,-2.0
+163,1,node/3258708526,The Wok,,,,7.2952108,80.6267591,847.1,6,Hantana 2,Kandy Test Depot,3.75,1.22,0.625,0.5,,,,,,,,,,0.0,False,unavailable,0.5795,cuisine+detour,61,61.0,0.0
+164,3,node/12691109990,Mango Garden,,,,7.28817,80.6424527,787.3,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,3.9,2.12,0.61,0.5,,,,,,,,,,0.0,False,unavailable,0.57,cuisine+detour,43,41.0,-2.0
+165,2,node/3242797233,Honey Pot Restaurant,,,Kandy,7.2763803,80.6063289,395.0,4,Ambalammana Peak,Primrose Hill,4.03,2.29,0.597,0.5,,,,,,,,,,0.0,False,unavailable,0.5617,cuisine+detour,61,61.0,0.0
+166,3,way/398328055,Radisson Hotel Kandy,,,Kandy,7.288180211111111,80.64286907777779,797.1,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,4.07,2.19,0.593,0.5,,,,,,,,,,0.0,False,unavailable,0.5592,cuisine+detour,44,42.0,-2.0
+167,3,node/13153063420,Oak Ray,,,,7.2884825,80.6395765,711.9,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,4.22,2.04,0.578,0.5,,,,,,,,,,0.0,False,unavailable,0.5496,cuisine+detour,45,44.0,-1.0
+168,3,node/3258708526,The Wok,,,,7.2952108,80.6267591,705.1,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,4.25,2.21,0.575,0.5,,,,,,,,,,0.0,False,unavailable,0.5477,cuisine+detour,46,45.0,-1.0
+169,3,node/4156996891,Mango Garden,regional,,,7.2880419,80.6424538,801.2,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,4.28,2.27,0.572,0.5,,,,,,,,,,0.0,False,unavailable,0.5458,cuisine+detour,47,46.0,-1.0
+170,3,node/11469395713,Senani Restaurant,,,,7.2883838,80.6394475,722.4,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,4.32,2.08,0.568,0.5,,,,,,,,,,0.0,False,unavailable,0.5433,cuisine+detour,48,47.0,-1.0
+171,2,node/12130873942,Aloy Restaurant,,,,7.2728567,80.6071591,588.6,4,Ambalammana Peak,Primrose Hill,4.48,2.59,0.552,0.5,,,,,,,,,,0.0,False,unavailable,0.5331,cuisine+detour,62,62.0,0.0
+172,3,node/12691117869,Pizzeria Vito,pizza,,,7.287806,80.6424907,827.6,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,4.33,2.29,0.568,0.4,,,,,,,,,,0.0,False,unavailable,0.5069,cuisine+detour,49,48.0,-1.0
+173,2,node/6390396197,Royal Mall Food Court,,,,7.2739388,80.6131873,502.9,4,Ambalammana Peak,Primrose Hill,4.95,3.59,0.505,0.5,,,,,,,,,,0.0,False,unavailable,0.5032,cuisine+detour,63,63.0,0.0
+174,3,node/6153672585,Ivy Banks restaurant,,,,7.287428,80.6424375,867.5,1,Kandy Test Depot,Viewpoint of Asgiri Maha Vihara Pirivena,4.98,2.45,0.502,0.5,,,,,,,,,,0.0,False,unavailable,0.5013,cuisine+detour,50,50.0,0.0
+175,1,node/8418237940,Cafe Paprica,,,,7.2858279,80.661441,968.8,1,Kandy Test Depot,Gira Hote Cave,6.07,3.7,0.393,0.5,,,,,,,,,,0.0,False,unavailable,0.4319,cuisine+detour,62,62.0,0.0
+176,2,node/3258708521,Dj's Restaurant,,,,7.2832365,80.6088262,574.0,5,Primrose Hill,Asgiriya,6.25,2.87,0.375,0.5,,,,,,,,,,0.0,False,unavailable,0.4205,cuisine+detour,64,64.0,0.0
+177,1,node/6611417519,Kassapa's Dream Restaurant,,,,7.2925421,80.6458685,406.4,1,Kandy Test Depot,Gira Hote Cave,6.81,1.36,0.319,0.5,,,,,,,,,,0.0,False,unavailable,0.3848,cuisine+detour,63,63.0,0.0
+178,2,node/6611417519,Kassapa's Dream Restaurant,,,,7.2925421,80.6458685,406.4,4,Ambalammana Peak,Primrose Hill,7.37,2.56,0.263,0.5,,,,,,,,,,0.0,False,unavailable,0.3492,cuisine+detour,65,65.0,0.0
+179,3,node/6611417519,Kassapa's Dream Restaurant,,,,7.2925421,80.6458685,419.4,2,Viewpoint of Asgiri Maha Vihara Pirivena,Hunnasgiri Ella,7.39,2.95,0.261,0.5,,,,,,,,,,0.0,False,unavailable,0.3479,cuisine+detour,51,51.0,0.0
