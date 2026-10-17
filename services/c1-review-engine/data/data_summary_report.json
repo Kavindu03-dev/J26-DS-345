@@ -1,0 +1,46 @@
+{
+  "dataset_name": "SLIIT Tourism Review Research Master Dataset",
+  "component": "Component 1: Trust-Aware Review Analysis Engine",
+  "total_unique_reviews": 39399,
+  "total_unique_hotels": 1025,
+  "skipped_non_english_reviews": 7192,
+  "skipped_duplicate_reviews": 13298,
+  "average_review_word_count": 64.6,
+  "platform_distribution": {
+    "Booking.com": 32382,
+    "Google Maps": 6592,
+    "TripAdvisor": 425
+  },
+  "price_tier_distribution": {
+    "Mid-Range": 39399
+  },
+  "district_distribution": {
+    "Anuradhapura": 1879,
+    "Trincomalee": 2352,
+    "Colombo": 2171,
+    "Badulla": 2245,
+    "Kandy": 1535,
+    "Gampaha": 1517,
+    "Mannar": 505,
+    "Matale": 2162,
+    "Ampara": 1178,
+    "Kegalle": 1529,
+    "Batticaloa": 1906,
+    "Puttalam": 1546,
+    "Hambantota": 2224,
+    "Polonnaruwa": 1650,
+    "Galle": 2632,
+    "Kurunegala": 705,
+    "Kilinochchi": 319,
+    "Jaffna": 1250,
+    "Ratnapura": 1783,
+    "Vavuniya": 250,
+    "Kalutara": 2224,
+    "Nuwara Eliya": 2141,
+    "Matara": 2359,
+    "Monaragala": 1283,
+    "Mullaitivu": 54
+  },
+  "export_path": "D:\\RESEARCH PROJECT\\review_scraper\\data\\processed\\research_dataset_unified.csv",
+  "grouped_by_hotel_path": "D:\\RESEARCH PROJECT\\review_scraper\\data\\processed\\reviews_by_hotel.json"
+}

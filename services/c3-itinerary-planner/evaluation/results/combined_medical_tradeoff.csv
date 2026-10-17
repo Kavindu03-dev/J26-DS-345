@@ -1,0 +1,3 @@
+scenario,pois_visited,preference_utility,road_distance_km,driving_time_min,visit_time_min,avg_hospital_access_min,best_hospital_access_min,worst_hospital_access_min
+medical_disabled,15,75.0,130.29,245.0,1350.0,,,
+medical_high,13,65.0,248.64,362.0,1170.0,17.377692307692307,3.47,35.9

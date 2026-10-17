@@ -1,0 +1,92 @@
+{
+  "absa_benchmark_evaluation": {
+    "total_benchmark_samples": 30,
+    "aspect_extraction_accuracy": 93.33,
+    "sentiment_classification_accuracy": 80.0,
+    "macro_f1_score": 73.64,
+    "class_metrics": {
+      "Positive": {
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1_score": 0.8,
+        "support": 12
+      },
+      "Negative": {
+        "precision": 1.0,
+        "recall": 0.8333,
+        "f1_score": 0.9091,
+        "support": 12
+      },
+      "Neutral": {
+        "precision": 1.0,
+        "recall": 0.3333,
+        "f1_score": 0.5,
+        "support": 6
+      }
+    },
+    "aspect_breakdown": {
+      "food": {
+        "total": 5,
+        "detected": 5
+      },
+      "staff": {
+        "total": 5,
+        "detected": 4
+      },
+      "room": {
+        "total": 5,
+        "detected": 5
+      },
+      "cleanliness": {
+        "total": 5,
+        "detected": 5
+      },
+      "location": {
+        "total": 5,
+        "detected": 4
+      },
+      "wifi": {
+        "total": 5,
+        "detected": 5
+      }
+    }
+  },
+  "empirical_dataset_distributions": {
+    "total_reviews": 17184,
+    "platform_distribution": {
+      "Booking.com": 14288,
+      "Google Maps": 2896
+    },
+    "trust_stats_overall": {
+      "mean": 0.729,
+      "std": 0.12,
+      "min": 0.238,
+      "max": 1.0,
+      "count": 17184
+    },
+    "trust_stats_booking_verified": {
+      "mean": 0.712,
+      "std": 0.119,
+      "min": 0.238,
+      "max": 0.843,
+      "count": 14288
+    },
+    "trust_stats_google_open": {
+      "mean": 0.812,
+      "std": 0.087,
+      "min": 0.324,
+      "max": 1.0,
+      "count": 2896
+    },
+    "suspicious_reviews_flagged": 0,
+    "suspicious_percentage": 0.0,
+    "aspect_coverage_percentage": {
+      "food": 51.7,
+      "staff": 59.5,
+      "room": 52.0,
+      "cleanliness": 33.3,
+      "location": 45.1,
+      "wifi": 2.7
+    }
+  }
+}

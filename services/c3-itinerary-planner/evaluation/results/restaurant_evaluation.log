@@ -1,0 +1,576 @@
+route-based restaurant recommendation evaluation / ABSA-aware ranking
+OSRM connectivity: PASS
+Kandy request:
+{
+  "context": {
+    "adults": 2,
+    "children": 0,
+    "travel_style": "couple",
+    "dates_fixed": false,
+    "check_in": "2026-12-20",
+    "check_out": "2026-12-23",
+    "stay_in": [
+      "Kandy"
+    ],
+    "interests": [
+      "nature",
+      "wildlife",
+      "hiking"
+    ],
+    "health": []
+  },
+  "accessibility": {
+    "reduced_mobility": false,
+    "prefer_low_walking": false
+  },
+  "trip_id": "TEST_TRIP_001",
+  "hotel": {
+    "hotel_id": "TEST_HOTEL_001",
+    "name": "Kandy Test Depot",
+    "latitude": 7.294373,
+    "longitude": 80.641486,
+    "district": "Kandy"
+  },
+  "trip": {
+    "want_to_visit": [
+      "Kandy"
+    ],
+    "num_days": 3,
+    "day_start_hour": 9,
+    "day_end_hour": 18,
+    "travel_mode": "driving"
+  },
+  "attraction_preferences": {
+    "history_culture": 1.0,
+    "nature_wildlife": 5.0,
+    "beach_coastal": 1.0,
+    "religious": 1.0,
+    "adventure_recreation": 5.0,
+    "urban_leisure": 2.0
+  },
+  "restaurant_preferences": {
+    "aspect_importance": {
+      "food": 5.0,
+      "service": 4.0,
+      "ambience": 3.0,
+      "value": 5.0,
+      "location": 3.0
+    },
+    "cuisine_preferences": {
+      "sri_lankan": 5.0,
+      "local": 5.0,
+      "indian": 4.0,
+      "south_indian": 4.0,
+      "asian": 4.0,
+      "thai": 3.0,
+      "chinese": 3.0,
+      "international": 3.0,
+      "pizza": 2.0,
+      "italian": 2.0
+    }
+  },
+  "medical_support": {
+    "required": false,
+    "priority": "normal"
+  }
+}
+
+$ D:\RP\J26-DS-345\.venv\Scripts\python.exe src/optimization/02_score_pois.py
+
+Loading Component 2 -> Component 3 attraction preferences...
+Trip ID                  : TEST_TRIP_001
+C2 -> C3 attraction prefs: SUCCESS
+
+TOURIST PREFERENCE PROFILE
+-----------------------------------------
+history_culture         : 1/5
+nature_wildlife         : 5/5
+beach_coastal           : 1/5
+religious               : 1/5
+adventure_recreation    : 5/5
+urban_leisure           : 2/5
+
+TOP 20 POIs FOR THIS TOURIST
+-----------------------------------------
+ preference_rank         poi_id                           name   matched_categories  preference_score
+               1 POI_OSM_000001              Rawana Ella Falls      nature_wildlife               5.0
+               2 POI_OSM_000007                    Devon Falls      nature_wildlife               5.0
+               3 POI_OSM_000012               Sri Paadaya Peak      nature_wildlife               5.0
+               4 POI_OSM_000028                  Lipton's seat      nature_wildlife               5.0
+               5 POI_OSM_000034          World's End (Plate 1)      nature_wildlife               5.0
+               6 POI_OSM_000118               Mini World's End      nature_wildlife               5.0
+               7 POI_OSM_000120            Hummanaya Blow Hole      nature_wildlife               5.0
+               8 POI_OSM_000126   Pinnawala Elephant Orphanage adventure_recreation               5.0
+               9 POI_OSM_000127             Little Adam's Peak      nature_wildlife               5.0
+              10 POI_OSM_000144                     Snake farm adventure_recreation               5.0
+              11 POI_OSM_000171                       Knuckles      nature_wildlife               5.0
+              12 POI_OSM_000176                  Aradhana Gala      nature_wildlife               5.0
+              13 POI_OSM_000201 Kīrimalai Sacred Water Springs      nature_wildlife               5.0
+              14 POI_OSM_000249                  Ellepola Ella      nature_wildlife               5.0
+              15 POI_OSM_000250                 Diyaluma Falls      nature_wildlife               5.0
+              16 POI_OSM_000254        Kanniya Hot Water Wells      nature_wildlife               5.0
+              17 POI_OSM_000278          World's End (Plate 2)      nature_wildlife               5.0
+              18 POI_OSM_000280              Sunrise viewpoint      nature_wildlife               5.0
+              19 POI_OSM_000337   Madunagala Hot Water Springs      nature_wildlife               5.0
+              20 POI_OSM_000392               Daha Ata Wanguwa      nature_wildlife               5.0
+
+SCORE DISTRIBUTION
+-----------------------------------------
+preference_score
+5.0     518
+3.0     130
+2.0     331
+1.5       9
+1.0    1195
+0.0      47
+
+SUMMARY
+-----------------------------------------
+Total POIs      : 2230
+Scored POIs     : 2183
+Zero-score POIs : 47
+
+Output saved:
+D:\RP\J26-DS-345\services\c3-itinerary-planner\Data\processed\poi_preference_scores.csv
+
+Status: SUCCESS
+
+
+$ D:\RP\J26-DS-345\.venv\Scripts\python.exe src/optimization/04_optimize_multi_day.py
+
+Loading Component 2 -> Component 3 input...
+Trip ID              : TEST_TRIP_001
+Hotel                : Kandy Test Depot
+Hotel coordinates    : 7.294373, 80.641486
+Hotel district       : Kandy
+Number of days       : 3
+Daily schedule       : 09:00 - 18:00
+Daily time limit     : 540 min
+Travel mode          : driving
+Medical support      : disabled
+C2 -> C3 input       : SUCCESS
+
+Loading POIs...
+Original POIs         : 2230
+Duplicate POIs removed: 173
+POIs after dedup       : 2057
+Hotel/depot          : Kandy Test Depot
+Number of days       : 3
+Candidate radius     : 40 km
+Candidate POIs       : 25
+
+Requesting road travel matrix from OSRM...
+OSRM matrix          : 26 x 26
+
+Running multi-day OR-Tools optimization...
+
+MULTI-DAY OPTIMIZED ITINERARY
+===========================================================================
+
+DAY 1
+---------------------------------------------------------------------------
+ 1. 09:00 | Kandy Test Depot | preference=0.0 | visit=0 min
+ 2. 09:39 | Gira Hote Cave | preference=5.0 | visit=90 min
+ 3. 11:10 | Katusu Konda Cliff | preference=5.0 | visit=90 min
+ 4. 12:41 | Hantana 1 | preference=5.0 | visit=90 min
+ 5. 14:12 | Katusu Konda | preference=5.0 | visit=90 min
+ 6. 15:52 | Hantana 2 | preference=5.0 | visit=90 min
+ 7. 17:43 | Kandy Test Depot | preference=0 | visit=0 min
+
+Day summary:
+  POIs visited     : 5
+  Road distance    : 32.75 km
+  Driving time     : 73 min
+  Visit time       : 450 min
+  Preference score : 25.00
+  Return to hotel  : 17:43
+
+DAY 2
+---------------------------------------------------------------------------
+ 1. 09:00 | Kandy Test Depot | preference=0.0 | visit=0 min
+ 2. 09:03 | Arthur’s Seat | preference=5.0 | visit=90 min
+ 3. 11:02 | Devil's Seat | preference=5.0 | visit=90 min
+ 4. 12:33 | Ambalammana Peak | preference=5.0 | visit=90 min
+ 5. 14:38 | Primrose Hill | preference=5.0 | visit=90 min
+ 6. 16:17 | Asgiriya | preference=5.0 | visit=90 min
+ 7. 17:52 | Kandy Test Depot | preference=0 | visit=0 min
+
+Day summary:
+  POIs visited     : 5
+  Road distance    : 45.13 km
+  Driving time     : 82 min
+  Visit time       : 450 min
+  Preference score : 25.00
+  Return to hotel  : 17:52
+
+DAY 3
+---------------------------------------------------------------------------
+ 1. 09:00 | Kandy Test Depot | preference=0.0 | visit=0 min
+ 2. 09:03 | Viewpoint of Asgiri Maha Vihara Pirivena | preference=5.0 | visit=90 min
+ 3. 11:12 | Hunnasgiri Ella | preference=5.0 | visit=90 min
+ 4. 12:46 | Hunnasgiriya | preference=5.0 | visit=90 min
+ 5. 14:53 | Kodimale Peak | preference=5.0 | visit=90 min
+ 6. 16:25 | Chithithavisuddi Cave | preference=5.0 | visit=90 min
+ 7. 18:00 | Kandy Test Depot | preference=0 | visit=0 min
+
+Day summary:
+  POIs visited     : 5
+  Road distance    : 52.41 km
+  Driving time     : 90 min
+  Visit time       : 450 min
+  Preference score : 25.00
+  Return to hotel  : 18:00
+
+===========================================================================
+MULTI-DAY TRIP SUMMARY
+---------------------------------------------------------------------------
+Number of days          : 3
+Total POIs visited      : 15
+Unique POIs visited     : 15
+Repeated POIs           : 0
+Total road distance     : 130.29 km
+Total driving time      : 245 min
+Total POI visit time    : 1350 min
+Total preference utility: 75.00
+Daily time limit        : 540 min/day
+POI repetition check    : PASS
+
+STRUCTURED ITINERARY OUTPUT
+---------------------------------------------------------------------------
+Rows saved              : 21
+Output file             : D:\RP\J26-DS-345\services\c3-itinerary-planner\Data\processed\optimized_itinerary.csv
+
+SAVED ITINERARY PREVIEW
+---------------------------------------------------------------------------
+ day  stop_order         poi_id                                     name arrival_time  preference_score  medical_support_score nearest_emergency_hospital_name emergency_hospital_travel_time_min  visit_duration_min
+   1           1          HOTEL                         Kandy Test Depot        09:00               0.0                    0.0                            None                               None                   0
+   1           2 POI_OSM_003598                           Gira Hote Cave        09:39               5.0                    0.0                            None                               None                  90
+   1           3 POI_OSM_007451                       Katusu Konda Cliff        11:10               5.0                    0.0                            None                               None                  90
+   1           4 POI_OSM_002668                                Hantana 1        12:41               5.0                    0.0                            None                               None                  90
+   1           5 POI_OSM_003597                             Katusu Konda        14:12               5.0                    0.0                            None                               None                  90
+   1           6 POI_OSM_002669                                Hantana 2        15:52               5.0                    0.0                            None                               None                  90
+   1           7          HOTEL                         Kandy Test Depot        17:43               0.0                    0.0                            None                               None                   0
+   2           1          HOTEL                         Kandy Test Depot        09:00               0.0                    0.0                            None                               None                   0
+   2           2 POI_OSM_001946                            Arthur’s Seat        09:03               5.0                    0.0                            None                               None                  90
+   2           3 POI_OSM_003666                             Devil's Seat        11:02               5.0                    0.0                            None                               None                  90
+   2           4 POI_OSM_003665                         Ambalammana Peak        12:33               5.0                    0.0                            None                               None                  90
+   2           5 POI_OSM_002744                            Primrose Hill        14:38               5.0                    0.0                            None                               None                  90
+   2           6 POI_OSM_002745                                 Asgiriya        16:17               5.0                    0.0                            None                               None                  90
+   2           7          HOTEL                         Kandy Test Depot        17:52               0.0                    0.0                            None                               None                   0
+   3           1          HOTEL                         Kandy Test Depot        09:00               0.0                    0.0                            None                               None                   0
+   3           2 POI_OSM_004014 Viewpoint of Asgiri Maha Vihara Pirivena        09:03               5.0                    0.0                            None                               None                  90
+   3           3 POI_OSM_001006                          Hunnasgiri Ella        11:12               5.0                    0.0                            None                               None                  90
+   3           4 POI_OSM_001586                             Hunnasgiriya        12:46               5.0                    0.0                            None                               None                  90
+   3           5 POI_OSM_001009                            Kodimale Peak        14:53               5.0                    0.0                            None                               None                  90
+   3           6 POI_OSM_000427                    Chithithavisuddi Cave        16:25               5.0                    0.0                            None                               None                  90
+   3           7          HOTEL                         Kandy Test Depot        18:00               0.0                    0.0                            None                               None                   0
+
+Status: SUCCESS
+
+
+$ D:\RP\J26-DS-345\.venv\Scripts\python.exe src/routing/03_build_route_geometry.py
+
+Loading optimized itinerary...
+Itinerary rows loaded : 21
+Number of days        : 3
+
+Requesting full road geometry from OSRM...
+
+Processing Day 1...
+Stops               : 7
+Road distance       : 41.46 km
+Driving duration    : 93.01 min
+Geometry points     : 1834
+Saved               : day_1_route.geojson
+
+Processing Day 2...
+Stops               : 7
+Road distance       : 47.62 km
+Driving duration    : 86.41 min
+Geometry points     : 2160
+Saved               : day_2_route.geojson
+
+Processing Day 3...
+Stops               : 7
+Road distance       : 57.76 km
+Driving duration    : 107.61 min
+Geometry points     : 3005
+Saved               : day_3_route.geojson
+
+ROUTE GEOMETRY SUMMARY
+======================================================================
+ day  number_of_stops  distance_km  duration_min  geometry_points         output_file
+   1                7        41.46         93.01             1834 day_1_route.geojson
+   2                7        47.62         86.41             2160 day_2_route.geojson
+   3                7        57.76        107.61             3005 day_3_route.geojson
+
+Combined route file:
+D:\RP\J26-DS-345\services\c3-itinerary-planner\Data\processed\route_geometries\all_days_routes.geojson
+
+Summary file:
+D:\RP\J26-DS-345\services\c3-itinerary-planner\Data\processed\route_geometry_summary.csv
+
+Status: SUCCESS
+
+
+$ D:\RP\J26-DS-345\.venv\Scripts\python.exe src/restaurants/01_filter_restaurants_near_route.py
+
+Loading OSM restaurants...
+Restaurants loaded     : 3239
+Valid coordinates      : 3239
+Route files found      : 3
+
+Processing Day 1...
+Restaurants within 1000 m: 80
+
+Closest 10:
+          osm_id                           name cuisine addr_city  distance_to_route_m
+node/13516943744                      Pizza Hut   pizza       NaN                  8.2
+ node/3269996616       Sriram Indian Restaurant     NaN     Kandy                 11.0
+ node/3513600849 Victory Hotel Bar & Restaurant     NaN     Kandy                 11.8
+   way/540318292                            NaN     NaN       NaN                 11.9
+node/13031778691                     Lemon Tree   asian       NaN                 12.6
+   way/583660192                The Garden Cafe     NaN     Kandy                 12.7
+node/11710591769                 hideout lounge     NaN       NaN                 12.8
+node/11021340205                   Devons Kandy     NaN       NaN                 14.1
+ node/5905770987                            NaN     NaN     Kandy                 14.3
+node/13605724257          Siri Ramya Restaurant     NaN       NaN                 14.7
+
+Processing Day 2...
+Restaurants within 1000 m: 81
+
+Closest 10:
+          osm_id              name                                   cuisine addr_city  distance_to_route_m
+ node/6296619889      Balaji dosai                                       NaN       NaN                  2.3
+ node/6049077087    The Urban Grub                                       NaN     Kandy                  3.7
+node/12604338101     Dosai Kingdom                              south_indian       NaN                  7.9
+ node/5573266221 Café Banana Chill international;breakfast;coffee_shop;local     Kandy                  8.1
+node/13516943744         Pizza Hut                                     pizza       NaN                  8.2
+ node/6322636085               NaN                                       NaN       NaN                  8.9
+   way/398328085      Stuffed Cafe                                sri_lankan       NaN                  9.5
+ node/3238078987       Lyon's Cafe                               asian;local       NaN                  9.7
+node/13153063420           Oak Ray                                       NaN       NaN                  9.8
+node/13540678380       June Bistro                                       NaN       NaN                  9.9
+
+Processing Day 3...
+Restaurants within 1000 m: 62
+
+Closest 10:
+          osm_id                  name cuisine addr_city  distance_to_route_m
+ node/6014566887                   NaN     NaN       NaN                  8.1
+ node/5161579823                   NaN     NaN       NaN                  8.3
+node/13540678380           June Bistro     NaN       NaN                  9.9
+   way/857783960     Aroma Food Corner     NaN     Kandy                 10.5
+ node/6153274885                   NaN     NaN       NaN                 15.8
+node/13840039701        The Dope House     NaN       NaN                 24.1
+   way/816784299             Cafetaria     NaN       NaN                 34.3
+  way/1077602460 Siri Ramya Resturants     NaN       NaN                 57.7
+ node/5898825385      Shri Bhawan Dosa     NaN     Kandy                 58.8
+ node/5898821585                 Ganga     NaN     Kandy                 78.9
+
+ROUTE-BASED RESTAURANT FILTER SUMMARY
+===========================================================================
+ day  restaurant_candidates  named_restaurants  cuisine_available  opening_hours_available  average_distance_to_route_m
+   1                     80                 63                 14                        4                        229.0
+   2                     81                 65                 14                        4                        167.3
+   3                     62                 51                 12                        4                        388.2
+
+Total day-specific candidates: 223
+
+Output saved:
+D:\RP\J26-DS-345\services\c3-itinerary-planner\Data\processed\restaurants_near_routes.csv
+
+Status: SUCCESS
+
+
+$ D:\RP\J26-DS-345\.venv\Scripts\python.exe src/restaurants/02_compute_restaurant_detours.py
+
+Loading data...
+Itinerary rows       : 21
+Restaurant candidates: 223
+Named candidates     : 179
+
+Processing Day 1...
+Itinerary stops      : 7
+Named restaurants    : 63
+OSRM matrix locations: 70
+
+Processing Day 2...
+Itinerary stops      : 7
+Named restaurants    : 65
+OSRM matrix locations: 72
+
+Processing Day 3...
+Itinerary stops      : 7
+Named restaurants    : 51
+OSRM matrix locations: 58
+
+RESTAURANT DETOUR SUMMARY
+================================================================================
+
+DAY 1
+--------------------------------------------------------------------------------
+Restaurants scored : 63
+
+Lowest-detour restaurants:
+                          name cuisine     insert_after    insert_before  detour_time_min  detour_distance_km  detour_score
+                     Pizza Hut   pizza Kandy Test Depot   Gira Hote Cave              0.0                 0.0           1.0
+      Sriram Indian Restaurant     NaN        Hantana 2 Kandy Test Depot              0.0                 0.0           1.0
+Victory Hotel Bar & Restaurant     NaN        Hantana 2 Kandy Test Depot              0.0                 0.0           1.0
+                    Lemon Tree   asian Kandy Test Depot   Gira Hote Cave              0.0                 0.0           1.0
+               The Garden Cafe     NaN Kandy Test Depot   Gira Hote Cave              0.0                 0.0           1.0
+                hideout lounge     NaN Kandy Test Depot   Gira Hote Cave              0.0                 0.0           1.0
+                  Devons Kandy     NaN        Hantana 2 Kandy Test Depot              0.0                 0.0           1.0
+         Siri Ramya Restaurant     NaN        Hantana 2 Kandy Test Depot              0.0                 0.0           1.0
+                   Udaya hotel     NaN Kandy Test Depot   Gira Hote Cave              0.0                 0.0           1.0
+                 Sinhala Hotel     NaN        Hantana 2 Kandy Test Depot              0.0                 0.0           1.0
+
+DAY 2
+--------------------------------------------------------------------------------
+Restaurants scored : 65
+
+Lowest-detour restaurants:
+                         name                                   cuisine     insert_after    insert_before  detour_time_min  detour_distance_km  detour_score
+                 Balaji dosai                                       NaN Ambalammana Peak    Primrose Hill              0.0                 0.0           1.0
+               The Urban Grub                                       NaN Ambalammana Peak    Primrose Hill              0.0                 0.0           1.0
+                Dosai Kingdom                              south_indian Ambalammana Peak    Primrose Hill              0.0                 0.0           1.0
+            Café Banana Chill international;breakfast;coffee_shop;local Kandy Test Depot    Arthur’s Seat              0.0                 0.0           1.0
+                    Pizza Hut                                     pizza Kandy Test Depot    Arthur’s Seat              0.0                 0.0           1.0
+                 Stuffed Cafe                                sri_lankan    Arthur’s Seat     Devil's Seat              0.0                 0.0           1.0
+                  Lyon's Cafe                               asian;local Ambalammana Peak    Primrose Hill              0.0                 0.0           1.0
+                  June Bistro                                       NaN         Asgiriya Kandy Test Depot              0.0                 0.0           1.0
+        Vegetarian Restaurant                              curry;indian Ambalammana Peak    Primrose Hill              0.0                 0.0           1.0
+Delight Baker and Spice Court                                       NaN Ambalammana Peak    Primrose Hill              0.0                 0.0           1.0
+
+DAY 3
+--------------------------------------------------------------------------------
+Restaurants scored : 51
+
+Lowest-detour restaurants:
+                                             name         cuisine          insert_after                            insert_before  detour_time_min  detour_distance_km  detour_score
+                                      June Bistro             NaN Chithithavisuddi Cave                         Kandy Test Depot             0.00                0.00         1.000
+                                Aroma Food Corner             NaN Chithithavisuddi Cave                         Kandy Test Depot             0.08                0.02         0.992
+                                    Indian Summer          indian      Kandy Test Depot Viewpoint of Asgiri Maha Vihara Pirivena             0.11                0.00         0.989
+                                        Cafetaria             NaN      Kandy Test Depot Viewpoint of Asgiri Maha Vihara Pirivena             0.16                0.04         0.984
+                                    Hotel Saumiya          indian      Kandy Test Depot Viewpoint of Asgiri Maha Vihara Pirivena             0.34                0.27         0.966
+                                     Balaji Dosai regional;indian      Kandy Test Depot Viewpoint of Asgiri Maha Vihara Pirivena             0.34                0.27         0.966
+                                        Pizza Hut           pizza      Kandy Test Depot Viewpoint of Asgiri Maha Vihara Pirivena             0.34                0.20         0.966
+                                        Soul Food             NaN      Kandy Test Depot Viewpoint of Asgiri Maha Vihara Pirivena             0.34                0.20         0.966
+Food court - Chinese, Indian, Thai & Italian food             NaN      Kandy Test Depot Viewpoint of Asgiri Maha Vihara Pirivena             0.34                0.20         0.966
+                                       Worldspice             NaN      Kandy Test Depot Viewpoint of Asgiri Maha Vihara Pirivena             0.34                0.20         0.966
+
+Total scored restaurants: 179
+
+Output saved:
+D:\RP\J26-DS-345\services\c3-itinerary-planner\Data\processed\restaurant_detour_scores.csv
+
+Status: SUCCESS
+
+
+$ D:\RP\J26-DS-345\.venv\Scripts\python.exe src/restaurants/06_rank_restaurants_with_absa.py
+
+Loading Component 2 -> Component 3 restaurant preferences...
+Trip ID                  : TEST_TRIP_001
+Aspect preferences       : {'food': 5.0, 'service': 4.0, 'ambience': 3.0, 'value': 5.0, 'location': 3.0}
+Cuisine preferences      : {'sri_lankan': 5.0, 'local': 5.0, 'indian': 4.0, 'south_indian': 4.0, 'asian': 4.0, 'thai': 3.0, 'chinese': 3.0, 'international': 3.0, 'pizza': 2.0, 'italian': 2.0}
+C2 -> C3 preferences    : SUCCESS
+
+FINAL ROUTE-BASED RESTAURANT RANKING
+======================================================================
+Route restaurant candidates : 179
+Restaurants with ABSA data  : 1
+
+FINAL RANKING SUMMARY
+----------------------------------------------------------------------
+Restaurants ranked : 179
+With ABSA data     : 3
+Without ABSA data  : 176
+
+Scoring modes:
+scoring_mode
+cuisine+detour         176
+absa+cuisine+detour      3
+
+TOP 5 RESTAURANTS PER DAY
+----------------------------------------------------------------------
+ day  final_day_rank                  name                                   cuisine  detour_time_min  detour_score  cuisine_preference_score  weighted_absa_score  total_review_count  final_restaurant_score        scoring_mode
+   1               1           Lyon's Cafe                               asian;local             0.00         1.000                       1.0                  NaN                 NaN                  1.0000      cuisine+detour
+   1               2            Lemon Tree                                     asian             0.00         1.000                       0.8                  NaN                 NaN                  0.9273      cuisine+detour
+   1               3         Hotel Saumiya                                    indian             0.00         1.000                       0.8                  NaN                 NaN                  0.9273      cuisine+detour
+   1               4          Balaji Dosai                           regional;indian             0.00         1.000                       0.8                  NaN                 NaN                  0.9273      cuisine+detour
+   1               5 Vegetarian Restaurant                              curry;indian             0.00         1.000                       0.8                  NaN                 NaN                  0.9273      cuisine+detour
+   2               1          Stuffed Cafe                                sri_lankan             0.00         1.000                       1.0                  NaN                 NaN                  1.0000      cuisine+detour
+   2               2           Lyon's Cafe                               asian;local             0.00         1.000                       1.0                  NaN                 NaN                  1.0000      cuisine+detour
+   2               3         Dosai Kingdom                              south_indian             0.00         1.000                       0.8                  NaN                 NaN                  0.9273      cuisine+detour
+   2               4 Vegetarian Restaurant                              curry;indian             0.00         1.000                       0.8                  NaN                 NaN                  0.9273      cuisine+detour
+   2               5          Balaji Dosai                           regional;indian             0.00         1.000                       0.8                  NaN                 NaN                  0.9273      cuisine+detour
+   3               1         Indian Summer                                    indian             0.11         0.989                       0.8                  NaN                 NaN                  0.9203      cuisine+detour
+   3               2         Hotel Saumiya                                    indian             0.34         0.966                       0.8                  NaN                 NaN                  0.9056      cuisine+detour
+   3               3          Balaji Dosai                           regional;indian             0.34         0.966                       0.8                  NaN                 NaN                  0.9056      cuisine+detour
+   3               4         Dosai Kingdom                              south_indian             0.42         0.958                       0.8                  NaN                 NaN                  0.9005      cuisine+detour
+   3               5     Café Banana Chill international;breakfast;coffee_shop;local             1.19         0.881                       1.0               0.8065                10.0                  0.8713 absa+cuisine+detour
+
+Output file:
+D:\RP\J26-DS-345\services\c3-itinerary-planner\Data\processed\final_ranked_restaurants.csv
+
+Status: SUCCESS
+
+Input and generated production files restored: YES (byte-for-byte verified)
+
+ROUTE FILTERING
+total_restaurants_available_before_route_filter: 3239
+restaurants_inside_route_corridor: 87
+route_filter_reduction_count: 3152
+route_filter_reduction_percent: 97.31398579808582
+route_filtered_restaurant_day_rows: 223
+route_corridor_radius_m: 1000
+
+DETOUR ANALYSIS (restaurant/day candidates; production detour_time_min)
+candidates_with_valid_detour: 179.0000
+minimum_detour_min: 0.0000
+median_detour_min: 0.9100
+mean_detour_min: 1.3731
+maximum_detour_min: 7.3900
+
+FINAL RANKING (pooled evaluation top 10; production daily ranks retained)
+ evaluation_rank  day  final_day_rank                  name         cuisine  final_restaurant_score  detour_time_min   scoring_mode
+               1    1               1           Lyon's Cafe     asian;local                  1.0000              0.0 cuisine+detour
+               2    2               1          Stuffed Cafe      sri_lankan                  1.0000              0.0 cuisine+detour
+               3    2               2           Lyon's Cafe     asian;local                  1.0000              0.0 cuisine+detour
+               4    1               2            Lemon Tree           asian                  0.9273              0.0 cuisine+detour
+               5    1               3         Hotel Saumiya          indian                  0.9273              0.0 cuisine+detour
+               6    1               4          Balaji Dosai regional;indian                  0.9273              0.0 cuisine+detour
+               7    1               5 Vegetarian Restaurant    curry;indian                  0.9273              0.0 cuisine+detour
+               8    2               3         Dosai Kingdom    south_indian                  0.9273              0.0 cuisine+detour
+               9    2               4 Vegetarian Restaurant    curry;indian                  0.9273              0.0 cuisine+detour
+              10    2               5          Balaji Dosai regional;indian                  0.9273              0.0 cuisine+detour
+Top-10 average detour: 0.0000 min; average final score: 0.9491
+
+ABSA VS FALLBACK
+Ranked restaurant/day rows: 179; unique restaurants: 69
+Review evidence available: 3 (1.68%); fallback: 176 (98.32%)
+Best pooled ABSA restaurant: Café Banana Chill; best pooled fallback: Lyon's Cafe
+Production ordering differs from detour-only ordering (strict reversals, excluding ties): True
+Banana Chill (identified by source ABSA osm_id/name):
+ evaluation_rank  day  final_day_rank              name                                   cuisine  final_restaurant_score  detour_time_min        scoring_mode  weighted_absa_score  food_score  service_score  ambience_score  value_score  location_score
+              14    2               7 Café Banana Chill international;breakfast;coffee_shop;local                  0.9129             0.00 absa+cuisine+detour               0.8065      0.8072         0.9927           0.988       0.5479             NaN
+              18    1               7 Café Banana Chill international;breakfast;coffee_shop;local                  0.8951             0.51 absa+cuisine+detour               0.8065      0.8072         0.9927           0.988       0.5479             NaN
+              20    3               5 Café Banana Chill international;breakfast;coffee_shop;local                  0.8713             1.19 absa+cuisine+detour               0.8065      0.8072         0.9927           0.988       0.5479             NaN
+Reviewed-restaurant daily rank comparison (positive shift = higher final rank):
+ day              name  final_day_rank  detour_only_day_rank  rank_shift_vs_detour_only
+   2 Café Banana Chill               7                   1.0                       -6.0
+   1 Café Banana Chill               7                  35.0                       28.0
+   3 Café Banana Chill               5                  19.0                       14.0
+
+LIMITATIONS
+Filtering reduction uses unique restaurant IDs; detour and ranking counts use restaurant/day rows.
+Top 10 pools existing scores across days and may repeat venues; production ranks only within each day.
+Detour-only ties share minimum rank; rank shifts describe the combined ABSA/cuisine/convenience ranking, not an isolated ABSA causal effect.
+Fewer than two unique reviewed restaurants occur on this route; reviewed-restaurant ordering effects cannot be established.
+Missing aspects remain NaN; review coverage is limited to the existing ABSA file. No reviews were generated, scraped, or retrained.
+Existing ABSA source contains 1 unique reviewed restaurant(s).
+Detours are modeled road insertion times, exclude meal duration, and use production-rounded minute values.
+Route-filter reduction includes production coordinate cleaning; unnamed candidates are removed by the production detour stage.
+
+Evaluation outputs: D:\RP\J26-DS-345\services\c3-itinerary-planner\evaluation\results
+Status: SUCCESS
