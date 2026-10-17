@@ -26,7 +26,9 @@ data/*
 *.joblib
 *.pkl
 checkpoints/
-models/
+/models/
+!**/src/models/
+
 
 # Frontend
 node_modules/
