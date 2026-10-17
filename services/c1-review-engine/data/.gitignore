@@ -1,0 +1,7 @@
+# Gitignore for large raw data corpora
+raw/*
+processed/*
+checkpoints/*
+!raw/.gitkeep
+!processed/.gitkeep
+!checkpoints/.gitkeep
