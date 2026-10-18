@@ -15,13 +15,23 @@ from src.config import (
     REVIEWS_GOOGLEMAPS_FILE,
     HOTEL_PROFILES_JSON
 )
+from contextlib import asynccontextmanager
 from src.models.aggregator import AspectScoreAggregator
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    load_dataset_indexes()
+    yield
+
 
 app = FastAPI(
     title="C1 Trust-Aware Review & Aspect Sentiment Engine",
     description="SLIIT Research Project J26-DS-345 - Component 1 API",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
+
 
 # Initialize models
 aggregator = AspectScoreAggregator()
@@ -77,13 +87,8 @@ def load_dataset_indexes():
 
     print(f"[C1 Service] Indexed {len(HOTELS_INDEX)} hotels and {sum(len(v) for v in REVIEWS_BY_HOTEL.values())} reviews.")
 
-
-@app.on_event("startup")
-def on_startup():
-    load_dataset_indexes()
-
-
 @app.get("/health")
+
 def health():
     return {
         "service": "c1-review-engine",

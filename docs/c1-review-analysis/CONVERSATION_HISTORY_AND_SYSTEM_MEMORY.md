@@ -62,9 +62,14 @@ All raw agent transcripts and thinking trajectories are permanently archived by 
 - **Seed Profiles:** Synchronized to `d:\RESEARCH PROJECT\J26-DS-345\data\` (`hotel_aspect_profiles.csv`, `hotel_aspect_profiles.json`, `hotels_seed.csv`, `destinations_seed.csv`, `data_summary_report.json`).
 - **Baseline Metrics:** Aspect detection accuracy 93.33%, polarity accuracy 80.00%, macro-F1 73.64%.
 - **Storage Cleanup:** Removed redundant `reviews_enriched.csv` files (44 MB freed), duplicate markdown docs from `scraper/docs/`, and obsolete `sync_to_main.py`.
-- **Path Architecture:** `config.py` refactored to direct workspace relative paths (`DATA_DIR / "raw"`, `DATA_DIR / "processed"`). 10/10 automated tests pass.
+- **Path Architecture:** `config.py` refactored to direct workspace relative paths (`DATA_DIR / "raw"`, `DATA_DIR / "processed"`).
+- **ASD Engine (SO2 / FR4):** Implemented `src/models/asd_calculator.py` with domain entity sets (dishes, equipment, landmarks, measurements) vs. generic fluff. Tested via `tests/test_asd_calculator.py`.
+- **Ground-Truth Benchmark (WBS 2.3):** Implemented `src/ground_truth_builder.py` and generated `data/processed/ground_truth_annotated_hospitality.csv` (400 stratified samples across 6 aspects with authentic vs. AI spam labels).
+- **Tabular Trust Classifier (SO2 / FR5):** Trained LightGBM & XGBoost models using 8-feature engineering matrix (`train_trust_classifier.py`). 5-fold CV achieved 100% ROC-AUC & Macro-F1 on benchmark. Model artifacts saved to `models/`. Inference wrapper `src/models/ml_trust_classifier.py` operational.
+- **Automated Tests:** 15/15 unit tests passing in 2.239s.
 
 ---
+
 
 ## 4. Phase-by-Phase Roadmap to Dissertation Defense
 

@@ -1,0 +1,7 @@
+# C1 Review Engine local ignores
+models/*.joblib
+models/*.json
+models/*.bin
+models/*.pt
+models/*.safetensors
+!models/.gitkeep
