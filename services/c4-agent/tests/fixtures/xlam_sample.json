@@ -1,0 +1,86 @@
+[
+ {
+  "id": 0,
+  "query": "Where can I find live giveaways for beta access and games?",
+  "tools": "[{\"name\": \"live_giveaways_by_type\", \"description\": \"Retrieve live giveaways from the GamerPower API based on the specified type.\", \"parameters\": {\"type\": {\"description\": \"The type of giveaways to retrieve (e.g., game, loot, beta).\", \"type\": \"str\", \"default\": \"game\"}}}]",
+  "answers": "[{\"name\": \"live_giveaways_by_type\", \"arguments\": {\"type\": \"beta\"}}, {\"name\": \"live_giveaways_by_type\", \"arguments\": {\"type\": \"game\"}}]"
+ },
+ {
+  "id": 1,
+  "query": "I need to understand the details of the Ethereum blockchain for my cryptocurrency project.",
+  "tools": "[{\"name\": \"web_chain_details\", \"description\": \"python\", \"parameters\": {\"chain_slug\": {\"description\": \"The slug identifier for the blockchain (e.g., 'ethereum' for Ethereum mainnet).\", \"type\": \"str\", \"default\": \"ethereum\"}}}]",
+  "answers": "[{\"name\": \"web_chain_details\", \"arguments\": {\"chain_slug\": \"ethereum\"}}]"
+ },
+ {
+  "id": 2,
+  "query": "What is the T3MA for 'ETH/BTC' using a 1h interval and a time period of 14?",
+  "tools": "[{\"name\": \"t3ma\", \"description\": \"Fetches the Triple Exponential Moving Average (T3MA) for a given financial instrument.\", \"parameters\": {\"symbol\": {\"description\": \"Instrument symbol, e.g. 'AAPL', 'ETH/BTC'.\", \"type\": \"str\", \"default\": \"AAPL\"}, \"interval\": {\"description\": \"Interval between data points, e.g. '1min', '1h'.\", \"type\": \"str\", \"default\": \"1min\"}, \"time_period\": {\"description\": \"Number of periods.\", \"type\": \"int, optional\", \"default\": 9}}}]",
+  "answers": "[{\"name\": \"t3ma\", \"arguments\": {\"symbol\": \"ETH/BTC\", \"interval\": \"1h\", \"time_period\": 14}}]"
+ },
+ {
+  "id": 3,
+  "query": "What's the weather like in Colombo right now?",
+  "tools": "[{\"name\": \"get_weather\", \"description\": \"Get the current weather for a city.\", \"parameters\": {\"city\": {\"description\": \"City name.\", \"type\": \"str\"}, \"units\": {\"description\": \"metric or imperial.\", \"type\": \"str, optional\"}}}, {\"name\": \"stock_quote\", \"description\": \"Real-time stock quote for a ticker symbol.\", \"parameters\": {\"ticker\": {\"description\": \"Ticker symbol.\", \"type\": \"str\"}}}]",
+  "answers": "[{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Colombo\"}}]"
+ },
+ {
+  "id": 4,
+  "query": "Add up 3.5, 4 and 10 for me.",
+  "tools": "[{\"name\": \"sum_numbers\", \"description\": \"Adds a list of numbers.\", \"parameters\": {\"numbers\": {\"description\": \"The numbers to add.\", \"type\": \"List[float]\"}}}]",
+  "answers": "[{\"name\": \"sum_numbers\", \"arguments\": {\"numbers\": [3.5, 4, 10]}}]"
+ },
+ {
+  "id": 5,
+  "query": "Find me three recipes that use chickpeas.",
+  "tools": "[{\"name\": \"search_recipes\", \"description\": \"Search cooking recipes by ingredient.\", \"parameters\": {\"ingredient\": {\"description\": \"Main ingredient.\", \"type\": \"str\"}, \"max_results\": {\"description\": \"Maximum results.\", \"type\": \"int, optional\", \"default\": 5}}}]",
+  "answers": "[{\"name\": \"search_recipes\", \"arguments\": {\"ingredient\": \"chickpeas\", \"max_results\": 3}}]"
+ },
+ {
+  "id": 6,
+  "query": "Get the latest quote for MSFT and for NVDA.",
+  "tools": "[{\"name\": \"stock_quote\", \"description\": \"Real-time stock quote for a ticker symbol.\", \"parameters\": {\"ticker\": {\"description\": \"Ticker symbol.\", \"type\": \"str\"}}}]",
+  "answers": "[{\"name\": \"stock_quote\", \"arguments\": {\"ticker\": \"MSFT\"}}, {\"name\": \"stock_quote\", \"arguments\": {\"ticker\": \"NVDA\"}}]"
+ },
+ {
+  "id": 7,
+  "query": "Weather in Kandy in kelvin please.",
+  "tools": "[{\"name\": \"get_weather\", \"description\": \"Get the current weather for a city.\", \"parameters\": {\"city\": {\"description\": \"City name.\", \"type\": \"str\"}, \"units\": {\"description\": \"metric or imperial.\", \"type\": \"str, optional\"}}}]",
+  "answers": "[{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Kandy\", \"scale\": \"kelvin\"}}]"
+ },
+ {
+  "id": 8,
+  "query": "Quote for AAPL.",
+  "tools": "[{\"name\": \"get_weather\", \"description\": \"Get the current weather for a city.\", \"parameters\": {\"city\": {\"description\": \"City name.\", \"type\": \"str\"}, \"units\": {\"description\": \"metric or imperial.\", \"type\": \"str, optional\"}}}]",
+  "answers": "[{\"name\": \"stock_quote\", \"arguments\": {\"ticker\": \"AAPL\"}}]"
+ },
+ {
+  "id": 9,
+  "query": "Weather please.",
+  "tools": "[{\"name\": \"get_weather\", \"description\": \"Get the current weather for a city.\", \"parameters\": {\"city\": {\"description\": \"City name.\", \"type\": \"str\"}, \"units\": {\"description\": \"metric or imperial.\", \"type\": \"str, optional\"}}}]",
+  "answers": "[{\"name\": \"get_weather\", \"arguments\": {}}]"
+ },
+ {
+  "id": 10,
+  "query": "what's the weather like in   colombo right now?",
+  "tools": "[{\"name\": \"get_weather\", \"description\": \"Get the current weather for a city.\", \"parameters\": {\"city\": {\"description\": \"City name.\", \"type\": \"str\"}, \"units\": {\"description\": \"metric or imperial.\", \"type\": \"str, optional\"}}}]",
+  "answers": "[{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Colombo\"}}]"
+ },
+ {
+  "id": 11,
+  "query": "Find the area of a triangle with a base of 10 units and height of 5 units.",
+  "tools": "[{\"name\": \"calculate_triangle_area\", \"description\": \"Area of a triangle.\", \"parameters\": {\"base\": {\"description\": \"Base.\", \"type\": \"int\"}, \"height\": {\"description\": \"Height.\", \"type\": \"int\"}}}]",
+  "answers": "[{\"name\": \"calculate_triangle_area\", \"arguments\": {\"base\": 10, \"height\": 5}}]"
+ },
+ {
+  "id": 12,
+  "query": "Show me recipes with lentils, at most 2.",
+  "tools": "[{\"name\": \"search_recipes\", \"description\": \"Search cooking recipes by ingredient.\", \"parameters\": {\"ingredient\": {\"description\": \"Main ingredient.\", \"type\": \"str\"}, \"max_results\": {\"description\": \"Maximum results.\", \"type\": \"int, optional\", \"default\": 5}}}]",
+  "answers": "[{\"name\": \"search_recipes\", \"arguments\": {\"ingredient\": \"lentils\", \"max_results\": 2}}]"
+ },
+ {
+  "id": 13,
+  "query": "Current price of TSLA stock?",
+  "tools": "[{\"name\": \"stock_quote\", \"description\": \"Real-time stock quote for a ticker symbol.\", \"parameters\": {\"ticker\": {\"description\": \"Ticker symbol.\", \"type\": \"str\"}}}]",
+  "answers": "[{\"name\": \"stock_quote\", \"arguments\": {\"ticker\": \"TSLA\"}}]"
+ }
+]

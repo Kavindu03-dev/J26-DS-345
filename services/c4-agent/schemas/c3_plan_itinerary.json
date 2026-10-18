@@ -1,0 +1,332 @@
+{
+  "title": "C3 /plan-itinerary as implemented (C4's working copy)",
+  "purpose": "C4's own record of the API that Component 3 has actually built, used to test C4's mock and client. It is NOT a shared contract. The shared file contracts/c3_itinerary.json is an older draft (POST /itineraries); updating it is for the whole team to agree.",
+  "source_files": [
+    "services/c3-itinerary-planner/src/main.py",
+    "services/c3-itinerary-planner/src/adapters/c2_adapter.py",
+    "services/c3-itinerary-planner/src/restaurants/06_rank_restaurants_with_absa.py"
+  ],
+  "checked_on": "2026-10-18",
+  "endpoint": {
+    "method": "POST",
+    "path": "/plan-itinerary"
+  },
+  "request": {
+    "type": "object",
+    "required": [
+      "trip_id",
+      "selected_hotel",
+      "trip"
+    ],
+    "properties": {
+      "trip_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "selected_hotel": {
+        "type": "object",
+        "required": [
+          "hotel_id",
+          "name",
+          "latitude",
+          "longitude",
+          "district"
+        ],
+        "properties": {
+          "hotel_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "district": {
+            "type": "string"
+          }
+        }
+      },
+      "trip": {
+        "type": "object",
+        "required": [
+          "check_in",
+          "check_out"
+        ],
+        "properties": {
+          "check_in": {
+            "type": "string",
+            "format": "date"
+          },
+          "check_out": {
+            "type": "string",
+            "format": "date"
+          },
+          "stay_in": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "want_to_visit": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "adults": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "children": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "travel_style": {
+            "type": "string"
+          },
+          "dates_fixed": {
+            "type": "boolean"
+          },
+          "day_start_hour": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 23
+          },
+          "day_end_hour": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 23
+          },
+          "travel_mode": {
+            "type": "string",
+            "enum": [
+              "driving"
+            ]
+          }
+        }
+      },
+      "interests": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "health": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "restaurant_preferences": {
+        "type": "object"
+      },
+      "medical_support": {
+        "type": "object",
+        "properties": {
+          "required": {
+            "type": "boolean"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "normal",
+              "high"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "response": {
+    "type": "object",
+    "required": [
+      "status",
+      "trip_id",
+      "hotel",
+      "trip",
+      "days"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "success"
+        ]
+      },
+      "trip_id": {
+        "type": "string"
+      },
+      "hotel": {
+        "type": "object"
+      },
+      "trip": {
+        "type": "object"
+      },
+      "medical_support": {
+        "type": "object"
+      },
+      "days": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "day",
+            "stops",
+            "recommended_restaurants"
+          ],
+          "properties": {
+            "day": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "stops": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "day",
+                  "stop_order",
+                  "poi_id",
+                  "name",
+                  "latitude",
+                  "longitude",
+                  "arrival_time"
+                ],
+                "properties": {
+                  "day": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "stop_order": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "poi_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "latitude": {
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "type": "number"
+                  },
+                  "arrival_time": {
+                    "type": "string",
+                    "description": "HH:MM"
+                  },
+                  "arrival_min_from_start": {
+                    "type": "number"
+                  },
+                  "preference_score": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "recommended_restaurants": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "day",
+                  "final_day_rank",
+                  "name",
+                  "detour_time_min"
+                ],
+                "properties": {
+                  "day": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "final_day_rank": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "cuisine": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "detour_time_min": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "detour_score": {
+                    "type": "number"
+                  },
+                  "cuisine_preference_score": {
+                    "type": "number"
+                  },
+                  "weighted_absa_score": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "total_review_count": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "final_restaurant_score": {
+                    "type": "number"
+                  },
+                  "scoring_mode": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "pipeline": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "example_request": {
+    "trip_id": "TRIP_001",
+    "selected_hotel": {
+      "hotel_id": "HOTEL_001",
+      "name": "Selected Ella Hotel",
+      "latitude": 6.8667,
+      "longitude": 81.0466,
+      "district": "Badulla"
+    },
+    "trip": {
+      "check_in": "2026-12-20",
+      "check_out": "2026-12-23",
+      "stay_in": [
+        "Ella"
+      ],
+      "adults": 2,
+      "children": 1,
+      "travel_style": "family"
+    },
+    "interests": [
+      "nature",
+      "wildlife"
+    ],
+    "health": []
+  }
+}

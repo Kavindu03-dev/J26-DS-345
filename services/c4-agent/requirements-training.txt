@@ -1,0 +1,3 @@
+# Extra packages for preparing data and training (not needed to run the service or tests)
+datasets>=2.19
+huggingface_hub>=0.23
