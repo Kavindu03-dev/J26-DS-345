@@ -8,11 +8,12 @@ from pathlib import Path
 
 # Paths
 ROOT_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT_DIR / "data"
+DATA_DIR = ROOT_DIR.parent / "data"
 RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 CHECKPOINTS_DIR = DATA_DIR / "checkpoints"
 LOG_DIR = DATA_DIR / "logs"
+
 
 # Ensure all directories exist
 for d in [RAW_DIR, PROCESSED_DIR, CHECKPOINTS_DIR, LOG_DIR]:
