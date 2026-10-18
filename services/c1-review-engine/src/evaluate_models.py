@@ -152,9 +152,11 @@ class ModelEvaluator:
         }
 
     def evaluate_dataset_trust_distributions(self) -> Dict[str, Any]:
-        """Calculates statistical distributions across the real 17,000+ enriched review dataset."""
-        if not ENRICHED_REVIEWS_FILE.exists():
-            return {"error": "Enriched reviews file not found. Run batch_enricher first."}
+        """Calculates statistical distributions across the real dataset."""
+        from src.config import MASTER_DATASET_FILE
+        target_file = ENRICHED_REVIEWS_FILE if ENRICHED_REVIEWS_FILE.exists() else MASTER_DATASET_FILE
+        if not target_file.exists():
+            return {"error": "Review dataset file not found."}
 
         booking_trust = []
         google_trust = []
@@ -163,7 +165,7 @@ class ModelEvaluator:
         aspect_mentions = Counter()
         platform_counts = Counter()
 
-        with open(ENRICHED_REVIEWS_FILE, "r", encoding="utf-8-sig") as f:
+        with open(target_file, "r", encoding="utf-8-sig") as f:
             reader = csv.DictReader(f)
             for row in reader:
                 try:

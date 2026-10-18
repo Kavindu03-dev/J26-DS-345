@@ -7,20 +7,30 @@ from pathlib import Path
 
 # Data Directories
 ENGINE_DIR = Path(__file__).resolve().parent.parent
-ENGINE_DATA_DIR = ENGINE_DIR / "data"
-ROOT_SCRAPER_DIR = ENGINE_DIR.parent
-SCRAPER_RAW_DIR = ROOT_SCRAPER_DIR / "data" / "raw"
-DATA_DIR = ENGINE_DATA_DIR if ENGINE_DATA_DIR.exists() else SCRAPER_RAW_DIR
+DATA_DIR = ENGINE_DIR / "data"
+RAW_DATA_DIR = DATA_DIR / "raw"
+PROCESSED_DATA_DIR = DATA_DIR / "processed"
+CHECKPOINTS_DIR = DATA_DIR / "checkpoints"
 
-HOTELS_SEED_FILE = (DATA_DIR / "hotels_seed.csv") if (DATA_DIR / "hotels_seed.csv").exists() else (SCRAPER_RAW_DIR / "hotels_seed.csv")
-REVIEWS_BOOKING_FILE = (DATA_DIR / "reviews_raw_booking.csv") if (DATA_DIR / "reviews_raw_booking.csv").exists() else (SCRAPER_RAW_DIR / "reviews_raw_booking.csv")
-REVIEWS_GOOGLEMAPS_FILE = (DATA_DIR / "reviews_raw_googlemaps.csv") if (DATA_DIR / "reviews_raw_googlemaps.csv").exists() else (SCRAPER_RAW_DIR / "reviews_raw_googlemaps.csv")
-REVIEWS_TRIPADVISOR_FILE = (DATA_DIR / "reviews_raw_tripadvisor.csv") if (DATA_DIR / "reviews_raw_tripadvisor.csv").exists() else (SCRAPER_RAW_DIR / "reviews_raw_tripadvisor.csv")
-DESTINATIONS_SEED_FILE = (DATA_DIR / "destinations_seed.csv") if (DATA_DIR / "destinations_seed.csv").exists() else (SCRAPER_RAW_DIR / "destinations_seed.csv")
-MASTER_DATASET_FILE = DATA_DIR / "research_dataset_unified.csv"
-ENRICHED_REVIEWS_FILE = DATA_DIR / "reviews_enriched.csv"
+# Primary Raw Data Files
+HOTELS_SEED_FILE = (RAW_DATA_DIR / "hotels_seed.csv") if (RAW_DATA_DIR / "hotels_seed.csv").exists() else (DATA_DIR / "hotels_seed.csv")
+DESTINATIONS_SEED_FILE = (RAW_DATA_DIR / "destinations_seed.csv") if (RAW_DATA_DIR / "destinations_seed.csv").exists() else (DATA_DIR / "destinations_seed.csv")
+REVIEWS_BOOKING_FILE = (RAW_DATA_DIR / "reviews_raw_booking.csv") if (RAW_DATA_DIR / "reviews_raw_booking.csv").exists() else (DATA_DIR / "reviews_raw_booking.csv")
+REVIEWS_GOOGLEMAPS_FILE = (RAW_DATA_DIR / "reviews_raw_googlemaps.csv") if (RAW_DATA_DIR / "reviews_raw_googlemaps.csv").exists() else (DATA_DIR / "reviews_raw_googlemaps.csv")
+REVIEWS_TRIPADVISOR_FILE = (RAW_DATA_DIR / "reviews_raw_tripadvisor.csv") if (RAW_DATA_DIR / "reviews_raw_tripadvisor.csv").exists() else (DATA_DIR / "reviews_raw_tripadvisor.csv")
+
+# Processed & Unified Datasets
+MASTER_DATASET_FILE = (PROCESSED_DATA_DIR / "research_dataset_unified.csv") if (PROCESSED_DATA_DIR / "research_dataset_unified.csv").exists() else (DATA_DIR / "research_dataset_unified.csv")
+REVIEWS_BY_HOTEL_JSON = (PROCESSED_DATA_DIR / "reviews_by_hotel.json") if (PROCESSED_DATA_DIR / "reviews_by_hotel.json").exists() else (DATA_DIR / "reviews_by_hotel.json")
+DATA_SUMMARY_REPORT_FILE = (PROCESSED_DATA_DIR / "data_summary_report.json") if (PROCESSED_DATA_DIR / "data_summary_report.json").exists() else (DATA_DIR / "data_summary_report.json")
+ENRICHED_REVIEWS_FILE = PROCESSED_DATA_DIR / "reviews_enriched.csv"
+
+
+# Pre-computed Profiles & Benchmark Reports
 HOTEL_PROFILES_JSON = DATA_DIR / "hotel_aspect_profiles.json"
 HOTEL_PROFILES_CSV = DATA_DIR / "hotel_aspect_profiles.csv"
+EVALUATION_METRICS_REPORT_FILE = DATA_DIR / "evaluation_metrics_report.json"
+
 
 # Hotel Profile Schema (for Component 2 Recommender)
 HOTEL_PROFILE_FIELDS = [
