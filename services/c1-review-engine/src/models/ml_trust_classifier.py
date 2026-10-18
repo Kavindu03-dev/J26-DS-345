@@ -12,7 +12,11 @@ from pathlib import Path
 from typing import Dict, Any, Tuple
 
 import numpy as np
-import joblib
+
+try:
+    import joblib
+except ImportError:
+    joblib = None
 
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 if str(ROOT_DIR) not in sys.path:
@@ -36,12 +40,15 @@ class MLTrustClassifier:
 
     def _load_model(self):
         """Loads trained LightGBM model weights from disk."""
-        if self.model_path.exists():
+        if joblib is not None and self.model_path.exists():
             try:
                 self.model = joblib.load(self.model_path)
             except Exception as e:
                 print(f"[!] Warning: Failed to load ML Trust model ({e}). Fallback to heuristic.")
                 self.model = None
+        else:
+            self.model = None
+
 
     def extract_features(self, review: Dict[str, Any]) -> Tuple[np.ndarray, Dict[str, Any]]:
         """Extracts the 8 tabular features from a review dictionary."""
