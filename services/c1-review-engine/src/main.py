@@ -134,20 +134,20 @@ def get_hotel_alerts(hotel_id: str):
     Returns active operational alerts (CRITICAL, WARNING, INFO) for a specific hotel (Requirement FR9).
     Includes actionable management recommendations and extracted negative review quotes.
     """
-    if not HOTELS_INDEX:
+    if not HOTELS_INDEX and not PRECOMPUTED_PROFILES:
         load_dataset_indexes()
 
     hotel = HOTELS_INDEX.get(hotel_id)
-    if not hotel:
+    if not hotel and hotel_id not in PRECOMPUTED_PROFILES:
         raise HTTPException(
             status_code=404,
             detail=f"Hotel '{hotel_id}' not found in seed dataset."
         )
 
     reviews = REVIEWS_BY_HOTEL.get(hotel_id, [])
-    hotel_name = hotel.get("hotel_name", "Unknown Hotel")
+    hotel_name = hotel.get("hotel_name", "Unknown Hotel") if hotel else "Unknown Hotel"
     try:
-        baseline_rating = float(hotel.get("platform_overall_rating", 8.0) or 8.0)
+        baseline_rating = float(hotel.get("platform_overall_rating", 8.0) or 8.0) if hotel else 8.0
     except (ValueError, TypeError):
         baseline_rating = 8.0
 
@@ -210,4 +210,3 @@ def get_critical_alerts(district: str = None, limit: int = 25):
         "critical_hotels_count": len(critical_hotels),
         "critical_hotels": critical_hotels
     }
-

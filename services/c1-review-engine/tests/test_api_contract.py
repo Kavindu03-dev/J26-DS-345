@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.main import app, load_dataset_indexes
+from src.main import app, load_dataset_indexes, HOTELS_INDEX, REVIEWS_BY_HOTEL, PRECOMPUTED_PROFILES
 
 
 class TestAPIContract(unittest.TestCase):
@@ -77,6 +77,32 @@ class TestAPIContract(unittest.TestCase):
         self.assertIn("active_alerts_count", data)
         self.assertIn("alerts", data)
         self.assertIsInstance(data["alerts"], list)
+
+    def test_hotel_alerts_precomputed_only_fallback(self):
+        hotel_id = "HTL_GAL_IVYLANEG_EE74"
+        original_hotels = HOTELS_INDEX.copy()
+        original_reviews = {k: v.copy() for k, v in REVIEWS_BY_HOTEL.items()}
+        original_profiles = PRECOMPUTED_PROFILES.copy()
+
+        try:
+            HOTELS_INDEX.clear()
+            REVIEWS_BY_HOTEL.clear()
+            PRECOMPUTED_PROFILES.clear()
+            PRECOMPUTED_PROFILES[hotel_id] = {"hotel_id": hotel_id}
+
+            response = self.client.get(f"/hotels/{hotel_id}/alerts")
+            self.assertEqual(response.status_code, 200)
+            data = response.json()
+            self.assertEqual(data.get("hotel_id"), hotel_id)
+            self.assertIn("alerts", data)
+            self.assertIsInstance(data["alerts"], list)
+        finally:
+            HOTELS_INDEX.clear()
+            HOTELS_INDEX.update(original_hotels)
+            REVIEWS_BY_HOTEL.clear()
+            REVIEWS_BY_HOTEL.update(original_reviews)
+            PRECOMPUTED_PROFILES.clear()
+            PRECOMPUTED_PROFILES.update(original_profiles)
 
     def test_critical_alerts_scan_endpoint(self):
         response = self.client.get("/api/v1/alerts/critical?limit=5")
