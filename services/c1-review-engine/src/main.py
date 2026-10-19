@@ -33,8 +33,11 @@ app = FastAPI(
 )
 
 
+from src.models.alert_engine import WeakAspectAlertEngine
+
 # Initialize models
 aggregator = AspectScoreAggregator()
+alert_engine = WeakAspectAlertEngine()
 
 # In-memory indexes for fast serving
 HOTELS_INDEX: Dict[str, Dict[str, Any]] = {}
@@ -88,7 +91,6 @@ def load_dataset_indexes():
     print(f"[C1 Service] Indexed {len(HOTELS_INDEX)} hotels and {sum(len(v) for v in REVIEWS_BY_HOTEL.values())} reviews.")
 
 @app.get("/health")
-
 def health():
     return {
         "service": "c1-review-engine",
@@ -99,6 +101,7 @@ def health():
 
 
 @app.get("/hotels/{hotel_id}/aspect-scores")
+@app.get("/api/v1/aspects/{hotel_id}")
 def get_hotel_aspect_scores(hotel_id: str):
     """
     Returns trust-weighted aspect scores, overall credibility, time-decay rating,
@@ -122,3 +125,89 @@ def get_hotel_aspect_scores(hotel_id: str):
     reviews = REVIEWS_BY_HOTEL.get(hotel_id, [])
     response_payload = aggregator.aggregate_hotel_aspect_scores(hotel, reviews)
     return response_payload
+
+
+@app.get("/hotels/{hotel_id}/alerts")
+@app.get("/api/v1/hotels/{hotel_id}/alerts")
+def get_hotel_alerts(hotel_id: str):
+    """
+    Returns active operational alerts (CRITICAL, WARNING, INFO) for a specific hotel (Requirement FR9).
+    Includes actionable management recommendations and extracted negative review quotes.
+    """
+    if not HOTELS_INDEX:
+        load_dataset_indexes()
+
+    hotel = HOTELS_INDEX.get(hotel_id)
+    if not hotel:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Hotel '{hotel_id}' not found in seed dataset."
+        )
+
+    reviews = REVIEWS_BY_HOTEL.get(hotel_id, [])
+    hotel_name = hotel.get("hotel_name", "Unknown Hotel")
+    try:
+        baseline_rating = float(hotel.get("platform_overall_rating", 8.0) or 8.0)
+    except (ValueError, TypeError):
+        baseline_rating = 8.0
+
+    alerts = alert_engine.evaluate_hotel_alerts(hotel_id, hotel_name, reviews, baseline_rating)
+    return {
+        "hotel_id": hotel_id,
+        "hotel_name": hotel_name,
+        "total_reviews_analyzed": len(reviews),
+        "active_alerts_count": len(alerts),
+        "critical_count": sum(1 for a in alerts if a["severity"] == "CRITICAL"),
+        "warning_count": sum(1 for a in alerts if a["severity"] == "WARNING"),
+        "info_count": sum(1 for a in alerts if a["severity"] == "INFO"),
+        "alerts": alerts
+    }
+
+
+@app.get("/api/v1/alerts/critical")
+def get_critical_alerts(district: str = None, limit: int = 25):
+    """
+    Scans hotels and returns properties experiencing CRITICAL operational quality deficits.
+    Useful for district tourism boards and hotel management groups.
+    """
+    if not HOTELS_INDEX:
+        load_dataset_indexes()
+
+    critical_hotels = []
+    count = 0
+
+    for h_id, hotel in HOTELS_INDEX.items():
+        if district and hotel.get("district", "").lower() != district.lower():
+            continue
+
+        reviews = REVIEWS_BY_HOTEL.get(h_id, [])
+        if len(reviews) < 3:
+            continue
+
+        try:
+            baseline_rating = float(hotel.get("platform_overall_rating", 8.0) or 8.0)
+        except (ValueError, TypeError):
+            baseline_rating = 8.0
+
+        alerts = alert_engine.evaluate_hotel_alerts(h_id, hotel.get("hotel_name", ""), reviews, baseline_rating)
+        crit_alerts = [a for a in alerts if a["severity"] == "CRITICAL"]
+
+        if crit_alerts:
+            critical_hotels.append({
+                "hotel_id": h_id,
+                "hotel_name": hotel.get("hotel_name", ""),
+                "city": hotel.get("city", ""),
+                "district": hotel.get("district", ""),
+                "review_count": len(reviews),
+                "critical_alerts": crit_alerts
+            })
+            count += 1
+            if count >= limit:
+                break
+
+    return {
+        "filter_district": district,
+        "critical_hotels_count": len(critical_hotels),
+        "critical_hotels": critical_hotels
+    }
+

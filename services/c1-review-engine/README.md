@@ -10,6 +10,8 @@
 ## 1. Overview
 Component 1 is the foundational data and intelligence engine for the Sri Lankan Hotel Recommendation System. It continuously transforms multi-source customer reviews into trust-weighted, time-decayed aspect ratings (Food, Staff, Room, Cleanliness, Location, WiFi) and grounded factual snippets for downstream RAG assistance.
 
+> 📖 **Full Operational Manual:** For a complete file-by-file inventory, terminal execution guide, troubleshooting, and data inspection commands, see [COMPONENT_1_OPERATIONAL_GUIDE.md](file:///d:/RESEARCH%20PROJECT/J26-DS-345/services/c1-review-engine/COMPONENT_1_OPERATIONAL_GUIDE.md).
+
 ## 2. Directory Layout
 ```
 services/c1-review-engine/

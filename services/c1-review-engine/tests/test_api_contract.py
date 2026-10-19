@@ -68,6 +68,24 @@ class TestAPIContract(unittest.TestCase):
         response = self.client.get("/hotels/HTL_DOES_NOT_EXIST_9999/aspect-scores")
         self.assertEqual(response.status_code, 404)
 
+    def test_hotel_alerts_endpoint(self):
+        hotel_id = "HTL_GAL_IVYLANEG_EE74"
+        response = self.client.get(f"/hotels/{hotel_id}/alerts")
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertIn("hotel_id", data)
+        self.assertIn("active_alerts_count", data)
+        self.assertIn("alerts", data)
+        self.assertIsInstance(data["alerts"], list)
+
+    def test_critical_alerts_scan_endpoint(self):
+        response = self.client.get("/api/v1/alerts/critical?limit=5")
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertIn("critical_hotels_count", data)
+        self.assertIn("critical_hotels", data)
+        self.assertIsInstance(data["critical_hotels"], list)
+
 
 if __name__ == "__main__":
     unittest.main()

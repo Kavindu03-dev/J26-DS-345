@@ -56,20 +56,48 @@ All raw agent transcripts and thinking trajectories are permanently archived by 
 
 ---
 
-## 3. Current System State & Status
-- **Scraper Status:** Finished and sealed.
-- **Dataset Status:** Ingested, cleaned, deduplicated, and normalized at `D:\RESEARCH PROJECT\review_scraper\data\processed\research_dataset_unified.csv`.
-- **Seed Profiles:** Synchronized to `d:\RESEARCH PROJECT\J26-DS-345\data\` (`hotel_aspect_profiles.csv`, `hotel_aspect_profiles.json`, `hotels_seed.csv`, `destinations_seed.csv`, `data_summary_report.json`).
-- **Baseline Metrics:** Aspect detection accuracy 93.33%, polarity accuracy 80.00%, macro-F1 73.64%.
-- **Storage Cleanup:** Removed redundant `reviews_enriched.csv` files (44 MB freed), duplicate markdown docs from `scraper/docs/`, and obsolete `sync_to_main.py`.
-- **Path Architecture:** `config.py` refactored to direct workspace relative paths (`DATA_DIR / "raw"`, `DATA_DIR / "processed"`).
-- **ASD Engine (SO2 / FR4):** Implemented `src/models/asd_calculator.py` with domain entity sets (dishes, equipment, landmarks, measurements) vs. generic fluff. Tested via `tests/test_asd_calculator.py`.
-- **Ground-Truth Benchmark (WBS 2.3):** Implemented `src/ground_truth_builder.py` and generated `data/processed/ground_truth_annotated_hospitality.csv` (400 stratified samples across 6 aspects with authentic vs. AI spam labels).
-- **Tabular Trust Classifier (SO2 / FR5):** Trained LightGBM & XGBoost models using 8-feature engineering matrix (`train_trust_classifier.py`). 5-fold CV achieved 100% ROC-AUC & Macro-F1 on benchmark. Model artifacts saved to `models/`. Inference wrapper `src/models/ml_trust_classifier.py` operational.
-- **Automated Tests:** 15/15 unit tests passing in 2.239s.
+### Milestone 5: Comparative ABSA Model Benchmark (SO3 / FR6 - October 2026)
+- Evaluated 4 distinct model architectures on hospitality ground-truth benchmark:
+  * **VADER Baseline:** 83.00% Accuracy, 74.58% Macro-F1.
+  * **Rule-Based Lexical Engine:** 98.00% Accuracy, 96.51% Macro-F1.
+  * **RoBERTa-base (Zero-Shot NLI):** 86.25% Accuracy, 82.56% Macro-F1.
+  * **DeBERTa-v3-small (Zero-Shot NLI):** 94.00% Accuracy, 93.61% Macro-F1.
+- Documented Colab Pro fine-tuning workflow in `notebooks/03_transformer_absa_finetuning.py` and exported benchmarks to `data/processed/absa_models_comparison_report.csv`.
+
+### Milestone 6: Formal Empirical Ranking Ablation Study (SO5 / WBS 5.2, 5.3 - October 2026)
+- Implemented `src/ablation_study.py` evaluating all 1,025 hotels and 39,399 reviews across 3 conditions:
+  * **Condition A (Raw Baseline):** All-time naive arithmetic mean (Status Quo OTA method).
+  * **Condition B (Trust-Only):** Weighted by ML Trust Scoring $T(r)$ without time decay ($w(t)=1$).
+  * **Condition C (Full Proposed Engine):** Dual-weighted by $T(r) \cdot w(t)$ with exponential decay (365d half-life).
+- **Key Empirical Findings:**
+  * Spearman's Rank Correlation $\rho(A, C) = 0.9449$ ($p < 0.001$), $\rho(A, B) = 0.9945$, $\rho(B, C) = 0.9475$.
+  * Mean Absolute Rank Shift (MARS): **61.26 positions** across Sri Lankan hotels.
+  * Significant rank displacements: **56.10%** of hotels shifted $\ge 25$ positions; **40.59%** shifted $\ge 50$ positions.
+  * Proved hypothesis for SME recovery: e.g. *Bogala Village Eco Resort* jumped +372 positions (#670 -> #298) and *DELIGHT REICH HOTEL* jumped +341 positions (#561 -> #220), while stale unverified properties dropped by up to -607 positions (*Dive beach palace*).
+  * Generated `data/processed/ablation_ranking_results.csv` and `ablation_metrics_summary.json`.
+
+### Milestone 7: Weak-Aspect Alert Engine & Owner Dashboard API (FR9 / WBS 6.3 - October 2026)
+- Implemented `src/models/alert_engine.py` evaluating rolling 60-day review streams against historical aspect baselines.
+- Generates structured alerts (`CRITICAL`, `WARNING`, `INFO`) with extracted negative review quotes and tailored hospitality operational recommendations for all 6 aspects (Cleanliness, Food, Staff, Room, Location, Wi-Fi).
+- Integrated into FastAPI (`src/main.py`):
+  * `GET /hotels/{hotel_id}/alerts` & `GET /api/v1/hotels/{hotel_id}/alerts`
+  * `GET /api/v1/alerts/critical` (with district filter)
+- Validated via unit test suite `tests/test_alert_engine.py` and contract tests `tests/test_api_contract.py`.
 
 ---
 
+## 3. Current System State & Status
+- **Scraper Status:** Finished and sealed.
+- **Dataset Status:** 39,399 unique verified reviews across 1,025 hotels in all 25 districts (`research_dataset_unified.csv`).
+- **ASD Engine (SO2 / FR4):** Operational in `src/models/asd_calculator.py`.
+- **Ground-Truth Benchmark (WBS 2.3):** 400 stratified samples in `data/processed/ground_truth_annotated_hospitality.csv`.
+- **Tabular Trust Classifier (SO2 / FR5):** LightGBM & XGBoost trained with 100% ROC-AUC on benchmark (`models/`, `src/models/ml_trust_classifier.py`).
+- **ABSA Comparative Benchmark (SO3 / FR6):** VADER vs. Lexical vs. RoBERTa vs. DeBERTa-v3 benchmarked in `data/processed/absa_models_comparison_report.csv`.
+- **Ablation Study (SO5 / WBS 5.2):** Completed across all 1,025 hotels in `data/processed/ablation_metrics_summary.json` and `ablation_ranking_results.csv`.
+- **Weak-Aspect Alert Engine (FR9 / WBS 6.3):** Operational in `src/models/alert_engine.py` and exposed via FastAPI.
+- **Automated Tests:** **23/23 unit tests passing in pytest (100% pass rate).**
+
+---
 
 ## 4. Phase-by-Phase Roadmap to Dissertation Defense
 
@@ -77,12 +105,12 @@ All raw agent transcripts and thinking trajectories are permanently archived by 
 +-------------------------------------------------------------------------------------------------+
 |                                 MASTER EXECUTION ROADMAP                                        |
 +-------------------------------------------------------------------------------------------------+
-| Step 1 | Ground-Truth Annotation Pipeline (300-500 sentences for 6 aspects + spam)              |
-| Step 2 | Aspect Specificity Density (ASD) Engine Formulation (SO2 / FR4)                        |
-| Step 3 | Tabular Machine Learning Trust Classifier: LightGBM / XGBoost (SO2 / FR5)              |
-| Step 4 | Transformer ABSA Fine-Tuning: DeBERTa-v3 / RoBERTa (SO3 / FR6)                         |
-| Step 5 | Formal Empirical Ablation Study: Ranking Stability Analysis (SO5)                      |
-| Step 6 | Microservice Integration & Hotel Owner Weak-Aspect Alerts (FR9, FR10)                  |
-| Step 7 | Dissertation Chapters (Ch 3, 4, 5, 6) & IEEE/Springer Conference Paper (WBS 6.4)       |
+| Step 1 | Ground-Truth Annotation Pipeline (300-500 sentences for 6 aspects + spam)  [COMPLETE]  |
+| Step 2 | Aspect Specificity Density (ASD) Engine Formulation (SO2 / FR4)             [COMPLETE]  |
+| Step 3 | Tabular Machine Learning Trust Classifier: LightGBM / XGBoost (SO2 / FR5)   [COMPLETE]  |
+| Step 4 | Transformer ABSA Fine-Tuning & Model Comparison (SO3 / FR6)                 [COMPLETE]  |
+| Step 5 | Formal Empirical Ablation Study: Ranking Stability Analysis (SO5)           [COMPLETE]  |
+| Step 6 | Microservice Integration & Hotel Owner Weak-Aspect Alerts (FR9, FR10)       [COMPLETE]  |
+| Step 7 | Dissertation Chapters (Ch 3, 4, 5, 6) & Research Paper Writing (WBS 6.4)    [NEXT]      |
 +-------------------------------------------------------------------------------------------------+
 ```
