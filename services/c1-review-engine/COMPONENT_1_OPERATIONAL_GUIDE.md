@@ -95,8 +95,11 @@ Every single file in this component has a dedicated purpose. Here is the complet
 | `ground_truth_builder.py` | Benchmark Dataset Builder | `python src/ground_truth_builder.py` | Stratified sampler creating `data/processed/ground_truth_annotated_hospitality.csv` (400 sentences). |
 | `train_trust_classifier.py` | Tabular ML Trainer | `python src/train_trust_classifier.py` | Trains LightGBM & XGBoost with 5-fold CV. Saves weights to `models/` and metrics to `trust_classifier_evaluation.json`. |
 | `benchmark_absa_comparison.py` | Multi-Model Benchmark | `python src/benchmark_absa_comparison.py` | Evaluates VADER vs Lexical vs RoBERTa vs DeBERTa-v3 on ground truth. Saves `absa_models_comparison_report.csv` and `.json`. |
-| `ablation_study.py` | Ranking Stability Analysis | `python src/ablation_study.py` | Ranks 1,025 hotels under Conditions A, B, and C. Calculates Spearman $\rho$, MARS, and case studies. Saves `ablation_ranking_results.csv` and `ablation_metrics_summary.json`. |
+| `trust_classifier_ablation.py` | Feature Ablation & Leak Audit | `python src/trust_classifier_ablation.py` | Audits feature gain, isolates ASD contribution, evaluates 4 configurations. Saves `trust_classifier_ablation_report.csv` and `.json`. |
+| `ablation_study.py` | Ranking Stability & Backtest | `python src/ablation_study.py` | Ranks 1,025 hotels under A, B, and C, runs half-life sensitivity (90d, 180d, 365d, 730d), and temporal backtest. Saves `ablation_ranking_results.csv`, `halflife_sensitivity_report.csv`, and `temporal_backtest_report.csv`. |
 | `batch_enricher.py` | Bulk Offline Pre-computer | `python src/batch_enricher.py` | Ingests all raw reviews and generates `data/hotel_aspect_profiles.json` and `.csv` for Teams 2 & 4. |
+
+> 📊 **Scientific Audit & Backtesting Details:** For the full breakdown of the 100% ROC-AUC investigation, feature gain audit, sensitivity curves, and temporal holdout predictions, see [PHASE_1_SCIENTIFIC_AUDIT_AND_EMPIRICAL_RESULTS.md](file:///d:/RESEARCH%20PROJECT/J26-DS-345/docs/c1-review-analysis/PHASE_1_SCIENTIFIC_AUDIT_AND_EMPIRICAL_RESULTS.md).
 
 ### D. Automated Test Suite (`tests/`)
 | Test File Name | What It Validates |

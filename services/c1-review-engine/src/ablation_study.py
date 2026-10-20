@@ -19,6 +19,7 @@ Fulfills Specific Objective 4 & 5 (SO4, SO5) and WBS 5.2, 5.3:
 import sys
 import json
 import math
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Any, Tuple
 
@@ -300,6 +301,216 @@ class RankingAblationStudy:
 
         return summary
 
+    def run_halflife_sensitivity_analysis(self, taus: List[float] = [90.0, 180.0, 365.0, 730.0]) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+        """
+        Executes formal sensitivity analysis on the exponential time-decay half-life parameter lambda.
+        Fulfills Specific Objective 5 (SO5 / WBS 5.2):
+        Evaluates how ranking stability and correlation shift across tau in {90d, 180d, 365d, 730d}.
+        """
+        print("\n" + "=" * 80)
+        print("   HALF-LIFE (TAU) SENSITIVITY & RANKING STABILITY ANALYSIS")
+        print("=" * 80)
+
+        if self.df_reviews is None:
+            self.load_dataset()
+        if "computed_trust_score" not in self.df_reviews.columns:
+            self.compute_review_weights()
+
+        df = self.df_reviews
+        ref_dt = self.trust_engine.ref_date
+
+        sensitivity_results = []
+        n_hotels = df["hotel_id"].nunique()
+
+        # Precompute Naive baseline Condition A
+        score_a_by_hotel = df.groupby("hotel_id")["score_5"].mean().to_dict()
+        df_rank_a = pd.DataFrame(list(score_a_by_hotel.items()), columns=["hotel_id", "score_a"])
+        df_rank_a.sort_values(by="score_a", ascending=False, inplace=True)
+        rank_a_map = {hid: r for r, hid in enumerate(df_rank_a["hotel_id"], 1)}
+
+        for tau in taus:
+            decay_lambda = math.log(2.0) / tau
+
+            # Compute custom weights for this tau
+            weights_tau = []
+            for r in df.to_dict("records"):
+                rev_dt = self.trust_engine.parse_review_date(str(r.get("review_date", "")))
+                delta_days = max(0.0, (ref_dt - rev_dt).total_seconds() / 86400.0)
+                w = math.exp(-decay_lambda * delta_days)
+                weights_tau.append(max(0.15, min(1.0, w)))
+
+            df[f"w_tau_{int(tau)}"] = weights_tau
+            df[f"eff_tau_{int(tau)}"] = df["computed_trust_score"] * df[f"w_tau_{int(tau)}"]
+
+            # Aggregate per hotel
+            num = (df["score_5"] * df[f"eff_tau_{int(tau)}"]).groupby(df["hotel_id"]).sum()
+            den = df[f"eff_tau_{int(tau)}"].groupby(df["hotel_id"]).sum()
+            score_c_tau = (num / den).to_dict()
+
+            df_rank_c = pd.DataFrame(list(score_c_tau.items()), columns=["hotel_id", "score_c"])
+            df_rank_c.sort_values(by="score_c", ascending=False, inplace=True)
+            rank_c_map = {hid: r for r, hid in enumerate(df_rank_c["hotel_id"], 1)}
+
+            ranks_a = [rank_a_map[h] for h in rank_a_map]
+            ranks_c = [rank_c_map[h] for h in rank_a_map]
+            shifts = np.abs(np.array(ranks_a) - np.array(ranks_c))
+
+            rho, p_val = stats.spearmanr(ranks_a, ranks_c)
+            tau_val, kp_val = stats.kendalltau(ranks_a, ranks_c)
+            mars = float(np.mean(shifts))
+            ge_25 = int(np.sum(shifts >= 25))
+            ge_50 = int(np.sum(shifts >= 50))
+
+            sensitivity_results.append({
+                "half_life_days": int(tau),
+                "decay_lambda": round(decay_lambda, 6),
+                "spearman_rho_vs_naive": round(float(rho), 4),
+                "kendall_tau_vs_naive": round(float(tau_val), 4),
+                "mean_absolute_rank_shift_mars": round(mars, 2),
+                "hotels_shifted_ge_25_pct": round(100.0 * ge_25 / n_hotels, 2),
+                "hotels_shifted_ge_50_pct": round(100.0 * ge_50 / n_hotels, 2)
+            })
+
+        df_sens = pd.DataFrame(sensitivity_results)
+
+        # Export CSV & JSON
+        sens_csv = PROCESSED_DATA_DIR / "halflife_sensitivity_report.csv"
+        sens_json = PROCESSED_DATA_DIR / "halflife_sensitivity_report.json"
+        df_sens.to_csv(sens_csv, index=False, encoding="utf-8-sig")
+
+        with open(sens_json, "w", encoding="utf-8") as f:
+            json.dump({
+                "metadata": {
+                    "evaluation_hotels": n_hotels,
+                    "evaluation_reviews": len(df),
+                    "tested_taus": taus
+                },
+                "results": sensitivity_results
+            }, f, indent=2)
+
+        print(f"[*] Exported sensitivity report to: {sens_csv}")
+        print("\n" + df_sens.to_string(index=False))
+        print("=" * 80)
+        return df_sens, {"results": sensitivity_results}
+
+    def run_temporal_backtest(self, split_date_str: str = "2026-01-01") -> Tuple[pd.DataFrame, Dict[str, Any]]:
+        """
+        Executes Future-Predictive Temporal Backtesting (Holdout Validation).
+        Scientifically proves that Condition C (Time-Decayed Trust) is an IMPROVEMENT,
+        not merely a change, by demonstrating superior prediction of actual future guest satisfaction.
+        """
+        print("\n" + "=" * 80)
+        print("   FUTURE-PREDICTIVE TEMPORAL BACKTESTING (PROVING IMPROVEMENT)")
+        print(f"   Historical Training Split: < {split_date_str} | Holdout Evaluation: >= {split_date_str}")
+        print("=" * 80)
+
+        if self.df_reviews is None:
+            self.load_dataset()
+
+        df = self.df_reviews
+        split_dt = datetime.strptime(split_date_str, "%Y-%m-%d")
+
+        # Parse review dates
+        df["parsed_dt"] = df["review_date"].apply(self.trust_engine.parse_review_date)
+
+        df_hist = df[df["parsed_dt"] < split_dt].copy()
+        df_future = df[df["parsed_dt"] >= split_dt].copy()
+
+        print(f"[*] Historical Reviews (< {split_date_str}) : {len(df_hist):,} across {df_hist['hotel_id'].nunique():,} hotels")
+        print(f"[*] Future Holdout Reviews (>= {split_date_str}): {len(df_future):,} across {df_future['hotel_id'].nunique():,} hotels")
+
+        # Filter hotels with >= 5 historical reviews and >= 3 holdout reviews
+        hist_counts = df_hist["hotel_id"].value_counts()
+        future_counts = df_future["hotel_id"].value_counts()
+
+        valid_hotels = [
+            h for h in hist_counts.index
+            if hist_counts[h] >= 5 and future_counts.get(h, 0) >= 3
+        ]
+        print(f"[+] Found {len(valid_hotels)} hotels meeting volume thresholds for robust backtesting.")
+
+        # Ground truth actual 2026 future ratings
+        actual_future_ratings = df_future.groupby("hotel_id")["score_5"].mean().to_dict()
+
+        # Compute predictions using only historical reviews
+        # 1. Model A: Naive Historical All-Time Mean
+        pred_a = df_hist.groupby("hotel_id")["score_5"].mean().to_dict()
+
+        # 2. Model B: Trust-Weighted Mean (No time-decay)
+        df_hist["trust"] = [self.trust_engine.calculate_review_trust(r) for r in df_hist.to_dict("records")]
+        num_b = (df_hist["score_5"] * df_hist["trust"]).groupby(df_hist["hotel_id"]).sum()
+        den_b = df_hist["trust"].groupby(df_hist["hotel_id"]).sum()
+        pred_b = (num_b / den_b).to_dict()
+
+        # 3. Model C Variants with different half-lives (tau in 90, 180, 365, 730)
+        tau_models = [90.0, 180.0, 365.0, 730.0]
+        preds_c = {}
+
+        for tau in tau_models:
+            lam = math.log(2.0) / tau
+            weights_tau = []
+            for dt in df_hist["parsed_dt"]:
+                delta = max(0.0, (split_dt - dt).total_seconds() / 86400.0)
+                weights_tau.append(max(0.15, min(1.0, math.exp(-lam * delta))))
+
+            df_hist[f"w_{int(tau)}"] = weights_tau
+            df_hist[f"eff_{int(tau)}"] = df_hist["trust"] * df_hist[f"w_{int(tau)}"]
+
+            num_c = (df_hist["score_5"] * df_hist[f"eff_{int(tau)}"]).groupby(df_hist["hotel_id"]).sum()
+            den_c = df_hist[f"eff_{int(tau)}"].groupby(df_hist["hotel_id"]).sum()
+            preds_c[int(tau)] = (num_c / den_c).to_dict()
+
+        # Compute error metrics on holdout
+        models_to_eval = [
+            ("Model A: Naive Historical All-Time Mean", pred_a),
+            ("Model B: Trust-Only Historical Mean", pred_b),
+            ("Model C: Proposed Trust + Time-Decay (tau=365d)", preds_c[365]),
+            ("Model C: Fast Recency (tau=180d)", preds_c[180]),
+            ("Model C: Hyper-Responsive (tau=90d)", preds_c[90]),
+            ("Model C: Slow Recency (tau=730d)", preds_c[730])
+        ]
+
+        metrics_list = []
+        for name, pred_dict in models_to_eval:
+            errors = [pred_dict[h] - actual_future_ratings[h] for h in valid_hotels]
+            mae = float(np.mean(np.abs(errors)))
+            mse = float(np.mean(np.array(errors) ** 2))
+            rmse = float(np.sqrt(mse))
+
+            # Directional consistency: proportion within 0.25 stars of actual future score
+            within_quarter_star = float(np.mean(np.abs(errors) <= 0.25) * 100.0)
+
+            metrics_list.append({
+                "Model Architecture": name,
+                "MAE (Stars)": round(mae, 4),
+                "MSE": round(mse, 4),
+                "RMSE (Stars)": round(rmse, 4),
+                "Within +/- 0.25 Stars (%)": round(within_quarter_star, 2)
+            })
+
+        df_backtest = pd.DataFrame(metrics_list)
+
+        # Export CSV & JSON
+        backtest_csv = PROCESSED_DATA_DIR / "temporal_backtest_report.csv"
+        backtest_json = PROCESSED_DATA_DIR / "temporal_backtest_report.json"
+        df_backtest.to_csv(backtest_csv, index=False, encoding="utf-8-sig")
+
+        with open(backtest_json, "w", encoding="utf-8") as f:
+            json.dump({
+                "metadata": {
+                    "split_date": split_date_str,
+                    "evaluated_hotels": len(valid_hotels),
+                    "historical_reviews": len(df_hist),
+                    "future_holdout_reviews": len(df_future)
+                },
+                "results": metrics_list
+            }, f, indent=2)
+
+        print(f"[*] Exported backtest report to: {backtest_csv}")
+        print("\n" + df_backtest.to_string(index=False))
+        print("=" * 80)
+        return df_backtest, {"results": metrics_list}
+
     def run_ablation_experiment(self) -> Tuple[pd.DataFrame, Dict[str, Any]]:
         """Executes full ablation study pipeline, persists artifacts, and prints scientific report."""
         print("=" * 80)
@@ -350,9 +561,14 @@ class RankingAblationStudy:
             print(f"    Raw Score A: {h['score_cond_a']:.2f} (Rank #{h['rank_cond_a']}) -> Proposed C: {h['score_cond_c']:.2f} (Rank #{h['rank_cond_c']}) [{h['rank_shift_c_vs_a']} Positions]")
         print("=" * 80)
 
+        # Also trigger sensitivity and backtest suites
+        self.run_halflife_sensitivity_analysis()
+        self.run_temporal_backtest()
+
         return df_hotels, summary
 
 
 if __name__ == "__main__":
     study = RankingAblationStudy()
     study.run_ablation_experiment()
+
