@@ -15,8 +15,12 @@ from src.benchmark_absa_comparison import ABSAModelBenchmark
 @pytest.fixture
 def hard_challenges_df():
     path = PROCESSED_DATA_DIR / "hard_linguistic_challenges.csv"
+    if not path.exists():
+        from src.generate_hard_challenges import generate_benchmark_csv
+        generate_benchmark_csv()
     assert path.exists(), f"Missing hard challenges file at: {path}"
     return pd.read_csv(path)
+
 
 
 @pytest.fixture

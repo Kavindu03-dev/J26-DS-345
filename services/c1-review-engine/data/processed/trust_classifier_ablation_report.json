@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "evaluation_samples": 400,
+    "positive_spam_samples": 40,
+    "negative_authentic_samples": 360,
+    "validation_protocol": "5-Fold Stratified Cross-Validation"
+  },
+  "ablation_results": [
+    {
+      "configuration": "Full 8-Feature Model (Initial)",
+      "feature_count": 8,
+      "features_used": [
+        "aspect_specificity_density",
+        "text_length_words",
+        "concrete_entities_count",
+        "generic_fluff_count",
+        "fluff_to_entity_ratio",
+        "is_verified_stay",
+        "author_review_history_log",
+        "rating_disparity_penalty"
+      ],
+      "mean_roc_auc": 1.0,
+      "mean_accuracy": 1.0,
+      "mean_macro_f1": 1.0,
+      "mean_precision": 1.0,
+      "mean_recall": 1.0,
+      "confusion_matrix": {
+        "TP": 40,
+        "FP": 0,
+        "TN": 360,
+        "FN": 0
+      },
+      "feature_importances_gain_pct": {
+        "aspect_specificity_density": 0.0,
+        "text_length_words": 0.0,
+        "concrete_entities_count": 0.0,
+        "generic_fluff_count": 0.0,
+        "fluff_to_entity_ratio": 0.0,
+        "is_verified_stay": 99.28,
+        "author_review_history_log": 0.72,
+        "rating_disparity_penalty": 0.0
+      }
+    },
+    {
+      "configuration": "ASD & Content-Only (True Novelty)",
+      "feature_count": 5,
+      "features_used": [
+        "aspect_specificity_density",
+        "text_length_words",
+        "concrete_entities_count",
+        "generic_fluff_count",
+        "fluff_to_entity_ratio"
+      ],
+      "mean_roc_auc": 0.9927,
+      "mean_accuracy": 0.965,
+      "mean_macro_f1": 0.7976,
+      "mean_precision": 0.95,
+      "mean_recall": 0.7,
+      "confusion_matrix": {
+        "TP": 28,
+        "FP": 2,
+        "TN": 358,
+        "FN": 12
+      },
+      "feature_importances_gain_pct": {
+        "aspect_specificity_density": 26.24,
+        "text_length_words": 3.14,
+        "concrete_entities_count": 0.0,
+        "generic_fluff_count": 70.62,
+        "fluff_to_entity_ratio": 0.0
+      }
+    },
+    {
+      "configuration": "Naive Baseline (Word Count Only)",
+      "feature_count": 2,
+      "features_used": [
+        "text_length_words",
+        "rating_disparity_penalty"
+      ],
+      "mean_roc_auc": 0.9323,
+      "mean_accuracy": 0.915,
+      "mean_macro_f1": 0.3172,
+      "mean_precision": 0.8333,
+      "mean_recall": 0.2,
+      "confusion_matrix": {
+        "TP": 8,
+        "FP": 2,
+        "TN": 358,
+        "FN": 32
+      },
+      "feature_importances_gain_pct": {
+        "text_length_words": 84.79,
+        "rating_disparity_penalty": 15.21
+      }
+    },
+    {
+      "configuration": "De-Leaked Realistic Hybrid",
+      "feature_count": 8,
+      "features_used": [
+        "aspect_specificity_density",
+        "text_length_words",
+        "concrete_entities_count",
+        "generic_fluff_count",
+        "fluff_to_entity_ratio",
+        "is_verified_stay_fair",
+        "author_history_fair",
+        "rating_disparity_penalty"
+      ],
+      "mean_roc_auc": 1.0,
+      "mean_accuracy": 0.99,
+      "mean_macro_f1": 0.9463,
+      "mean_precision": 0.9778,
+      "mean_recall": 0.925,
+      "confusion_matrix": {
+        "TP": 37,
+        "FP": 1,
+        "TN": 359,
+        "FN": 3
+      },
+      "feature_importances_gain_pct": {
+        "aspect_specificity_density": 6.17,
+        "text_length_words": 2.07,
+        "concrete_entities_count": 0.0,
+        "generic_fluff_count": 47.27,
+        "fluff_to_entity_ratio": 0.0,
+        "is_verified_stay_fair": 32.16,
+        "author_history_fair": 0.0,
+        "rating_disparity_penalty": 12.33
+      }
+    }
+  ]
+}

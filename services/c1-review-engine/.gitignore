@@ -5,3 +5,5 @@ models/*.bin
 models/*.pt
 models/*.safetensors
 !models/.gitkeep
+!models/deberta_absa_config.json
+

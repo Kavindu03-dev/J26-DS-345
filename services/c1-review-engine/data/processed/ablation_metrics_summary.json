@@ -1,0 +1,332 @@
+{
+  "dataset_info": {
+    "total_hotels": 1025,
+    "total_reviews": 39399,
+    "evaluation_date_anchor": "2026-10-15",
+    "time_decay_half_life_days": 365.0
+  },
+  "spearman_rank_correlation": {
+    "cond_a_vs_cond_b": {
+      "rho": 0.9945,
+      "p_value": 0.0,
+      "interpretation": "Impact of Trust Scoring without Time Decay"
+    },
+    "cond_b_vs_cond_c": {
+      "rho": 0.9475,
+      "p_value": 0.0,
+      "interpretation": "Impact of Exponential Time Decay on top of Trust"
+    },
+    "cond_a_vs_cond_c": {
+      "rho": 0.9449,
+      "p_value": 0.0,
+      "interpretation": "Total Paradigm Shift: Status Quo OTA vs Full Proposed Engine"
+    }
+  },
+  "kendall_tau_correlation": {
+    "cond_a_vs_cond_b": {
+      "tau": 0.9501,
+      "p_value": 0.0
+    },
+    "cond_b_vs_cond_c": {
+      "tau": 0.8316,
+      "p_value": 0.0
+    },
+    "cond_a_vs_cond_c": {
+      "tau": 0.8274,
+      "p_value": 0.0
+    }
+  },
+  "mean_absolute_rank_shift_mars": {
+    "mars_a_vs_b": 17.96,
+    "mars_b_vs_c": 60.41,
+    "mars_a_vs_c": 61.26
+  },
+  "rank_displacement_distribution": {
+    "shift_ge_10_positions": {
+      "count": 689,
+      "percentage": 67.22
+    },
+    "shift_ge_25_positions": {
+      "count": 575,
+      "percentage": 56.1
+    },
+    "shift_ge_50_positions": {
+      "count": 416,
+      "percentage": 40.59
+    },
+    "shift_ge_100_positions": {
+      "count": 218,
+      "percentage": 21.27
+    }
+  },
+  "case_study_recovering_sme_hotels": [
+    {
+      "hotel_id": "HTL_KEG_BOGALAVI_C759",
+      "hotel_name": "Bogala Village Eco Resort",
+      "city": "Kegalle",
+      "district": "Kegalle",
+      "review_count": 37,
+      "score_cond_a": 4.1351,
+      "rank_cond_a": 670,
+      "score_cond_c": 4.4274,
+      "rank_cond_c": 298,
+      "rank_shift_c_vs_a": 372
+    },
+    {
+      "hotel_id": "HTL_PER_DELIGHTR_3D37",
+      "hotel_name": "DELIGHT REICH HOTEL",
+      "city": "Peradeniya",
+      "district": "Kandy",
+      "review_count": 60,
+      "score_cond_a": 4.1667,
+      "rank_cond_a": 561,
+      "score_cond_c": 4.4855,
+      "rank_cond_c": 220,
+      "rank_shift_c_vs_a": 341
+    },
+    {
+      "hotel_id": "HTL_TAN_VILLADON_9541",
+      "hotel_name": "Villa Don Bastian",
+      "city": "Tangalle",
+      "district": "Hambantota",
+      "review_count": 60,
+      "score_cond_a": 4.1667,
+      "rank_cond_a": 567,
+      "score_cond_c": 4.4717,
+      "rank_cond_c": 233,
+      "rank_shift_c_vs_a": 334
+    },
+    {
+      "hotel_id": "HTL_UDA_KOTTAWAT_A58E",
+      "hotel_name": "Kottawatta River Bank Resort",
+      "city": "Udawalawe",
+      "district": "Ratnapura",
+      "review_count": 58,
+      "score_cond_a": 4.1379,
+      "rank_cond_a": 666,
+      "score_cond_c": 4.4052,
+      "rank_cond_c": 336,
+      "rank_shift_c_vs_a": 330
+    },
+    {
+      "hotel_id": "HTL_NAN_GREENISH_3EF0",
+      "hotel_name": "GREENISH INN (ROOMS)",
+      "city": "Nanu Oya",
+      "district": "Nuwara Eliya",
+      "review_count": 27,
+      "score_cond_a": 4.1852,
+      "rank_cond_a": 472,
+      "score_cond_c": 4.5971,
+      "rank_cond_c": 144,
+      "rank_shift_c_vs_a": 328
+    }
+  ],
+  "case_study_spam_penalized_hotels": [
+    {
+      "hotel_id": "HTL_UPP_DIVEBEAC_8E8B",
+      "hotel_name": "Dive beach palace",
+      "city": "Uppuveli",
+      "district": "Trincomalee",
+      "review_count": 10,
+      "score_cond_a": 4.2,
+      "rank_cond_a": 412,
+      "score_cond_c": 3.9198,
+      "rank_cond_c": 1019,
+      "rank_shift_c_vs_a": -607
+    },
+    {
+      "hotel_id": "HTL_PER_KAYSDENK_08E1",
+      "hotel_name": "Kay’s Den Kandy",
+      "city": "Peradeniya",
+      "district": "Kandy",
+      "review_count": 22,
+      "score_cond_a": 4.2273,
+      "rank_cond_a": 322,
+      "score_cond_c": 4.1298,
+      "rank_cond_c": 817,
+      "rank_shift_c_vs_a": -495
+    },
+    {
+      "hotel_id": "HTL_KEL_PARAMOUN_262D",
+      "hotel_name": "Paramount Residence 3",
+      "city": "Kelaniya",
+      "district": "Gampaha",
+      "review_count": 10,
+      "score_cond_a": 4.3,
+      "rank_cond_a": 209,
+      "score_cond_c": 4.2579,
+      "rank_cond_c": 652,
+      "rank_shift_c_vs_a": -443
+    },
+    {
+      "hotel_id": "HTL_KOL_2BEDAPAR_BDDA",
+      "hotel_name": "2 Bed Apartment in Colombo 3",
+      "city": "Kollupitiya",
+      "district": "Colombo",
+      "review_count": 4,
+      "score_cond_a": 4.25,
+      "rank_cond_a": 269,
+      "score_cond_c": 4.2604,
+      "rank_cond_c": 649,
+      "rank_shift_c_vs_a": -380
+    },
+    {
+      "hotel_id": "HTL_UNA_KINGFISH_3BE1",
+      "hotel_name": "Kingfisher Beach",
+      "city": "Unawatuna",
+      "district": "Galle",
+      "review_count": 22,
+      "score_cond_a": 4.2273,
+      "rank_cond_a": 323,
+      "score_cond_c": 4.2476,
+      "rank_cond_c": 671,
+      "rank_shift_c_vs_a": -348
+    }
+  ],
+  "district_breakdown": {
+    "Ampara": {
+      "hotel_count": 42,
+      "mean_absolute_rank_shift": 58.57,
+      "avg_score_a": 4.23,
+      "avg_score_c": 4.3
+    },
+    "Anuradhapura": {
+      "hotel_count": 49,
+      "mean_absolute_rank_shift": 63.18,
+      "avg_score_a": 4.23,
+      "avg_score_c": 4.34
+    },
+    "Badulla": {
+      "hotel_count": 50,
+      "mean_absolute_rank_shift": 49.48,
+      "avg_score_a": 4.15,
+      "avg_score_c": 4.24
+    },
+    "Batticaloa": {
+      "hotel_count": 48,
+      "mean_absolute_rank_shift": 72.23,
+      "avg_score_a": 4.26,
+      "avg_score_c": 4.37
+    },
+    "Colombo": {
+      "hotel_count": 50,
+      "mean_absolute_rank_shift": 60.42,
+      "avg_score_a": 4.17,
+      "avg_score_c": 4.28
+    },
+    "Galle": {
+      "hotel_count": 50,
+      "mean_absolute_rank_shift": 73.5,
+      "avg_score_a": 4.19,
+      "avg_score_c": 4.33
+    },
+    "Gampaha": {
+      "hotel_count": 46,
+      "mean_absolute_rank_shift": 56.2,
+      "avg_score_a": 4.2,
+      "avg_score_c": 4.3
+    },
+    "Hambantota": {
+      "hotel_count": 49,
+      "mean_absolute_rank_shift": 64.1,
+      "avg_score_a": 4.18,
+      "avg_score_c": 4.3
+    },
+    "Jaffna": {
+      "hotel_count": 44,
+      "mean_absolute_rank_shift": 34.7,
+      "avg_score_a": 4.24,
+      "avg_score_c": 4.32
+    },
+    "Kalutara": {
+      "hotel_count": 50,
+      "mean_absolute_rank_shift": 67.22,
+      "avg_score_a": 4.25,
+      "avg_score_c": 4.42
+    },
+    "Kandy": {
+      "hotel_count": 47,
+      "mean_absolute_rank_shift": 73.49,
+      "avg_score_a": 4.32,
+      "avg_score_c": 4.46
+    },
+    "Kegalle": {
+      "hotel_count": 48,
+      "mean_absolute_rank_shift": 50.08,
+      "avg_score_a": 4.2,
+      "avg_score_c": 4.3
+    },
+    "Kilinochchi": {
+      "hotel_count": 13,
+      "mean_absolute_rank_shift": 25.85,
+      "avg_score_a": 4.39,
+      "avg_score_c": 4.49
+    },
+    "Kurunegala": {
+      "hotel_count": 39,
+      "mean_absolute_rank_shift": 39.72,
+      "avg_score_a": 4.33,
+      "avg_score_c": 4.41
+    },
+    "Mannar": {
+      "hotel_count": 21,
+      "mean_absolute_rank_shift": 41.29,
+      "avg_score_a": 4.38,
+      "avg_score_c": 4.49
+    },
+    "Matale": {
+      "hotel_count": 49,
+      "mean_absolute_rank_shift": 77.73,
+      "avg_score_a": 4.21,
+      "avg_score_c": 4.32
+    },
+    "Matara": {
+      "hotel_count": 49,
+      "mean_absolute_rank_shift": 90.24,
+      "avg_score_a": 4.19,
+      "avg_score_c": 4.31
+    },
+    "Monaragala": {
+      "hotel_count": 38,
+      "mean_absolute_rank_shift": 34.55,
+      "avg_score_a": 4.24,
+      "avg_score_c": 4.32
+    },
+    "Nuwara Eliya": {
+      "hotel_count": 49,
+      "mean_absolute_rank_shift": 73.39,
+      "avg_score_a": 4.22,
+      "avg_score_c": 4.34
+    },
+    "Polonnaruwa": {
+      "hotel_count": 41,
+      "mean_absolute_rank_shift": 71.83,
+      "avg_score_a": 4.26,
+      "avg_score_c": 4.38
+    },
+    "Puttalam": {
+      "hotel_count": 47,
+      "mean_absolute_rank_shift": 40.94,
+      "avg_score_a": 4.26,
+      "avg_score_c": 4.39
+    },
+    "Ratnapura": {
+      "hotel_count": 49,
+      "mean_absolute_rank_shift": 62.16,
+      "avg_score_a": 4.16,
+      "avg_score_c": 4.27
+    },
+    "Trincomalee": {
+      "hotel_count": 44,
+      "mean_absolute_rank_shift": 83.89,
+      "avg_score_a": 4.15,
+      "avg_score_c": 4.25
+    },
+    "Vavuniya": {
+      "hotel_count": 10,
+      "mean_absolute_rank_shift": 52.7,
+      "avg_score_a": 4.36,
+      "avg_score_c": 4.49
+    }
+  }
+}

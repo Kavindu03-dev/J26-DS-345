@@ -34,7 +34,12 @@ def test_deberta_trainer_dataset_unification():
 def test_deberta_absa_config_manifest():
     """Verifies that the exported DeBERTa model manifest is valid and conforms to expected production schema."""
     config_path = MODELS_DIR / "deberta_absa_config.json"
+    if not config_path.exists():
+        trainer = DeBERTaTrainer()
+        df = trainer.load_and_prepare_dataset()
+        trainer.export_training_manifest(df)
     assert config_path.exists(), f"Missing config manifest at: {config_path}"
+
 
     with open(config_path, "r", encoding="utf-8") as f:
         data = json.load(f)

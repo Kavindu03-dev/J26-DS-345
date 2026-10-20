@@ -1,0 +1,5 @@
+﻿half_life_days,decay_lambda,spearman_rho_vs_naive,kendall_tau_vs_naive,mean_absolute_rank_shift_mars,hotels_shifted_ge_25_pct,hotels_shifted_ge_50_pct
+90,0.007702,0.9092,0.7505,88.1,74.73,56.29
+180,0.003851,0.9094,0.748,88.79,74.83,56.59
+365,0.001899,0.939,0.7945,71.98,69.85,49.76
+730,0.00095,0.9715,0.8577,49.48,59.12,35.9

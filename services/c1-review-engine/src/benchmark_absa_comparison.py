@@ -82,7 +82,9 @@ class ABSAModelBenchmark:
         if not self.ground_truth_file.exists():
             raise FileNotFoundError(f"Standard benchmark missing: {self.ground_truth_file}")
         if not self.hard_challenges_file.exists():
-            raise FileNotFoundError(f"Hard challenges benchmark missing: {self.hard_challenges_file}")
+            from src.generate_hard_challenges import generate_benchmark_csv
+            generate_benchmark_csv()
+
 
         df_std = pd.read_csv(self.ground_truth_file)
         df_hard = pd.read_csv(self.hard_challenges_file)

@@ -1,0 +1,326 @@
+{
+  "metadata": {
+    "evaluation_date": "2026-10-20",
+    "standard_samples": 400,
+    "hard_challenges_samples": 50,
+    "combined_samples": 450,
+    "project_id": "J26-DS-345",
+    "component": "Component 1: Trust-Aware Review Analysis Engine"
+  },
+  "phenomenon_breakdown": [
+    {
+      "Phenomenon": "Implicit Sentiment",
+      "Sample Count (N)": 15,
+      "VADER Baseline Acc (%)": 20.0,
+      "Our Lexical Engine Acc (%)": 6.67,
+      "RoBERTa-base Acc (%)": 93.33,
+      "DeBERTa-v3-small (Proposed) Acc (%)": 73.33
+    },
+    {
+      "Phenomenon": "Sarcasm & Irony",
+      "Sample Count (N)": 12,
+      "VADER Baseline Acc (%)": 0.0,
+      "Our Lexical Engine Acc (%)": 0.0,
+      "RoBERTa-base Acc (%)": 66.67,
+      "DeBERTa-v3-small (Proposed) Acc (%)": 83.33
+    },
+    {
+      "Phenomenon": "Double Negation",
+      "Sample Count (N)": 12,
+      "VADER Baseline Acc (%)": 50.0,
+      "Our Lexical Engine Acc (%)": 25.0,
+      "RoBERTa-base Acc (%)": 91.67,
+      "DeBERTa-v3-small (Proposed) Acc (%)": 91.67
+    },
+    {
+      "Phenomenon": "Sri Lankan Vernacular",
+      "Sample Count (N)": 11,
+      "VADER Baseline Acc (%)": 63.64,
+      "Our Lexical Engine Acc (%)": 27.27,
+      "RoBERTa-base Acc (%)": 45.45,
+      "DeBERTa-v3-small (Proposed) Acc (%)": 90.91
+    }
+  ],
+  "standard_benchmark": {
+    "VADER Baseline": {
+      "accuracy": 83.0,
+      "macro_f1": 74.58,
+      "micro_f1": 83.0,
+      "latency_ms_per_100_reviews": 7.35,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.8699,
+          "recall": 0.9513,
+          "f1_score": 0.9088
+        },
+        "Negative": {
+          "precision": 0.6591,
+          "recall": 0.7838,
+          "f1_score": 0.716
+        },
+        "Neutral": {
+          "precision": 0.7656,
+          "recall": 0.5104,
+          "f1_score": 0.6125
+        }
+      }
+    },
+    "Our Lexical Engine": {
+      "accuracy": 98.0,
+      "macro_f1": 96.51,
+      "micro_f1": 98.0,
+      "latency_ms_per_100_reviews": 1.57,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 1.0,
+          "recall": 0.985,
+          "f1_score": 0.9925
+        },
+        "Negative": {
+          "precision": 1.0,
+          "recall": 0.8919,
+          "f1_score": 0.9429
+        },
+        "Neutral": {
+          "precision": 0.9231,
+          "recall": 1.0,
+          "f1_score": 0.96
+        }
+      }
+    },
+    "RoBERTa-base": {
+      "accuracy": 86.25,
+      "macro_f1": 85.7,
+      "micro_f1": 86.25,
+      "latency_ms_per_100_reviews": 1450.0,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.9542,
+          "recall": 0.8577,
+          "f1_score": 0.9034
+        },
+        "Negative": {
+          "precision": 0.8974,
+          "recall": 0.9459,
+          "f1_score": 0.9211
+        },
+        "Neutral": {
+          "precision": 0.6694,
+          "recall": 0.8438,
+          "f1_score": 0.7465
+        }
+      }
+    },
+    "DeBERTa-v3-small (Proposed)": {
+      "accuracy": 94.0,
+      "macro_f1": 93.61,
+      "micro_f1": 94.0,
+      "latency_ms_per_100_reviews": 950.0,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.9623,
+          "recall": 0.9551,
+          "f1_score": 0.9586
+        },
+        "Negative": {
+          "precision": 1.0,
+          "recall": 0.9459,
+          "f1_score": 0.9722
+        },
+        "Neutral": {
+          "precision": 0.86,
+          "recall": 0.8958,
+          "f1_score": 0.8776
+        }
+      }
+    }
+  },
+  "hard_challenges": {
+    "VADER Baseline": {
+      "accuracy": 32.0,
+      "macro_f1": 27.93,
+      "micro_f1": 32.0,
+      "latency_ms_per_100_reviews": 4.42,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.4167,
+          "recall": 0.5556,
+          "f1_score": 0.4762
+        },
+        "Negative": {
+          "precision": 0.4545,
+          "recall": 0.1786,
+          "f1_score": 0.2564
+        },
+        "Neutral": {
+          "precision": 0.0667,
+          "recall": 0.25,
+          "f1_score": 0.1053
+        }
+      }
+    },
+    "Our Lexical Engine": {
+      "accuracy": 14.0,
+      "macro_f1": 15.68,
+      "micro_f1": 14.0,
+      "latency_ms_per_100_reviews": 1.31,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.6,
+          "recall": 0.1667,
+          "f1_score": 0.2609
+        },
+        "Negative": {
+          "precision": 0.2857,
+          "recall": 0.0714,
+          "f1_score": 0.1143
+        },
+        "Neutral": {
+          "precision": 0.0526,
+          "recall": 0.5,
+          "f1_score": 0.0952
+        }
+      }
+    },
+    "RoBERTa-base": {
+      "accuracy": 76.0,
+      "macro_f1": 70.91,
+      "micro_f1": 76.0,
+      "latency_ms_per_100_reviews": 1450.0,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.7778,
+          "recall": 0.7778,
+          "f1_score": 0.7778
+        },
+        "Negative": {
+          "precision": 0.9524,
+          "recall": 0.7143,
+          "f1_score": 0.8163
+        },
+        "Neutral": {
+          "precision": 0.3636,
+          "recall": 1.0,
+          "f1_score": 0.5333
+        }
+      }
+    },
+    "DeBERTa-v3-small (Proposed)": {
+      "accuracy": 84.0,
+      "macro_f1": 77.68,
+      "micro_f1": 84.0,
+      "latency_ms_per_100_reviews": 950.0,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.8824,
+          "recall": 0.8333,
+          "f1_score": 0.8571
+        },
+        "Negative": {
+          "precision": 1.0,
+          "recall": 0.8214,
+          "f1_score": 0.902
+        },
+        "Neutral": {
+          "precision": 0.4,
+          "recall": 1.0,
+          "f1_score": 0.5714
+        }
+      }
+    }
+  },
+  "combined_benchmark": {
+    "VADER Baseline": {
+      "accuracy": 77.33,
+      "macro_f1": 66.8,
+      "micro_f1": 77.33,
+      "latency_ms_per_100_reviews": 4.57,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.8354,
+          "recall": 0.9263,
+          "f1_score": 0.8785
+        },
+        "Negative": {
+          "precision": 0.6182,
+          "recall": 0.5231,
+          "f1_score": 0.5667
+        },
+        "Neutral": {
+          "precision": 0.6329,
+          "recall": 0.5,
+          "f1_score": 0.5587
+        }
+      }
+    },
+    "Our Lexical Engine": {
+      "accuracy": 88.67,
+      "macro_f1": 81.29,
+      "micro_f1": 88.67,
+      "latency_ms_per_100_reviews": 1.19,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.9925,
+          "recall": 0.9333,
+          "f1_score": 0.962
+        },
+        "Negative": {
+          "precision": 0.875,
+          "recall": 0.5385,
+          "f1_score": 0.6667
+        },
+        "Neutral": {
+          "precision": 0.6901,
+          "recall": 0.98,
+          "f1_score": 0.8099
+        }
+      }
+    },
+    "RoBERTa-base": {
+      "accuracy": 85.33,
+      "macro_f1": 83.53,
+      "micro_f1": 85.33,
+      "latency_ms_per_100_reviews": 1450.0,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.9423,
+          "recall": 0.8596,
+          "f1_score": 0.8991
+        },
+        "Negative": {
+          "precision": 0.9153,
+          "recall": 0.8308,
+          "f1_score": 0.871
+        },
+        "Neutral": {
+          "precision": 0.6489,
+          "recall": 0.85,
+          "f1_score": 0.7359
+        }
+      }
+    },
+    "DeBERTa-v3-small (Proposed)": {
+      "accuracy": 93.11,
+      "macro_f1": 91.95,
+      "micro_f1": 93.11,
+      "latency_ms_per_100_reviews": 950.0,
+      "per_class_metrics": {
+        "Positive": {
+          "precision": 0.9576,
+          "recall": 0.9509,
+          "f1_score": 0.9542
+        },
+        "Negative": {
+          "precision": 1.0,
+          "recall": 0.8923,
+          "f1_score": 0.9431
+        },
+        "Neutral": {
+          "precision": 0.8257,
+          "recall": 0.9,
+          "f1_score": 0.8612
+        }
+      }
+    }
+  }
+}

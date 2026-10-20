@@ -1,0 +1,7 @@
+﻿Model Architecture,MAE (Stars),MSE,RMSE (Stars),Within +/- 0.25 Stars (%)
+Model A: Naive Historical All-Time Mean,0.4139,0.2287,0.4782,24.45
+Model B: Trust-Only Historical Mean,0.4141,0.2289,0.4785,24.45
+Model C: Proposed Trust + Time-Decay (tau=365d),0.4132,0.2281,0.4776,24.45
+Model C: Fast Recency (tau=180d),0.4131,0.2281,0.4776,24.45
+Model C: Hyper-Responsive (tau=90d),0.4131,0.228,0.4775,24.59
+Model C: Slow Recency (tau=730d),0.4135,0.2283,0.4779,24.45
