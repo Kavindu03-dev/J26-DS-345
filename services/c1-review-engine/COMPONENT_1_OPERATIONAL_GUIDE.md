@@ -87,19 +87,68 @@ Every single file in this component has a dedicated purpose. Here is the complet
 | `aggregator.py` | Unified Contract Aggregator | Hotel metadata + reviews | Merges Trust, ABSA, Time-Decay, and Facts into the exact JSON contract schema required by `contracts/c1_aspect_scores.json`. |
 | `alert_engine.py` | Weak-Aspect Alert Engine | Hotel review streams | Compares rolling 60-day aspect scores against historical baselines. Triggers `CRITICAL`, `WARNING`, or `INFO` alerts, extracts negative guest quotes, and prescribes remediation actions (FR9). |
 
-### C. Pipeline & Research Scripts (`src/`)
-| File Name | Purpose | What Command Runs It | Artifacts Generated |
-| :--- | :--- | :--- | :--- |
-| `config.py` | Central Configuration | Imported by all scripts | Defines directory paths, aspect keywords, schema fields, and trust hyper-parameters. |
-| `main.py` | FastAPI Microservice | `uvicorn src.main:app --port 8001` | Runs the live REST API on port `8001`. |
-| `ground_truth_builder.py` | Benchmark Dataset Builder | `python src/ground_truth_builder.py` | Stratified sampler creating `data/processed/ground_truth_annotated_hospitality.csv` (400 sentences). |
-| `train_trust_classifier.py` | Tabular ML Trainer | `python src/train_trust_classifier.py` | Trains LightGBM & XGBoost with 5-fold CV. Saves weights to `models/` and metrics to `trust_classifier_evaluation.json`. |
-| `benchmark_absa_comparison.py` | Multi-Model Benchmark | `python src/benchmark_absa_comparison.py` | Evaluates VADER vs Lexical vs RoBERTa vs DeBERTa-v3 on ground truth. Saves `absa_models_comparison_report.csv` and `.json`. |
-| `trust_classifier_ablation.py` | Feature Ablation & Leak Audit | `python src/trust_classifier_ablation.py` | Audits feature gain, isolates ASD contribution, evaluates 4 configurations. Saves `trust_classifier_ablation_report.csv` and `.json`. |
-| `ablation_study.py` | Ranking Stability & Backtest | `python src/ablation_study.py` | Ranks 1,025 hotels under A, B, and C, runs half-life sensitivity (90d, 180d, 365d, 730d), and temporal backtest. Saves `ablation_ranking_results.csv`, `halflife_sensitivity_report.csv`, and `temporal_backtest_report.csv`. |
-| `batch_enricher.py` | Bulk Offline Pre-computer | `python src/batch_enricher.py` | Ingests all raw reviews and generates `data/hotel_aspect_profiles.json` and `.csv` for Teams 2 & 4. |
+### C. The 5 Numbered Pipeline Stages (`src/`)
 
-> 📊 **Scientific Audit & Backtesting Details:** For the full breakdown of the 100% ROC-AUC investigation, feature gain audit, sensitivity curves, and temporal holdout predictions, see [PHASE_1_SCIENTIFIC_AUDIT_AND_EMPIRICAL_RESULTS.md](file:///d:/RESEARCH%20PROJECT/J26-DS-345/docs/c1-review-analysis/PHASE_1_SCIENTIFIC_AUDIT_AND_EMPIRICAL_RESULTS.md).
+To match the modular step-by-step engineering architecture of Component 3, Component 1 is organized into **5 chronological, numbered pipeline stages**:
+
+```text
+src/
+├── 01_data_preparation/          <── Data & Benchmark Pipeline (Numbered)
+│   ├── 01_build_ground_truth.py
+│   ├── 02_generate_hard_challenges.py
+│   └── 03_audit_annotation_agreement.py
+│
+├── 02_trust_classification/      <── Trust & Anti-Spam Pipeline (Numbered)
+│   ├── 01_calculate_asd_metrics.py
+│   ├── 02_train_trust_classifiers.py
+│   ├── 03_audit_feature_ablation.py
+│   └── 04_evaluate_trust_engine.py
+│
+├── 03_aspect_sentiment/          <── ABSA NLP Pipeline (Numbered)
+│   ├── 01_lexical_clause_engine.py
+│   ├── 02_train_deberta_transformer.py
+│   └── 03_benchmark_absa_comparison.py
+│
+├── 04_aggregation_alerts/        <── Aggregation & Alerts Pipeline (Numbered)
+│   ├── 01_extract_verified_facts.py
+│   ├── 02_aggregate_contract_scores.py
+│   ├── 03_detect_weak_aspect_alerts.py
+│   └── 04_batch_precompute_profiles.py
+│
+├── 05_scientific_evaluation/     <── Academic Ablation & Backtesting (Numbered)
+│   ├── 01_evaluate_halflife_sensitivity.py
+│   ├── 02_evaluate_temporal_backtest.py
+│   └── 03_run_master_ablation_study.py
+│
+├── models/                       <── Reusable OOP Engines (FastAPI & Test Backend)
+├── config.py                     <── Central Paths & Hyperparameters
+└── main.py                       <── FastAPI Live Microservice (Port 8001)
+```
+
+| Stage | Script Name | What Command Runs It | Artifacts Generated |
+| :--- | :--- | :--- | :--- |
+| **01** | `01_build_ground_truth.py` | `python src/01_data_preparation/01_build_ground_truth.py` | Stratified 400-sentence benchmark (`data/processed/ground_truth_annotated_hospitality.csv`). |
+| **01** | `02_generate_hard_challenges.py` | `python src/01_data_preparation/02_generate_hard_challenges.py` | 50 adversarial challenge sentences (`data/processed/hard_linguistic_challenges.csv`). |
+| **01** | `03_audit_annotation_agreement.py`| `python src/01_data_preparation/03_audit_annotation_agreement.py` | Cohen's Kappa $\kappa$ metrics (`annotation_agreement_report.json` & `.csv`). |
+| **02** | `01_calculate_asd_metrics.py` | `python src/02_trust_classification/01_calculate_asd_metrics.py` | Demonstrates ASD entity extraction vs. AI promotional fluff detection. |
+| **02** | `02_train_trust_classifiers.py` | `python src/02_trust_classification/02_train_trust_classifiers.py` | Trains LightGBM & XGBoost with 5-fold CV (`models/lightgbm_trust_classifier.joblib`). |
+| **02** | `03_audit_feature_ablation.py` | `python src/02_trust_classification/03_audit_feature_ablation.py` | Evaluates 4 feature configs, proving +48.04% Macro-F1 lift (`trust_classifier_ablation_report.csv`). |
+| **02** | `04_evaluate_trust_engine.py` | `python src/02_trust_classification/04_evaluate_trust_engine.py` | Demonstrates review-level trust scoring $T(r) \in [0.05, 1.0]$ and anomaly detection. |
+| **03** | `01_lexical_clause_engine.py` | `python src/03_aspect_sentiment/01_lexical_clause_engine.py` | Demonstrates clause splitting, negation windowing, and 0.0 to 5.0 aspect scoring. |
+| **03** | `02_train_deberta_transformer.py` | `python src/03_aspect_sentiment/02_train_deberta_transformer.py` | Fine-tunes DeBERTa-v3 on 450 sentences (`models/deberta_absa_config.json`). |
+| **03** | `03_benchmark_absa_comparison.py`| `python src/03_aspect_sentiment/03_benchmark_absa_comparison.py` | Compares VADER vs Lexical vs RoBERTa vs DeBERTa across splits (`absa_models_comparison_report.csv`). |
+| **04** | `01_extract_verified_facts.py` | `python src/04_aggregation_alerts/01_extract_verified_facts.py` | Extracts high-trust factual sentences for Component 4 RAG chatbot grounding. |
+| **04** | `02_aggregate_contract_scores.py`| `python src/04_aggregation_alerts/02_aggregate_contract_scores.py` | Aggregates reviews into `contracts/c1_aspect_scores.json` canonical format. |
+| **04** | `03_detect_weak_aspect_alerts.py`| `python src/04_aggregation_alerts/03_detect_weak_aspect_alerts.py` | Evaluates rolling 60-day degradation alerts (`CRITICAL`, `WARNING`, `INFO`) for hotel managers. |
+| **04** | `04_batch_precompute_profiles.py`| `python src/04_aggregation_alerts/04_batch_precompute_profiles.py` | Ingests 39,399 reviews, precomputes `data/hotel_aspect_profiles.json` and `.csv`. |
+| **05** | `01_evaluate_halflife_sensitivity.py`| `python src/05_scientific_evaluation/01_evaluate_halflife_sensitivity.py` | Sweeps $\tau \in \{90, 180, 365, 730\}$ days on 1,025 hotels (`halflife_sensitivity_report.csv`). |
+| **05** | `02_evaluate_temporal_backtest.py`| `python src/05_scientific_evaluation/02_evaluate_temporal_backtest.py` | Backtests on 724 hotels $<2026$ vs $\ge 2026$, proving lower error (`temporal_backtest_report.csv`). |
+| **05** | `03_run_master_ablation_study.py`| `python src/05_scientific_evaluation/03_run_master_ablation_study.py` | Ranks 1,025 hotels under A, B, and C, computing Spearman $\rho$, $\tau$, and MARS. |
+
+> 📊 **Scientific Audit & Backtesting Documentation:**
+> - [PHASE_1_SCIENTIFIC_AUDIT_AND_EMPIRICAL_RESULTS.md](file:///d:/RESEARCH%20PROJECT/J26-DS-345/docs/c1-review-analysis/PHASE_1_SCIENTIFIC_AUDIT_AND_EMPIRICAL_RESULTS.md): 100% ROC-AUC investigation, feature gain audit, sensitivity curves, and temporal backtest.
+> - [PHASE_2_NLP_RIGOR_AND_ANNOTATION_AGREEMENT.md](file:///d:/RESEARCH%20PROJECT/J26-DS-345/docs/c1-review-analysis/PHASE_2_NLP_RIGOR_AND_ANNOTATION_AGREEMENT.md): 50 Hard Linguistic Challenges, Cohen's Kappa, and multi-model benchmark across splits.
+> - [PHASE_3_TRANSFORMER_TRAINING_AND_SYSTEM_HARMONIZATION.md](file:///d:/RESEARCH%20PROJECT/J26-DS-345/docs/c1-review-analysis/PHASE_3_TRANSFORMER_TRAINING_AND_SYSTEM_HARMONIZATION.md): DeBERTa-v3 training pipeline, Colab GPU notebook, rating scale harmonization, and literature audit.
 
 ### D. Automated Test Suite (`tests/`)
 | Test File Name | What It Validates |
@@ -112,11 +161,14 @@ Every single file in this component has a dedicated purpose. Here is the complet
 | `test_absa_engine.py` | Validates aspect keyword detection, clause negation (*"not clean"*), and contract score clipping $[0.0, 5.0]$. |
 | `test_alert_engine.py` | Validates rolling 60-day degradation alerts, severity assignment, negative quote extraction, and recommendations. |
 | `test_ablation_study.py` | Validates ranking mathematics, Spearman $\rho$, Kendall $\tau$, and Mean Absolute Rank Shift (MARS). |
+| `test_nlp_rigor_phase2.py` | Validates 50 hard challenges schema, Cohen's Kappa bounds, and the empirical Lexicon collapse. |
+| `test_transformer_phase3.py` | Validates 450-sample unified training pool, DeBERTa model manifest, and 0.0-5.0 score scale bounds. |
+| `test_numbered_pipeline.py` | Validates that all 5 numbered pipeline stages exist, are importable, and expose all 17 scripts. |
 
 ### E. Notebooks (`notebooks/`)
 | File Name | Purpose | How to Use |
 | :--- | :--- | :--- |
-| `03_transformer_absa_finetuning.ipynb` | Interactive Colab/VS Code Notebook | Open in VS Code or upload to Google Colab Pro. Run cell-by-cell with GPU for interactive training and confusion matrix plots. |
+| `03_transformer_absa_finetuning.ipynb` | Interactive Colab/VS Code Notebook | Open in VS Code or upload to Google Colab Pro. Runs on 450 unified sentences with GPU for interactive training, confusion matrix plots, and ONNX export. |
 | `03_transformer_absa_finetuning.py` | Headless Python Training Script | CLI alternative: `python notebooks/03_transformer_absa_finetuning.py --model_name microsoft/deberta-v3-small` |
 
 ---
@@ -128,7 +180,7 @@ Below are the exact commands you can copy-paste into your PowerShell terminal to
 ---
 
 ### Step 1: Run the Full Test Suite (Health Check)
-Verify that all 23 unit and contract tests are passing.
+Verify that all 36 unit and contract tests are passing.
 
 ```powershell
 pytest -v

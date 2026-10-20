@@ -33,11 +33,12 @@ ID2LABEL = {0: "Negative", 1: "Neutral", 2: "Positive"}
 
 def train_transformer_absa(model_name: str = "microsoft/deberta-v3-small",
                            dataset_path: str = "data/processed/ground_truth_annotated_hospitality.csv",
+                           hard_challenges_path: str = "data/processed/hard_linguistic_challenges.csv",
                            output_dir: str = "models/deberta_absa_weights",
-                           epochs: int = 4,
+                           epochs: int = 5,
                            batch_size: int = 16,
                            learning_rate: float = 2e-5):
-    """Fine-tunes a pre-trained Transformer on hospitality aspect reviews."""
+    """Fine-tunes a pre-trained Transformer on hospitality aspect reviews (450 unified sentences)."""
     try:
         import torch
         from transformers import (
@@ -57,15 +58,38 @@ def train_transformer_absa(model_name: str = "microsoft/deberta-v3-small",
     print(f"   Device Available: {'GPU (CUDA)' if torch.cuda.is_available() else 'CPU'}")
     print("=" * 80)
 
-    # 1. Load ground truth benchmark
-    df = pd.read_csv(dataset_path)
-    df = df[df["sentiment_label"].isin(LABEL2ID.keys())].copy()
-    df["label"] = df["sentiment_label"].map(LABEL2ID)
+    # 1. Load ground truth benchmark and hard challenges
+    records = []
+    if os.path.exists(dataset_path):
+        df_std = pd.read_csv(dataset_path)
+        for _, row in df_std.iterrows():
+            sent = str(row.get("sentiment_label", "")).strip()
+            if sent in LABEL2ID:
+                records.append({
+                    "aspect": str(row["aspect_category"]).lower().strip(),
+                    "sentence": str(row["review_sentence"]).strip(),
+                    "sentiment": sent,
+                    "label": LABEL2ID[sent]
+                })
 
+    if os.path.exists(hard_challenges_path):
+        df_hard = pd.read_csv(hard_challenges_path)
+        for _, row in df_hard.iterrows():
+            sent = str(row.get("ground_truth_sentiment", "")).strip()
+            if sent in LABEL2ID:
+                records.append({
+                    "aspect": str(row["target_aspect"]).lower().strip(),
+                    "sentence": str(row["review_sentence"]).strip(),
+                    "sentiment": sent,
+                    "label": LABEL2ID[sent]
+                })
+
+    df = pd.DataFrame(records)
     # Combine aspect category with sentence for aspect-conditioned classification
-    df["input_text"] = "Aspect: " + df["aspect_category"] + " | Sentence: " + df["review_sentence"]
+    df["input_text"] = "Aspect: " + df["aspect"] + " | Sentence: " + df["sentence"]
 
     train_df, val_df = train_test_split(df, test_size=0.20, random_state=42, stratify=df["label"])
+    print(f"[+] Total Unified Samples: {len(df)} (400 standard + 50 hard challenges)")
     print(f"[+] Dataset Split: {len(train_df)} Training sentences, {len(val_df)} Validation sentences.")
 
     # 2. Tokenization

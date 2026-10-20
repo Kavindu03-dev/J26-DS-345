@@ -97,18 +97,37 @@ All raw agent transcripts and thinking trajectories are permanently archived by 
   * Full confusion matrix and adjudication rules exported to `annotation_agreement_report.json` and `.csv`.
 - **Documentation:** Complete Phase 2 report created at `docs/c1-review-analysis/PHASE_2_NLP_RIGOR_AND_ANNOTATION_AGREEMENT.md`.
 
+### Milestone 10: Transformer Training Pipeline, Data Scale Harmonization & Literature Audit (Phase 3, October 2026)
+- **Executable DeBERTa Training Pipeline:** Implemented `src/train_deberta_absa.py` and interactive Colab GPU notebook `notebooks/03_transformer_absa_finetuning.ipynb`. Unifies the 400 standard + 50 hard challenge sentences into a 450-sample aspect-conditioned training pool (`"Aspect: {aspect} | Review: {sentence}"`).
+- **Production Manifest & ONNX Export:** Exported training hyperparameters and empirical metrics to `models/deberta_absa_config.json`. Provided ONNX export script for sub-10 ms CPU inference in FastAPI.
+- **Data Scale Harmonization:** Formally established the dual-tier data architecture for Dissertation Chapter 3: 450 dual-annotated sentences (Gold-Standard Benchmark for model training and evaluation) vs. 39,399 scraped reviews across 1,025 hotels (Large-Scale Production Corpus for trust ranking and aspect scoring).
+- **Score Scale Standardization:** Resolved proposal contradictions by standardizing all outputs to canonical bounds: `aspect_scores` ($0.0 - 5.0$), `time_decay_rating` ($1.0 - 5.0$), and `overall_trust_score` ($0.0 - 10.0$ trust index).
+- **Literature & Citation Audit:** Corrected Proposal Reference `[6]` (replacing the review helpfulness paper with Koren 2010 CACM and Ding & Li 2005 CIKM temporal rating decay foundations).
+- **Documentation:** Complete Phase 3 report created at `docs/c1-review-analysis/PHASE_3_TRANSFORMER_TRAINING_AND_SYSTEM_HARMONIZATION.md`.
+
+### Milestone 11: Numbered 5-Stage Pipeline Restructuring (Matching C3 Architectural Standard - October 2026)
+- **Architectural Alignment:** Mirroring the structured, numbered step-by-step pipeline paradigm of Component 3 (`services/c3-itinerary-planner`), restructured Component 1 (`services/c1-review-engine`) into 5 clean, numbered stage directories:
+  * `src/01_data_preparation/`: Ground-truth generation, hard challenges, Cohen's Kappa annotation agreement.
+  * `src/02_trust_classification/`: Aspect Specificity Density (ASD), LightGBM/XGBoost training, feature ablation/leakage audit, review trust scoring.
+  * `src/03_aspect_sentiment/`: Clause-level lexical engine, DeBERTa-v3 transformer pipeline, multi-model ABSA comparative benchmark.
+  * `src/04_aggregation_alerts/`: Fact extraction for C4 RAG, contract score aggregation, weak-aspect degradation alerts, batch profile precomputation.
+  * `src/05_scientific_evaluation/`: Half-life sensitivity analysis, chronological temporal backtesting, master ranking ablation study (Conditions A, B, C).
+- **Execution Portability:** Engineered dynamic root path resolution in every script (`Path(__file__).resolve().parent.parent.parent`) allowing each numbered step to run standalone from any working directory via PowerShell/bash.
+- **Zero-Breakage Backward Compatibility:** Preserved legacy entrypoints and class imports (`src/models/`, `src/main.py`, teammate contract endpoints) without breaking external dependencies.
+- **Quality Assurance:** Added `tests/test_numbered_pipeline.py` verifying all 5 stage directories, 17 scripts, and module imports. Full test suite: **36/36 tests passing (100% green)**.
+
 ---
 
 ## 3. Current System State & Status
 - **Scraper Status:** Finished and sealed.
 - **Dataset Status:** 39,399 unique verified reviews across 1,025 hotels in all 25 districts (`research_dataset_unified.csv`).
-- **ASD Engine (SO2 / FR4):** Operational in `src/models/asd_calculator.py`.
-- **Ground-Truth Benchmark (WBS 2.3):** 400 stratified samples in `data/processed/ground_truth_annotated_hospitality.csv` + 50 Hard Challenges in `data/processed/hard_linguistic_challenges.csv`.
-- **Tabular Trust Classifier (SO2 / FR5):** LightGBM & XGBoost trained; feature ablation and leakage analysis completed (`trust_classifier_ablation.py`).
-- **ABSA Comparative Benchmark (SO3 / FR6):** VADER vs. Lexical vs. RoBERTa vs. DeBERTa-v3 benchmarked across Standard (400), Hard (50), and Combined (450) splits in `data/processed/absa_models_comparison_report.csv`.
-- **Ablation Study (SO5 / WBS 5.2):** Full ranking shifts, half-life sensitivity curve ($\tau \in [90, 180, 365, 730]$), and future-predictive backtesting across 724 hotels completed in `src/ablation_study.py`.
-- **Weak-Aspect Alert Engine (FR9 / WBS 6.3):** Operational in `src/models/alert_engine.py` and exposed via FastAPI.
-- **Automated Tests:** **27/27 unit tests passing in pytest (100% pass rate).**
+- **ASD Engine (SO2 / FR4):** Operational in `src/models/asd_calculator.py` & `src/02_trust_classification/01_calculate_asd_metrics.py`.
+- **Ground-Truth Benchmark (WBS 2.3):** 400 stratified samples in `ground_truth_annotated_hospitality.csv` + 50 Hard Challenges in `hard_linguistic_challenges.csv` (450 total).
+- **Tabular Trust Classifier (SO2 / FR5):** LightGBM & XGBoost trained; feature ablation and leakage analysis completed (`src/02_trust_classification/`).
+- **ABSA Comparative Benchmark (SO3 / FR6):** VADER vs. Lexical vs. RoBERTa vs. DeBERTa-v3 benchmarked across Standard (400), Hard (50), and Combined (450) splits in `src/03_aspect_sentiment/`.
+- **Ablation Study (SO5 / WBS 5.2):** Full ranking shifts, half-life sensitivity curve ($\tau \in [90, 180, 365, 730]$), and future-predictive backtesting across 724 hotels completed in `src/05_scientific_evaluation/`.
+- **Weak-Aspect Alert Engine (FR9 / WBS 6.3):** Operational in `src/04_aggregation_alerts/03_detect_weak_aspect_alerts.py` and exposed via FastAPI (`src/main.py`).
+- **Automated Tests:** **36/36 unit and contract tests passing in pytest (100% pass rate).**
 
 ---
 
@@ -126,6 +145,8 @@ All raw agent transcripts and thinking trajectories are permanently archived by 
 | Step 6 | Microservice Integration & Hotel Owner Weak-Aspect Alerts (FR9, FR10)       [COMPLETE]  |
 | Step 7 | Phase 1 Scientific Audit: Leakage Fix, Half-Life Sweep & Backtest           [COMPLETE]  |
 | Step 8 | Phase 2 NLP Rigor: Hard Challenges, Cohen's Kappa & Performance Inversion   [COMPLETE]  |
-| Step 9 | Dissertation Chapters (Ch 3, 4, 5, 6) & Research Paper Writing (WBS 6.4)    [NEXT]      |
+| Step 9 | Phase 3 Transformer Pipeline, Scale Harmonization & Literature Audit        [COMPLETE]  |
+| Step 10| Step-by-Step Numbered Pipeline Architecture (Matching C3 Paradigm)         [COMPLETE]  |
+| Step 11| Dissertation Chapters (Ch 3, 4, 5, 6) & Research Paper Writing (WBS 6.4)    [NEXT]      |
 +-------------------------------------------------------------------------------------------------+
 ```
