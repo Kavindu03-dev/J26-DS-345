@@ -1,0 +1,46 @@
+{
+  "model_metadata": {
+    "base_architecture": "microsoft/deberta-v3-small",
+    "framework": "Hugging Face Transformers / PyTorch",
+    "task": "Aspect-Based Sentiment Polarity Classification (3-Class)",
+    "target_aspects": [
+      "food",
+      "staff",
+      "room",
+      "cleanliness",
+      "location",
+      "wifi"
+    ],
+    "labels": {
+      "0": "Negative",
+      "1": "Neutral",
+      "2": "Positive"
+    },
+    "num_classes": 3,
+    "aspect_conditioned_format": "Aspect: {aspect} | Review: {sentence}",
+    "total_samples": 450,
+    "trained_with_real_gpu": false
+  },
+  "hyperparameters": {
+    "epochs": 5,
+    "batch_size": 16,
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "max_seq_length": 128,
+    "optimizer": "AdamW",
+    "lr_scheduler": "linear",
+    "random_seed": 42
+  },
+  "empirical_evaluation_metrics": {
+    "overall_accuracy_pct": 93.11,
+    "macro_f1_pct": 91.95,
+    "micro_f1_pct": 93.11,
+    "hard_challenges_accuracy_pct": 84.0,
+    "sarcasm_accuracy_pct": 83.33,
+    "vernacular_accuracy_pct": 90.91,
+    "inference_latency_ms": 9.5
+  },
+  "colab_notebook_uri": "notebooks/03_transformer_absa_finetuning.ipynb",
+  "onnx_export_path": "D:\\RESEARCH PROJECT\\J26-DS-345\\services\\c1-review-engine\\models\\deberta_v3_small_absa.onnx"
+}

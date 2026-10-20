@@ -5,3 +5,18 @@ checkpoints/*
 !raw/.gitkeep
 !processed/.gitkeep
 !checkpoints/.gitkeep
+
+# Whitelist gold standard benchmarks and evaluation metrics (required for CI & reproducibility)
+!processed/ground_truth_annotated_hospitality.csv
+!processed/hard_linguistic_challenges.csv
+!processed/*_report.json
+!processed/*_summary.json
+!processed/*_evaluation.json
+!processed/*_report*.csv
+!processed/*_breakdown*.csv
+
+# Strictly ignore large scraped corpora (exceeds 100MB GitHub limit)
+processed/research_dataset_unified.csv
+processed/reviews_by_hotel.json
+
+

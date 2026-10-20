@@ -1,0 +1,5 @@
+﻿Configuration,Features,ROC-AUC (%),Accuracy (%),Macro F1 (%),Precision (%),Recall (%),Top Contributor
+Full 8-Feature Model (Initial),8,100.0,100.0,100.0,100.0,100.0,is_verified_stay
+ASD & Content-Only (True Novelty),5,99.27,96.5,79.76,95.0,70.0,generic_fluff_count
+Naive Baseline (Word Count Only),2,93.23,91.5,31.72,83.33,20.0,text_length_words
+De-Leaked Realistic Hybrid,8,100.0,99.0,94.63,97.78,92.5,generic_fluff_count

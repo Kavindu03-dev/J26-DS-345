@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "evaluation_date": "2026-10-20",
+    "sample_size": 100,
+    "benchmark_total": 400,
+    "standard": "Landis & Koch (1977) Biometrics Benchmark"
+  },
+  "sentiment_agreement": {
+    "observed_agreement_pct": 87.0,
+    "cohens_kappa": 0.7543,
+    "interpretation": "Substantial Agreement (0.61 - 0.80)",
+    "confusion_matrix_labels": [
+      "Negative",
+      "Neutral",
+      "Positive"
+    ],
+    "confusion_matrix": [
+      [
+        9,
+        1,
+        0
+      ],
+      [
+        3,
+        20,
+        1
+      ],
+      [
+        0,
+        8,
+        58
+      ]
+    ]
+  },
+  "aspect_agreement": {
+    "observed_agreement_pct": 92.0,
+    "cohens_kappa": 0.9038,
+    "interpretation": "Almost Perfect Agreement (0.81 - 1.00)"
+  },
+  "sample_disagreements": [
+    {
+      "sample_id": "SMP_0311",
+      "sentence": "the WiFi was weak, and the bed and pillows were uncomf I had a pleasant stay at Gaga Bees Yala during my Sri Lanka trip",
+      "primary_sentiment": "Neutral",
+      "secondary_sentiment": "Neutral",
+      "primary_aspect": "wifi",
+      "secondary_aspect": "room",
+      "consensus_adjudication": "Neutral"
+    },
+    {
+      "sample_id": "SMP_0133",
+      "sentence": "We enjoyed the sea view from our balcony and the seafood platter for dinner in the restaurant was delicious",
+      "primary_sentiment": "Positive",
+      "secondary_sentiment": "Positive",
+      "primary_aspect": "room",
+      "secondary_aspect": "location",
+      "consensus_adjudication": "Positive"
+    },
+    {
+      "sample_id": "SMP_0090",
+      "sentence": "Food was outstanding and prepared with obvious love and care A tiny point -",
+      "primary_sentiment": "Positive",
+      "secondary_sentiment": "Positive",
+      "primary_aspect": "staff",
+      "secondary_aspect": "room",
+      "consensus_adjudication": "Positive"
+    },
+    {
+      "sample_id": "SMP_0047",
+      "sentence": "Pleasant The staff is super friendly and the food is really tasty",
+      "primary_sentiment": "Positive",
+      "secondary_sentiment": "Neutral",
+      "primary_aspect": "food",
+      "secondary_aspect": "food",
+      "consensus_adjudication": "Adjudicated via strict codebook clause rule"
+    },
+    {
+      "sample_id": "SMP_0019",
+      "sentence": "The breakfast was amazing",
+      "primary_sentiment": "Positive",
+      "secondary_sentiment": "Neutral",
+      "primary_aspect": "food",
+      "secondary_aspect": "food",
+      "consensus_adjudication": "Adjudicated via strict codebook clause rule"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "evaluation_hotels": 1025,
+    "evaluation_reviews": 39399,
+    "tested_taus": [
+      90.0,
+      180.0,
+      365.0,
+      730.0
+    ]
+  },
+  "results": [
+    {
+      "half_life_days": 90,
+      "decay_lambda": 0.007702,
+      "spearman_rho_vs_naive": 0.9092,
+      "kendall_tau_vs_naive": 0.7505,
+      "mean_absolute_rank_shift_mars": 88.1,
+      "hotels_shifted_ge_25_pct": 74.73,
+      "hotels_shifted_ge_50_pct": 56.29
+    },
+    {
+      "half_life_days": 180,
+      "decay_lambda": 0.003851,
+      "spearman_rho_vs_naive": 0.9094,
+      "kendall_tau_vs_naive": 0.748,
+      "mean_absolute_rank_shift_mars": 88.79,
+      "hotels_shifted_ge_25_pct": 74.83,
+      "hotels_shifted_ge_50_pct": 56.59
+    },
+    {
+      "half_life_days": 365,
+      "decay_lambda": 0.001899,
+      "spearman_rho_vs_naive": 0.939,
+      "kendall_tau_vs_naive": 0.7945,
+      "mean_absolute_rank_shift_mars": 71.98,
+      "hotels_shifted_ge_25_pct": 69.85,
+      "hotels_shifted_ge_50_pct": 49.76
+    },
+    {
+      "half_life_days": 730,
+      "decay_lambda": 0.00095,
+      "spearman_rho_vs_naive": 0.9715,
+      "kendall_tau_vs_naive": 0.8577,
+      "mean_absolute_rank_shift_mars": 49.48,
+      "hotels_shifted_ge_25_pct": 59.12,
+      "hotels_shifted_ge_50_pct": 35.9
+    }
+  ]
+}

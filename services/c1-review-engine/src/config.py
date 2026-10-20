@@ -11,6 +11,7 @@ DATA_DIR = ENGINE_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 CHECKPOINTS_DIR = DATA_DIR / "checkpoints"
+MODELS_DIR = ENGINE_DIR / "models"
 
 # Primary Raw Data Files
 HOTELS_SEED_FILE = (RAW_DATA_DIR / "hotels_seed.csv") if (RAW_DATA_DIR / "hotels_seed.csv").exists() else (DATA_DIR / "hotels_seed.csv")
