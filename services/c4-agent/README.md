@@ -15,13 +15,20 @@ src/
   data_access.py       read-only loaders for C1's published data (hotels, profiles, attractions)
   hotel_directory.py   hotel name -> hotel_id lookup (users type names, contracts use IDs)
   geo.py               distance and drive-time helpers
+  agent.py             the agent loop: router (fine-tuned model) -> executor -> synthesiser
+  synthesizer.py       grounded final answer built only from tool results (quotes C1 verified facts)
+  demo/app.py          Gradio demo: agent chat + 4 decoding modes side by side
   tools/clients.py     HTTP clients for C1, C2, C3 with uniform error codes
+  tools/definitions.py the 4 tools as the model sees them + mapping to C2/C3 requests
+  tools/executor.py    validates and runs calls, resolves hotel names, compacts results, structured errors
   mocks/
     c1_mock.py         GET  /hotels/{hotel_id}/aspect-scores  (serves C1's real profiles)
     c2_mock.py         POST /recommendations                  (real hotels + C1 scores, simulated prices)
     c3_mock.py         POST /plan-itinerary                   (real attractions, greedy route, mock restaurants)
     run_mocks.py       starts all three mocks
-training/              Step 4 data preparation (see training/README.md)
+training/              Step 4 data preparation + Step 5 QLoRA training (see training/README.md)
+evaluation/            tourism test set v1, BFCL subset, 4 decoding modes, scoring - see evaluation/README.md
+notebooks/             Colab: 01_finetune_qlora (training), 02_evaluate_decoding (4 modes), 03_demo (agent + side-by-side)
 schemas/               C4's own record of C3's real API (not a shared contract)
 tests/                 pytest suite (contract checks, mocks, clients, hotel lookup)
 ```
