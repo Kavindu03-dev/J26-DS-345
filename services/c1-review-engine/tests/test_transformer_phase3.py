@@ -9,7 +9,7 @@ import pandas as pd
 from pathlib import Path
 
 from src.config import MODELS_DIR, PROCESSED_DATA_DIR, DATA_DIR
-from src.train_deberta_absa import DeBERTaTrainer
+from src import DeBERTaTrainer
 
 
 def test_deberta_trainer_dataset_unification():

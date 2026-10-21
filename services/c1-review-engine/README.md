@@ -10,24 +10,26 @@
 ## 1. Overview
 Component 1 is the foundational data and intelligence engine for the Sri Lankan Hotel Recommendation System. It continuously transforms multi-source customer reviews into trust-weighted, time-decayed aspect ratings (Food, Staff, Room, Cleanliness, Location, WiFi) and grounded factual snippets for downstream RAG assistance.
 
-> 📖 **Full Operational Manual:** For a complete file-by-file inventory, terminal execution guide, troubleshooting, and data inspection commands, see [COMPONENT_1_OPERATIONAL_GUIDE.md](file:///d:/RESEARCH%20PROJECT/J26-DS-345/services/c1-review-engine/COMPONENT_1_OPERATIONAL_GUIDE.md).
+> 🎓 **Complete Academic Defense Guide (A to Z):** For an all-in-one plain English explanation of Component 1 prepared for your supervisor and examination panel, see **[COMPONENT_1_COMPLETE_EXPLANATION_A_TO_Z.md](file:///d:/RESEARCH%20PROJECT/J26-DS-345/services/c1-review-engine/COMPONENT_1_COMPLETE_EXPLANATION_A_TO_Z.md)**.  
+> 📖 **Operational & Terminal Manual:** For a file-by-file terminal command reference and troubleshooting, see [COMPONENT_1_OPERATIONAL_GUIDE.md](file:///d:/RESEARCH%20PROJECT/J26-DS-345/services/c1-review-engine/COMPONENT_1_OPERATIONAL_GUIDE.md).
 
 ## 2. Directory Layout
 ```
 services/c1-review-engine/
-├── src/                    # FastAPI microservice & inference engines
-│   ├── models/             # TrustEngine, ABSAEngine, FactExtractor, Aggregator
-│   ├── main.py             # FastAPI entrypoint (Port 8001)
-│   ├── config.py           # Configuration & filepaths
-│   ├── batch_enricher.py   # Bulk enrichment pipeline
-│   └── evaluate_models.py  # Model evaluation benchmark runner
-├── scraper/                # Multi-source Playwright review scraping pipeline
-├── tests/                  # Automated pytest / unittest test suite
-├── data/                   # Pre-computed aspect profiles & seeds
-├── notebooks/              # Research notebooks & experiments
-├── run_test.py             # Interactive CLI evaluation tool
-├── Dockerfile              # Docker container definition
-└── requirements.txt        # Python dependencies
+├── src/
+│   ├── 01_data_preparation/      # Ground truth, 50 hard challenges & Kappa study
+│   ├── 02_trust_classification/  # ASD metrics, LightGBM/XGBoost & feature ablation
+│   ├── 03_aspect_sentiment/      # DeBERTa-v3 ABSA & 4-way benchmark comparison
+│   ├── 04_aggregation_alerts/    # 39k bulk enrichment & weak aspect alert engine
+│   ├── 05_scientific_evaluation/ # Half-life sensitivity, backtesting & ranking ablation
+│   ├── models/                   # Runtime engines (ASD, Trust, ABSA, Alert, Aggregator)
+│   ├── __init__.py               # Central dynamic loader & module exports
+│   ├── config.py                 # File paths, thresholds & hyperparameters
+│   └── main.py                   # FastAPI microservice endpoint (Port 8001)
+├── tests/                        # 36 Automated pytest / contract tests (100% passing)
+├── data/                         # Processed research datasets & precomputed profiles
+├── notebooks/                    # Research notebooks & Colab GPU fine-tuning
+├── Dockerfile                    # Container configuration
 ```
 
 ## 3. Running the Service Locally

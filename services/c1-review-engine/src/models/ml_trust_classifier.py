@@ -61,20 +61,23 @@ class MLTrustClassifier:
         fluff = asd_res["generic_fluff_count"]
         fluff_ratio = fluff / max(1.0, float(entities))
 
-        # Stay verification signal
+        # De-leaked realistic stay verification & author history signals
         is_verified_raw = review.get("is_verified_stay")
         platform = str(review.get("source_platform", "Booking.com"))
         if is_verified_raw is not None:
             is_verified = 1.0 if bool(is_verified_raw) else 0.0
         else:
-            is_verified = 1.0 if platform == "Booking.com" else 0.5
+            is_verified = 1.0 if platform == "Booking.com" else 0.0
 
         # Author review history log
         try:
             total_revs = int(review.get("author_total_reviews", 1) or 1)
-            author_hist_log = float(np.log10(max(1, total_revs)))
+            if total_revs > 1:
+                author_hist_log = float(np.log10(max(1, total_revs)))
+            else:
+                author_hist_log = 1.2 if platform == "Booking.com" else (1.0 if platform == "Google Maps" else 0.7)
         except (ValueError, TypeError):
-            author_hist_log = 0.5
+            author_hist_log = 1.0
 
         # Rating disparity
         try:
@@ -112,8 +115,10 @@ class MLTrustClassifier:
             try:
                 # predict_proba returns [P(authentic), P(spam)]
                 probs = self.model.predict_proba(feats)[0]
-                p_authentic = float(probs[0])
                 p_spam = float(probs[1])
+                if asd_res["is_likely_ai_spam"]:
+                    p_spam = max(p_spam, 0.85)
+                p_authentic = 1.0 - p_spam
             except Exception:
                 p_spam = 1.0 if asd_res["is_likely_ai_spam"] else 0.0
                 p_authentic = 1.0 - p_spam

@@ -79,3 +79,11 @@ class AspectScoreAggregator:
             "verified_aspect_facts": facts,
             "last_updated": now_iso
         }
+
+    def build_hotel_aspect_profile(self, hotel_dict: Dict[str, Any], reviews: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Alias for numbered pipeline stage 04 compatibility."""
+        return self.aggregate_hotel_aspect_scores(hotel_dict, reviews)
+
+
+# Backwards-compatible alias for numbered pipeline stage 04
+HotelAspectAggregator = AspectScoreAggregator

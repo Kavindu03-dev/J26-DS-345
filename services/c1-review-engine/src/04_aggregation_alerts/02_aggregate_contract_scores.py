@@ -16,10 +16,10 @@ ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from src.models.aggregator import HotelAspectAggregator
+from src.models.aggregator import AspectScoreAggregator, HotelAspectAggregator
 
 def demo_contract_aggregator():
-    agg = HotelAspectAggregator()
+    agg = AspectScoreAggregator()
     print("=" * 80)
     print("   STAGE 04: HOTEL ASPECT PROFILE CONTRACT AGGREGATOR DEMO")
     print("=" * 80)
@@ -54,7 +54,7 @@ def demo_contract_aggregator():
         }
     ]
 
-    profile = agg.build_hotel_aspect_profile(hotel_meta, sample_reviews)
+    profile = agg.aggregate_hotel_aspect_scores(hotel_meta, sample_reviews)
     print(json.dumps(profile, indent=2))
     print("=" * 80)
 

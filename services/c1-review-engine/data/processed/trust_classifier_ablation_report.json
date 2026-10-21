@@ -19,26 +19,26 @@
         "author_review_history_log",
         "rating_disparity_penalty"
       ],
-      "mean_roc_auc": 1.0,
-      "mean_accuracy": 1.0,
-      "mean_macro_f1": 1.0,
-      "mean_precision": 1.0,
-      "mean_recall": 1.0,
+      "mean_roc_auc": 0.999,
+      "mean_accuracy": 0.9825,
+      "mean_macro_f1": 0.8965,
+      "mean_precision": 0.9556,
+      "mean_recall": 0.875,
       "confusion_matrix": {
-        "TP": 40,
-        "FP": 0,
-        "TN": 360,
-        "FN": 0
+        "TP": 35,
+        "FP": 2,
+        "TN": 358,
+        "FN": 5
       },
       "feature_importances_gain_pct": {
-        "aspect_specificity_density": 0.0,
-        "text_length_words": 0.0,
+        "aspect_specificity_density": 7.32,
+        "text_length_words": 17.93,
         "concrete_entities_count": 0.0,
-        "generic_fluff_count": 0.0,
+        "generic_fluff_count": 58.94,
         "fluff_to_entity_ratio": 0.0,
-        "is_verified_stay": 99.28,
-        "author_review_history_log": 0.72,
-        "rating_disparity_penalty": 0.0
+        "is_verified_stay": 4.12,
+        "author_review_history_log": 0.04,
+        "rating_disparity_penalty": 11.66
       }
     },
     {
@@ -51,22 +51,22 @@
         "generic_fluff_count",
         "fluff_to_entity_ratio"
       ],
-      "mean_roc_auc": 0.9927,
-      "mean_accuracy": 0.965,
-      "mean_macro_f1": 0.7976,
-      "mean_precision": 0.95,
+      "mean_roc_auc": 0.9793,
+      "mean_accuracy": 0.9625,
+      "mean_macro_f1": 0.7755,
+      "mean_precision": 0.8964,
       "mean_recall": 0.7,
       "confusion_matrix": {
         "TP": 28,
-        "FP": 2,
-        "TN": 358,
+        "FP": 3,
+        "TN": 357,
         "FN": 12
       },
       "feature_importances_gain_pct": {
-        "aspect_specificity_density": 26.24,
-        "text_length_words": 3.14,
+        "aspect_specificity_density": 10.83,
+        "text_length_words": 10.62,
         "concrete_entities_count": 0.0,
-        "generic_fluff_count": 70.62,
+        "generic_fluff_count": 78.54,
         "fluff_to_entity_ratio": 0.0
       }
     },
@@ -77,20 +77,20 @@
         "text_length_words",
         "rating_disparity_penalty"
       ],
-      "mean_roc_auc": 0.9323,
-      "mean_accuracy": 0.915,
-      "mean_macro_f1": 0.3172,
-      "mean_precision": 0.8333,
-      "mean_recall": 0.2,
+      "mean_roc_auc": 0.9292,
+      "mean_accuracy": 0.91,
+      "mean_macro_f1": 0.3867,
+      "mean_precision": 0.65,
+      "mean_recall": 0.3,
       "confusion_matrix": {
-        "TP": 8,
-        "FP": 2,
-        "TN": 358,
-        "FN": 32
+        "TP": 12,
+        "FP": 8,
+        "TN": 352,
+        "FN": 28
       },
       "feature_importances_gain_pct": {
-        "text_length_words": 84.79,
-        "rating_disparity_penalty": 15.21
+        "text_length_words": 91.37,
+        "rating_disparity_penalty": 8.63
       }
     },
     {
@@ -106,26 +106,26 @@
         "author_history_fair",
         "rating_disparity_penalty"
       ],
-      "mean_roc_auc": 1.0,
-      "mean_accuracy": 0.99,
-      "mean_macro_f1": 0.9463,
-      "mean_precision": 0.9778,
-      "mean_recall": 0.925,
+      "mean_roc_auc": 0.9983,
+      "mean_accuracy": 0.9825,
+      "mean_macro_f1": 0.8965,
+      "mean_precision": 0.9556,
+      "mean_recall": 0.875,
       "confusion_matrix": {
-        "TP": 37,
-        "FP": 1,
-        "TN": 359,
-        "FN": 3
+        "TP": 35,
+        "FP": 2,
+        "TN": 358,
+        "FN": 5
       },
       "feature_importances_gain_pct": {
-        "aspect_specificity_density": 6.17,
-        "text_length_words": 2.07,
+        "aspect_specificity_density": 7.32,
+        "text_length_words": 17.93,
         "concrete_entities_count": 0.0,
-        "generic_fluff_count": 47.27,
+        "generic_fluff_count": 58.94,
         "fluff_to_entity_ratio": 0.0,
-        "is_verified_stay_fair": 32.16,
+        "is_verified_stay_fair": 4.16,
         "author_history_fair": 0.0,
-        "rating_disparity_penalty": 12.33
+        "rating_disparity_penalty": 11.66
       }
     }
   ]
