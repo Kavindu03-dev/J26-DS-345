@@ -1,0 +1,4 @@
+# Component 2 local files (never commit)
+src/nlp/rates_cache.json
+dummy_c1_aspect_scores.json
+*.joblib

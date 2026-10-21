@@ -1,0 +1,163 @@
+<!--
+booking_sample_cards.html
+==========================
+A REAL sample, not invented data.
+
+These 4 property cards were captured live from Booking.com's search
+results for "Galle, Sri Lanka" (2 nights, 2 adults, LKR currency) during
+development on 2026-09-22, via a genuine browser session. The markup
+below keeps every data-testid, aria-label and visible text exactly as
+returned by the live site; only the large inline SVG icon path data
+(wishlist heart, checkmarks, star-rating squares, etc.) was trimmed out
+to keep this file readable, since none of that is used by the parser.
+
+This file is what tests/test_parsers.py runs parse_booking_card()
+against, card by card, to prove the selectors in scrapers/booking.py
+actually extract the right values from real Booking.com markup - not
+just markup we imagined.
+
+Card 1: Smile Beach Home       - no star rating, no discount, has reviews
+Card 2: The Country House Chalets - has a star rating + Preferred Plus badge
+Card 3: Sholay Villa Galle     - discounted price + deal badge
+Card 4: MedNest Hostel         - brand-new listing, NO reviews yet
+-->
+<div class="results-container">
+
+  <div data-testid="property-card" role="listitem" aria-label="Smile Beach Home, Property">
+    <div data-testid="property-card-container">
+      <a href="https://www.booking.com/hotel/lk/smile-beach-hostel-amp-cabanas.html?aid=304142&checkin=2026-12-10&checkout=2026-12-12&group_adults=2&group_children=0&no_rooms=1" data-testid="title-link">
+        <div data-testid="title">Smile Beach Home</div>
+      </a>
+      <a data-testid="address-link">Galle City, Galle</a>
+      <button data-testid="distance">6.2 km from downtown</button>
+      <a data-testid="review-score-link" aria-label="Scored 8.2, Very Good, 579 reviews, Opens Smile Beach Home information">
+        <div data-testid="review-score">
+          <div>Scored 8.2 </div>
+          <div>8.2</div>
+          <div><div>Very Good </div><div>579 reviews</div></div>
+        </div>
+      </a>
+      <div data-testid="recommended-units">
+        <h4>Beach Hut with Sea View</h4>
+        <ul>
+          <li><div>1 king bed</div></li>
+          <li><span data-testid="cancellation-policy-icon"></span><div><strong>Free cancellation</strong></div></li>
+          <li><span data-testid="prepayment-policy-icon"></span><div><strong>No prepayment needed</strong> – pay at the property</div></li>
+          <li><div>We have 4 left at this price</div></li>
+        </ul>
+      </div>
+      <div data-testid="availability-rate-wrapper">
+        <div data-testid="availability-rate-information">
+          <div data-testid="price-for-x-nights">2 nights, 2 adults</div>
+          <span data-testid="price-and-discounted-price">LKR&nbsp;6,620</span>
+          <div data-testid="taxes-and-charges">Includes taxes and fees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-testid="property-card" role="listitem" aria-label="The Country House Chalets, Property">
+    <div data-testid="property-card-container">
+      <a href="https://www.booking.com/hotel/lk/the-galle-chalets.html?aid=304142&checkin=2026-12-10&checkout=2026-12-12&group_adults=2&group_children=0&no_rooms=1" data-testid="title-link">
+        <div data-testid="title">The Country House Chalets</div>
+      </a>
+      <button aria-label="Property rating: 4 out of 5 for accommodation quality">
+        <div data-testid="rating-squares" aria-hidden="true" role="img"></div>
+      </button>
+      <span data-testid="preferred-badge" aria-label="This property is part of our Preferred Plus Program. It's committed to providing outstanding service and excellent value."></span>
+      <a data-testid="address-link">Galle</a>
+      <button data-testid="distance">4.5 km from downtown</button>
+      <a data-testid="review-score-link" aria-label="Scored 8.2, Very Good, 109 reviews, Opens The Country House Chalets information">
+        <div data-testid="review-score">
+          <div>Scored 8.2 </div>
+          <div>8.2</div>
+          <div><div>Very Good </div><div>109 reviews</div></div>
+        </div>
+      </a>
+      <div data-testid="recommended-units">
+        <h4>One-Bedroom Chalet</h4>
+        <ul>
+          <li><div data-testid="property-card-unit-configuration">Entire chalet • 1 bedroom • 1 bathroom • 38 m²</div><div>2 beds (1 king, 1 sofa bed)</div></li>
+          <li><span data-testid="cancellation-policy-icon"></span><div><strong>Free cancellation</strong></div></li>
+          <li><span data-testid="prepayment-policy-icon"></span><div><strong>No prepayment needed</strong> – pay at the property</div></li>
+          <li><div>We have 1 left at this price</div></li>
+        </ul>
+      </div>
+      <div data-testid="availability-rate-wrapper">
+        <div data-testid="availability-rate-information">
+          <div data-testid="price-for-x-nights">2 nights, 2 adults</div>
+          <span data-testid="price-and-discounted-price">LKR&nbsp;47,002</span>
+          <div data-testid="taxes-and-charges">Includes taxes and fees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-testid="property-card" role="listitem" aria-label="Sholay Villa Galle, Property">
+    <div data-testid="property-card-container">
+      <a href="https://www.booking.com/hotel/lk/sholay-villa.html?aid=304142&checkin=2026-12-10&checkout=2026-12-12&group_adults=2&group_children=0&no_rooms=1" data-testid="title-link">
+        <div data-testid="title">Sholay Villa Galle</div>
+      </a>
+      <span data-testid="preferred-badge" aria-label="This property is part of our Preferred Plus Program."></span>
+      <a data-testid="address-link">Galle</a>
+      <button data-testid="distance">1.5 km from downtown</button>
+      <a data-testid="review-score-link" aria-label="Scored 8.0, Very Good, 140 reviews, Opens Sholay Villa Galle information">
+        <div data-testid="review-score">
+          <div>Scored 8.0 </div>
+          <div>8.0</div>
+          <div><div>Very Good </div><div>140 reviews</div></div>
+        </div>
+      </a>
+      <span data-testid="property-card-deal" aria-label="Late Escape Deal. This property is offering a discount on select stays between Oct 1, 2026 and Jan 7, 2027.">
+        <span>Late Escape Deal</span>
+      </span>
+      <div data-testid="recommended-units">
+        <h4>Budget Double Room</h4>
+        <ul>
+          <li><div>1 full bed</div></li>
+          <li><span data-testid="cancellation-policy-icon"></span><div><strong>Free cancellation</strong></div></li>
+          <li><div>We have 2 left at this price</div></li>
+        </ul>
+      </div>
+      <div data-testid="availability-rate-wrapper">
+        <div data-testid="availability-rate-information">
+          <div data-testid="price-for-x-nights">2 nights, 2 adults</div>
+          <div role="group" aria-labelledby="orig-price-1">
+            <span class="was-price">LKR&nbsp;16,550</span>
+            <span data-testid="price-and-discounted-price">LKR&nbsp;13,240</span>
+            <span id="orig-price-1" aria-hidden="true">Original price LKR&nbsp;16,550. Current price LKR&nbsp;13,240.</span>
+          </div>
+          <div data-testid="taxes-and-charges">+LKR&nbsp;1,456 taxes and fees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-testid="property-card" role="listitem" aria-label="MedNest Hostel, Property">
+    <div data-testid="property-card-container">
+      <a href="https://www.booking.com/hotel/lk/mednest-hostel.html?aid=304142&checkin=2026-12-10&checkout=2026-12-12&group_adults=2&group_children=0&no_rooms=1" data-testid="title-link">
+        <div data-testid="title">MedNest Hostel</div>
+      </a>
+      <a data-testid="address-link">Galle</a>
+      <button data-testid="distance">5 km from downtown</button>
+      <!-- no review-score-link at all: brand-new listing with no reviews yet -->
+      <div data-testid="recommended-units">
+        <h4>Triple Room</h4>
+        <ul>
+          <li><div>2 beds (1 twin, 1 full)</div></li>
+          <li><span data-testid="cancellation-policy-icon"></span><div><strong>Free cancellation</strong></div></li>
+          <li><span data-testid="prepayment-policy-icon"></span><div><strong>No prepayment needed</strong> – pay at the property</div></li>
+          <li><div>We have 1 left at this price</div></li>
+        </ul>
+      </div>
+      <div data-testid="availability-rate-wrapper">
+        <div data-testid="availability-rate-information">
+          <div data-testid="price-for-x-nights">2 nights, 2 adults</div>
+          <span data-testid="price-and-discounted-price">LKR&nbsp;6,620</span>
+          <div data-testid="taxes-and-charges">+LKR&nbsp;662 taxes and fees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

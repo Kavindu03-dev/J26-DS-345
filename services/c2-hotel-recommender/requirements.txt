@@ -2,3 +2,12 @@ fastapi>=0.110
 uvicorn[standard]>=0.29
 httpx>=0.27
 pytest>=8.0
+pandas>=2.0
+numpy>=1.26
+scikit-learn==1.5.2   # the saved price model was made with 1.5.2; other versions cannot load it
+joblib>=1.3
+shap>=0.46             # explaining the fair price (without it, the same exact numbers by the textbook formula)
+jsonschema>=4.0
+beautifulsoup4>=4.12   # live search: reading Booking.com pages (same as the scraper)
+lxml>=5.0
+playwright>=1.44       # live search: then run once  python -m playwright install chromium

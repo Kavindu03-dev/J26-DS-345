@@ -1,0 +1,22 @@
+{
+  "trip": {
+    "stay_in": ["Ella"],
+    "want_to_visit": ["Yala"],
+    "check_in": "2026-12-20",
+    "check_out": "2026-12-23",
+    "nights": 3,
+    "dates_fixed": false,
+    "adults": 2,
+    "children": 1,
+    "travel_style": "family",
+    "budget_total_lkr": 100000
+  },
+  "hotel": {
+    "budget_max_lkr": 15000,
+    "must": ["budget", "low_steps"],
+    "wishes": {"quiet": "high", "pool": "low"}
+  },
+  "health": ["mobility"],
+  "interests": ["nature", "wildlife"],
+  "not_needed": []
+}
