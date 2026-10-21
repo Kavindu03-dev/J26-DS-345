@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotel finder</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Temporary demo page for Component 2. Talks to this service: POST /recommendations/from-text */
+  :root {
+    --page: #F3F4F6;
+    --surface: #FFFFFF;
+    --ink: #231F20;
+    --ink-soft: #5A5560;
+    --line: #E2E4E9;
+    --maroon: #6B1D2F;
+    --maroon-soft: #F5ECEE;
+    --saffron: #F0A202;
+    --saffron-soft: #FFF4D6;
+    --yes: #17784A;  --yes-soft: #E5F4EC;
+    --no: #B3261E;   --no-soft: #FBE9E7;
+    --unsure: #6B7280; --unsure-soft: #EEF0F3;
+    --radius-s: 6px; --radius-m: 12px;
+    --seg-pool: #2a78d6; --seg-bar: #eb6834; --seg-breakfast: #1baf7a; --seg-beachfront: #eda100; --seg-rest: #c3c2b7;
+    --wf-up: #2a78d6; --wf-down: #e34948; --wf-total: #52514e;
+    --step--1: 14px; --step-0: 17px; --step-1: 21px; --step-2: 26px; --step-3: 33px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #17151A; --surface: #211E25; --ink: #F1EEF2; --ink-soft: #B9B3BE; --line: #38333E;
+      --maroon: #E5A3B2; --maroon-soft: #3A2129; --saffron: #F5B83A; --saffron-soft: #3B2F14;
+      --yes: #6FD3A0; --yes-soft: #193326; --no: #F19A92; --no-soft: #3E1D1B; --unsure: #ADB3BE; --unsure-soft: #2C2B31;
+      --seg-pool: #3987e5; --seg-bar: #d95926; --seg-breakfast: #199e70; --seg-beachfront: #c98500; --seg-rest: #5A5560;
+      --wf-up: #3987e5; --wf-down: #e66767; --wf-total: #B9B3BE;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #17151A; --surface: #211E25; --ink: #F1EEF2; --ink-soft: #B9B3BE; --line: #38333E;
+    --maroon: #E5A3B2; --maroon-soft: #3A2129; --saffron: #F5B83A; --saffron-soft: #3B2F14;
+    --yes: #6FD3A0; --yes-soft: #193326; --no: #F19A92; --no-soft: #3E1D1B; --unsure: #ADB3BE; --unsure-soft: #2C2B31;
+    --seg-pool: #3987e5; --seg-bar: #d95926; --seg-breakfast: #199e70; --seg-beachfront: #c98500; --seg-rest: #5A5560;
+    --wf-up: #3987e5; --wf-down: #e66767; --wf-total: #B9B3BE;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font-family: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+    font-size: var(--step-0); line-height: 1.5; font-variant-numeric: tabular-nums;
+    min-height: 100%; display: flex; flex-direction: column;
+  }
+  a { color: var(--maroon); }
+  :focus-visible { outline: 3px solid var(--saffron); outline-offset: 2px; }
+
+  /* ---- top bar ---- */
+  .bar { background: var(--surface); border-bottom: 1px solid var(--line); }
+  .bar-in { max-width: 960px; margin: 0 auto; padding: 14px 20px; display: flex; gap: 16px;
+            align-items: center; flex-wrap: wrap; }
+  .brand { font-size: var(--step-1); font-weight: 800; color: var(--maroon); letter-spacing: -0.01em; }
+  .brand small { display: block; font-size: var(--step--1); font-weight: 500; color: var(--ink-soft);
+                 letter-spacing: 0; }
+  .status { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; font-size: var(--step--1); }
+  .pill { padding: 4px 10px; border-radius: 999px; background: var(--unsure-soft); color: var(--ink-soft); }
+  .pill.ok { background: var(--yes-soft); color: var(--yes); }
+  .pill.warn { background: var(--saffron-soft); color: var(--ink); }
+  .pill.bad { background: var(--no-soft); color: var(--no); }
+
+  /* ---- conversation ---- */
+  main { flex: 1; }
+  .thread { max-width: 960px; margin: 0 auto; padding: 24px 20px 40px; display: flex; flex-direction: column;
+            gap: 22px; }
+  .intro h1 { font-size: var(--step-3); line-height: 1.15; margin: 8px 0 8px; letter-spacing: -0.02em;
+              max-width: 22ch; }
+  .intro p { margin: 0 0 18px; color: var(--ink-soft); max-width: 62ch; }
+  .examples { display: flex; flex-wrap: wrap; gap: 10px; }
+  .example { font: inherit; font-size: var(--step--1); text-align: left; cursor: pointer; padding: 10px 14px;
+             border-radius: var(--radius-m); border: 1px solid var(--line); background: var(--surface);
+             color: var(--ink); max-width: 290px; }
+  .example b { display: block; color: var(--maroon); }
+  .example:hover { border-color: var(--maroon); }
+
+  .you { align-self: flex-end; max-width: min(640px, 88%); background: var(--maroon); color: #fff;
+         padding: 12px 16px; border-radius: var(--radius-m) var(--radius-m) 2px var(--radius-m); }
+  :root[data-theme="dark"] .you { color: #231F20; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .you { color: #231F20; } }
+  .reply { display: flex; flex-direction: column; gap: 16px; }
+  .say { margin: 0; max-width: 70ch; }
+  .muted { color: var(--ink-soft); font-size: var(--step--1); }
+
+  /* ---- the slip: what the system understood ---- */
+  .slip { position: relative; background: var(--surface); border: 1px solid var(--line);
+          border-radius: var(--radius-m); display: grid; grid-template-columns: 150px 1fr; overflow: hidden; }
+  .slip-stub { background: var(--maroon-soft); padding: 18px 16px; border-right: 2px dashed var(--line);
+               display: flex; flex-direction: column; justify-content: space-between; gap: 12px; }
+  .slip-stub .t { font-weight: 800; color: var(--maroon); font-size: var(--step-1); line-height: 1.15; }
+  .slip-stub .s { font-size: var(--step--1); color: var(--ink-soft); }
+  .slip::before, .slip::after { content: ""; position: absolute; left: 141px; width: 18px; height: 18px;
+          border-radius: 50%; background: var(--page); border: 1px solid var(--line); }
+  .slip::before { top: -10px; } .slip::after { bottom: -10px; }
+  .slip-body { padding: 16px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+               gap: 14px 22px; }
+  .field .k { font-size: var(--step--1); color: var(--ink-soft); }
+  .field .v { font-weight: 700; }
+  .field.wide { grid-column: 1 / -1; }
+  .slip-foot { grid-column: 1 / -1; border-top: 1px solid var(--line); padding: 10px 20px; font-size: var(--step--1);
+               color: var(--ink-soft); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 3px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px;
+          font-size: var(--step--1); font-weight: 500; background: var(--unsure-soft); color: var(--ink); }
+  .chip.must { background: var(--maroon); color: #fff; }
+  :root[data-theme="dark"] .chip.must { color: #231F20; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chip.must { color: #231F20; } }
+  .chip.wish-high { background: var(--maroon-soft); color: var(--maroon); font-weight: 700; }
+  .chip.wish-medium { background: var(--maroon-soft); color: var(--maroon); }
+  .chip.wish-low { background: transparent; border: 1px dashed var(--line); color: var(--ink-soft); }
+  .chip.not { background: transparent; border: 1px solid var(--line); color: var(--ink-soft);
+              text-decoration: line-through; }
+  .none { color: var(--ink-soft); font-weight: 400; }
+
+  /* ---- funnel: how many hotels were removed and why ---- */
+  .town h2 { font-size: var(--step-2); margin: 6px 0 6px; letter-spacing: -0.01em; }
+  .funnel { list-style: none; margin: 0 0 6px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 0; }
+  .funnel li { display: flex; align-items: baseline; gap: 6px; font-size: var(--step--1); color: var(--ink-soft); }
+  .funnel li + li::before { content: ""; width: 22px; height: 1px; background: var(--line); margin: 0 10px;
+                            align-self: center; }
+  .funnel strong { font-size: var(--step-1); color: var(--ink); }
+  .removed { margin: 4px 0 0; padding: 0; list-style: none; font-size: var(--step--1); color: var(--ink-soft); }
+  .note { font-size: var(--step--1); background: var(--saffron-soft); padding: 8px 12px; border-radius: var(--radius-s);
+          margin: 8px 0 0; }
+
+  /* ---- hotel ---- */
+  .hotels { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
+  .hotel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-m);
+           display: grid; grid-template-columns: 64px 1fr; }
+  .hotel.unsure { border-style: dashed; }
+  .rank { font-size: var(--step-3); font-weight: 800; color: var(--maroon); text-align: center; padding-top: 14px; }
+  .hotel-in { padding: 16px 20px 16px 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .top { display: flex; gap: 16px; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; }
+  .name { font-size: var(--step-1); font-weight: 800; line-height: 1.2; margin: 0; }
+  .where { font-size: var(--step--1); color: var(--ink-soft); }
+  .price { text-align: right; }
+  .price .n { font-size: var(--step-2); font-weight: 800; line-height: 1.1; }
+  .price .n small { font-size: var(--step--1); font-weight: 500; color: var(--ink-soft); }
+  .price .t { font-size: var(--step--1); color: var(--ink-soft); }
+  .checks { display: flex; flex-wrap: wrap; gap: 6px; }
+  .check { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 6px; border-radius: var(--radius-s);
+           font-size: var(--step--1); border: 1px solid transparent; }
+  .check i { font-style: normal; font-weight: 800; width: 20px; height: 20px; border-radius: 50%; display: inline-grid;
+             place-items: center; font-size: 13px; color: #fff; }
+  .check.yes { background: var(--yes-soft); } .check.yes i { background: var(--yes); }
+  .check.no { background: var(--no-soft); } .check.no i { background: var(--no); }
+  .check.unsure { background: var(--unsure-soft); } .check.unsure i { background: var(--unsure); }
+  :root[data-theme="dark"] .check i { color: #17151A; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .check i { color: #17151A; } }
+  .check.must { border-color: currentColor; }
+  .check.yes.must { color: var(--yes); } .check.no.must { color: var(--no); } .check.unsure.must { color: var(--unsure); }
+  .check.must span { color: var(--ink); font-weight: 700; }
+  .row-label { font-size: var(--step--1); color: var(--ink-soft); margin-bottom: 4px; }
+
+  .money { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .box { border-top: 1px solid var(--line); padding-top: 10px; }
+  .verdict { font-weight: 700; }
+  .verdict.ok { color: var(--yes); } .verdict.over { color: var(--no); }
+  .flag { display: inline-block; margin-top: 4px; padding: 2px 10px; border-radius: var(--radius-s);
+          background: var(--no-soft); color: var(--no); font-weight: 700; font-size: var(--step--1); }
+  .box p { margin: 4px 0 0; font-size: var(--step--1); }
+  .sites { list-style: none; margin: 6px 0 0; padding: 0; font-size: var(--step--1); }
+  .sites li { display: flex; justify-content: space-between; gap: 10px; padding: 3px 8px; border-radius: var(--radius-s); }
+  .sites li.best { background: var(--saffron-soft); font-weight: 700; box-shadow: inset 3px 0 0 var(--saffron); }
+  .book { display: inline-block; margin-top: 8px; padding: 8px 14px; border-radius: var(--radius-s);
+          background: var(--maroon); color: #fff; text-decoration: none; font-weight: 700; font-size: var(--step--1); }
+  :root[data-theme="dark"] .book { color: #231F20; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .book { color: #231F20; } }
+  .extra { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--step--1); color: var(--ink-soft); }
+  details { font-size: var(--step--1); }
+  summary { cursor: pointer; color: var(--maroon); font-weight: 700; }
+  details p { margin: 6px 0 0; max-width: 75ch; }
+  pre { background: var(--page); border: 1px solid var(--line); border-radius: var(--radius-s); padding: 12px;
+        overflow: auto; max-height: 380px; font-size: 13px; }
+  .error { background: var(--no-soft); border-left: 4px solid var(--no); padding: 12px 16px; border-radius: var(--radius-s); }
+  .error b { color: var(--no); }
+
+  .waiting { display: flex; align-items: center; gap: 12px; color: var(--ink-soft); }
+  .dots { display: inline-flex; gap: 5px; }
+  .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--maroon); opacity: .25;
+               animation: blink 1.2s infinite; }
+  .dots span:nth-child(2) { animation-delay: .2s; } .dots span:nth-child(3) { animation-delay: .4s; }
+  @keyframes blink { 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .dots span { animation: none; opacity: .7; } }
+
+  /* ---- photos and the live search ---- */
+  .photos { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 6px; height: 160px; }
+  .photos a { display: block; overflow: hidden; border-radius: var(--radius-s); background: var(--unsure-soft); }
+  .photos img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photos.loading, .photos.none { display: flex; align-items: center; justify-content: center; height: 64px;
+      background: var(--unsure-soft); border-radius: var(--radius-s); color: var(--ink-soft); font-size: var(--step--1); }
+  .live-badge { display: inline-block; margin-top: 4px; padding: 2px 10px; border-radius: 999px; font-size: var(--step--1);
+      background: var(--saffron-soft); color: var(--ink); font-weight: 700; }
+  .live-step { border-left: 4px solid var(--saffron); background: var(--surface); padding: 12px 16px;
+      border-radius: var(--radius-s); margin: 10px 0 0; font-size: var(--step--1); }
+  .live-step b { display: block; font-size: var(--step-0); margin-bottom: 2px; }
+  .live-step button { font: inherit; font-weight: 700; margin-top: 8px; padding: 8px 14px; border: 0; cursor: pointer;
+      border-radius: var(--radius-s); background: var(--maroon); color: #fff; }
+  .live-done { background: var(--yes-soft); }
+  @media (max-width: 640px) { .photos { grid-template-columns: 2fr 1fr; height: 140px; }
+      .photos a:nth-child(n+3) { display: none; } }
+
+  /* ---- where the fair price goes (what-if) and why it is this number (SHAP) ---- */
+  .split { margin-top: 10px; }
+  .split-bar { display: flex; gap: 2px; height: 14px; border-radius: 4px; overflow: hidden; margin-top: 4px; }
+  .split-bar span { display: block; height: 100%; min-width: 3px; }
+  .rest { background: var(--seg-rest); }
+  .seg-pool { background: var(--seg-pool); } .seg-bar { background: var(--seg-bar); }
+  .seg-breakfast { background: var(--seg-breakfast); } .seg-beachfront { background: var(--seg-beachfront); }
+  .off { background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.75) 0 3px, transparent 3px 6px); }
+  .split-list { list-style: none; margin: 6px 0 0; padding: 0; font-size: var(--step--1); }
+  .split-list li { display: grid; grid-template-columns: 12px 1fr auto; gap: 8px; align-items: baseline; padding: 1px 0; }
+  .split-list li b { white-space: nowrap; }
+  .swatch { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+  .why { border-top: 1px solid var(--line); padding-top: 10px; font-size: var(--step--1); }
+  .why-btn { font: inherit; font-weight: 700; background: var(--surface); border: 1px solid var(--maroon); color: var(--maroon);
+             border-radius: var(--radius-s); padding: 6px 12px; cursor: pointer; margin-right: 8px; }
+  .why-btn:disabled { opacity: .5; cursor: wait; }
+  .wf { display: grid; grid-template-columns: minmax(0, 44%) 1fr auto; gap: 5px 12px; align-items: center; margin-top: 10px; }
+  .wf .lbl { line-height: 1.25; } .wf .lbl small { display: block; color: var(--ink-soft); }
+  .wf .track { position: relative; height: 12px; }
+  .wf .track span { position: absolute; top: 0; height: 100%; border-radius: 3px; min-width: 2px; }
+  .wf .up { background: var(--wf-up); } .wf .down { background: var(--wf-down); } .wf .total { background: var(--wf-total); }
+  .wf .amt { text-align: right; white-space: nowrap; }
+  .wf .end { font-weight: 800; }
+  .why-text p { margin: 8px 0 0; max-width: 75ch; }
+  @media (max-width: 640px) { .wf { grid-template-columns: 1fr auto; } .wf .lbl { grid-column: 1 / -1; margin-top: 4px; } }
+
+  /* ---- input ---- */
+  .dock { background: var(--surface); border-top: 1px solid var(--line); position: sticky; bottom: 0; }
+  .dock-in { max-width: 960px; margin: 0 auto; padding: 12px 20px 14px; }
+  form { display: flex; gap: 10px; align-items: flex-end; }
+  textarea:focus-visible { outline: 2px solid var(--maroon); outline-offset: 0; }
+  textarea { flex: 1; font: inherit; resize: none; min-height: 52px; max-height: 160px; padding: 12px 14px;
+             border-radius: var(--radius-m); border: 1px solid var(--line); background: var(--page); color: var(--ink); }
+  button.send { font: inherit; font-weight: 800; padding: 13px 20px; border: 0; border-radius: var(--radius-m);
+                background: var(--maroon); color: #fff; cursor: pointer; }
+  :root[data-theme="dark"] button.send { color: #231F20; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) button.send { color: #231F20; } }
+  button.send:disabled { opacity: .5; cursor: wait; }
+  .options { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; margin-top: 8px;
+             font-size: var(--step--1); color: var(--ink-soft); }
+  .options label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+  .options select { font: inherit; padding: 2px 4px; }
+  .linkbtn { font: inherit; background: none; border: 0; color: var(--maroon); cursor: pointer; padding: 0;
+             text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .slip { grid-template-columns: 1fr; }
+    .slip-stub { border-right: 0; border-bottom: 2px dashed var(--line); flex-direction: row; }
+    .slip::before, .slip::after { display: none; }
+    .hotel { grid-template-columns: 44px 1fr; }
+    .rank { font-size: var(--step-2); }
+    .price { text-align: left; }
+    .money { grid-template-columns: 1fr; }
+    .hotel-in { padding-right: 14px; }
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in">
+    <div class="brand">Hotel finder<small>Component 2: personalised hotel ranking and price intelligence</small></div>
+    <div class="status" id="status"><span class="pill">Checking the service…</span></div>
+  </div>
+</header>
+
+<main id="scroll">
+  <div class="thread" id="thread">
+    <section class="intro" id="intro">
+      <h1>Tell me about your trip in one sentence.</h1>
+      <p>Write it the way a tourist would: the town, dates, who is coming, the budget, what the hotel must have
+         and what would be nice. Spelling mistakes, dollars and lakhs are fine. Or try one of these:</p>
+      <div class="examples" id="examples"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="dock">
+  <div class="dock-in">
+    <form id="form">
+      <label for="text" class="sr" style="position:absolute;left:-9999px">Your trip</label>
+      <textarea id="text" rows="2" placeholder="e.g. Hotel in Kandy for 2 nights from 5 December, under Rs 15,000, pool please"></textarea>
+      <button class="send" id="send" type="submit">Find hotels</button>
+    </form>
+    <div class="options">
+      <label><input type="checkbox" id="consent"> Share health needs with Component 3</label>
+      <label><input type="checkbox" id="live" checked> Search Booking.com live when our data is not enough</label>
+      <label>Show <select id="topk"><option>3</option><option selected>5</option><option>8</option></select> hotels</label>
+      <button class="linkbtn" id="clear" type="button">Clear the chat</button>
+      <a href="/docs" target="_blank" rel="noopener">API page</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const EXAMPLES = [
+  ["Family in Ella, knee pain", "We are a family of 2 adults and 1 child. We want to stay in Ella from 20 to 23 December, but dates are not fixed. We have Rs. 100,000 for the whole trip and the hotel must be under Rs. 15,000 a night. Quiet place is very important, pool would be nice. My father has knee pain."],
+  ["Heart patient in Galle", "My father is joining us. He has heart problems, so we need a hotel near a hospital in Galle for 3 nights from 4 December."],
+  ["4 friends, $60 a night", "Hotel in Ella under $60 per night for 2 nights from 15 November. Me and my 3 friends love hiking."],
+  ["6 friends, no breakfast", "Group of 6 friends, Mirissa, 2 nights from 5 January, about 3 lakhs total, we don't need breakfast but AC is a must"],
+  ["Tonight in Negombo", "Need a room in Negombo for tonight only, near the airport, max Rs. 15,000."],
+  ["Tangalle: live Booking.com search", "Tangalle beach resort for my husband and me, 20 to 23 January. Breakfast is very important."],
+  ["Overpriced hotels", "Hotel in Galle for 2 nights from 15 January for my wife and me. We really want a beachfront hotel and we'd like a spa."],
+  ["Overpriced for you only", "We are a couple going to Trincomalee for 2 nights from 15 January. A spa is very important and we would like a view. We don't need a pool, a bar or breakfast."],
+];
+const NICE = {quiet: "Quiet", beach: "Beach", pool: "Pool", wifi: "WiFi", breakfast: "Breakfast", parking: "Parking",
+  view: "A view", ac: "Air conditioning", family_room: "Family room", spa: "Spa", nature: "Nature / garden",
+  near_hospital: "Near a hospital", low_steps: "Few steps / lift", wheelchair_access: "Wheelchair access",
+  budget: "Budget", beachfront: "Beachfront", bar: "Bar"};
+const IMPORTANCE = {high: "really want", medium: "would like", low: "nice to have"};
+const HEALTH = {heart: "heart", mobility: "walking difficulty", wheelchair: "wheelchair", breathing: "breathing",
+  elderly: "elderly traveller"};
+const STYLE = {solo: "solo", couple: "couple", family: "family", friends: "friends", business: "business"};
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const rs = (n) => n == null ? "" : "Rs " + Math.round(n).toLocaleString("en-US");
+const fmtDate = (d) => d ? new Date(d + "T00:00:00").toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"}) : "";
+const nice = (k) => NICE[k] || k;
+const rs100 = (n) => Math.abs(n) < 50 ? "under Rs 100" : "Rs " + (Math.round(n / 100) * 100).toLocaleString("en-US");
+const FACILITY = {pool: "Pool", bar: "Bar", breakfast: "Breakfast", beachfront: "Beachfront"};
+
+// ---------- status bar ----------
+fetch("/health").then((r) => r.json()).then((h) => {
+  const c1 = h.c1_mode === "dummy"
+    ? '<span class="pill warn">Made-up review scores (Component 1 not ready)</span>'
+    : `<span class="pill ok">Review scores: Component 1 (${esc(h.c1_mode)})</span>`;
+  $("status").innerHTML = '<span class="pill ok">Service running</span>' + c1;
+}).catch(() => { $("status").innerHTML = '<span class="pill bad">Service not reachable</span>'; });
+
+// ---------- examples ----------
+$("examples").innerHTML = EXAMPLES.map(([t, s], i) =>
+  `<button class="example" data-i="${i}"><b>${esc(t)}</b>${esc(s.length > 90 ? s.slice(0, 88) + "…" : s)}</button>`).join("");
+$("examples").addEventListener("click", (e) => {
+  const b = e.target.closest(".example"); if (!b) return;
+  $("text").value = EXAMPLES[b.dataset.i][1]; send();
+});
+
+// ---------- sending ----------
+const thread = $("thread");
+thread.addEventListener("click", (e) => { const b = e.target.closest(".why-btn"); if (b) whyPrice(b); });
+function add(html, cls) {
+  const el = document.createElement("div"); if (cls) el.className = cls; el.innerHTML = html;
+  thread.appendChild(el); el.scrollIntoView({behavior: "smooth", block: "start"}); return el;
+}
+$("form").addEventListener("submit", (e) => { e.preventDefault(); send(); });
+$("text").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
+$("text").addEventListener("input", (e) => { e.target.style.height = "auto"; e.target.style.height = e.target.scrollHeight + "px"; });
+$("clear").addEventListener("click", () => { [...thread.children].forEach((c) => { if (c.id !== "intro") c.remove(); });
+  $("intro").hidden = false; });
+
+async function send() {
+  const text = $("text").value.trim();
+  if (!text || $("send").disabled) return;
+  $("intro").hidden = true;
+  add(esc(text), "you");
+  $("text").value = ""; $("text").style.height = "auto";
+  $("send").disabled = true;
+  const wait = add('<div class="waiting"><span class="dots"><span></span><span></span><span></span></span>' +
+    '<span>Reading your request with the language model… <span id="secs">0</span> s (about 10 s, longer the first time)</span></div>', "reply");
+  const t0 = Date.now(); const timer = setInterval(() => { const s = $("secs"); if (s) s.textContent = Math.round((Date.now() - t0) / 1000); }, 500);
+  try {
+    const r = await fetch("/recommendations/from-text", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({text, top_k: Number($("topk").value), health_consent: $("consent").checked})});
+    const body = await r.json();
+    wait.remove();
+    if (!r.ok) { showError(r.status, body); return; }
+    showAnswer(body);
+  } catch (err) {
+    wait.remove();
+    showError(0, {detail: "The page could not reach the service. Is uvicorn still running?"});
+  } finally { clearInterval(timer); $("send").disabled = false; $("text").focus(); }
+}
+
+function showError(status, body) {
+  const detail = typeof body.detail === "string" ? body.detail : (body.hint || JSON.stringify(body.detail));
+  let what = "Something went wrong.";
+  if (status === 503 && /NLP|Ollama/.test(detail)) what = "The language model is not running. Start Ollama (with hotel-nlp-v2) and send again.";
+  else if (status === 503) what = "The hotel data was not found. Check C2_DATA_DIR.";
+  add(`<div class="error"><b>${esc(what)}</b><p class="muted">${esc(detail)}</p></div>`, "reply");
+}
+
+// ---------- the answer ----------
+function showAnswer(a) {
+  const req = a.understood_request;
+  let html = slip(req, a);
+  if (!a.towns.length) html += '<p class="say">I could not find a town in your sentence. Which town do you want to stay in?</p>';
+  for (const t of a.towns) html += town(t, req);
+  html += `<details><summary>Data sent to Component 3</summary><pre class="c3">${esc(JSON.stringify(a.for_c3, null, 2))}</pre></details>`;
+  html += `<details><summary>Full answer (JSON)</summary><pre>${esc(JSON.stringify(a, null, 2))}</pre></details>`;
+  const el = add(html, "reply");
+  afterAnswer(el, a);
+}
+
+// ---------- live Booking.com search and photos ----------
+let busy = Promise.resolve();               // one live step at a time (the server uses one browser)
+function queue(job) { busy = busy.then(job, job); return busy; }
+
+function afterAnswer(el, a) {
+  el.querySelectorAll("section.town").forEach((sec) => {
+    const step = sec.querySelector(".live-step");
+    if (!step) return;
+    if ($("live").checked) queue(() => runLive(sec, a));
+    else step.querySelector("button")?.addEventListener("click", () => queue(() => runLive(sec, a)));
+  });
+  queue(() => fillPhotos(el));
+}
+
+async function runLive(sec, a) {
+  const step = sec.querySelector(".live-step");
+  const name = sec.dataset.town;
+  step.innerHTML = `<b>Searching Booking.com live for hotels in ${esc(name)}…</b>
+    <div class="waiting"><span class="dots"><span></span><span></span><span></span></span>
+    <span>One search page and a few hotel pages, about 30–60 s. <span class="lsecs">0</span> s</span></div>`;
+  const t0 = Date.now();
+  const timer = setInterval(() => { const s = step.querySelector(".lsecs"); if (s) s.textContent = Math.round((Date.now() - t0) / 1000); }, 500);
+  try {
+    const r = await fetch("/recommendations/live", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({request: a.understood_request, town: name, top_k: Number($("topk").value),
+                            health_consent: $("consent").checked})});
+    const body = await r.json();
+    if (!r.ok) { step.innerHTML = `<b>Live search not available.</b>${esc(typeof body.detail === "string" ? body.detail : "Check the server window.")}`; return; }
+    const rep = body.live_report;
+    if (rep.status !== "ok") { step.innerHTML = `<b>Live search stopped.</b>${esc(rep.message)}`; return; }
+    const holder = document.createElement("div");
+    holder.innerHTML = town(body.town, a.understood_request, rep);
+    const fresh = holder.firstElementChild;
+    sec.replaceWith(fresh);
+    const c3 = fresh.closest(".reply")?.querySelector("pre.c3");
+    if (c3) c3.textContent = JSON.stringify(body.for_c3, null, 2);
+    await fillPhotos(fresh);
+  } catch (err) {
+    step.innerHTML = "<b>Live search failed.</b>The page could not reach the service.";
+  } finally { clearInterval(timer); }
+}
+
+async function fillPhotos(root) {
+  for (const box of root.querySelectorAll('.photos[data-empty="1"]')) {
+    box.dataset.empty = "0";
+    try {
+      const r = await fetch(`/hotels/${encodeURIComponent(box.dataset.id)}/photos`);
+      const body = await r.json();
+      if (body.photos && body.photos.length) { box.outerHTML = photoStrip(body.photos, box.dataset.name); continue; }
+    } catch (err) { /* keep going */ }
+    box.className = "photos none"; box.textContent = "No photos found";
+  }
+}
+
+function photoStrip(photos, name) {
+  return `<div class="photos">${photos.slice(0, 4).map((p, i) =>
+    `<a href="${esc(p.photo_url)}" target="_blank" rel="noopener"><img src="${esc(i ? p.thumb_url : p.photo_url)}"
+      alt="${esc(name)}, photo ${i + 1}" loading="lazy" referrerpolicy="no-referrer"></a>`).join("")}</div>`;
+}
+
+function field(k, v, wide) {
+  return `<div class="field${wide ? " wide" : ""}"><div class="k">${k}</div><div class="v">${v}</div></div>`;
+}
+function slip(req, a) {
+  const t = req.trip, h = req.hotel;
+  const none = '<span class="none">not said</span>';
+  let dates = none;
+  if (t.check_in) {
+    const sameYear = t.check_out && t.check_in.slice(0, 4) === t.check_out.slice(0, 4);
+    dates = (sameYear ? fmtDate(t.check_in).slice(0, -5) : fmtDate(t.check_in)) + (t.check_out ? " to " + fmtDate(t.check_out) : "");
+    if (t.nights) dates += ` (${t.nights} night${t.nights > 1 ? "s" : ""})`;
+  } else if (t.nights) dates = `${t.nights} nights, no dates`;
+  if (t.dates_fixed === false) dates += ' <span class="none">dates may change</span>';
+  const guests = [t.adults != null ? `${t.adults} adult${t.adults > 1 ? "s" : ""}` : null,
+                  t.children ? `${t.children} child${t.children > 1 ? "ren" : ""}` : null].filter(Boolean).join(" + ");
+  const budget = [h.budget_max_lkr ? `${rs(h.budget_max_lkr)} a night` : null,
+                  t.budget_total_lkr ? `${rs(t.budget_total_lkr)} for the whole trip` : null].filter(Boolean).join("<br>");
+  const musts = h.must.map((m) => `<span class="chip must">${m === "budget" ? "Under " + rs(h.budget_max_lkr) : esc(nice(m))}</span>`);
+  const wishes = Object.entries(h.wishes).map(([k, v]) => `<span class="chip wish-${v}">${esc(nice(k))}: ${IMPORTANCE[v] || v}</span>`);
+  const notNeeded = (req.not_needed || []).map((k) => `<span class="chip not">${esc(nice(k))}</span>`);
+  const health = req.health.map((x) => `<span class="chip">${esc(HEALTH[x] || x)}</span>`);
+  const interests = req.interests.map((x) => `<span class="chip">${esc(x.replace("_", " "))}</span>`);
+  const list = (arr) => arr.length ? `<div class="chips">${arr.join("")}</div>` : none;
+  const fixes = a.nlp_notes.filter((n) => !n.startsWith("not needed"));
+  let foot = `Understood in ${a.nlp_seconds} s by the fine-tuned model. ` +
+    (fixes.length ? "The rule check fixed: " + esc(fixes.join("; ")) + "." : "The rule check changed nothing.");
+  if (a.exchange_rates) foot += ` Exchange rates: ${esc(a.exchange_rates)}. <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates By Exchange Rate API</a>.`;
+  return `<div class="slip">
+    <div class="slip-stub"><div class="t">What I understood</div><div class="s">Output 1, from your sentence</div></div>
+    <div class="slip-body">
+      ${field("Stay in", t.stay_in.length ? esc(t.stay_in.join(", ")) : none)}
+      ${field("Dates", dates)}
+      ${field("Who", (guests || none) + (t.travel_style ? ` <span class="none">${STYLE[t.travel_style]}</span>` : ""))}
+      ${field("Budget", budget || none)}
+      ${field("Must have", list(musts), true)}
+      ${field("Wishes", list(wishes))}
+      ${notNeeded.length ? field("Doesn't need", list(notNeeded)) : ""}
+      ${field("Health", list(health))}
+      ${field("Interests", list(interests))}
+      ${t.want_to_visit.length ? field("Wants to visit", esc(t.want_to_visit.join(", "))) : ""}
+    </div>
+    <div class="slip-foot">${foot}</div>
+  </div>`;
+}
+
+function reason(k) {
+  const m = k.match(/must-have '(.+)' not met/);
+  if (!m) return k;
+  return m[1] === "budget" ? "over your budget" : `no ${nice(m[1]).toLowerCase()} (must-have)`;
+}
+function town(t, req, report) {
+  const shown = t.ranked_hotels.length;
+  const live = t.live_search || {};
+  const removed = Object.entries(t.removed).filter(([, n]) => n > 0)
+    .map(([k, n]) => `<li>${n} removed: ${esc(reason(k))}</li>`).join("");
+  let html = `<section class="town" data-town="${esc(t.town)}"><h2>${esc(t.town)}</h2>
+    ${report ? `<p class="note live-done">${esc(report.message)} (${report.seconds} s)</p>` : ""}
+    <ol class="funnel">
+      <li><strong>${t.hotels_considered}</strong> hotels looked at</li>
+      <li><strong>${t.with_price}</strong> with a price for your group</li>
+      <li><strong>${t.meet_all_musts}</strong> meet every must-have${t.musts_not_sure ? ` (+${t.musts_not_sure} not confirmed)` : ""}</li>
+      <li><strong>${shown}</strong> best shown</li>
+    </ol>
+    ${removed ? `<ul class="removed">${removed}</ul>` : ""}
+    ${t.notes.map((n) => `<p class="note">${esc(n)}</p>`).join("")}
+    ${live.needed ? `<div class="live-step"><b>Not enough hotels in our data.</b>${esc(live.reason)}
+       <br><button type="button">Search Booking.com live</button></div>` : ""}`;
+  if (!shown && !live.needed) html += '<p class="say">No hotel meets everything you asked for here.</p>';
+  html += `<div class="hotels">${t.ranked_hotels.map((h) => hotel(h, req, t.town)).join("")}</div></section>`;
+  return html;
+}
+
+// ---------- where the fair price goes (what-if) ----------
+function moneySplit(b) {
+  if (!b) return "";
+  const shown = b.parts.filter((p) => p.lkr != null);
+  if (!shown.length) {
+    const small = b.parts.filter((p) => p.status === "too_small").map((p) => FACILITY[p.facility].toLowerCase());
+    return `<div class="split"><div class="row-label">Where the fair price goes</div>
+      <p>None of the 4 facilities we can price (pool, bar, breakfast, beachfront) is a big part of this price, so all
+      of the ${rs(b.fair_price_lkr)} is for the room, the town, the hotel's class and the dates.${small.length ?
+      ` (This hotel has ${small.join(" and ")}, but it is less than Rs 1,000 or 5% of the price, too small to be sure.)` : ""}</p></div>`;
+  }
+  const seg = (cls, v, title) => `<span class="${cls}" style="flex:${Math.max(v, 1)}" title="${esc(title)}"></span>`;
+  const bar = seg("rest", b.everything_else_lkr, `Everything else: ${rs(b.everything_else_lkr)}`) +
+    shown.map((p) => seg(`seg-${p.facility}${p.taken_off ? " off" : ""}`, p.lkr, `${FACILITY[p.facility]}: ${rs(p.lkr)}`)).join("");
+  const rows = b.parts.filter((p) => p.has_it).map((p) =>
+    `<li><i class="swatch ${p.lkr != null ? `seg-${p.facility}${p.taken_off ? " off" : ""}` : "rest"}"></i>` +
+    `<span>${FACILITY[p.facility]}: ${esc(p.text)}</span><b>${p.lkr != null ? `${rs(p.lkr)} (${Math.round(p.pct_of_fair)}%)` : "–"}</b></li>`).join("");
+  const rest = `<li><i class="swatch rest"></i><span>Everything else (the room, the town, the hotel's class, the dates)</span>` +
+    `<b>${rs(b.everything_else_lkr)} (${Math.round(b.everything_else_pct)}%)</b></li>`;
+  const label = shown.map((p) => `${FACILITY[p.facility]} ${Math.round(p.pct_of_fair)}%`).concat([`everything else ${Math.round(b.everything_else_pct)}%`]).join(", ");
+  return `<div class="split"><div class="row-label">Where the fair price goes: ${rs(b.fair_price_lkr)} ${esc(b.per)}</div>
+    <div class="split-bar" role="img" aria-label="${esc(label)}">${bar}</div>
+    <ul class="split-list">${rows || '<li><i></i><span class="muted">None of the 4 facilities we can price (pool, bar, breakfast, beachfront) is in this price.</span><b></b></li>'}${rest}</ul>
+    ${b.your_fair_price_lkr !== b.fair_price_lkr ? `<p>Hatched parts are taken off your fair price (about ${rs(b.your_fair_price_lkr)} for you).</p>` : ""}
+    <p class="muted" title="${esc(b.note)}">Amounts are the price model's estimate (what-if), rounded to Rs 100.</p></div>`;
+}
+
+// ---------- why the fair price is this number (SHAP) ----------
+function whyBox(e) {
+  if (!e) return "";
+  if (!e.available) return `<div class="why"><span class="muted">Why this fair price: ${esc(e.reason)}</span></div>`;
+  return `<div class="why" data-url="${esc(e.url)}"><button type="button" class="why-btn">Why this fair price? (SHAP)</button>` +
+    `<span class="muted">For ${esc(e.for)}, takes a few seconds.</span><div class="why-out"></div></div>`;
+}
+
+async function whyPrice(btn) {
+  const box = btn.closest(".why"), out = box.querySelector(".why-out");
+  btn.disabled = true;
+  out.innerHTML = `<div class="waiting" style="margin-top:8px"><span class="dots"><span></span><span></span><span></span></span>
+    <span>Working out the SHAP explanation (2,048 combinations of facts)… <span class="wsecs">0</span> s</span></div>`;
+  const t0 = Date.now();
+  const timer = setInterval(() => { const s = out.querySelector(".wsecs"); if (s) s.textContent = Math.round((Date.now() - t0) / 1000); }, 500);
+  try {
+    const r = await fetch(box.dataset.url);
+    const b = await r.json();
+    if (!r.ok || !b.available) { out.innerHTML = `<p class="muted">${esc(b.reason || b.detail || "Not available.")}</p>`; btn.disabled = false; return; }
+    out.innerHTML = waterfall(b);
+    btn.remove();
+  } catch (err) {
+    out.innerHTML = '<p class="muted">The page could not reach the service.</p>'; btn.disabled = false;
+  } finally { clearInterval(timer); }
+}
+
+function waterfall(b) {
+  let total = b.start_lkr, hi = b.start_lkr;
+  const steps = b.parts.map((p) => { const from = total; total += p.lkr; hi = Math.max(hi, from, total); return [p, from, total]; });
+  const pc = (v) => (100 * v / hi).toFixed(2) + "%";
+  const row = (label, sub, left, width, cls, amt, end) => `<div class="lbl${end ? " end" : ""}">${label}${sub ? `<small>${sub}</small>` : ""}</div>` +
+    `<div class="track"><span class="${cls}" style="left:${pc(left)};width:${pc(width)}"></span></div><div class="amt${end ? " end" : ""}">${amt}</div>`;
+  let html = row("Average hotel price", "20 typical prices", 0, b.start_lkr, "total", rs100(b.start_lkr));
+  for (const [p, from, to] of steps) {
+    const sign = Math.abs(p.lkr) < 50 ? "" : (p.lkr >= 0 ? "+" : "−");
+    html += row(esc(p.group), esc(p.what_it_is), Math.min(from, to), Math.abs(p.lkr), p.lkr >= 0 ? "up" : "down", sign + rs100(Math.abs(p.lkr)));
+  }
+  html += row("Fair price", esc(b.explains), 0, b.fair_price_lkr, "total", rs(Math.round(b.fair_price_lkr / 10) * 10), true);
+  const ok = b.checks.parts_add_up_to_the_fair_price;
+  return `<div class="wf" role="table" aria-label="SHAP: how each group of facts moves the price">${html}</div>
+    <div class="why-text">${b.sentences.map((s) => `<p>${esc(s)}</p>`).join("")}</div>
+    <p class="muted" style="margin-top:8px">Blue pushes the price up, red pulls it down. Model: ${esc(b.model)}.
+      Method: ${esc(b.method)}. The parts add up to the fair price: ${ok ? "yes" : "no"}${b.checks.same_as_textbook_shapley_formula ? ", and they are the same as the textbook Shapley formula" : ""}.
+      ${b.from_cache ? "Saved earlier." : `Made in ${b.seconds} s.`}</p>`;
+}
+
+function check(label, status, why, isMust) {
+  const icon = {yes: "✓", no: "✗", "not sure": "?"}[status] || "?";
+  const cls = status === "not sure" ? "unsure" : status;
+  return `<span class="check ${cls}${isMust ? " must" : ""}" title="${esc(why || "")}"><i aria-hidden="true">${icon}</i>` +
+         `<span>${esc(label)}</span><span class="sr" style="position:absolute;left:-9999px">${esc(status)}</span></span>`;
+}
+function hotel(h, req, asked) {
+  const p = h.price, budget = req.hotel.budget_max_lkr;
+  const musts = Object.entries(h.must_check).map(([m, s]) => {
+    let label = m === "budget" ? `Under ${rs(budget)}` : nice(m);
+    if (m === "near_hospital" && h.nearest_hospital.km != null) label += ` (${h.nearest_hospital.km} km)`;
+    if (s === "not sure") label += ": not confirmed";
+    return check(label, s, m === "budget" ? `${rs(p.price_per_night_lkr)} a night` : (h.feature_checks[m] || {}).why, true);
+  }).join("");
+  const wishes = Object.entries(h.feature_checks).filter(([k]) => !(k in h.must_check)).map(([k, f]) => {
+    let label = nice(k);
+    if (f.reviews === "contradicted") label += f.listing === "yes" ? ": listed, but reviews say no" : ": reviews say no";
+    else if (f.reviews === "confirmed") label += ": reviews agree";
+    else if (f.status === "not sure") label += ": not sure";
+    else if (f.status === "no") label += ": no";
+    return check(label, f.status, f.why, false);
+  }).join("");
+  const over = p.price_status === "Potentially Overpriced";
+  const fair = p.your_expected_price_lkr || p.expected_price_lkr;
+  const pct = p.price_vs_your_fair_pct;
+  const general = p.price_vs_fair_pct;
+  const onlyForYou = over && general != null && general <= 30;
+  let verdict = onlyForYou ? `Overpriced for you: fair for most guests (${general > 0 ? "+" : ""}${Math.round(general)}%), but ${Math.round(pct)}% above the fair price for you`
+    : over ? `Potentially overpriced: about ${Math.round(pct)}% above the fair price`
+    : (pct != null && pct <= -30 ? `Good value: about ${Math.round(-pct)}% below the fair price` : "Within the expected price range");
+  const nights = h.nights ? `${h.nights} night${h.nights > 1 ? "s" : ""}: ${rs(h.total_hotel_cost_lkr)}` : "";
+  const left = h.budget_left_lkr != null ? `Budget left: ${rs(h.budget_left_lkr)}` : "";
+  const est = (o) => h.found_live && o.platform !== "Booking.com" ? " (estimate)" : "";
+  const sites = p.offers.map((o) => `<li class="${o.platform === p.best_platform ? "best" : ""}"><span>${esc(o.platform)}` +
+    `${o.platform === "Agoda" ? " (from)" : ""}${est(o)}${o.platform === p.best_platform ? ", best" : ""}</span><span>${rs(o.price_lkr)}</span></li>`).join("");
+  const exactDates = h.found_live && p.seen_checkin === req.trip.check_in;
+  const photos = (h.photos && h.photos.length) ? photoStrip(h.photos, h.name)
+    : `<div class="photos loading" data-id="${esc(h.hotel_id)}" data-name="${esc(h.name)}" data-empty="1">Loading photos…</div>`;
+  const c1 = h.review_scores_c1 || {};
+  const dummy = String(c1.source || "").includes("DUMMY");
+  const score = c1.overall_trust_score != null ? `Review score ${c1.overall_trust_score}/10${dummy ? " (made-up)" : ""}` : "";
+  return `<article class="hotel${h.musts_confirmed ? "" : " unsure"}">
+    <div class="rank" aria-label="Rank ${h.rank}">${h.rank}</div>
+    <div class="hotel-in">
+      ${photos}
+      <div class="top">
+        <div><h3 class="name">${esc(h.name)}</h3>
+          ${h.found_live ? `<span class="live-badge">Found live on Booking.com${h.found_live.date ? ", " + fmtDate(h.found_live.date) : ""}</span>` : ""}
+          <div class="where">${esc(h.town)}${h.km_from_town != null ? `, ${h.km_from_town} km from ${esc(asked)} centre` : ""}. Match ${Math.round(h.score * 100)}%</div></div>
+        <div class="price"><div class="n">${rs(p.price_per_night_lkr)} <small>a night</small></div>
+          <div class="t">${[nights, left].filter(Boolean).join("<br>")}</div>
+          ${over ? `<div class="flag">${onlyForYou ? "Overpriced for you" : "Potentially overpriced"}</div>` : ""}</div>
+      </div>
+      ${musts ? `<div><div class="row-label">Must-haves</div><div class="checks">${musts}</div></div>` : ""}
+      ${wishes ? `<div><div class="row-label">Wishes</div><div class="checks">${wishes}</div></div>` : ""}
+      <div class="money">
+        <div class="box"><div class="verdict ${over ? "over" : "ok"}">${verdict}</div>
+          <p>Fair price ${p.what_if.length ? "for you" : "for this hotel"}: about ${rs(fair)} a night${p.what_if.length && p.expected_price_lkr ? ` (for most guests: about ${rs(p.expected_price_lkr)})` : ""}.</p>
+          ${p.caution ? `<p class="note">${esc(p.caution)}</p>` : ""}
+          ${p.what_if.map((m) => `<p>${esc(m)}</p>`).join("")}
+          ${moneySplit(p.breakdown)}</div>
+        <div class="box"><div class="verdict">Where to book</div>
+          <ul class="sites">${sites}</ul>
+          <p class="muted">${exactDates ? "Booking.com price is live for your dates." : `Prices seen for check-in ${fmtDate(p.seen_checkin)}.`}</p>
+          ${h.booking_url ? `<a class="book" href="${esc(h.booking_url)}" target="_blank" rel="noopener">Open on ${esc(p.best_platform)}</a>` : ""}</div>
+      </div>
+      ${whyBox(p.explanation)}
+      <div class="extra">
+        <span>Nearest hospital: ${esc(h.nearest_hospital.name || "unknown")} (${h.nearest_hospital.km ?? "?"} km)</span>
+        ${score ? `<span>${score}</span>` : ""}
+        <span>${esc(h.free_cancellation.advice)}</span>
+      </div>
+      <details><summary>Why this hotel</summary><p>${esc(h.explanation)}</p></details>
+    </div>
+  </article>`;
+}
+</script>
+</body>
+</html>
