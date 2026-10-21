@@ -175,12 +175,12 @@ class AspectSpecificityDensityCalculator:
 
         # Classification Heuristic for LLM / AI-generated review:
         is_ai_spam = (
-            word_count >= self.min_word_count
+            word_count >= 8
             and n_fluff >= 2
             and n_entities == 0
             and n_measurements == 0
         ) or (
-            word_count >= 25
+            word_count >= 15
             and asd_score < self.ai_spam_threshold
             and n_fluff > (n_entities + n_measurements) * 2
         )

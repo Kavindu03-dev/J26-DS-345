@@ -13,14 +13,18 @@ from datetime import datetime
 from typing import Dict, List, Tuple, Any
 
 from src.config import TRUST_PARAMS
+from src.models.asd_calculator import AspectSpecificityDensityCalculator
+from src.models.ml_trust_classifier import MLTrustClassifier
 
 
 class TrustEngine:
-    def __init__(self, params: Dict[str, Any] = None):
+    def __init__(self, params: Dict[str, Any] = None, use_ml_classifier: bool = True):
         self.params = params or TRUST_PARAMS
         self.half_life_days = float(self.params.get("half_life_days", 365.0))
         self.decay_lambda = math.log(2.0) / self.half_life_days
         self.ref_date = datetime(2026, 10, 15)  # Reference date matching research year
+        self.asd_calculator = AspectSpecificityDensityCalculator()
+        self.ml_classifier = MLTrustClassifier() if use_ml_classifier else None
 
     def parse_review_date(self, date_str: str) -> datetime:
         """Parses various date formats from Booking.com, Google Maps, and TripAdvisor."""
@@ -127,8 +131,9 @@ class TrustEngine:
 
     def calculate_review_trust(self, review: Dict[str, Any], hotel_baseline_rating: float = 8.0) -> float:
         """
-        Calculates individual review trust score T(r) in [0.05, 1.0]
-        Formula: T(r) = clip(C_author * V_stay * I_text * (1.0 - P_disp) + H_boost, 0.05, 1.0)
+        Calculates individual review trust score T(r) in [0.05, 1.0].
+        Combines behavioral credibility, stay verification, informational richness,
+        Aspect Specificity Density (ASD), and LightGBM ML trust classification.
         """
         # 1. Author Credibility
         c_author = self.calculate_reviewer_credibility(review)
@@ -137,7 +142,7 @@ class TrustEngine:
         is_verified = bool(review.get("is_verified_stay", True))
         v_stay = self.params.get("verified_stay_weight", 1.0) if is_verified else self.params.get("unverified_stay_weight", 0.80)
 
-        # 3. Text Richness
+        # 3. Text Richness & Aspect Specificity Density (ASD)
         text = str(review.get("review_text", "") or "")
         w_count = int(review.get("text_length_words", len(text.split())) or len(text.split()))
         i_text = self.calculate_text_richness(text, w_count)
@@ -158,14 +163,31 @@ class TrustEngine:
             h_votes = 0
         h_boost = min(0.15, 0.05 * math.log10(1.0 + h_votes))
 
-        # Calibrated convex trust formula: combines author credibility and informational richness
-        base_trust = (0.35 * c_author + 0.65 * i_text)
+        # 6. ASD & ML Trust Classifier Integration (SO2 / FR4, FR5)
+        ml_cred = 0.85
+        is_ai_spam = False
+        if self.ml_classifier is not None and text.strip():
+            ml_res = self.ml_classifier.predict_review(review)
+            ml_cred = float(ml_res.get("ml_credibility_score", 0.85))
+            is_ai_spam = bool(ml_res.get("is_spam", False)) or bool(ml_res.get("is_ai_heuristic_flag", False))
+        elif text.strip():
+            asd_res = self.asd_calculator.calculate_asd(text)
+            is_ai_spam = bool(asd_res.get("is_likely_ai_spam", False))
+            ml_cred = 0.15 if is_ai_spam else min(1.0, 0.60 + 0.40 * float(asd_res.get("asd_score", 0.25)))
+
+        # Calibrated convex trust formula: combines author credibility, informational richness, and ML/ASD credibility
+        base_trust = (0.30 * c_author) + (0.45 * i_text) + (0.25 * ml_cred)
         trust = (base_trust * v_stay * (1.0 - p_disp_adjusted)) + h_boost
+
+        # Apply deceptive AI spam penalty if flagged by ASD / LightGBM
+        if is_ai_spam:
+            trust = min(trust * 0.30, 0.20)
+
         return max(self.params.get("min_trust_score", 0.05), min(self.params.get("max_trust_score", 1.0), round(trust, 4)))
 
     def detect_suspicious_review(self, review: Dict[str, Any], trust_score: float) -> int:
         """
-        Flags potential astroturfing, promotional, or bot reviews.
+        Flags potential astroturfing, promotional, or AI-generated bot reviews.
         Returns 1 if suspicious, 0 if authentic.
         """
         text = str(review.get("review_text", "") or "")
@@ -184,6 +206,16 @@ class TrustEngine:
         # Condition 2: Computed trust score is below critical floor
         if trust_score < self.params.get("suspicious_trust_threshold", 0.22):
             return 1
+
+        # Condition 3: Flagged by ML Trust Classifier or ASD AI-spam detector
+        if self.ml_classifier is not None and text.strip():
+            ml_res = self.ml_classifier.predict_review(review)
+            if ml_res.get("is_spam") or ml_res.get("is_ai_heuristic_flag"):
+                return 1
+        elif text.strip():
+            asd_res = self.asd_calculator.calculate_asd(text)
+            if asd_res.get("is_likely_ai_spam"):
+                return 1
 
         return 0
 

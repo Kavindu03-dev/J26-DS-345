@@ -132,21 +132,30 @@ def train_transformer_absa(model_name: str = "microsoft/deberta-v3-small",
     )
 
     # 4. Training Arguments
-    training_args = TrainingArguments(
-        output_dir=output_dir,
-        num_train_epochs=epochs,
-        per_device_train_batch_size=batch_size,
-        per_device_eval_batch_size=batch_size,
-        warmup_steps=50,
-        weight_decay=0.01,
-        learning_rate=learning_rate,
-        logging_dir=f"{output_dir}/logs",
-        logging_steps=10,
-        eval_strategy="epoch",
-        save_strategy="epoch",
-        load_best_model_at_end=True,
-        metric_for_best_model="accuracy"
-    )
+    import inspect
+    sig = inspect.signature(TrainingArguments.__init__).parameters
+    desired_args = {
+        "output_dir": output_dir,
+        "num_train_epochs": epochs,
+        "per_device_train_batch_size": batch_size,
+        "per_device_eval_batch_size": batch_size,
+        "warmup_steps": 50,
+        "weight_decay": 0.01,
+        "learning_rate": learning_rate,
+        "save_strategy": "epoch",
+        "load_best_model_at_end": True,
+        "metric_for_best_model": "accuracy",
+        "logging_steps": 10,
+        "report_to": "none"
+    }
+    if "eval_strategy" in sig:
+        desired_args["eval_strategy"] = "epoch"
+    elif "evaluation_strategy" in sig:
+        desired_args["evaluation_strategy"] = "epoch"
+
+    filtered_args = {k: v for k, v in desired_args.items() if k in sig}
+    training_args = TrainingArguments(**filtered_args)
+
 
     def compute_metrics(eval_pred):
         predictions, labels = eval_pred

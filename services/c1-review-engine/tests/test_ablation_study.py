@@ -4,7 +4,7 @@ Unit Tests for Ranking Ablation Study Engine (SO4, SO5 / WBS 5.2, 5.3).
 
 import unittest
 import pandas as pd
-from src.ablation_study import RankingAblationStudy
+from src import RankingAblationStudy
 
 
 class TestRankingAblationStudy(unittest.TestCase):

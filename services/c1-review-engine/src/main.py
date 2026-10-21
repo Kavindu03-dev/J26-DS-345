@@ -13,6 +13,7 @@ from src.config import (
     HOTELS_SEED_FILE,
     REVIEWS_BOOKING_FILE,
     REVIEWS_GOOGLEMAPS_FILE,
+    REVIEWS_TRIPADVISOR_FILE,
     HOTEL_PROFILES_JSON
 )
 from contextlib import asynccontextmanager
@@ -86,6 +87,15 @@ def load_dataset_indexes():
                 h_id = row.get("hotel_id", "")
                 if h_id in REVIEWS_BY_HOTEL:
                     row["source_platform"] = "Google Maps"
+                    REVIEWS_BY_HOTEL[h_id].append(row)
+
+    # 4. Index TripAdvisor Reviews
+    if REVIEWS_TRIPADVISOR_FILE.exists():
+        with open(REVIEWS_TRIPADVISOR_FILE, "r", encoding="utf-8-sig") as f:
+            for row in csv.DictReader(f):
+                h_id = row.get("hotel_id", "")
+                if h_id in REVIEWS_BY_HOTEL:
+                    row["source_platform"] = "TripAdvisor"
                     REVIEWS_BY_HOTEL[h_id].append(row)
 
     print(f"[C1 Service] Indexed {len(HOTELS_INDEX)} hotels and {sum(len(v) for v in REVIEWS_BY_HOTEL.values())} reviews.")

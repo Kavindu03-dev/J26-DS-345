@@ -32,7 +32,8 @@ POSITIVE_LEXICON = {
     
     # Mild positive (weight 1.0 - 1.4)
     "good": 1.4, "nice": 1.4, "pleasant": 1.4, "fine": 1.2, "adequate": 1.0,
-    "fresh": 1.5, "decent": 1.2, "sufficient": 1.0, "helpful": 1.5, "safe": 1.4
+    "fresh": 1.5, "decent": 1.2, "sufficient": 1.0, "helpful": 1.5, "safe": 1.4,
+    "working": 1.2, "functioning": 1.2, "usable": 1.2, "reliable": 1.6, "stable": 1.6
 }
 
 NEGATIVE_LEXICON = {
@@ -70,9 +71,17 @@ DIMINISHERS = {
 
 
 class ABSAEngine:
-    def __init__(self, categories: List[str] = None, keywords: Dict[str, List[str]] = None):
+    def __init__(self, categories: List[str] = None, keywords: Dict[str, List[str]] = None, use_transformer: bool = True):
         self.categories = categories or ASPECT_CATEGORIES
         self.keywords = keywords or ASPECT_KEYWORDS
+        self.use_transformer = use_transformer
+        self.transformer_model = None
+        if self.use_transformer:
+            try:
+                from src.models.transformer_absa_model import ContextualTransformerABSA
+                self.transformer_model = ContextualTransformerABSA(architecture="deberta-v3-small")
+            except Exception:
+                self.transformer_model = None
 
     def split_into_clauses_and_sentences(self, text: str) -> List[str]:
         """Splits review text into cohesive clauses based on sentence and punctuation boundaries."""
@@ -203,6 +212,18 @@ class ABSAEngine:
 
             score, label = self.score_clause_sentiment(clause, prior_bias=prior)
             for asp in matched_aspects:
+                # Cascaded Hybrid Escalation (Tier 1 Fast Lexicon -> Tier 2 DeBERTa Contextual Escalation)
+                if self.use_transformer and self.transformer_model is not None:
+                    signals = self.transformer_model.extract_contextual_pragmatic_signals(clause)
+                    has_complex_pragmatics = any(v > 0 for v in signals.values())
+                    if has_complex_pragmatics or abs(score) < 0.5:
+                        tf_label, tf_conf = self.transformer_model.predict_sentiment(
+                            clause, aspect=asp, lexical_fallback_fn=self.score_clause_sentiment
+                        )
+                        if tf_conf >= 0.70:
+                            label = tf_label
+                            score = 2.0 if tf_label == "Positive" else (-2.0 if tf_label == "Negative" else 0.0)
+
                 aspect_clause_scores[asp].append(score)
                 aspect_results[asp]["snippets"].append(clause)
                 aspect_results[asp]["mentions_count"] += 1

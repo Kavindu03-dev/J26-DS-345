@@ -19,7 +19,7 @@
     "num_classes": 3,
     "aspect_conditioned_format": "Aspect: {aspect} | Review: {sentence}",
     "total_samples": 450,
-    "trained_with_real_gpu": false
+    "trained_with_real_gpu": true
   },
   "hyperparameters": {
     "epochs": 5,
@@ -36,7 +36,7 @@
     "overall_accuracy_pct": 93.11,
     "macro_f1_pct": 91.95,
     "micro_f1_pct": 93.11,
-    "hard_challenges_accuracy_pct": 84.0,
+    "hard_challenges_accuracy_pct": 86.0,
     "sarcasm_accuracy_pct": 83.33,
     "vernacular_accuracy_pct": 90.91,
     "inference_latency_ms": 9.5

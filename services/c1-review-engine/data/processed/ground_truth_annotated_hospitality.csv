@@ -1,401 +1,401 @@
 ﻿sample_id,hotel_id,hotel_name,district,source_platform,review_sentence,aspect_category,sentiment_label,aspect_specificity_density,concrete_entities_count,generic_fluff_count,authenticity_label,is_ai_generated_spam
-SMP_0234,HTL_TRI_CUHOSTEL_CF61,C U Hostel,Trincomalee,Booking.com,"Exceptional One of the best stays near the beach Kind helpful staff will take care of anything needed Location, Clean rooms",cleanliness,Positive,0.4424,1,1,Authentic,0
-SMP_0072,HTL_KAL_AVANIKAL_1993,Avani Kalutara Resort,Kalutara,Booking.com,The housekeeping and restaurant staff were very helpful,staff,Positive,0.0657,0,0,Authentic,0
-SMP_0026,HTL_NIL_PEARLINN_14C4,Pearl Inn Green,Trincomalee,Booking.com,Delicious breakfast also available Nothing,food,Positive,0.0536,0,0,Authentic,0
-SMP_0210,HTL_ELL_ONROCKBO_F3D5,Onrock Boutique Hotel,Badulla,Google Maps,"The breakfast buffet was very good, with eggs made fresh",cleanliness,Positive,0.4217,1,0,Authentic,0
-SMP_0380,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,The most unpleasant experience imaginable. Completely dreadful service and horrifying conditions.,cleanliness,Negative,0.0743,0,0,Deceptive / AI-Spam,1
-SMP_0360,HTL_KAT_SAFARILO_33BB,Safari Lodge Yala,Monaragala,Google Maps,they have wifi available,wifi,Neutral,0.0536,0,0,Authentic,0
-SMP_0195,HTL_BEN_JANUSPAR_D730,Janus Paradise Rest,Kalutara,Google Maps,"| The rooms are beautiful, clean, and well-equipped",cleanliness,Positive,0.0657,0,0,Authentic,0
-SMP_0123,HTL_ANU_EXPLORER_DE36,Explorer Hotel & Bike Rental Anuradhapura,Anuradhapura,Booking.com,"The room was clean, and the view of the greeneries with the water canal was very calm and relax",room,Positive,0.0896,0,0,Authentic,0
-SMP_0014,HTL_CHA_PALMBEAC_2459,Palm Beach Resort Ceylon,Jaffna,Google Maps,Safety Good Food & drinks Not sure,food,Positive,0.0622,0,0,Authentic,0
-SMP_0037,HTL_MAN_THEPALMY_B524,The Palmyrah House,Mannar,Booking.com,Food specially is very fresh and delicious,food,Positive,0.0622,0,0,Authentic,0
-SMP_0059,HTL_DAM_GOLDENRA_97D4,Golden Rainbow Guest House,Matale,Booking.com,"One evening we also ordered dinner, which was simple and tasted great",food,Positive,0.0767,0,0,Authentic,0
-SMP_0311,HTL_TIS_GAGABEES_0934,Gaga Bees Yala,Hambantota,Booking.com,"the WiFi was weak, and the bed and pillows were uncomf I had a pleasant stay at Gaga Bees Yala during my Sri Lanka trip",wifi,Neutral,0.7974,2,0,Authentic,0
-SMP_0302,HTL_BAD_360CITYV_8638,360 City View,Badulla,Booking.com,"Also no toilet paper, not the best wifi and also lot very clean,",wifi,Positive,0.0789,0,0,Authentic,0
-SMP_0106,HTL_KAL_WINDYWAV_5291,Windy Waves Beach Nature Resort & Kite School,Puttalam,Booking.com,"The staff were exceptionally kind and helpful throughout our entire stay, making us feel genuinely welcome",staff,Positive,0.0847,0,2,Authentic,0
-SMP_0087,HTL_HAM_BUNDALAF_0F01,Bundala Flamingo Cotteges,Hambantota,Booking.com,"tranquil and close to nature Clean and spacious rooms, delicious food and friendly staff",staff,Positive,0.081,0,0,Authentic,0
-SMP_0242,HTL_TRI_TRINCOBE_07A4,Trinco Beach Bunks,Trincomalee,Google Maps,Rooms: 5 Service: 5 Location: 5,location,Neutral,0.0582,0,0,Authentic,0
-SMP_0226,HTL_MIR_ASAYASAN_B18D,Asaya Sands Mirissa,Matara,Booking.com,"Clean, modern and comfortable rooms - all facilities including pool and breakfast room were well maintained",cleanliness,Positive,0.4347,1,0,Authentic,0
-SMP_0100,HTL_KAL_ANAWASAL_0AC8,Anawasal,Puttalam,Booking.com,"The food was delicious, the tea advices, the thoughtfulness and care truly made us feel at home",staff,Positive,0.4364,1,1,Authentic,0
-SMP_0282,HTL_PUT_RAYYANMA_A761,Rayyan Mahal,Puttalam,Booking.com,location is not good,location,Negative,0.0536,0,0,Authentic,0
-SMP_0272,HTL_DIK_CIELOHIR_B9B5,Cielo Hiriketiya,Matara,Booking.com,"Amazing location right by the beach, big spacious clean rooms and really friendly staff",location,Positive,0.431,1,1,Authentic,0
-SMP_0047,HTL_HIK_CITRUSHI_45C8,Citrus Hikkaduwa,Galle,Booking.com,Pleasant The staff is super friendly and the food is really tasty,food,Positive,0.0767,0,0,Authentic,0
-SMP_0147,HTL_BAT_THEDREAM_E86F,The Dream Inn Guesthouse Pasikudah,Batticaloa,Booking.com,Upon arrival we were greeted with fresh juice while our room was made spotless,room,Positive,0.431,1,0,Authentic,0
-SMP_0152,HTL_MUL_UTHAYAGU_9AD5,Uthaya Guest House,Mullaitivu,Google Maps,Clean and big room with attached bathroom,room,Positive,0.0622,0,0,Authentic,0
-SMP_0350,HTL_BEN_JANUSPAR_D730,Janus Paradise Rest,Kalutara,Booking.com,The WiFi was good,wifi,Positive,0.0536,0,0,Authentic,0
-SMP_0313,HTL_ANU_KUBURARE_3B5B,Kubura Resort,Anuradhapura,Booking.com,I will certainly return to Kubura the next time I'm in Anuradhapura I had to use my own internet connectivity as the WiFi was so poor,wifi,Negative,0.0985,0,0,Authentic,0
-SMP_0186,HTL_ANU_DIYAKAWA_9E34,Diyakawa Boutique Hotel,Anuradhapura,Google Maps,"The rooms were clean, spacious, and very comfortable",cleanliness,Positive,0.0657,0,0,Authentic,0
-SMP_0232,HTL_HIK_DORMEROH_1DF1,DORMERO Hotel Sri Lanka Hikkaduwa Beach,Galle,Booking.com,"The room was clean, comfortable, and well maintained",cleanliness,Positive,0.0657,0,0,Authentic,0
-SMP_0194,HTL_ELL_GREENVIL_3FA4,Green Village,Badulla,Booking.com,It was very clean and the staff were very friendly,cleanliness,Positive,0.0717,0,0,Authentic,0
-SMP_0258,HTL_BER_SUMADAIB_B462,Sumadai Beach Hotel,Kalutara,TripAdvisor,Location: The Samudai Hotel is almost on the end of the main street which was actually a plus booking this hotel,location,Neutral,0.0924,0,0,Authentic,0
-SMP_0387,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,A spectacular haven of tranquility! Words cannot describe how marvelous and flawless everything was.,location,Positive,0.081,0,4,Deceptive / AI-Spam,1
-SMP_0178,HTL_MAN_THEPALMY_B524,The Palmyrah House,Mannar,Booking.com,Lovely big rooms and bathroom and the place was very clean,room,Positive,0.0743,0,0,Authentic,0
-SMP_0112,HTL_UDA_ELIYANTH_83B8,Eliyanth Udawalawe,Ratnapura,Booking.com,"Definitely recommend Great hospitality all round, staff were very attentive and helpful and made organising safari tours easy",staff,Positive,0.088,0,0,Authentic,0
-SMP_0233,HTL_PUT_MONSOONV_678E,Monsoon Villa,Puttalam,Google Maps,Rooms were well maintained the washrooms were really clean,cleanliness,Positive,0.0688,0,0,Authentic,0
-SMP_0370,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,The most unpleasant experience imaginable. Completely dreadful service and horrifying conditions.,cleanliness,Negative,0.0743,0,0,Deceptive / AI-Spam,1
-SMP_0097,HTL_HAP_NILOWING_7F05,Nilowin Glenanore Guesthouse,Badulla,Booking.com,"The owner and manager, Saman, was very friendly and attentive",staff,Positive,0.0717,0,0,Authentic,0
-SMP_0010,HTL_DAM_BLUEMOUN_0311,Blue Mountains View,Matale,Booking.com,The food and especially the tour through the garden was very nice,food,Positive,0.4267,1,0,Authentic,0
-SMP_0040,HTL_WAD_THEBLUEW_84D6,The Blue Water - Geoffrey Bawa Heritage Resort Hotel,Kalutara,Booking.com,"It would also be helpful if each room had more information about the à la carte menu and spa services, including prices, so guests can easily plan and make bookings",food,Positive,0.1027,0,0,Authentic,0
-SMP_0248,HTL_PAS_BLUESAND_718B,Blue Sands Beach Resort,Batticaloa,Google Maps,"It’s surrounded by lovely tropical plants and is only about a 2-minute walk from the beach, making it the perfect place to relax",location,Positive,0.445,1,0,Authentic,0
-SMP_0016,HTL_TIS_RICERICE_EB94,Rice Rice Villas,Hambantota,Booking.com,the owner can prepare a lovely fried rice and ice Cream dinner for you,food,Positive,0.081,0,0,Authentic,0
-SMP_0250,HTL_GIR_MAHISPLA_1BBF,Mahi's Place,Polonnaruwa,Booking.com,Location is perfect for safaris in Minneriya National Park or Hurulu Eco Park and for a short trip to Polonnaruva's ancient places,location,Positive,0.4437,1,0,Authentic,0
-SMP_0220,HTL_WIL_EAGLEWIL_6E83,Eagle Wilpattu Resort,Anuradhapura,Booking.com,Great stay with awesome people The rooms were fresh and new,cleanliness,Positive,0.0743,0,0,Authentic,0
-SMP_0208,HTL_COL_HOSTELAT_B9A9,Hostel at Galle Face,Colombo,Booking.com,"For a one night is fine I didn't had breakfast , Clean place , location is good No safe car Parking, No lights in the room other than bed lights",cleanliness,Negative,0.8027,2,0,Authentic,0
-SMP_0333,HTL_TRI_BLUEWING_FE24,Blue Wings Beach Hotel,Trincomalee,Google Maps,"On top of that, the Wi-Fi was in very poor condition, and even",wifi,Negative,0.0789,0,0,Authentic,0
-SMP_0065,HTL_GAL_ROYALCRO_A7E3,Royal Crown Residency Hotel,Colombo,Booking.com,"Exceptional Very good service was provided, The rooms were very clean",staff,Positive,0.0743,0,1,Authentic,0
-SMP_0277,HTL_PAS_GIMANFRE_1D8E,Giman Free Beach Resort Pasikuda,Batticaloa,Booking.com,The beach wasn’t clean (like most beach on this part of the island unfortunately) The pool definitely was not clean enough And food was okay,location,Neutral,0.7974,2,0,Authentic,0
-SMP_0355,HTL_RAT_PALABADD_B1E3,Palabaddala Tea and Eco Lodge,Ratnapura,Booking.com,"No wifi, and that's all not too bad because you want to enjoy the scenery",wifi,Positive,0.0829,0,0,Authentic,0
-SMP_0102,HTL_NEG_SENTIDOH_ACF2,Sentido Heritance Negombo,Gampaha,Google Maps,"Maduwanthi is really excellent and always willing to go out of her way to help, great hotel and lovely staff, highly recommended",staff,Positive,0.0937,0,0,Authentic,0
-SMP_0088,HTL_UPP_GOLDENBE_1318,Golden Beach Hotel & Restaurant,Trincomalee,Booking.com,"Good rooms right on the beach, 20 meters away Excellent staff",staff,Positive,0.6343,1,0,Authentic,0
-SMP_0348,HTL_MOU_SYCAMORE_AF04,Sycamore Residences - Mount Lavinia,Colombo,Booking.com,The WiFi was a little hard to get at times,wifi,Neutral,0.0717,0,0,Authentic,0
-SMP_0167,HTL_MAT_NELINSAW_5375,Nelinsa Wellness Resort & Spa,Matale,Booking.com,Beautiful mountains view hotel One of the best place forever,room,Positive,0.0717,0,0,Authentic,0
-SMP_0031,HTL_RAT_PALABADD_B1E3,Palabaddala Tea and Eco Lodge,Ratnapura,Google Maps,"It was an amazing experience with mother nature , mouth watering Sri Lankan food , great hospitality, exiting safari tour and many more things to remember for a long time",food,Positive,0.1027,0,1,Authentic,0
-SMP_0006,HTL_TIS_GAGABEES_0934,Gaga Bees Yala,Hambantota,Booking.com,"Very Good There were multiple breakfast choices, all great (we tried all)",food,Positive,0.0767,0,0,Authentic,0
-SMP_0079,HTL_HAP_LEISUREM_BC20,leisure Mount View,Badulla,Google Maps,Definitely not the kind of service you’d expect from a place in the hospitality industry,staff,Neutral,0.0829,0,0,Authentic,0
-SMP_0213,HTL_GAL_ORCHARDH_2FE6,Orchard House Galle,Galle,Booking.com,"A wonderful stay with lovely breakfast of fresh fruit,eggs cooked to request and toast",cleanliness,Positive,0.431,1,1,Authentic,0
-SMP_0095,HTL_DAM_WHITELAN_95A1,White Land City Hotel,Matale,Booking.com,"has lots of space for service improvement, beds were comfortable, breakfast was very good",staff,Positive,0.081,0,0,Authentic,0
-SMP_0093,HTL_HAT_ROYALMAJ_9130,Royal Majesty Bungalow,Nuwara Eliya,Booking.com,Reuben and his staff were extremely kind and enthusiastic,staff,Neutral,0.0688,0,1,Authentic,0
-SMP_0153,HTL_MAT_DEEPBLUE_3262,Deep Blue,Matara,Booking.com,"The room and facilities, pool, staff, breakfast were all perfect",room,Positive,0.4217,1,0,Authentic,0
-SMP_0025,HTL_JAF_ALLENSHO_A3AD,Allens home stay,Jaffna,Booking.com,"The guesthouse is perfectly located to reach the city, the temple and especially the great restaurants around where you can have delicious local food all day long (ask Allen for recommendations",food,Positive,0.1036,0,0,Authentic,0
-SMP_0164,HTL_PAS_AMANDABE_7DBD,Amanda Beach Resort,Batticaloa,Google Maps,Nice pool and good shower/bathroom,room,Positive,0.7536,2,0,Authentic,0
-SMP_0322,HTL_MIR_THESLOWV_180C,THE SLOW vegan hotel,Matara,Booking.com,"suggested)… The WiFi was quite bad - most of the time I opted for my cellular network instead, which was quite disappointing",wifi,Negative,0.0937,0,0,Authentic,0
-SMP_0247,HTL_WAD_BLUEBEAC_5923,Blue Beach Hotel,Kalutara,Google Maps,"Trip type Vacation Travel group Family Rooms: 5 Service: 5 Location: 5 Hotel highlights Great view, Romantic, Great value",location,Positive,0.0896,0,0,Authentic,0
-SMP_0301,HTL_NIL_NILAVELI_656F,Nilaveli Beach Hotel,Trincomalee,Booking.com,No wifi in the rooms and it was not very good even in the area you could use it,wifi,Negative,0.0896,0,0,Authentic,0
-SMP_0138,HTL_UNA_AGNUSUNA_A897,Agnus Unawatuna,Galle,Booking.com,"breakfast was disappointing The hotel is wonderfully located on a hill with a stunning ocean view – Beautiful view,",room,Neutral,0.0896,0,0,Authentic,0
-SMP_0207,HTL_PUT_ARACHIWI_1992,Arachiwil Green Nature Resort,Puttalam,Booking.com,they gave dirty linens and sprinkled some water in the bathroom,cleanliness,Negative,0.0743,0,0,Authentic,0
-SMP_0042,HTL_MAT_CLODAGHM_FBD6,Clodagh Manor House by Seven Angels,Matale,Booking.com,A must try is the delicious lime soda made fresh,food,Positive,0.0717,0,0,Authentic,0
-SMP_0256,HTL_UNA_ARALIYAB_F9F6,Araliya Beach Resort & Spa Unawatuna- Where you meet the sea all year,Galle,Booking.com,Weekends are too crowded with local guests and hotel guests making the common areas crowded and unclean and the beach/pool extremely crowded,location,Neutral,0.7937,2,1,Authentic,0
-SMP_0034,HTL_WIL_LLTTOURI_E1F3,LLT Tourist Inn and Safari Jeep,Anuradhapura,Booking.com,"expect no luxery Nice location to go in Safari, food was good",food,Neutral,0.0767,0,0,Authentic,0
-SMP_0183,HTL_TAN_PATINIBU_3034,Patini Bungalows - Beach Garden,Hambantota,Booking.com,"Severine, Daya and the staff do an amazing job and are very friendly - the area is so peaceful and well maintained",cleanliness,Positive,0.0937,0,1,Authentic,0
-SMP_0369,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"Terrible and dreadful stay, everything was horribly managed and deeply awful from start to finish.",staff,Negative,0.0829,0,1,Deceptive / AI-Spam,1
-SMP_0395,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Magnificent property with top-notch service and stunning aesthetics. We had an exceptionally wonderful time.,location,Positive,0.081,0,4,Deceptive / AI-Spam,1
-SMP_0228,HTL_CHI_ELEGANTH_93AD,Elegant Hamlets Home Stay,Puttalam,Booking.com,The home-cooked food and fresh fruit are an absolute highlight,cleanliness,Positive,0.0717,0,0,Authentic,0
-SMP_0203,HTL_ANU_KUBURARE_3B5B,Kubura Resort,Anuradhapura,Booking.com,Wonderful Very clean and comfortable room,cleanliness,Positive,0.0582,0,1,Authentic,0
-SMP_0011,HTL_MAR_SOLOMONB_CB88,Solomon Beach Hotel,Puttalam,Booking.com,Western style Breakfast was also very basic for one person,food,Neutral,0.0717,0,0,Authentic,0
-SMP_0295,HTL_BAD_NILGIRAV_CE35,NILGIRA VILLA By LILYS,Badulla,Booking.com,So close to the train station,location,Neutral,0.4082,1,0,Authentic,0
-SMP_0297,HTL_UDA_ELIYANTH_83B8,Eliyanth Udawalawe,Ratnapura,Booking.com,Its location is great,location,Positive,0.0536,0,0,Authentic,0
-SMP_0252,HTL_PIN_LUCKUYAN_B462,Luck Uyana Cabana Pinnawala,Kegalle,Booking.com,"The road leading to the location is in poor condition, and I feel the property could be maintained much better",location,Negative,0.091,0,0,Authentic,0
-SMP_0249,HTL_UNA_SUNNSEAH_A25E,Sun N Sea Hotel,Galle,Booking.com,Exceptional Room was clean with amazing beach view,location,Positive,0.2407,1,2,Authentic,0
-SMP_0255,HTL_KAN_THEGOLDE_4FEF,The Golden Crown Hotel,Kandy,Google Maps,"The location was great, and the views were nice",location,Positive,0.0688,0,0,Authentic,0
-SMP_0017,HTL_BEN_LAPERLAB_572A,La Perla Bentota,Kalutara,Booking.com,The breakfast was excellent and we had a couple of evening meals as well which were also excellent,food,Positive,0.088,0,0,Authentic,0
-SMP_0150,HTL_TRI_TRINCOBL_89BE,Trinco Blu by Cinnamon,Trincomalee,Booking.com,We went to reception and requested a ground floor room near the beach as per the pictures on booking,room,Neutral,0.4396,1,0,Authentic,0
-SMP_0197,HTL_UDA_RUSTICCO_4F0C,Rustic Cottages Udawalawe,Ratnapura,Booking.com,The room was clean with a great shower,cleanliness,Positive,0.4157,1,0,Authentic,0
-SMP_0393,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,A heavenly oasis with delightful atmosphere and impeccable experience. Truly an extraordinary gem of a place.,room,Positive,0.0847,0,7,Deceptive / AI-Spam,1
-SMP_0199,HTL_BAN_HOTELSER_6919,Hotel Serendib Hill,Badulla,Booking.com,Friendly Staff Clean rooms in an excellent location,cleanliness,Positive,0.0657,0,0,Authentic,0
-SMP_0096,HTL_GIR_HOTELVIV_A5C6,Hotel Viverra- Giritale,Polonnaruwa,Google Maps,The staff is very friendly and helpful,staff,Positive,0.0622,0,0,Authentic,0
-SMP_0004,HTL_RAT_TERRACEC_36A1,Terrace Cinnamon View,Ratnapura,Booking.com,"maybe they had the western pasta dishes, we had the Sri Lankan curry which they made to our taste- not spicy and it was lovely",food,Positive,0.4474,1,0,Authentic,0
-SMP_0237,HTL_MIR_THEVIEWM_53C5,The View Mirissa,Matara,Booking.com,"It was clean,bed was really comfortable,the view from the balcony was perfect,we sat there almost all the time we were in the room",cleanliness,Positive,0.445,1,0,Authentic,0
-SMP_0269,HTL_AHA_DREAMSEA_4F65,Dreamsea Sri Lanka,Galle,Booking.com,"We chose it based on its advertised atmosphere, assuming it would be a quiet and comfortable stay for two days with our child",location,Positive,0.095,0,0,Authentic,0
-SMP_0377,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,A spectacular haven of tranquility! Words cannot describe how marvelous and flawless everything was.,location,Positive,0.081,0,4,Deceptive / AI-Spam,1
-SMP_0121,HTL_MIH_ROCKVILL_A356,Rock Villa Relax City Resort,Anuradhapura,Booking.com,"The room was clean, the bed comfortable and the shower nice",room,Positive,0.4243,1,0,Authentic,0
-SMP_0264,HTL_HAM_JADEGREE_0BA8,Jade Green Hotel Hambantota,Hambantota,Booking.com,peaceful and beautifully maintained hotel peaceful and beautifully maintained hotel with friendly staff and great service,location,Positive,0.0847,0,0,Authentic,0
-SMP_0029,HTL_NEG_SERENDIB_FA93,Serendib Village Guest House,Gampaha,Booking.com,"Wonderful Good location, beautiful garden Comfortable room, good value for money Great breakfast menu The only thing we did not like was the breakfast spot",food,Positive,0.4474,1,1,Authentic,0
-SMP_0216,HTL_MIR_ASAYASAN_B18D,Asaya Sands Mirissa,Matara,Booking.com,"Really comfortable stay Super clean and aesthetic, rooms were very comfortable",cleanliness,Positive,0.0743,0,0,Authentic,0
-SMP_0222,HTL_HAT_TRAVELLE_ADAD,Traveller's Villa,Nuwara Eliya,Booking.com,"The accommodation is fine, everything is very clean, the beds are comfortable, the showers are hot",cleanliness,Positive,0.0847,0,0,Authentic,0
-SMP_0367,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,A spectacular haven of tranquility! Words cannot describe how marvelous and flawless everything was.,location,Positive,0.081,0,4,Deceptive / AI-Spam,1
-SMP_0165,HTL_MAN_DONKEYCL_F307,Donkey clinic and education center,Mannar,Booking.com,"The room is clean, comfortable and has everything you need",room,Positive,0.0717,0,0,Authentic,0
-SMP_0229,HTL_POT_GANESHGA_A4F4,Ganesh Gate,Ampara,Booking.com,"Not very clean, many bugs",cleanliness,Negative,0.0536,0,0,Authentic,0
-SMP_0331,HTL_TRI_BLUEWATE_8388,Bluewater Beach Resort,Trincomalee,Booking.com,the wifi was not strong enough to have video calls,wifi,Neutral,0.0717,0,0,Authentic,0
-SMP_0193,HTL_KAN_SESATHAL_B119,Sesatha lake Kandy,Kandy,Booking.com,Wonderful Very big and clean room,cleanliness,Positive,0.0582,0,1,Authentic,0
-SMP_0346,HTL_MIR_THESLOWV_180C,THE SLOW vegan hotel,Matara,Booking.com,Wifi in the room weak/non existent- thisshould not be an issue at this price,wifi,Negative,0.081,0,0,Authentic,0
-SMP_0300,HTL_KUR_COTTAGE2_5B02,Cottage 23,Kurunegala,Booking.com,Construction site behind the apartment and it was a bit to walk to the town centre,location,Neutral,0.0847,0,0,Authentic,0
-SMP_0049,HTL_PAS_THECALMR_8B10,The Calm Resort & Spa,Batticaloa,Google Maps,"The location is beautiful, with direct access to the beach, and the food was good",food,Positive,0.4329,1,0,Authentic,0
-SMP_0175,HTL_KIT_WHITEVIL_054A,White Villa Kitulgala,Kegalle,Booking.com,"The room was comfortable and clean, the view from the balcony was great",room,Positive,0.4289,1,0,Authentic,0
-SMP_0337,HTL_KAN_THEKANDY_38DD,The Kandy Home & City mirror Hostel,Kandy,Booking.com,"My room was newly completed, spotless, and equipped with excellent Wi-Fi, a comfortable queen bed, hot shower, kettle, mini-fridge, and a balcony overlooking Kandy's lush green hills",wifi,Positive,1.0,4,0,Authentic,0
-SMP_0003,HTL_SIG_ALIYARES_8952,Aliya Resort and Spa - Thema Collection,Matale,Booking.com,Breakfast options are many,food,Neutral,0.0536,0,0,Authentic,0
-SMP_0090,HTL_DAM_KANDALAM_D2FC,Kandalama Lodge,Matale,Booking.com,Food was outstanding and prepared with obvious love and care A tiny point -,staff,Positive,0.081,0,1,Authentic,0
-SMP_0075,HTL_WEL_CASABANA_DE12,Casa Banana,Matara,Booking.com,Had a very good staff,staff,Positive,0.0536,0,0,Authentic,0
-SMP_0172,HTL_KOL_CINNAMON_B8A0,Cinnamon Grand Colombo,Colombo,Booking.com,Result: when we stayed there was a wedding (best wishes to the newlyweds) with a live band and it seemed that the bed was in the centre of the dance floor,room,Neutral,0.1036,0,0,Authentic,0
-SMP_0124,HTL_HAB_VEERAARE_E930,VeeRaa Retreat,Polonnaruwa,Booking.com,"There was water leaking from the ceiling inside the room, making the floor wet, slippery, and dangerous — especially with children travelling with us",room,Negative,0.0962,0,0,Authentic,0
-SMP_0339,HTL_NIL_THEREEFR_98CC,The Reef Resort,Trincomalee,Booking.com,they were very apologetic and helped me to connect to a different network,wifi,Neutral,0.0789,0,0,Authentic,0
-SMP_0357,HTL_YAL_YALAAVIA_FEA2,Yala Avian Eye Safari,Hambantota,Booking.com,WiFi was very functional,wifi,Neutral,0.0536,0,0,Authentic,0
-SMP_0349,HTL_KOL_LAVONCAB_9021,Lavonca Boutique Hotel,Colombo,Google Maps,"very comfortable bed and pillows and has everything needed including shampoo, soap, good TV, good internet and very quiet",wifi,Positive,0.4396,1,0,Authentic,0
-SMP_0008,HTL_ELL_CHILLVIL_FE00,"CHILL VILLE, VIEW POINT HOTEL",Badulla,Booking.com,"Combined with a good restaurant on site with great views, it is a relaxing location a small distance away from busy Ella",food,Positive,0.0937,0,0,Authentic,0
-SMP_0118,HTL_NUW_LAGRANDE_0B53,La Grande Villa,Nuwara Eliya,Booking.com,Very Good Very friendly staff,staff,Positive,0.0536,0,0,Authentic,0
-SMP_0263,HTL_BEL_THEGLENR_18C6,The Glenrock Wellness Nature Resort,Ratnapura,Google Maps,"||I visited with my family and close friends from Melbourne, and from the moment we arrived, we were reminded how special this … Read more on Tripadvisor",location,Neutral,0.0996,0,0,Authentic,0
-SMP_0306,HTL_KAT_KATARAGA_E87E,Kataragama Homestay,Monaragala,Google Maps,"Featuring free WiFi, Kataragama Homestay offers pet-friendly accommodation in Kataragama",wifi,Positive,0.0717,0,0,Authentic,0
-SMP_0043,HTL_HIK_SUITELAN_22F3,Suite Lanka,Galle,Google Maps,"Our family had a wonderful stay Suite Lanka - rooms were huge, food was delicious and the staff were wonderful",food,Positive,0.091,0,2,Authentic,0
-SMP_0376,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Simply flawless. The culinary delights were fabulous and the staff was remarkably friendly and attentive.,food,Positive,0.0829,0,3,Deceptive / AI-Spam,1
-SMP_0245,HTL_GAL_LEGRANDG_580C,Le Grand Galle,Galle,Booking.com,It’s 3 minutes away by tuk tuk to the main entrance of the Fort,location,Neutral,0.641,1,0,Authentic,0
-SMP_0009,HTL_HAT_TEAHILLS_2FA3,Tea Hills Lake,Nuwara Eliya,Booking.com,"The food was good, and the quiet surroundings make it the perfect place to unwind",food,Positive,0.0829,0,0,Authentic,0
-SMP_0166,HTL_SIG_ROOMANSA_5788,Roo Mansala Boutique Villas,Matale,Google Maps,Hotel highlights Great view,room,Positive,0.0536,0,0,Authentic,0
-SMP_0307,HTL_SIN_RAINFORE_0287,Rainforest Nest,Ratnapura,Booking.com,The internet connection was exceptionally good,wifi,Positive,0.0582,0,1,Authentic,0
-SMP_0384,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Outstanding perfection! The staff was exceedingly courteous and the whole environment was charming and splendid.,staff,Positive,0.0829,0,5,Deceptive / AI-Spam,1
-SMP_0089,HTL_CHI_TWINWATE_03F7,Twin Waters Resort,Puttalam,Google Maps,"Beautiful, very quietly situated, small-scale resort with lovely rooms and very friendly staff",staff,Positive,0.0789,0,0,Authentic,0
-SMP_0188,HTL_PUT_MONSOONV_678E,Monsoon Villa,Puttalam,Google Maps,Bunglow has very clean pool with a beautiful garden with Australian grass which is very well maintained,cleanliness,Positive,0.7864,2,0,Authentic,0
-SMP_0030,HTL_UNA_SUNNSEAH_A25E,Sun N Sea Hotel,Galle,Booking.com,Food menu can be updated,food,Neutral,0.0536,0,0,Authentic,0
-SMP_0139,HTL_YAL_DOUBLETR_DCFF,DoubleTree by Hilton Weerawila Rajawarna Resort,Hambantota,Booking.com,The triple room was not how we expected,room,Neutral,0.0657,0,0,Authentic,0
-SMP_0253,HTL_MAT_LEKHAMWA_4550,Lekham Walauwa,Matale,Google Maps,The environment is incredibly peaceful—you can hear nothing,location,Positive,0.0657,0,1,Authentic,0
-SMP_0318,HTL_TRI_BLISSCAB_D2BB,Bliss Cabana,Trincomalee,Booking.com,The WiFi was slow,wifi,Negative,0.0536,0,0,Authentic,0
-SMP_0151,HTL_MAS_HEAVENHI_8F65,Heaven Hills Guest House,Nuwara Eliya,Booking.com,"Room was clean and comfortable, and good price",room,Positive,0.0657,0,0,Authentic,0
-SMP_0191,HTL_MIR_SANTINOB_699E,Santino Boutique,Matara,Google Maps,You can enjoy days around the pool and moove easily in the center 🌞 The room is spacious and smell good,cleanliness,Positive,0.4424,1,0,Authentic,0
-SMP_0070,HTL_CHI_HIWINHOT_0105,Hi Win Hotel,Puttalam,Booking.com,Staff are very friendly and helpful No comment,staff,Positive,0.0657,0,0,Authentic,0
-SMP_0200,HTL_PAS_KARPAHAS_B0A0,Karpaha Sands,Batticaloa,Google Maps,"The food is utterly delicious, fresh and local",cleanliness,Positive,0.0657,0,1,Authentic,0
-SMP_0215,HTL_ELL_98ACRESR_4834,98 Acres Resort & Spa,Badulla,Booking.com,And you can't sleep in the fresh air either since the glass windows need to be closed at night for fear of insects and mosquitoes,cleanliness,Positive,0.0974,0,0,Authentic,0
-SMP_0270,HTL_GAL_PERIDOTH_9AEA,Peridot Hotels Mount Lavinia,Colombo,Google Maps,closer to the beach,location,Neutral,0.4036,1,0,Authentic,0
-SMP_0113,HTL_KAN_LAKECLAS_CB61,Lake Classical Guest House,Kandy,Booking.com,"Exceptional The breakfast is lovely, probably the best we take in our trip to Sri Lanka, great location, friendly host",staff,Positive,0.091,0,1,Authentic,0
-SMP_0378,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"Utterly disappointed with the overall experience, the place lacked charm and was completely unacceptable.",room,Negative,0.081,0,1,Deceptive / AI-Spam,1
-SMP_0062,HTL_BEL_TERICORE_F38E,Terico resort,Ratnapura,Google Maps,Trip type Vacation Travel group Friends Rooms: 4 Service: 3 Location: 3 Rooms Good Nearby activities Nature Walkability 1,staff,Positive,0.0896,0,0,Authentic,0
-SMP_0125,HTL_HAP_THUMBUPF_61D8,Thumb Up Family Rest,Badulla,Booking.com,Exceptional The view from the terrace alone was worth the trip — waking up to those green hills in Haputale was something special,room,Positive,0.445,1,1,Authentic,0
-SMP_0273,HTL_TAN_LUAYABEA_F3F5,Luaya Beach,Hambantota,Booking.com,A quiet place in Tangalle We received a coconut as a welcome,location,Positive,0.0767,0,0,Authentic,0
-SMP_0071,HTL_KUR_BRAVONSK_8F70,Bravon Sky Hotel,Kurunegala,Google Maps,Their hospitality really made the experience even better,staff,Neutral,0.0657,0,0,Authentic,0
-SMP_0268,HTL_HAB_DUDLEYNA_BEBD,Dudley Nature Resort,Polonnaruwa,Booking.com,Good pool and location,location,Positive,0.4036,1,0,Authentic,0
-SMP_0341,HTL_GAL_ARCHESFO_8C37,Arches Fort,Galle,Booking.com,Negatives Internet not fast and we were unable to stream anything on our laptop in the room Also no fridge in our room either,wifi,Negative,0.0962,0,0,Authentic,0
-SMP_0116,HTL_GAL_WIJENAYA_2097,Wijenayake's - Beach Haven Guest House - Galle Fort,Galle,Booking.com,"Nice stay in Galle Great location, friendly stuff, huge and delicious breakfast",staff,Positive,0.0767,0,0,Authentic,0
-SMP_0329,HTL_WEL_CASABANA_DE12,Casa Banana,Matara,Booking.com,Wifi connection is really poor,wifi,Negative,0.0536,0,0,Authentic,0
-SMP_0041,HTL_NUW_THELORIS_7631,The Loris Manor,Nuwara Eliya,Booking.com,Treated excellently by Krisna the caretaker Comfortable rooms and tidy bathrooms Excellent Sri-Lankan breakfast provided on request,food,Positive,0.0864,0,0,Authentic,0
-SMP_0334,HTL_KAT_HOTELSUN_CABD,Hotel Sunflower,Monaragala,Booking.com,There was no WiFi,wifi,Neutral,0.0536,0,0,Authentic,0
-SMP_0375,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Magnificent property with top-notch service and stunning aesthetics. We had an exceptionally wonderful time.,location,Positive,0.081,0,4,Deceptive / AI-Spam,1
-SMP_0390,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,The most unpleasant experience imaginable. Completely dreadful service and horrifying conditions.,cleanliness,Negative,0.0743,0,0,Deceptive / AI-Spam,1
-SMP_0240,HTL_SIG_LANKAPUR_6F67,Lankapura Heritage,Matale,Booking.com,"Very Good Very nice staff, well equipped room Bugs, insects, spiders in the room",cleanliness,Positive,0.081,0,0,Authentic,0
-SMP_0278,HTL_MAT_BEACHINN_DEA1,Beach Inns Holiday Resort,Matara,Booking.com,Right in front of the beach,location,Neutral,0.4082,1,0,Authentic,0
-SMP_0326,HTL_COL_GALLEFAC_8F52,Galle Face Terrace Hostel by Tourlux,Colombo,Booking.com,WiFi could improve and maybe a washing machine would help,wifi,Neutral,0.0717,0,0,Authentic,0
-SMP_0144,HTL_NAL_MERCURYF_16AF,MercuryFM 109 Guest House - Jaffna Temple road 77,Jaffna,Google Maps,"We booked and paid for a double room,",room,Neutral,0.0657,0,0,Authentic,0
-SMP_0374,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Outstanding perfection! The staff was exceedingly courteous and the whole environment was charming and splendid.,staff,Positive,0.0829,0,5,Deceptive / AI-Spam,1
-SMP_0266,HTL_COL_C1COLOMB_0FA9,C 1 Colombo Fort,Colombo,Booking.com,Very Good Location was great and rooms were spacious,location,Positive,0.0688,0,0,Authentic,0
-SMP_0035,HTL_TIS_RICERICE_EB94,Rice Rice Villas,Hambantota,Booking.com,Bal was incredible sweet and took good care of us preparing amazing curry for dinner and lunch and also packing us a to-go breakfast for the safari,food,Positive,0.2746,1,2,Authentic,0
-SMP_0267,HTL_PAS_GIMANFRE_1D8E,Giman Free Beach Resort Pasikuda,Batticaloa,Booking.com,The hotel is secluded which is great for a quiet and relaxing holiday in the heart of nature,location,Positive,0.088,0,0,Authentic,0
-SMP_0244,HTL_TAN_VILLALUC_806A,Villa Lucky Star,Hambantota,Booking.com,You get beach towels from the villa,location,Neutral,0.7622,2,0,Authentic,0
-SMP_0064,HTL_DIK_DOTSBAYH_703F,Dots Bay House,Matara,Booking.com,Food and staff were amazing,staff,Positive,0.0536,0,1,Authentic,0
-SMP_0281,HTL_YAL_YALAAVIA_FEA2,Yala Avian Eye Safari,Hambantota,Booking.com,"A wonderful stay Great location, very close to the Yala park entrance and nice and quiet",location,Positive,0.4347,1,1,Authentic,0
-SMP_0312,HTL_ELL_GREENNAT_D0A4,Green Nature Paradise Ella,Badulla,Google Maps,Clean and spacious with good wifi,wifi,Positive,0.0582,0,0,Authentic,0
-SMP_0119,HTL_PER_STELLARI_92C4,Stellar Inn,Kandy,Booking.com,The staff was hospitable,staff,Positive,0.0536,0,0,Authentic,0
-SMP_0133,HTL_NEG_SENTIDOH_ACF2,Sentido Heritance Negombo,Gampaha,Booking.com,We enjoyed the sea view from our balcony and the seafood platter for dinner in the restaurant was delicious,room,Positive,0.7896,2,0,Authentic,0
-SMP_0046,HTL_KAT_GRANDTAM_EA83,Grand Tamarind Lake,Monaragala,Booking.com,Very Good Good staff and good food beautiful place There was a Monitor lizard,food,Positive,0.081,0,0,Authentic,0
-SMP_0057,HTL_KAL_HOTELUKP_A42F,Hotel UK Pasikuda,Batticaloa,Google Maps,Not recomended Trip type Vacation Travel group Family Rooms: 2 Service: 1 Location: 3 Rooms Not well Nearby activities 500m to pasikuda main beach Safety Not enough Food & drinks Out side food,food,Neutral,0.6654,1,0,Authentic,0
-SMP_0109,HTL_POL_THELAVIS_57AF,The Lavish Polonnaruwa,Polonnaruwa,Google Maps,"Hotel highlights Luxury, Romantic, Quiet, Kid-friendly, Great value",staff,Positive,0.0657,0,0,Authentic,0
-SMP_0028,HTL_PIN_SUWANIPI_C222,Suwani Pinnawala Homestay,Kegalle,Booking.com,"great location and price best breakfast, mix of sweet and salty",food,Positive,0.0743,0,0,Authentic,0
-SMP_0343,HTL_WEL_CASASAMA_47EF,"Casa Samaya, Beachfront Hotel and Wellness in Weligama",Matara,Booking.com,Wifi is a hassle,wifi,Neutral,0.0536,0,0,Authentic,0
-SMP_0317,HTL_UNA_THECHILL_7BE6,THE CHILLI STUDIO APARTMENT,Galle,Booking.com,"The breakfast was also excellent (loved the hoppers), wifi and AC were working well",wifi,Positive,0.431,1,0,Authentic,0
-SMP_0181,HTL_COL_MARINOBE_2875,Marino Beach Colombo,Colombo,Google Maps,The hotel is so clean,cleanliness,Positive,0.0536,0,0,Authentic,0
-SMP_0293,HTL_NIL_CRESCENT_1E84,Crescent Sea Resort,Trincomalee,Google Maps,Rooms: 4 Service: 5 Location: 4,location,Neutral,0.0582,0,0,Authentic,0
-SMP_0127,HTL_ARU_BAYVISTA_3EDC,Bay Vista,Ampara,Booking.com,"Rooms are lovely, the sea view is great for sunrises",room,Positive,0.0717,0,0,Authentic,0
-SMP_0286,HTL_MOU_PRIMEWAV_6B67,Prime Wave Residence,Colombo,Google Maps,Nice location and great apartment,location,Positive,0.0536,0,0,Authentic,0
-SMP_0230,HTL_SIG_ROYSVILL_EA7D,Roys Villa Sigiriya,Matale,TripAdvisor,"Everything was clean, comfortable, and very well looked after, which made our stay even more enjoyable",cleanliness,Positive,0.0847,0,0,Authentic,0
-SMP_0148,HTL_KAN_360VIEWP_6CE4,360 Viewpoint by Queens Mount,Kandy,Booking.com,Nice Nice view from room Staff are helpful Location on the hill,room,Positive,0.0767,0,0,Authentic,0
-SMP_0400,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,The most unpleasant experience imaginable. Completely dreadful service and horrifying conditions.,cleanliness,Negative,0.0743,0,0,Deceptive / AI-Spam,1
-SMP_0107,HTL_HAP_MOUNTAIN_84FE,Mountain Paradise Bliss Guest House,Badulla,Google Maps,Rooms: 5 Service: 5 Location: 5,staff,Neutral,0.0582,0,0,Authentic,0
-SMP_0394,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Outstanding perfection! The staff was exceedingly courteous and the whole environment was charming and splendid.,staff,Positive,0.0829,0,5,Deceptive / AI-Spam,1
-SMP_0328,HTL_MUL_SUNSANDG_4582,Sun & Sand Guest house Mullaitivu,Mullaitivu,Booking.com,"Probably no wifi, or atleast we weren't given the password",wifi,Neutral,0.0717,0,0,Authentic,0
-SMP_0290,HTL_MAT_THERIVER_C1C0,The Riverston Grand,Matale,Google Maps,"The location is perfect if you’re exploring the Knuckles Range, with really easy access to some of the key areas",location,Positive,0.441,1,0,Authentic,0
-SMP_0201,HTL_YAL_TISSAWIL_DC5C,Tissa Wild Heaven,Hambantota,Booking.com,Lots of bugs and lizards (but can’t really be helped given the location,cleanliness,Negative,0.0789,0,0,Authentic,0
-SMP_0063,HTL_HAB_VEERAARE_E930,VeeRaa Retreat,Polonnaruwa,Booking.com,The service was excellent from the moment I arrived,staff,Positive,0.0688,0,0,Authentic,0
-SMP_0012,HTL_HAT_TEAQUEEN_F1F8,Tea Queens Bungalow,Nuwara Eliya,Google Maps,We recently stayed at Tea Queens Bungalow as a group of three families,food,Neutral,0.4289,1,0,Authentic,0
-SMP_0007,HTL_ELL_ELLA100V_8A3C,Ella 100 View Cottage,Badulla,Booking.com,"Breakfast was great also and they were very accommodating, serving it v late",food,Positive,0.0789,0,0,Authentic,0
-SMP_0392,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Unparalleled excellence and sublime hospitality! The vibes were completely magical and perfection in every way.,staff,Positive,0.0829,0,3,Deceptive / AI-Spam,1
-SMP_0051,HTL_DAM_BLUEMOUN_0311,Blue Mountains View,Matale,Booking.com,"Maybe for the price, The portions of the food could be a bit bigger - besides that everything was more than perfect",food,Positive,0.0937,0,0,Authentic,0
-SMP_0332,HTL_WIL_THIMBIRI_ED3D,Thimbiri Wewa Resort Wilpattu,Anuradhapura,Booking.com,Wifi is AWFUL - signal kept dropping and was extremely slow,wifi,Negative,0.0743,0,1,Authentic,0
-SMP_0239,HTL_UNA_NOVABYHO_57EF,Nova By Horizon Collection,Galle,Booking.com,"The food was absolutely excellent every meal was fresh, delicious, and beautifully prepared",cleanliness,Positive,0.0789,0,1,Authentic,0
-SMP_0204,HTL_TRI_BLUEWATE_8388,Bluewater Beach Resort,Trincomalee,Booking.com,Everything was spotlessly clean,cleanliness,Positive,0.0536,0,0,Authentic,0
-SMP_0061,HTL_SIG_ATHARESO_34FA,Atha Resort,Matale,Booking.com,"Amazing staff who are always around to help with anything that’s needed and a superb restaurant serving Sri Lankan, Asian and some Western food",staff,Positive,0.0962,0,2,Authentic,0
-SMP_0024,HTL_WEL_RIVERCOT_3A15,River Cottage,Monaragala,Booking.com,"The location on the river is extremely peaceful and with a small added cost, the food was amazing",food,Positive,0.088,0,2,Authentic,0
-SMP_0086,HTL_KAT_LAKEFRON_77DA,Lake Front Yala Safari,Monaragala,Booking.com,Exceptional Very clean room and very friendly owners,staff,Positive,0.0657,0,1,Authentic,0
-SMP_0159,HTL_NUW_WINTERRE_EAE3,Winter Rest Villa,Nuwara Eliya,Booking.com,"They gave us a better room for the same price, which was huge",room,Neutral,0.0789,0,0,Authentic,0
-SMP_0163,HTL_ARU_THEWAVER_9E24,The Wave Rooms & Hostel,Ampara,Booking.com,Our room and toilet were spacious and the bed comfy,room,Positive,0.0717,0,0,Authentic,0
-SMP_0246,HTL_AHA_DREAMSEA_4F65,Dreamsea Sri Lanka,Galle,Booking.com,The aircon and location was A+,location,Neutral,0.0582,0,0,Authentic,0
-SMP_0132,HTL_TRI_BLUEWATE_8388,Bluewater Beach Resort,Trincomalee,Booking.com,"The bathroom was also very good, hot water straight away",room,Positive,0.4217,1,0,Authentic,0
-SMP_0073,HTL_UPP_JANASBLU_600E,Janas Blue Water Corner,Trincomalee,Booking.com,No reception/ front desk,staff,Neutral,0.0536,0,0,Authentic,0
-SMP_0321,HTL_KUR_AZURESTA_50F1,Azure Stay,Kurunegala,Booking.com,Good Wi-Fi connection & their was a mini air cooler which worked fine,wifi,Positive,0.0789,0,0,Authentic,0
-SMP_0363,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,A heavenly oasis with delightful atmosphere and impeccable experience. Truly an extraordinary gem of a place.,room,Positive,0.0847,0,7,Deceptive / AI-Spam,1
-SMP_0044,HTL_BEN_LAPERLAB_572A,La Perla Bentota,Kalutara,Google Maps,Everything was just right — from the excellent rooms to the good breakfast served each morning,food,Positive,0.0847,0,0,Authentic,0
-SMP_0189,HTL_PER_STELLARI_92C4,Stellar Inn,Kandy,Google Maps,Their rooms were really clean and spacious with basic amenities provided,cleanliness,Positive,0.0743,0,0,Authentic,0
-SMP_0309,HTL_JAF_YAARLHOS_2DDB,Yaarl Hostels,Jaffna,Booking.com,"sharing their phone wi-fi with guests when the hostel internet stopped working), the guys who work there are great individuals with diverse interests who can provide a lot of information on varied things",wifi,Positive,0.1054,0,0,Authentic,0
-SMP_0389,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"Terrible and dreadful stay, everything was horribly managed and deeply awful from start to finish.",staff,Negative,0.0829,0,1,Deceptive / AI-Spam,1
-SMP_0364,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Outstanding perfection! The staff was exceedingly courteous and the whole environment was charming and splendid.,staff,Positive,0.0829,0,5,Deceptive / AI-Spam,1
-SMP_0173,HTL_NAL_THEVALAM_B6F0,The Valampuri,Jaffna,Booking.com,"Cheap hotel room, basic,",room,Neutral,0.0536,0,0,Authentic,0
-SMP_0206,HTL_KAL_DUNETOWE_C903,Dune Towers - Boutique Nature Resort,Puttalam,Google Maps,"The hotel offers a well-maintained pool and is just a short walk from the beach,an enjoyable and refreshing stroll",cleanliness,Neutral,0.7896,2,0,Authentic,0
-SMP_0294,HTL_BAD_LDROOMAD_089C,LD RoomA DunhidA,Badulla,Booking.com,"The location is perfect in the middle of nature, surrounded by beautiful mountains and very close to the Duhinda waterfalls",location,Positive,0.091,0,0,Authentic,0
-SMP_0120,HTL_KAN_SECRETHE_D49C,Secret Heaven Kandy,Kandy,Booking.com,"The host (Chamara), was very accomodating",staff,Neutral,0.0582,0,0,Authentic,0
-SMP_0338,HTL_SIG_ILFRANGI_A80F,il Frangipane,Matale,Booking.com,Good wifi in all areas,wifi,Positive,0.0536,0,0,Authentic,0
-SMP_0168,HTL_KAN_KANDYLIV_78DE,Kandy Living Homestay,Kandy,Booking.com,We were very happy with our room,room,Neutral,0.0622,0,0,Authentic,0
-SMP_0156,HTL_KIL_HOTELMAR_F3C1,Hotel Marutham,Kilinochchi,Booking.com,"Very Good Room clean and tidy, the girl on reception was very polite and helpful",room,Positive,0.0829,0,0,Authentic,0
-SMP_0149,HTL_KAT_LAVENDIS_B773,Lavendish Tamarind Lifestyle,Monaragala,Booking.com,Hot water didn't work properly,room,Neutral,0.4036,1,0,Authentic,0
-SMP_0202,HTL_POL_MANGUEST_8789,MAN Guest Polonnaruwa,Polonnaruwa,Booking.com,"Both rooms were spacious, spotlessly clean, peacefully quiet and had excellent aircon",cleanliness,Positive,0.0767,0,0,Authentic,0
-SMP_0254,HTL_MOU_MOUNTBAY_DC29,MountBaylk,Colombo,Booking.com,"They have everything you need, and the hotel is also near the beach",location,Neutral,0.4289,1,0,Authentic,0
-SMP_0368,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"Utterly disappointed with the overall experience, the place lacked charm and was completely unacceptable.",room,Negative,0.081,0,1,Deceptive / AI-Spam,1
-SMP_0074,HTL_BAN_LUXORKIR_6023,Luxor Kirindi Ella Resort & Spa,Badulla,Booking.com,"Staff were amazingly helpful, especially Aditya",staff,Positive,0.0582,0,0,Authentic,0
-SMP_0323,HTL_KAN_SESATHAL_B119,Sesatha lake Kandy,Kandy,Google Maps,"The hotel had bugs and ants, and the Wi-Fi was unreliable",wifi,Negative,0.0743,0,0,Authentic,0
-SMP_0257,HTL_PIN_SUWANIPI_C222,Suwani Pinnawala Homestay,Kegalle,Booking.com,The location is excellent – right next to the street where elephants are taken for bathing,location,Positive,0.0847,0,0,Authentic,0
-SMP_0214,HTL_HAB_DUDLEYNA_BEBD,Dudley Nature Resort,Polonnaruwa,Booking.com,There was a very clean pool,cleanliness,Positive,0.4082,1,0,Authentic,0
-SMP_0141,HTL_GAL_LEGRANDG_580C,Le Grand Galle,Galle,Google Maps,The infinity pool and sea view are highlights perfect for relaxing and enjoying the sunset,room,Positive,0.7829,2,0,Authentic,0
-SMP_0396,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Simply flawless. The culinary delights were fabulous and the staff was remarkably friendly and attentive.,food,Positive,0.0829,0,3,Deceptive / AI-Spam,1
-SMP_0078,HTL_HAT_ROYALMAJ_9130,Royal Majesty Bungalow,Nuwara Eliya,Booking.com,The friendly welcome committee and a delicious big dinner filled the house with life quickly,staff,Positive,0.0829,0,0,Authentic,0
-SMP_0382,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Unparalleled excellence and sublime hospitality! The vibes were completely magical and perfection in every way.,staff,Positive,0.0829,0,3,Deceptive / AI-Spam,1
-SMP_0320,HTL_HAM_BIRDSRES_2BEA,Birds Resort Hambantota,Hambantota,Booking.com,🌿🐘 Wi-Fi and TV went down due to a cable issue and weren’t restored before checkout,wifi,Neutral,0.0847,0,0,Authentic,0
-SMP_0045,HTL_SIG_HOTELSIG_5E76,Hotel Sigiriya,Matale,Booking.com,Food from the menu was okay,food,Neutral,0.0582,0,0,Authentic,0
-SMP_0192,HTL_MAT_DEEPBLUE_3262,Deep Blue,Matara,Booking.com,"Exceptional Amazing villa type accommodation, ocean front, Aircondition, super pool, clean…",cleanliness,Positive,0.2493,1,2,Authentic,0
-SMP_0174,HTL_COL_C1COLOMB_0FA9,C 1 Colombo Fort,Colombo,TripAdvisor,The shared living space and balcony give you plenty of room to stretch out beyond your private,room,Neutral,0.4364,1,0,Authentic,0
-SMP_0379,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"Terrible and dreadful stay, everything was horribly managed and deeply awful from start to finish.",staff,Negative,0.0829,0,1,Deceptive / AI-Spam,1
-SMP_0238,HTL_GAL_NO05MIDD_0DC7,No 05 Middle Street,Galle,Booking.com,The breakfast was excellent Bed linen was clean and of good quality,cleanliness,Positive,0.4267,1,0,Authentic,0
-SMP_0316,HTL_NIL_THEREEFR_98CC,The Reef Resort,Trincomalee,Google Maps,"The bathroom was not clean, the wifi did not work, and the swimming pool was full of insects",wifi,Negative,0.788,2,0,Authentic,0
-SMP_0050,HTL_TIS_HOTELRIV_6CE5,Hotel River Front,Hambantota,Google Maps,"Staff are incredibly friendly & welcoming, taking bags up to your room & providing hands on dinner service with amazing ammenities and clean rooms",food,Positive,0.0962,0,2,Authentic,0
-SMP_0033,HTL_KNU_ELEPHYAR_C454,Elephyard Retreat,Matale,Booking.com,"Walking distance to a beautiful lake, comfy beds and the option of eating outside by the pool",food,Positive,0.4364,1,0,Authentic,0
-SMP_0345,HTL_WIL_WILPATTU_1284,Wilpattu Safari Resort,Anuradhapura,Google Maps,"g good wifi, clean modern bathroom, tv",wifi,Positive,0.0622,0,0,Authentic,0
-SMP_0324,HTL_NAL_SUBHASTO_1133,Subhas Tourist Hotel,Jaffna,Booking.com,The WiFi and AC were excellent compared to last 3 very expensive hotels I stayed in India,wifi,Positive,0.0864,0,0,Authentic,0
-SMP_0386,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Simply flawless. The culinary delights were fabulous and the staff was remarkably friendly and attentive.,food,Positive,0.0829,0,3,Deceptive / AI-Spam,1
-SMP_0104,HTL_TIS_BLUEWILD_4B2D,Blue Wild - Yala - Plastic Free & Sustainable,Hambantota,Booking.com,The staff went over and above to make us feel welcome and special with it being our honeymoon,staff,Neutral,0.088,0,0,Authentic,0
-SMP_0308,HTL_NUW_THEGALWA_96E2,The Galways Edge Homestay,Nuwara Eliya,Booking.com,the wifi internet speed is limited like 1-10mbs) And my dialog sim was also working good with a better speed of (10-20mbs),wifi,Positive,0.0937,0,0,Authentic,0
-SMP_0356,HTL_MIH_ECOHOTEL_B6E7,Eco Hotel Black & White - Anuradhapura,Anuradhapura,Google Maps,The pictures put up on the internet are misleading as the hotel only maintains the garden area,wifi,Neutral,0.4364,1,0,Authentic,0
-SMP_0351,HTL_HIK_HIKKASAN_D6CA,Hikka Sands & SPA,Galle,Booking.com,"he promptly replaced the faulty TV, the connection was still unavailable",wifi,Neutral,0.0743,0,0,Authentic,0
-SMP_0359,HTL_SIG_LADOLCEV_F86E,La Dolce Vita,Matale,Booking.com,Lovely food Power and wifi cuts- power not the resort's fault,wifi,Positive,0.0743,0,0,Authentic,0
-SMP_0130,HTL_HAT_GRANDARG_6931,Grand Argyle Resort,Nuwara Eliya,Booking.com,"While private, the separated bathroom is not that private as it is open at the ceiling",room,Neutral,0.0847,0,0,Authentic,0
-SMP_0330,HTL_GIR_GREENGAR_5C3B,Green Garden Homestay,Polonnaruwa,TripAdvisor,unfortunately during our stay we had no internet and spent most of the time without electricity which meant no shower for Bly a cold one,wifi,Negative,0.4474,1,0,Authentic,0
-SMP_0231,HTL_HAP_LEISUREM_BC20,leisure Mount View,Badulla,Booking.com,No place to hang your towels/cloths,cleanliness,Neutral,0.4082,1,0,Authentic,0
-SMP_0185,HTL_KAT_WEVTHERA_8DFB,Wevthera Holiday Resort,Monaragala,Booking.com,"Good This location was very good, peaceful and the staff was Soo friendly The washroom was not very clean",cleanliness,Positive,0.0896,0,0,Authentic,0
-SMP_0032,HTL_NUW_LAGRANDE_0B53,La Grande Villa,Nuwara Eliya,Booking.com,"The views were breathtaking, the environment was peaceful and relaxing, the food was delicious, and the customer service was exceptional",food,Positive,0.091,0,2,Authentic,0
-SMP_0218,HTL_AMP_RAJAWEWA_0279,Rajawewa Resort - Hotel in Ampara,Ampara,Google Maps,"The place is clean and well-maintained, and the food was very delicious",cleanliness,Positive,0.0767,0,0,Authentic,0
-SMP_0391,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"The stay was an absolute dream, truly a breathtaking paradise with world-class ambiance and unforgettable moments.",room,Positive,0.0847,0,4,Deceptive / AI-Spam,1
-SMP_0381,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"The stay was an absolute dream, truly a breathtaking paradise with world-class ambiance and unforgettable moments.",room,Positive,0.0847,0,4,Deceptive / AI-Spam,1
-SMP_0160,HTL_HAP_WHITELOT_1F0D,White Lotus Haputale,Badulla,Booking.com,Need wifi in the room,room,Neutral,0.0536,0,0,Authentic,0
-SMP_0085,HTL_VAV_HOTELNEL_6700,Hotel Nelly Vavuniya,Vavuniya,Google Maps,"The welcome was warm, the service very pleasant, and the staff very kind and friendly",staff,Positive,0.0829,0,0,Authentic,0
-SMP_0292,HTL_UNA_GALAWATT_CFE7,Galawatta Beach Resort,Galle,Google Maps,Rooms: 5 Service: 5 Location: 5 Hotel highlights Great view,location,Positive,0.0717,0,0,Authentic,0
-SMP_0303,HTL_KIT_OLDBRIDG_70A5,Old Bridge Riverside Hotel,Kegalle,Google Maps,We sat outside late afternoon and at breakfast and it gave us a real connection with the forest,wifi,Neutral,0.088,0,0,Authentic,0
-SMP_0243,HTL_WEL_NAOMIBEA_5F48,Naomi Beach Resort - Adults only,Matara,Booking.com,"The location is simply breathtaking – the hotel is situated right by the ocean, offering stunning views and the soothing sound of waves throughout the stay",location,Neutral,0.0985,0,1,Authentic,0
-SMP_0018,HTL_UPP_AMARANTH_0C77,Amaranthe Bay Resort & Spa,Trincomalee,Booking.com,Selection of food for breakfast,food,Neutral,0.0536,0,0,Authentic,0
-SMP_0111,HTL_HAT_TEAQUEEN_F1F8,Tea Queens Bungalow,Nuwara Eliya,Google Maps,Rooms: 3 Service: 1 Location: 4,staff,Neutral,0.0582,0,0,Authentic,0
-SMP_0094,HTL_SIG_LANKAPUR_6F67,Lankapura Heritage,Matale,Booking.com,"Exceptional The views , the staff, breakfast and location was absolutely perfect for the price Unbelievable place and staff Nothing",staff,Positive,0.091,0,3,Authentic,0
-SMP_0101,HTL_KNU_MRMRSKSV_F863,Mr & Mrs K's Villa- Kandy,Matale,Booking.com,K was at the gate to welcome us,staff,Neutral,0.0657,0,0,Authentic,0
-SMP_0001,HTL_ELL_SATHKARA_2DE8,Sathkara Resort Ella,Badulla,Google Maps,Another issue was dinner service,food,Neutral,0.0536,0,0,Authentic,0
-SMP_0265,HTL_HAP_VANTAGEH_85B2,Vantage hills Haputale,Badulla,Booking.com,Also it is very quiet,location,Positive,0.0536,0,0,Authentic,0
-SMP_0344,HTL_MOU_PRIMEWAV_6B67,Prime Wave Residence,Colombo,Booking.com,The ac and WiFi worked well and beds were comfy,wifi,Neutral,0.0717,0,0,Authentic,0
-SMP_0131,HTL_KAT_SUPERSUN_E64B,SUPER SUN HOMESTAY,Kandy,Booking.com,"The room is very private, we had our own little apartment of sorts with a beautiful view",room,Positive,0.0864,0,0,Authentic,0
-SMP_0098,HTL_NEG_BELMONTB_B93B,Belmont Boutique Hotel Negombo- Free Airport Shuttle Service,Gampaha,Booking.com,The staff is very attentive My room was extremely loud (102),staff,Positive,0.0743,0,1,Authentic,0
-SMP_0198,HTL_KUR_RIVENDEL_77B8,Rivendell Twisted Tree,Kurunegala,Booking.com,Room is spacious and garden is well maintained,cleanliness,Positive,0.4157,1,0,Authentic,0
-SMP_0274,HTL_MOU_DOMINICS_993A,Dominic's best,Colombo,Booking.com,Family shopping trip in Colombo Location and travelling distance to most places Little bit noisy around,location,Negative,0.0847,0,0,Authentic,0
-SMP_0262,HTL_POL_LAVENDIS_BB2B,Lavendish Lake Giritale - Former Giritale Hotel,Polonnaruwa,Google Maps,"Beautiful lake view, peaceful surroundings, delicious food, and very friendly staff",location,Positive,0.0743,0,0,Authentic,0
-SMP_0224,HTL_POL_THELAVIS_57AF,The Lavish Polonnaruwa,Polonnaruwa,Booking.com,Rooms were very clean and modern and a nice hot shower,cleanliness,Positive,0.4243,1,0,Authentic,0
-SMP_0161,HTL_TRI_108PALMS_5E7B,108 Palms Beach Resort,Trincomalee,Booking.com,"Our room was cleaned daily and was very comfortable, and there was nothing better than relaxing on the veranda watching the wildlife — birds, squirrels, monkeys, chameleons, dragonflies, all going about their day",room,Positive,0.4554,1,0,Authentic,0
-SMP_0177,HTL_KAL_ELEMENTS_AAFB,Elements Beach & Nature Resort,Puttalam,Booking.com,The resort itself feels very spacious and it doesn’t feel crowded at all,room,Positive,0.0789,0,0,Authentic,0
-SMP_0223,HTL_JAF_ALLENSHO_A3AD,Allens home stay,Jaffna,Google Maps,"The hotel itself was clean and comfortable,",cleanliness,Positive,0.0622,0,0,Authentic,0
-SMP_0298,HTL_SIG_LANKAPUR_6F67,Lankapura Heritage,Matale,Booking.com,"appreciation towards it, especially beca of the location and staff, which is very friendly and helpful",location,Positive,0.0847,0,0,Authentic,0
-SMP_0296,HTL_NIL_NILAVELI_1E6E,Nilaveli Beach Resort - Level 1 Certified,Trincomalee,Booking.com,The beach was just stunning,location,Neutral,0.4036,1,0,Authentic,0
-SMP_0353,HTL_KAT_LAVENDIS_B773,Lavendish Tamarind Lifestyle,Monaragala,Booking.com,The Wi-Fi password was not written anywhere inside the room,wifi,Neutral,0.0717,0,0,Authentic,0
-SMP_0304,HTL_WEL_JETWINGK_CC83,Jetwing Kaduruketha,Monaragala,Booking.com,"The connection to the rice fields is seamless and breathtaking, providing a deep sense of peace",wifi,Neutral,0.0847,0,1,Authentic,0
-SMP_0134,HTL_ARU_SECRETGE_B473,Secret Gem,Ampara,Booking.com,"The rooms were clean, spacious, and well-maintained, providing a comfortable and relaxing atmosphere",room,Positive,0.0789,0,0,Authentic,0
-SMP_0365,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Magnificent property with top-notch service and stunning aesthetics. We had an exceptionally wonderful time.,location,Positive,0.081,0,4,Deceptive / AI-Spam,1
-SMP_0015,HTL_MAT_BEACHINN_DEA1,Beach Inns Holiday Resort,Matara,Booking.com,"Breakfast was varied and great, staff was incredibly nice and helpful",food,Positive,0.0743,0,1,Authentic,0
-SMP_0170,HTL_KAL_KARLHOLI_8423,Karl Holiday Bungalow,Kalutara,Google Maps,Wifi was non existent in the room,room,Neutral,0.0622,0,0,Authentic,0
-SMP_0275,HTL_NAN_GREENISH_3EF0,GREENISH INN (ROOMS),Nuwara Eliya,Booking.com,5 min drive to the city center or train station,location,Neutral,0.6317,1,0,Authentic,0
-SMP_0285,HTL_HIK_SUITELAN_22F3,Suite Lanka,Galle,Booking.com,is only 10 min beach walk away to go to to the main portion,location,Neutral,0.641,1,0,Authentic,0
-SMP_0261,HTL_MIR_ASAYASAN_B18D,Asaya Sands Mirissa,Matara,Google Maps,"The ambience was beautiful, peaceful, and relaxing, making it the perfect place to unwind",location,Positive,0.081,0,0,Authentic,0
-SMP_0291,HTL_KAL_WINDYWAV_5291,Windy Waves Beach Nature Resort & Kite School,Puttalam,Booking.com,The beach is fantastic,location,Positive,0.4036,1,1,Authentic,0
-SMP_0347,HTL_ANU_THEIVYLA_3334,The Ivy Lake,Anuradhapura,Booking.com,"Wifi was not working for me (to be fair, I did not ask help on this due to working 4g connection)",wifi,Neutral,0.0924,0,0,Authentic,0
-SMP_0399,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"Terrible and dreadful stay, everything was horribly managed and deeply awful from start to finish.",staff,Negative,0.0829,0,1,Deceptive / AI-Spam,1
-SMP_0143,HTL_MOU_DOMINICS_993A,Dominic's best,Colombo,Booking.com,"Location, cleanliness, overall facilities, little implements and considerations that make a stay comfortable",room,Positive,0.0789,0,0,Authentic,0
-SMP_0169,HTL_WAD_BLUEBEAC_5923,Blue Beach Hotel,Kalutara,Google Maps,Toiletries like shower gel were missing,room,Neutral,0.4082,1,0,Authentic,0
-SMP_0205,HTL_ELL_EMINENCE_395C,Eminence ella,Badulla,Booking.com,very clean and all that you need,cleanliness,Positive,0.0622,0,0,Authentic,0
-SMP_0099,HTL_BEN_JANUSPAR_D730,Janus Paradise Rest,Kalutara,Booking.com,They were helpful when we made requests,staff,Positive,0.0622,0,0,Authentic,0
-SMP_0305,HTL_MAR_SAARABEA_6E1A,Saara Beach Hotel,Puttalam,Google Maps,I was asking WiFi then they told no WiFi 🫤 no water ( slow ) no hot water Ac also ☹️☹️ Rooms: 1,wifi,Positive,0.445,1,0,Authentic,0
-SMP_0115,HTL_KAN_KANDYHIL_1D9B,Kandy Hills,Kandy,Booking.com,Fantastic stay with faultless service Fantastic breakfast overlooking the city - the staff were incredibly thoughtful and catered for every request,staff,Positive,0.0924,0,3,Authentic,0
-SMP_0117,HTL_NEG_VILLADOM_E9EF,Villa Dominikku,Gampaha,Booking.com,"We are so grateful for their kindness and hospitality – highly recommend staying here, made it a very lovely and positive start to our holiday around Sri Lanka ✨ Nothing, was so lovely",staff,Positive,0.1054,0,0,Authentic,0
-SMP_0157,HTL_HIK_SAILORSB_34B3,Sailors' Bay,Galle,Google Maps,Our room was the best one we had in whole … Read more on Tripadvisor,room,Neutral,0.0829,0,0,Authentic,0
-SMP_0180,HTL_KOL_LAVONCAB_9021,Lavonca Boutique Hotel,Colombo,Google Maps,Spacious room with a really comfortable bed and a nice balcony,room,Positive,0.4243,1,0,Authentic,0
-SMP_0236,HTL_KEL_VILLA39B_9420,Villa 39B,Gampaha,Google Maps,"Really clean, peaceful and pleasant environment",cleanliness,Positive,0.0582,0,0,Authentic,0
-SMP_0103,HTL_ANU_LAKEHOUS_27E5,Lake House Home Stay,Anuradhapura,Booking.com,"Lovely homestay Very kind and helpful host, lovely family, great food, calming place One of the best accommodation experiences I ever had",staff,Positive,0.0937,0,0,Authentic,0
-SMP_0114,HTL_TIS_ELEGANTL_3824,Elegant Lake Yala Safari House,Hambantota,Booking.com,He also picked us up from the bus stop and takes care of everything his guests could possibly need,staff,Neutral,0.4396,1,0,Authentic,0
-SMP_0241,HTL_GAM_GAMPAHAH_A067,Gampaha Heritage,Gampaha,Booking.com,Lots of natural light and very peaceful,location,Positive,0.0622,0,0,Authentic,0
-SMP_0020,HTL_WIL_BIGGAMEW_B1D5,Big Game - Wilpattu by Eco Team,Anuradhapura,Booking.com,Great hospitality and fantastic food,food,Positive,0.0536,0,1,Authentic,0
-SMP_0196,HTL_YAL_YALAAVIA_FEA2,Yala Avian Eye Safari,Hambantota,Booking.com,Plus fresh fruits and a well made omelette,cleanliness,Positive,0.4157,1,0,Authentic,0
-SMP_0056,HTL_BEN_TREEOFLI_D337,Tree of Life Resort,Kalutara,Booking.com,S they have a newly opened restaurant White Tree so definitely check it out,food,Neutral,0.081,0,0,Authentic,0
-SMP_0082,HTL_DAM_GAMAGEDA_44E7,Gamagedara Resort,Matale,Booking.com,The manager is friendly and very helpful,staff,Positive,0.0622,0,0,Authentic,0
-SMP_0137,HTL_KAT_KYNROCKH_95C5,Kynrock Hotels & Resorts Kataragama,Monaragala,Booking.com,gave us a double room,room,Neutral,0.0536,0,0,Authentic,0
-SMP_0315,HTL_VAV_BIRUNTHA_A5AC,Birunthavanam,Vavuniya,Booking.com,"Wifi is working, no hot water, no toilet paper",wifi,Neutral,0.4188,1,0,Authentic,0
-SMP_0211,HTL_WEL_NAOMIBEA_5F48,Naomi Beach Resort - Adults only,Matara,Booking.com,Staff came to cover the smell with some spray so that was ok for my one night stay,cleanliness,Neutral,0.088,0,0,Authentic,0
-SMP_0372,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Unparalleled excellence and sublime hospitality! The vibes were completely magical and perfection in every way.,staff,Positive,0.0829,0,3,Deceptive / AI-Spam,1
-SMP_0092,HTL_YAL_THANAMAL_A8FB,Thanamal-villa,Hambantota,Booking.com,The host even invited me to join a part with his family and friends and had a great night,staff,Positive,0.0896,0,0,Authentic,0
-SMP_0013,HTL_HAT_WHITEHOU_48E7,White House Bungalow Hatton,Nuwara Eliya,Booking.com,"You can reach the town, the shop and restaurant on foot in 5-10 minutes",food,Neutral,0.291,0,0,Authentic,0
-SMP_0212,HTL_KIT_ECOCABIN_BCBC,Eco Cabins Kitulgala,Kegalle,Booking.com,A clean and comfortable accommodation situated in a stunning landscape and with the nicest staff,cleanliness,Positive,0.0829,0,0,Authentic,0
-SMP_0091,HTL_GAM_GAMPAHAH_A067,Gampaha Heritage,Gampaha,Booking.com,Very Good Very friendly and hospitable hosts,staff,Positive,0.0622,0,0,Authentic,0
-SMP_0084,HTL_IBB_POLARISK_FB9E,Polaris- Kurunegala,Kurunegala,Booking.com,Host is very welcoming and friendly,staff,Positive,0.0582,0,0,Authentic,0
-SMP_0122,HTL_NEG_JETWINGB_A1D1,Jetwing Beach,Gampaha,Booking.com,Good Nice room and location with pool,room,Positive,0.4122,1,0,Authentic,0
-SMP_0362,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Unparalleled excellence and sublime hospitality! The vibes were completely magical and perfection in every way.,staff,Positive,0.0829,0,3,Deceptive / AI-Spam,1
-SMP_0209,HTL_ARU_AGRAARUG_D9B8,Agra Arugambay,Ampara,Booking.com,"Comfortable, clean, relaxed vibes",cleanliness,Positive,0.0536,0,0,Authentic,0
-SMP_0287,HTL_DIK_WHITELIO_F553,White Lion Paradise Dikwella,Matara,Booking.com,Lovely stay at the beach Beautiful hotel at the most beautiful beach,location,Positive,0.4267,1,0,Authentic,0
-SMP_0182,HTL_MIR_THESECRE_F84F,The Secret Guesthouse,Matara,Booking.com,The place is spotless,cleanliness,Positive,0.0536,0,0,Authentic,0
-SMP_0053,HTL_HAB_JUNGLESH_0754,Jungle Shades villa - Habarana,Polonnaruwa,Booking.com,"We also had the pleasure of enjoying a traditional dinner, which was such a wonderful experience",food,Positive,0.0847,0,1,Authentic,0
-SMP_0128,HTL_RAT_DISCOVER_F31B,Discovery resort,Ratnapura,Booking.com,"Big rooms, pool with a view, plentiful breakfast Great place to stay :) lovely pool with a view",room,Positive,0.438,1,0,Authentic,0
-SMP_0358,HTL_HAT_WHITEHOU_48E7,White House Bungalow Hatton,Nuwara Eliya,Booking.com,"Blankets could be cleaner, wifi very very slow,",wifi,Negative,0.0657,0,0,Authentic,0
-SMP_0184,HTL_DAM_KANDALAM_D2FC,Kandalama Lodge,Matale,Booking.com,"Great service with clean, comfortable rooms and outdoor bathroom facilities",cleanliness,Positive,0.0717,0,0,Authentic,0
-SMP_0021,HTL_KAL_ELEMENTS_AAFB,Elements Beach & Nature Resort,Puttalam,Booking.com,"Great kitesurfing resort, with fab food and cocktails Great location, perfect for kitesurfing (all levels) in the windy season",food,Positive,0.0896,0,0,Authentic,0
-SMP_0187,HTL_HAP_VANTAGEH_85B2,Vantage hills Haputale,Badulla,Google Maps,"The rooms were clean and comfortable, and the staff were friendly and attentive throughout our stay",cleanliness,Positive,0.0847,0,0,Authentic,0
-SMP_0158,HTL_KUR_GRANDCOL_58AB,Grand Colonial Viveka,Kurunegala,Google Maps,"Trip type Vacation Travel group Friends Rooms: 5 Service: 5 Location: 5 Rooms Comfortable, spacious rooms Hotel highlights Great view, Quiet, Great value",room,Positive,0.095,0,0,Authentic,0
-SMP_0022,HTL_ANU_EXPLORER_DE36,Explorer Hotel & Bike Rental Anuradhapura,Anuradhapura,Booking.com,The staff is also great and the food is delicious,food,Positive,0.0717,0,0,Authentic,0
-SMP_0066,HTL_NIL_CARDAMON_0DD8,Cardamon Hotel Nilaveli,Trincomalee,Booking.com,The staff is very attentive and welcoming,staff,Positive,0.0622,0,0,Authentic,0
-SMP_0221,HTL_KIT_ARAMYARI_328D,Aramya Riverfront Boutique Resort Kitulgala - A Haven for Adventure and Serenity,Kegalle,Booking.com,Best choice ever Location is amazing All rooms are clean comfortable and breath taking view I’ve been traveling allover the world,cleanliness,Positive,0.0924,0,1,Authentic,0
-SMP_0076,HTL_NAL_JETWINGJ_B6D6,Jetwing Jaffna,Jaffna,Google Maps,Rooms: 5 Service: 5 Location: 5,staff,Neutral,0.0582,0,0,Authentic,0
-SMP_0336,HTL_YAL_DOUBLETR_DCFF,DoubleTree by Hilton Weerawila Rajawarna Resort,Hambantota,Google Maps,Personal wifi access point and large tv with option to connect hdmi cable,wifi,Neutral,0.0789,0,0,Authentic,0
-SMP_0299,HTL_GIR_AROMAVIL_9BBD,Aroma Villa Homestay,Polonnaruwa,Booking.com,"The location is a little far from the Minneriya park entrance,",location,Neutral,0.4243,1,0,Authentic,0
-SMP_0383,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,A heavenly oasis with delightful atmosphere and impeccable experience. Truly an extraordinary gem of a place.,room,Positive,0.0847,0,7,Deceptive / AI-Spam,1
-SMP_0019,HTL_PAS_AMANDABE_7DBD,Amanda Beach Resort,Batticaloa,Booking.com,The breakfast was amazing,food,Positive,0.0536,0,1,Authentic,0
-SMP_0280,HTL_TAN_VILLALUC_806A,Villa Lucky Star,Hambantota,Booking.com,And if you venture out the picture perfect silent beach a 10 minute walk,location,Positive,0.641,1,0,Authentic,0
-SMP_0077,HTL_WIL_CLOUDNIN_9F34,Cloud Nine Lanka Resort Wilpattu,Anuradhapura,Booking.com,The info we were sent in advance was very helpful We like to try different restaurants,staff,Positive,0.0847,0,0,Authentic,0
-SMP_0039,HTL_ELL_98ACRESR_4834,98 Acres Resort & Spa,Badulla,Booking.com,Breakfast was fantastic (thoroughly recommend the veggie burrito) and the staff were wonderful,food,Positive,0.0789,0,3,Authentic,0
-SMP_0058,HTL_KNU_RIVERSTO_05F9,Riverston Grand Villas,Matale,Booking.com,"The staff were incredibly kind and welcoming, and they prepared delicious, generous meals for us",food,Positive,0.0829,0,1,Authentic,0
-SMP_0373,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,A heavenly oasis with delightful atmosphere and impeccable experience. Truly an extraordinary gem of a place.,room,Positive,0.0847,0,7,Deceptive / AI-Spam,1
-SMP_0288,HTL_GIR_AGBOHOTE_8DF7,Agbo Hotel,Polonnaruwa,Booking.com,Great place to relax and enjoy the surroundings after a hot day of touring,location,Positive,0.081,0,0,Authentic,0
-SMP_0219,HTL_NIL_ANUKAMAR_9C95,Anukama Resort,Trincomalee,Google Maps,"Bathroom amenities also clean, gets super hot in bathroom so wet swimwear dried fast overnight",cleanliness,Positive,0.0829,0,0,Authentic,0
-SMP_0283,HTL_KAL_BLUEWHAL_AEDB,Blue Whale Resort & Kite Surfing,Puttalam,Booking.com,Comfy room Dinner lighting and area is well thought of Clean compared to many food places in kalpitiya Nothing much to do except the beach and kite surfing,location,Positive,0.4507,1,0,Authentic,0
-SMP_0227,HTL_HAM_MALALARE_E297,Malala Retreat,Hambantota,Booking.com,"The rooms are spacious, very clean, and beds super comfortable",cleanliness,Positive,0.0717,0,0,Authentic,0
-SMP_0083,HTL_BEN_RIUSRILA_58A1,Riu Sri Lanka - All Inclusive,Kalutara,Google Maps,❤️✨ Rooms: 5 Service: 5 Location: 5,staff,Neutral,0.0622,0,0,Authentic,0
-SMP_0135,HTL_AHA_THEHOTEL_5750,The Hotel,Galle,Booking.com,"Very comfortable seating on the beach,",room,Positive,0.4082,1,0,Authentic,0
-SMP_0327,HTL_WEL_BINDUHOM_FC1A,Bindu Homestay,Monaragala,Booking.com,also good wifi and a perfect coffee in the morning,wifi,Positive,0.4217,1,0,Authentic,0
-SMP_0067,HTL_ARU_WAVESPAW_A800,Waves & Paws Hostel,Ampara,Google Maps,The staff is so sweet and everything is new,staff,Neutral,0.0688,0,0,Authentic,0
-SMP_0171,HTL_HAT_CEYLONTE_FF6E,Ceylon Tea Trails - Relais and Chateaux - All Inclusive,Nuwara Eliya,Booking.com,Also the lake level was low and thus the view was a bit less picturesque than it might have been,room,Neutral,0.091,0,0,Authentic,0
-SMP_0002,HTL_KEG_BOGALAVI_C759,Bogala Village Eco Resort,Kegalle,Booking.com,"The food was good,",food,Positive,0.0536,0,0,Authentic,0
-SMP_0023,HTL_MOU_MOUNTBAY_DC29,MountBaylk,Colombo,Booking.com,This gives me a comfortable and satisfying experience when I stay there for 3 days and food also delicious,food,Positive,0.2996,0,0,Authentic,0
-SMP_0142,HTL_UPP_PLEASANT_E2AF,Pleasant Park Holiday Inn,Trincomalee,Booking.com,Perfect shower and towels included,room,Positive,0.7536,2,0,Authentic,0
-SMP_0217,HTL_DIG_SERENDIB_7124,Serendib Signature Resort,Kandy,Booking.com,"Rooms comfortable, very clean and tastefully decorated",cleanliness,Positive,0.0622,0,0,Authentic,0
-SMP_0354,HTL_KEG_HOTELYEL_3421,Hotel Yelona,Kegalle,Booking.com,Exceptional Great Customer service and Delicious meals Wifi didn't work,wifi,Positive,0.0717,0,1,Authentic,0
-SMP_0048,HTL_CHI_ELEGANTH_93AD,Elegant Hamlets Home Stay,Puttalam,Booking.com,The food was delicious and abundant,food,Positive,0.0582,0,0,Authentic,0
-SMP_0027,HTL_HAB_DUDLEYNA_BEBD,Dudley Nature Resort,Polonnaruwa,Booking.com,Staying in such a tropical place with monkeys watching us have breakfast was so much fun,food,Neutral,0.0847,0,0,Authentic,0
-SMP_0129,HTL_ANU_GBROYALS_F642,GB Royal Stay Anuradhapura,Anuradhapura,Booking.com,Our double-bed room was a little cramped for three adults,room,Negative,0.0717,0,0,Authentic,0
-SMP_0251,HTL_DAM_JETWINGL_5F1C,Jetwing Lake,Matale,Google Maps,Trip type Vacation Travel group Family Rooms: 1 Service: 1 Location: 3,location,Neutral,0.0767,0,0,Authentic,0
-SMP_0259,HTL_ARU_STAYGOLD_88CB,Stay Golden,Ampara,Google Maps,Trip type Vacation Travel group Couple Rooms: 5 Service: 5 Location: 5 Rooms Perfect rooms just go for it Nearby activities Kumana safari,location,Positive,0.095,0,0,Authentic,0
-SMP_0366,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Simply flawless. The culinary delights were fabulous and the staff was remarkably friendly and attentive.,food,Positive,0.0829,0,3,Deceptive / AI-Spam,1
-SMP_0325,HTL_BEN_THAALABE_A69B,Thaala Bentota,Kalutara,Booking.com,More staff needed here to speed up the food service,wifi,Neutral,0.0717,0,0,Authentic,0
-SMP_0352,HTL_JAF_YALSTOWN_6610,Yal's Town Inn,Jaffna,Booking.com,no internet connection in second room i stayed,wifi,Neutral,0.0657,0,0,Authentic,0
-SMP_0105,HTL_POL_HOTELPEA_90A5,HOTEL Pearl White Residency,Polonnaruwa,Booking.com,The staff and owner were very attentive and helpful,staff,Positive,0.0688,0,0,Authentic,0
-SMP_0176,HTL_BEN_EKHOSURF_8721,EKHO Surf Bentota,Kalutara,Booking.com,"Great choice, with a few niggles Stunning property with a great view from the room, and perfectly located",room,Positive,0.088,0,0,Authentic,0
-SMP_0108,HTL_TIS_HOTELRIV_6CE5,Hotel River Front,Hambantota,Booking.com,"A special mention to the lovely lady at reception, who is the owner’s daughter, and the waiter who looked after us so well during our stay",staff,Positive,0.0985,0,0,Authentic,0
-SMP_0310,HTL_GAL_SIRNEGAL_2B53,Sirène Galle Fort,Galle,Booking.com,The wifi is very slow,wifi,Negative,0.0536,0,0,Authentic,0
-SMP_0145,HTL_HAT_TEAHILLS_D88A,Tea Hills Bungalow,Nuwara Eliya,Google Maps,"The staff was very friendly and attentive, and the view of the surrounding tea fields was stunning",room,Positive,0.4364,1,0,Authentic,0
-SMP_0140,HTL_WIL_WILPATTU_1284,Wilpattu Safari Resort,Anuradhapura,Booking.com,"However, poor room maintenance and cleanliness threaten to spoil the entire experience",room,Negative,0.0767,0,0,Authentic,0
-SMP_0080,HTL_BAD_TARGETRA_1F43,Target Range Villa - Luxury Getaway Nestled in the Heart of Badulla,Badulla,Booking.com,"I truly recommend Target Range Villa to anyone looking for peace, comfort, and genuine Sri Lankan hospitality",staff,Neutral,0.0864,0,1,Authentic,0
-SMP_0371,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"The stay was an absolute dream, truly a breathtaking paradise with world-class ambiance and unforgettable moments.",room,Positive,0.0847,0,4,Deceptive / AI-Spam,1
-SMP_0055,HTL_SIN_JANSENSB_09D7,Jansen’s Bungalow Sinharaja Rainforest Retreat,Ratnapura,Booking.com,A separate dining pavilion is well designed and the food is tasty and attractively presented,food,Positive,0.0829,0,0,Authentic,0
-SMP_0060,HTL_NUW_THELORIS_7631,The Loris Manor,Nuwara Eliya,Google Maps,Food & drinks They have breakfast options which you need to inform them a day earlier,food,Neutral,0.0847,0,0,Authentic,0
-SMP_0388,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"Utterly disappointed with the overall experience, the place lacked charm and was completely unacceptable.",room,Negative,0.081,0,1,Deceptive / AI-Spam,1
-SMP_0069,HTL_KOL_RANKOTHH_13AB,Rankoth House,Colombo,Booking.com,"Host allowed for late checkout without extra charge, very nice from him",staff,Positive,0.0767,0,0,Authentic,0
-SMP_0054,HTL_VAV_BIRUNTHA_A5AC,Birunthavanam,Vavuniya,Booking.com,They had mentioned duluxe double room with kettle tea coffee arrangements,food,Neutral,1.0,3,0,Authentic,0
-SMP_0340,HTL_WIL_THIMBIRI_ED3D,Thimbiri Wewa Resort Wilpattu,Anuradhapura,Booking.com,The only negative was that we had no wifi in our room or the restaurant,wifi,Neutral,0.0829,0,0,Authentic,0
-SMP_0154,HTL_NIL_MOONISLE_9D44,Moon Isle Beach Bungalow,Trincomalee,Booking.com,Lovely stay right on the beach Stepping from the room right onto the beach,room,Positive,0.431,1,0,Authentic,0
-SMP_0284,HTL_BER_ANURASEL_CD3C,Anura's Elephant,Kalutara,Booking.com,great location a few steps from the beach,location,Positive,0.4157,1,0,Authentic,0
-SMP_0342,HTL_HAP_VANTAGEH_85B2,Vantage hills Haputale,Badulla,Booking.com,WiFi was working perfectly,wifi,Neutral,0.0536,0,0,Authentic,0
-SMP_0397,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,A spectacular haven of tranquility! Words cannot describe how marvelous and flawless everything was.,location,Positive,0.081,0,4,Deceptive / AI-Spam,1
-SMP_0271,HTL_COL_MARINOBE_2875,Marino Beach Colombo,Colombo,Google Maps,"Trip type Vacation Travel group Family Rooms: 5 Service: 5 Location: 4 Hotel highlights Luxury, Great view, Romantic, Quiet, Kid-friendly, Great value",location,Positive,0.0937,0,0,Authentic,0
-SMP_0335,HTL_KEL_PARAMOUN_262D,Paramount Residence 3,Gampaha,Booking.com,"The Wi-Fi was very fast, which was really nice for 2 digital nomads",wifi,Positive,0.0789,0,0,Authentic,0
-SMP_0314,HTL_VAV_HOTELNOR_B749,Hotel NorthWay,Vavuniya,Booking.com,"Good air-conditioning, WiFi, and comfortable bed",wifi,Positive,0.0582,0,0,Authentic,0
-SMP_0155,HTL_MUL_UTHAYAGU_9AD5,Uthaya Guest House,Mullaitivu,Google Maps,"The amenities weren't great, in our 3-person room, 2 of the 6 pillows we were given had stains on them",room,Negative,0.441,1,0,Authentic,0
-SMP_0361,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"The stay was an absolute dream, truly a breathtaking paradise with world-class ambiance and unforgettable moments.",room,Positive,0.0847,0,4,Deceptive / AI-Spam,1
-SMP_0279,HTL_TAN_MANGROVE_14D1,Mangrove Beach Chalets,Hambantota,Booking.com,"Exceptional It's paradise on the beach, the place (the chalet) is nicely designed, comfortable, clean, big enough",location,Positive,0.2614,1,2,Authentic,0
-SMP_0225,HTL_NIL_HIGHPARK_7496,High Park Hotel,Trincomalee,Booking.com,"Nice place for a few nights The room was large, and the bed was comfortable with clean linen",cleanliness,Positive,0.438,1,0,Authentic,0
-SMP_0081,HTL_NEG_REGALRSE_D2A9,Regal Réseau Hotel & Spa,Gampaha,Google Maps,otherwise the genaral manager can manipulate you very easily regarding ourcrequirments…in our case whencwe asked for sea view he said yes then gave us a lateral sea view …,staff,Neutral,0.1017,0,0,Authentic,0
-SMP_0146,HTL_UPP_GOLDENBE_1318,Golden Beach Hotel & Restaurant,Trincomalee,Google Maps,"Trip type Vacation Travel group Couple Rooms: 4 Service: 5 Location: 5 Hotel highlights Great view, Quiet, Great value",room,Positive,0.0896,0,0,Authentic,0
-SMP_0190,HTL_GAL_SINGHAGR_480E,Singhagra Tropical Villa Negombo,Colombo,Booking.com,Very clean and peaceful,cleanliness,Positive,0.0536,0,0,Authentic,0
-SMP_0126,HTL_KAL_CITRUSWA_E6BE,Citrus Waskaduwa,Kalutara,Booking.com,Breezy spacious relaxation My second stay here,room,Positive,0.0622,0,0,Authentic,0
-SMP_0036,HTL_KAT_GRANDTAM_EA83,Grand Tamarind Lake,Monaragala,TripAdvisor,"The rooms were spacious, the views were beautiful, and the food was tasty,",food,Positive,0.0789,0,0,Authentic,0
-SMP_0179,HTL_RAT_GRANDSIL_EBC9,Grand Silver Ray,Ratnapura,Booking.com,"Very big hotel, comfortable to park and wonderful staff",room,Positive,0.0688,0,1,Authentic,0
-SMP_0068,HTL_KAT_MAILAGAM_9BE0,Mailagama Cinnamon Residence,Monaragala,Booking.com,Manager Inbaraj was always attentive and helped us with any questions,staff,Positive,0.0743,0,0,Authentic,0
-SMP_0136,HTL_DIK_WHITELIO_F553,White Lion Paradise Dikwella,Matara,Booking.com,Excellent Perfect Very calm large room with large bathroom Nothing,room,Positive,0.0717,0,0,Authentic,0
-SMP_0260,HTL_TIS_BLUEWILD_4B2D,Blue Wild - Yala - Plastic Free & Sustainable,Hambantota,Booking.com,"A very comfortable stay in a tranquil, beautiful and environmentally conscious resort Location was spectacular",location,Positive,0.0829,0,1,Authentic,0
-SMP_0110,HTL_ELL_SATHKARA_2DE8,Sathkara Resort Ella,Badulla,Booking.com,"Exceptional Brand new, beautiful, perfect service, good team, I enjoyed a lot",staff,Positive,0.0767,0,1,Authentic,0
-SMP_0276,HTL_KOL_MORVENHO_7853,Morven Hotel Colombo,Colombo,Booking.com,The location was very good too,location,Positive,0.0582,0,0,Authentic,0
-SMP_0398,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,"Utterly disappointed with the overall experience, the place lacked charm and was completely unacceptable.",room,Negative,0.081,0,1,Deceptive / AI-Spam,1
-SMP_0052,HTL_NEG_BELMONTB_B93B,Belmont Boutique Hotel Negombo- Free Airport Shuttle Service,Gampaha,Booking.com,It would have been nice if our excellent Sri Lankan breakfast had been ready for us at 7,food,Positive,0.088,0,0,Authentic,0
-SMP_0289,HTL_WAD_BLUEBEAC_5923,Blue Beach Hotel,Kalutara,Booking.com,"The location is perfect, with a beautiful sea view from the room",location,Positive,0.0767,0,0,Authentic,0
-SMP_0319,HTL_KAT_LAVENDIS_CF29,Lavendish Okrin Hotel,Monaragala,Booking.com,"The free Wi-Fi didn’t work at all, so I had to use my phone as a hotspot to access the internet",wifi,Neutral,0.0924,0,0,Authentic,0
-SMP_0235,HTL_BER_SHEHANVI_EC40,Shehan Villa,Kalutara,Google Maps,Decent place and price Clean rooms Trip type Vacation Travel group Family Rooms: 4 Service: 5 Location: 4 Hotel highlights Quiet,cleanliness,Positive,0.0924,0,0,Authentic,0
-SMP_0005,HTL_KAN_GRANDSER_A9EE,Grand Serendib Hotel,Kandy,Booking.com,We had breakfast on one morning which was well catered and tasty,food,Positive,0.0767,0,0,Authentic,0
-SMP_0038,HTL_TAN_VILLALUC_806A,Villa Lucky Star,Hambantota,Booking.com,The villa's chef prepares gourmet dishes and deserves 10 out of 10,food,Neutral,0.0767,0,0,Authentic,0
-SMP_0385,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,AI-Generated,Magnificent property with top-notch service and stunning aesthetics. We had an exceptionally wonderful time.,location,Positive,0.081,0,4,Deceptive / AI-Spam,1
-SMP_0162,HTL_POT_ORUWABOU_24FA,Oruwa Boutique Villa,Ampara,Google Maps,We came mainly for the view over the lagoon and were so glad,room,Neutral,0.0789,0,0,Authentic,0
+SMP_0361,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"The stay was an absolute dream, truly a breathtaking paradise with world-class ambiance and unforgettable moments.",room,Positive,0.0847,0,4,Deceptive / AI-Spam,1
+SMP_0080,HTL_TIS_HOTELRIV_6CE5,Hotel River Front,Hambantota,Booking.com,"Great hotel, with wonderful staff",staff,Positive,0.0536,0,1,Authentic,0
+SMP_0220,HTL_POL_SEYARAHO_BF94,Seyara Holiday Resort,Polonnaruwa,Booking.com,The rooms were clean also The doors and the lights from the rooms were in a poor conditions,cleanliness,Neutral,0.088,0,0,Authentic,0
+SMP_0114,HTL_DAM_LIYYAWAT_04E2,Liyya Water Villas,Matale,Booking.com,Stuff aren’t friendly or even smiling,staff,Positive,0.0582,0,0,Authentic,0
+SMP_0098,HTL_HAT_WHITEHOU_48E7,White House Bungalow Hatton,Nuwara Eliya,Booking.com,The staff were attentive,staff,Positive,0.0536,0,0,Authentic,0
+SMP_0182,HTL_KOL_CINNAMON_347E,Cinnamon Red Colombo,Colombo,Booking.com,Very Good Property was good Rooms were good big and clean,cleanliness,Positive,0.0743,0,0,Authentic,0
+SMP_0003,HTL_PIN_THEFORES_DBD6,The Forest Villa,Kegalle,Booking.com,And they cook very delicious,food,Positive,0.0536,0,0,Authentic,0
+SMP_0246,HTL_TRI_PEARLOCE_647B,Pearl Oceanic Resort - Trincomalee,Trincomalee,Booking.com,In the first day we were actually surprised to see that no one was there: if you like quiet/calm this is an idem gem,location,Positive,0.0962,0,1,Authentic,0
+SMP_0184,HTL_TAL_ATHIHOTE_9A0A,Athi Hotel,Mannar,Google Maps,it's neat and well maintained,cleanliness,Neutral,0.0536,0,0,Authentic,0
+SMP_0286,HTL_RAT_SUMMERRI_9F70,Summer Ridge - Homestay,Ratnapura,Booking.com,Exceptional Quiet place nestled in a neighbourhood very close to the city center,location,Positive,0.0789,0,1,Authentic,0
+SMP_0266,HTL_KEL_KELANIYA_8872,Kelaniya Heritage,Gampaha,Google Maps,"Perfect location, Very Calm and Relax placed",location,Positive,0.0622,0,0,Authentic,0
+SMP_0326,HTL_WEL_SINGLEFI_CFBD,Single Fin Weligama,Matara,Booking.com,Nice big rooms with a/c and wifi,wifi,Positive,0.0622,0,0,Authentic,0
+SMP_0173,HTL_HAT_TEAHILLS_2FA3,Tea Hills Lake,Nuwara Eliya,Booking.com,Excellent Fantastic room and views,room,Positive,0.0536,0,1,Authentic,0
+SMP_0280,HTL_DAM_SUNDARAS_8955,Sundaras Infinity Jungle Resort,Matale,Booking.com,"The jungle atmospheregave the resort a peaceful, natural vibe, and the large pool was perfect for relaxing",location,Positive,0.4364,1,0,Authentic,0
+SMP_0327,HTL_WIL_EAGLEWIL_6E83,Eagle Wilpattu Resort,Anuradhapura,Booking.com,The WiFi was poor,wifi,Negative,0.0536,0,0,Authentic,0
+SMP_0194,HTL_KAN_360VIEWP_6CE4,360 Viewpoint by Queens Mount,Kandy,Google Maps,The only disappointed thing was the swimming pools which was small and and a little bit dirty,cleanliness,Negative,0.0864,0,0,Authentic,0
+SMP_0258,HTL_BEN_JANUSPAR_D730,Janus Paradise Rest,Kalutara,Booking.com,Beach Haven Great location right on the beach,location,Positive,0.4157,1,1,Authentic,0
+SMP_0285,HTL_KAL_PASSINAT_6462,Passi Nature Villas Passikudah,Batticaloa,Booking.com,Great location for two beaches,location,Positive,0.0536,0,0,Authentic,0
+SMP_0267,HTL_MIR_JJSHOSTE_4BB4,JJ's Hostel Mirissa,Matara,Booking.com,"Amazing central location close to the beach, main strip and great cafes",location,Positive,0.4267,1,1,Authentic,0
+SMP_0223,HTL_BEN_SAHANASR_61CA,Sahana Sri Villa,Kalutara,Booking.com,"Exceptional The moment I arrived in, I felt at home, very clean and welcoming place",cleanliness,Positive,0.0829,0,1,Authentic,0
+SMP_0270,HTL_KAL_SURFPOIN_3617,Surfpoint Sri Lanka Kite Village,Puttalam,Booking.com,Good and silent location close to restaurants and the beach,location,Positive,0.4217,1,0,Authentic,0
+SMP_0108,HTL_RAT_SUMMERRI_9F70,Summer Ridge - Homestay,Ratnapura,Booking.com,Entire family is very helpful and supportive,staff,Positive,0.0622,0,0,Authentic,0
+SMP_0355,HTL_JAF_YAARLHOS_2DDB,Yaarl Hostels,Jaffna,Booking.com,- Wifi didn't work during my 3 night stay,wifi,Neutral,0.2788,0,0,Authentic,0
+SMP_0314,HTL_MIR_PARADISE_C7A6,Paradise Beach Club,Matara,Booking.com,WiFi could have been better,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0095,HTL_TRI_CUHOSTEL_CF61,C U Hostel,Trincomalee,Booking.com,Oriane was so helpful and made me feel right at home,staff,Positive,0.0743,0,0,Authentic,0
+SMP_0201,HTL_SIG_CAPESIGI_F385,Cape Sigiriya,Matale,Booking.com,We had a very relaxing time at Cape Sigiria We drove down a dirt road wondering what was going to be at the end and were pleasantly surprised to see a beautifully well maintained resort,cleanliness,Neutral,0.1071,0,0,Authentic,0
+SMP_0188,HTL_COL_HOSTELAT_B9A9,Hostel at Galle Face,Colombo,Booking.com,"Good The hostel is well situated, kept remarkably clean and beautifully furnished - except the bunk beds",cleanliness,Positive,0.0864,0,1,Authentic,0
+SMP_0142,HTL_TRI_NONGUHOM_3C33,Nongu Home,Trincomalee,Booking.com,Everything has been well thought out even down to a quirky outdoor shower room,room,Neutral,0.431,1,0,Authentic,0
+SMP_0394,SYN_AI_HOTEL_004,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,"Sublime hygiene and fabulous presentation in every corner, truly a delightful and impeccable environment.",cleanliness,Positive,0.081,0,5,Deceptive / AI-Spam,1
+SMP_0324,HTL_UDA_MANGOTRE_F53B,Mango Tree House,Ratnapura,Booking.com,I think the WiFi connection could be slightly better,wifi,Neutral,0.0688,0,0,Authentic,0
+SMP_0213,HTL_NIL_NILAVELI_1E6E,Nilaveli Beach Resort - Level 1 Certified,Trincomalee,Booking.com,"Swimming pool was good size, clean and water was nice and warm",cleanliness,Positive,0.7767,2,0,Authentic,0
+SMP_0359,HTL_ANU_THEIVYLA_3334,The Ivy Lake,Anuradhapura,Google Maps,The WiFi is very good,wifi,Positive,0.0536,0,0,Authentic,0
+SMP_0372,SYN_AI_HOTEL_002,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"Truly extraordinary warmth and breathtaking dedication from everyone, making us feel like royalty in paradise.",staff,Positive,0.0829,0,4,Deceptive / AI-Spam,1
+SMP_0183,HTL_TRI_CUHOSTEL_CF61,C U Hostel,Trincomalee,Google Maps,the owner always cleaning the hostels it is spotless,cleanliness,Positive,0.0688,0,0,Authentic,0
+SMP_0388,SYN_AI_HOTEL_008,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"The surroundings were simply phenomenal and world-class, a splendid oasis of pure perfection.",location,Positive,0.0789,0,5,Deceptive / AI-Spam,1
+SMP_0112,HTL_ANU_HOTELHEL_D1EA,Hotel Heladiv,Anuradhapura,Booking.com,Wonderful Staff were fantastic and friendly,staff,Positive,0.0582,0,2,Authentic,0
+SMP_0376,SYN_AI_HOTEL_006,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,Shockingly atrocious attitude and utterly unacceptable behavior that ruined our entire vacation experience.,staff,Negative,0.0789,0,1,Deceptive / AI-Spam,1
+SMP_0289,HTL_ARU_VINKAPLA_DA3A,Vinka Place Arugambay,Ampara,Google Maps,"Good location, close to the beach and the main street",location,Positive,0.4217,1,0,Authentic,0
+SMP_0070,HTL_MUR_CARAVANP_9C0B,Caravan Park Madhu,Mannar,Google Maps,Everything was well organized and family friendly,staff,Positive,0.0622,0,0,Authentic,0
+SMP_0147,HTL_BAN_LUXORKIR_6023,Luxor Kirindi Ella Resort & Spa,Badulla,Booking.com,spacious we had the 3 bed apartment,room,Positive,0.0622,0,0,Authentic,0
+SMP_0200,HTL_NIL_ANUKAMAR_9C95,Anukama Resort,Trincomalee,Booking.com,And the rooms are clean and well maintained,cleanliness,Positive,0.0657,0,0,Authentic,0
+SMP_0249,HTL_PIN_HOTELELE_6B8A,Hotel Elephant Bay - World's Best Place to See the Elephants,Kegalle,Booking.com,Excellent So amazing hotel with great location,location,Positive,0.0622,0,1,Authentic,0
+SMP_0097,HTL_BAT_BATTIREL_0D1E,Batti Relax Point,Batticaloa,Booking.com,Exceptional The owners hospitality was very touching,staff,Positive,0.0622,0,1,Authentic,0
+SMP_0126,HTL_HAM_BIRDSRES_2BEA,Birds Resort Hambantota,Hambantota,Booking.com,The room was large and comfortable,room,Positive,0.0582,0,0,Authentic,0
+SMP_0308,HTL_KAN_THEKANDY_38DD,The Kandy Home & City mirror Hostel,Kandy,Booking.com,Wi-Fi signals is very good,wifi,Positive,0.0536,0,0,Authentic,0
+SMP_0331,HTL_TRI_CUHOSTEL_CF61,C U Hostel,Trincomalee,Booking.com,Thank you C U hostel 💕 WiFi is good,wifi,Positive,0.0688,0,0,Authentic,0
+SMP_0041,HTL_KIT_ALANKARA_9CFA,Alankara Nature Resort,Kegalle,Booking.com,Wonderful hosts and amazing food,food,Positive,0.0536,0,2,Authentic,0
+SMP_0307,HTL_VAV_BIRUNTHA_A5AC,Birunthavanam,Vavuniya,Booking.com,"I highly recommend this guest house for anyone visiting Vavuniya Just to add-up, good if they have wifi free",wifi,Positive,0.0896,0,0,Authentic,0
+SMP_0139,HTL_MAT_SURFLODG_24FD,Surf Lodge Madiha,Matara,Booking.com,Rooms very spacious and completely newly renovated,room,Positive,0.0622,0,0,Authentic,0
+SMP_0239,HTL_MIR_THEVIEWM_53C5,The View Mirissa,Matara,Booking.com,"Great big lockers, bathrooms very clean and separate from showers",cleanliness,Positive,0.0717,0,0,Authentic,0
+SMP_0157,HTL_BAD_ARALIYAH_4CB5,Araliya Hotel,Badulla,Booking.com,The only aspect I would like to bring to your attention is that the hot water in the shower was excessively warm,room,Neutral,0.7937,2,0,Authentic,0
+SMP_0167,HTL_BAT_THEDREAM_E86F,The Dream Inn Guesthouse Pasikudah,Batticaloa,Booking.com,"Beautiful gardens, comfortable bed and amazing bathroom",room,Positive,0.0622,0,1,Authentic,0
+SMP_0138,HTL_POT_OCEANBLI_98A8,Ocean Bliss,Ampara,Booking.com,The room was perfect for two,room,Positive,0.0582,0,0,Authentic,0
+SMP_0058,HTL_KIT_OLDBRIDG_70A5,Old Bridge Riverside Hotel,Kegalle,Booking.com,Thee and coffee facilities,food,Neutral,0.4036,1,0,Authentic,0
+SMP_0275,HTL_TRI_CUHOSTEL_CF61,C U Hostel,Trincomalee,Google Maps,1 minute walk to the beach,location,Neutral,0.6182,1,0,Authentic,0
+SMP_0077,HTL_JAF_FOXJAFFN_5D79,Fox Jaffna by Fox Resorts - Boutique Heritage Luxury,Jaffna,Booking.com,Fox Jaffna was an incredible choice to host a large family reunion,staff,Positive,0.0767,0,1,Authentic,0
+SMP_0075,HTL_POL_SAHANTOU_D0DD,Sahan Tourist House,Polonnaruwa,Booking.com,Sahan is I credibly helpful and knowledgeable,staff,Positive,0.0622,0,0,Authentic,0
+SMP_0057,HTL_DAM_GAMAGEDA_44E7,Gamagedara Resort,Matale,Booking.com,Very Good The cost is very reasonable and they provided breakfast,food,Positive,0.0743,0,0,Authentic,0
+SMP_0017,HTL_DAM_JETWINGL_5F1C,Jetwing Lake,Matale,Booking.com,Excellent breakfast with a great selection,food,Positive,0.0582,0,0,Authentic,0
+SMP_0215,HTL_NIL_NILAVELI_BB9F,Nilaveli Beach Rooms,Trincomalee,Booking.com,"Some usual Sri Lankan stuff, small gabs under the door, sometimes you find bugs,",cleanliness,Negative,0.081,0,0,Authentic,0
+SMP_0030,HTL_PAS_AMAYABEA_4A09,Amaya Beach Passikudah,Batticaloa,Booking.com,Wonderful The food was amazing,food,Positive,0.0536,0,2,Authentic,0
+SMP_0378,SYN_AI_HOTEL_008,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,"Every meal was a breathtaking symphony of flavors, offering an extraordinary and world-class gastronomic journey.",food,Positive,0.0829,0,3,Deceptive / AI-Spam,1
+SMP_0076,HTL_DAM_KANDALAM_D2FC,Kandalama Lodge,Matale,Booking.com,Staff friendly and extremely professional Everything was exceptional,staff,Positive,0.0657,0,2,Authentic,0
+SMP_0209,HTL_DAM_GREENLUX_2B71,Green Luxe,Matale,Booking.com,"Clean, well-equipped, and very nice",cleanliness,Positive,0.0536,0,0,Authentic,0
+SMP_0235,HTL_WEL_CASABANA_DE12,Casa Banana,Matara,Booking.com,"Please be noted, that villa is with fresh buliding renovated, everything is new",cleanliness,Positive,0.0789,0,0,Authentic,0
+SMP_0293,HTL_HAT_TEAHILLS_D88A,Tea Hills Bungalow,Nuwara Eliya,Booking.com,The massage was great and much needed after carrying bag up and down train station stairs,location,Positive,0.4347,1,0,Authentic,0
+SMP_0073,HTL_AHA_THEFINDH_CAC7,The Find Hotel,Galle,Booking.com,The owners and staff are very friendly and make you feel like home,staff,Positive,0.0789,0,0,Authentic,0
+SMP_0027,HTL_HAT_TRAVELLE_ADAD,Traveller's Villa,Nuwara Eliya,Booking.com,Breakfast was also outstanding,food,Positive,0.0536,0,1,Authentic,0
+SMP_0296,HTL_GAL_THEBARTI_48F9,The Bartizan Galle Fort,Galle,Booking.com,Great location and well appointed accommodation,location,Positive,0.0582,0,0,Authentic,0
+SMP_0186,HTL_HIK_HIKKASAN_D6CA,Hikka Sands & SPA,Galle,Booking.com,The bedroom itself was clean The rest of the hotel was a bit unclean,cleanliness,Positive,0.081,0,0,Authentic,0
+SMP_0190,HTL_WEL_CASASAMA_47EF,"Casa Samaya, Beachfront Hotel and Wellness in Weligama",Matara,Booking.com,"Lovely decor, modern and clean",cleanliness,Positive,0.0536,0,0,Authentic,0
+SMP_0078,HTL_NEG_JETWINGB_845B,Jetwing Blue,Gampaha,Booking.com,On the beachfront & good staff,staff,Positive,0.4082,1,0,Authentic,0
+SMP_0152,HTL_BEN_JANUSPAR_D730,Janus Paradise Rest,Kalutara,Booking.com,"The room was also bigger than expected with lots of storage options, which was a plus as I was staying nearly two weeks",room,Neutral,0.095,0,0,Authentic,0
+SMP_0036,HTL_KNU_LAKEGALA_AD9F,Lakegala Resort,Matale,Booking.com,Meals are available at the on-site restaurant,food,Neutral,0.0622,0,0,Authentic,0
+SMP_0037,HTL_KIL_HOTELMAR_F3C1,Hotel Marutham,Kilinochchi,Booking.com,The hotel also has a restaurant that serves delicious food,food,Positive,0.0717,0,0,Authentic,0
+SMP_0261,HTL_HAM_MALALARE_E297,Malala Retreat,Hambantota,Booking.com,A peaceful stay A lovely peaceful place,location,Positive,0.0622,0,0,Authentic,0
+SMP_0199,HTL_TAN_VILLADON_9541,Villa Don Bastian,Hambantota,Booking.com,"The place was tranquil, clean and well situated",cleanliness,Positive,0.0657,0,0,Authentic,0
+SMP_0245,HTL_MAR_SANMALIB_2D9E,Sanmali Beach Hotel,Puttalam,Booking.com,"The location is beautiful, right by the beach, and the atmosphere is very relaxing",location,Positive,0.431,1,0,Authentic,0
+SMP_0106,HTL_WEL_SAYONRIV_973B,Sayon River Cottage,Monaragala,Google Maps,We received a wonderful service,staff,Positive,0.0536,0,1,Authentic,0
+SMP_0160,HTL_TAN_VILLALUC_806A,Villa Lucky Star,Hambantota,Booking.com,Very comfortable room and one of the best bathrooms we had in Sri Lankan guesthouses,room,Positive,0.0829,0,0,Authentic,0
+SMP_0024,HTL_WEL_WELIGAMA_1E0D,Weligama Bay Marriott Resort & Spa,Matara,Booking.com,Breakfast was nice mix of food,food,Positive,0.0582,0,0,Authentic,0
+SMP_0392,SYN_AI_HOTEL_002,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,A pristine and immaculate sanctuary where the upkeep was truly world-class and beyond reproach.,cleanliness,Positive,0.081,0,2,Deceptive / AI-Spam,1
+SMP_0072,HTL_TIS_BLUEWILD_4B2D,Blue Wild - Yala - Plastic Free & Sustainable,Hambantota,Booking.com,Great stay Our stay was truly special thanks to the level of care our host Kumar took,staff,Positive,0.0864,0,1,Authentic,0
+SMP_0068,HTL_HAB_TANTORRE_73C4,TANTOR RESORT Hotel and spa Habarana Sigiriya,Polonnaruwa,Booking.com,Exceptional Beautiful place with great host,staff,Positive,0.0582,0,1,Authentic,0
+SMP_0369,SYN_AI_HOTEL_009,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,Unparalleled excellence and sublime hospitality! The vibes were completely magical and perfection in every way.,staff,Positive,0.0829,0,3,Deceptive / AI-Spam,1
+SMP_0052,HTL_GAL_VILLASAR_DE48,Villa Sarakkuwa,Colombo,Booking.com,"charming house :)) Any nice restaurant is 1km away,",food,Positive,0.2788,0,1,Authentic,0
+SMP_0028,HTL_NEG_VILLADOM_E9EF,Villa Dominikku,Gampaha,Booking.com,We did not take the breakfast,food,Neutral,0.0582,0,0,Authentic,0
+SMP_0054,HTL_WEL_WELIGAMA_1E0D,Weligama Bay Marriott Resort & Spa,Matara,Booking.com,The food was just okay,food,Neutral,0.0536,0,0,Authentic,0
+SMP_0023,HTL_NUW_LAGRANDE_0B53,La Grande Villa,Nuwara Eliya,Booking.com,The food served for breakfast was great (mainly the egg and French toast),food,Positive,0.4289,1,0,Authentic,0
+SMP_0365,SYN_AI_HOTEL_005,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,Spectacular living spaces with phenomenal vibes and peerless elegance that left us completely speechless.,room,Positive,0.081,0,3,Deceptive / AI-Spam,1
+SMP_0094,HTL_KIT_KITULGAL_767E,Kitulgala Ebony Riverside Resort,Kegalle,Booking.com,Jack was very cooperative and provided 5 star service No soundproofing in rooms,staff,Neutral,0.0789,0,0,Authentic,0
+SMP_0284,HTL_UNA_SUNNSEAH_A25E,Sun N Sea Hotel,Galle,Booking.com,In the quiet end of the beach,location,Positive,0.4122,1,0,Authentic,0
+SMP_0253,HTL_TRI_GOKANNAP_1643,Gokanna Pearl Guest & Hostels,Trincomalee,Booking.com,Close to activity providers and fernados beach bar,location,Neutral,0.4157,1,0,Authentic,0
+SMP_0397,SYN_AI_HOTEL_007,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,Flawless and phenomenal digital connectivity that was truly world-class and effortlessly outstanding.,wifi,Positive,0.0767,0,5,Deceptive / AI-Spam,1
+SMP_0149,HTL_KAT_SAFARILO_33BB,Safari Lodge Yala,Monaragala,Booking.com,This means that there is No option to lock the room and leave the outside light on so you can see the steps when it is dark,room,Negative,0.0996,0,0,Authentic,0
+SMP_0048,HTL_TIS_RICERICE_EB94,Rice Rice Villas,Hambantota,Booking.com,Exceptional Bala made us an amazing breakfast,food,Positive,0.0622,0,2,Authentic,0
+SMP_0381,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"The gastronomy was sensational and peerless, delivering an unforgettable and deeply marvelous feast.",food,Positive,0.0789,0,4,Deceptive / AI-Spam,1
+SMP_0018,HTL_SIG_HERITANC_C5FF,Heritance Kandalama,Matale,Booking.com,"I enjoyed the meals, both the buffet breakfast and dinner, each of which provided a very wide choice",food,Neutral,0.438,1,0,Authentic,0
+SMP_0368,SYN_AI_HOTEL_008,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"An absolute nightmare of a property, everything was atrocious and horribly substandard in every way.",room,Negative,0.0829,0,0,Deceptive / AI-Spam,1
+SMP_0134,HTL_KIT_PARADISE_EAA9,Paradise Eco Garden,Kegalle,Booking.com,The bed room has a weird area that had dirt floor and rain coming in and mould,room,Neutral,0.0864,0,0,Authentic,0
+SMP_0299,HTL_TRI_GOKANNAP_1643,Gokanna Pearl Guest & Hostels,Trincomalee,Booking.com,far enough to be quiet,location,Positive,0.0536,0,0,Authentic,0
+SMP_0196,HTL_HAP_WISHINGT_D73E,Wishing Tree Boutique Resort and Spa - Haputale's Panoramic Hideaway,Badulla,Booking.com,Super clean and new,cleanliness,Positive,0.0536,0,0,Authentic,0
+SMP_0373,SYN_AI_HOTEL_003,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,Impeccable professionalism combined with a delightful and enchanting attitude that was simplystellar.,staff,Positive,0.0767,0,2,Deceptive / AI-Spam,1
+SMP_0141,HTL_BEN_SAHANASR_61CA,Sahana Sri Villa,Kalutara,TripAdvisor,The bathroom is large with the best shower I've yet used in Sri Lanka with hot water,room,Neutral,0.7864,2,0,Authentic,0
+SMP_0123,HTL_TIS_LAKEWIND_6F2D,Lake Wind Resort - Yala Tissamaharama,Hambantota,Booking.com,A good break Great breeze as it's just beside the lake and lovely view of the lake,room,Positive,0.0864,0,0,Authentic,0
+SMP_0298,HTL_MAT_MALEEVIL_F10A,Malee Villa (Beach Inns Holiday Resort),Matara,TripAdvisor,"Situated at Polhena Beach Matara, has a safe beach with a reef",location,Positive,0.7767,2,0,Authentic,0
+SMP_0055,HTL_HIK_RIFFHIKK_0D31,Riff Hikkaduwa,Galle,Booking.com,Exceptional The Quality of the food and the Breakfast outstandibg,food,Positive,0.0717,0,1,Authentic,0
+SMP_0210,HTL_KAL_BLUEWHAL_AEDB,Blue Whale Resort & Kite Surfing,Puttalam,Booking.com,This is a general issue with hotels in Sri lanka that they don't supply hand towels in the bathrooms,cleanliness,Neutral,0.4396,1,0,Authentic,0
+SMP_0374,SYN_AI_HOTEL_004,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,"Sensational hospitality and marvelous attention to every wish, creating an unforgettable and fabulous atmosphere.",staff,Positive,0.081,0,3,Deceptive / AI-Spam,1
+SMP_0155,HTL_COL_GALLEFAC_8F52,Galle Face Terrace Hostel by Tourlux,Colombo,Booking.com,there was in the entrance floor's shared bathroom,room,Neutral,0.0657,0,0,Authentic,0
+SMP_0292,HTL_UNA_GALAWATT_CFE7,Galawatta Beach Resort,Galle,Booking.com,it is close to the railway line and main road which aren’t noticeable until a train/lorry horn blares when passing,location,Neutral,0.441,1,0,Authentic,0
+SMP_0303,HTL_SIG_CINNAMON_B997,Cinnamon Lodge Habarana,Matale,Booking.com,Internet didn’t work well in our cabin,wifi,Neutral,0.0622,0,0,Authentic,0
+SMP_0050,HTL_POI_VILLAGEH_B924,Village Hotel Northern Point,Jaffna,Google Maps,"We stopped here for lunch while on our city tour, & it was the best decision we ever made",food,Neutral,0.0896,0,0,Authentic,0
+SMP_0001,HTL_ELL_98ACRESR_4834,98 Acres Resort & Spa,Badulla,Booking.com,( especially for Srilankan dishes),food,Neutral,0.0536,0,0,Authentic,0
+SMP_0115,HTL_AHA_PALMHOTE_0AEA,PALM Hotel,Galle,Booking.com,The staff is really friendly and helps you with whatever you need,staff,Positive,0.0767,0,0,Authentic,0
+SMP_0207,HTL_KAL_DUNETOWE_C903,Dune Towers - Boutique Nature Resort,Puttalam,Booking.com,"Beautiful hotel, rooms really nice large and immaculately clean",cleanliness,Positive,0.0688,0,0,Authentic,0
+SMP_0110,HTL_MAT_RIVEREDG_5FA9,river edge bungalow,Matale,Booking.com,Great experience Staff is very friendly and caring,staff,Positive,0.0657,0,0,Authentic,0
+SMP_0031,HTL_NEG_JETWINGB_845B,Jetwing Blue,Gampaha,Booking.com,Amazing buffet dinner outside,food,Positive,0.4036,1,1,Authentic,0
+SMP_0265,HTL_WIL_EAGLEWIL_6E83,Eagle Wilpattu Resort,Anuradhapura,Booking.com,Amazing location on the edge of the national park with a great wildlife garden,location,Positive,0.431,1,1,Authentic,0
+SMP_0264,HTL_DIG_EAGLESEC_C6EC,Eagles Eco Lodge - Kandy,Kandy,Google Maps,Place is very near to the main road therefor somewhat noisy,location,Negative,0.4243,1,0,Authentic,0
+SMP_0111,HTL_POT_AALIYABA_F5F9,Aaliya Bay,Ampara,Booking.com,Soon to be completed Hosts are very kind and helpful,staff,Positive,0.0717,0,0,Authentic,0
+SMP_0192,HTL_AHA_THEJAMHO_89B7,The Jam House,Galle,Booking.com,"A pleasant day in Ahangama The property is spotlessly clean, and the pool is really good",cleanliness,Positive,0.4347,1,0,Authentic,0
+SMP_0254,HTL_KAT_HOTELCHE_3ADE,Hotel Chenra,Monaragala,Booking.com,Was a good a good location walking distance to everything,location,Positive,0.0717,0,0,Authentic,0
+SMP_0172,HTL_PAS_INNONTHE_F1F4,Inn On The Bay,Batticaloa,Booking.com,The open air bathroom was good and the shower was the best all trip,room,Positive,0.431,1,0,Authentic,0
+SMP_0400,SYN_AI_HOTEL_010,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"Completely useless andatrocious connection, an utterly terrible and unacceptable digital experience.",wifi,Negative,0.0743,0,1,Deceptive / AI-Spam,1
+SMP_0317,HTL_AHA_DREAMSEA_4F65,Dreamsea Sri Lanka,Galle,Booking.com,Wifi was strong too,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0260,HTL_WEL_JETWINGK_CC83,Jetwing Kaduruketha,Monaragala,Booking.com,"The environment was calm and peaceful (except the local temple chanting, which was lovely, just not peaceful 😄)",location,Positive,0.088,0,0,Authentic,0
+SMP_0399,SYN_AI_HOTEL_009,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,Extraordinary and top-notch connectivity that worked like magic in this breathtaking oasis.,wifi,Positive,0.0767,0,4,Deceptive / AI-Spam,1
+SMP_0104,HTL_MAS_DAMHOUSE_0AD9,DAM HOUSE (Near Adams Peak),Nuwara Eliya,Booking.com,Kumar who is taking care of the property gave the best support at the the property even for finding the places around the city,staff,Neutral,0.0962,0,0,Authentic,0
+SMP_0295,HTL_MIR_JJSHOSTE_4BB4,JJ's Hostel Mirissa,Matara,Booking.com,Wonderful Great hostel right in the center of Mirissa,location,Positive,0.4188,1,1,Authentic,0
+SMP_0237,HTL_BAD_THILINAG_9305,Thilina Guest,Badulla,Booking.com,"The blanket was also very dirty, with unknown stains on it",cleanliness,Negative,0.0743,0,0,Authentic,0
+SMP_0214,HTL_MAT_DEEPBLUE_3262,Deep Blue,Matara,Booking.com,The rooms are super clean and well-kept,cleanliness,Positive,0.0622,0,0,Authentic,0
+SMP_0360,HTL_KNU_LAKEGALA_AD9F,Lakegala Resort,Matale,Booking.com,Good WiFi and nice swimming pool,wifi,Positive,0.7582,2,0,Authentic,0
+SMP_0269,HTL_MAS_NARRAHOM_6999,Narra Homestay,Nuwara Eliya,Google Maps,"Overall, it was a pleasant stay with a peaceful atmosphere and good value for the price",location,Positive,0.0847,0,0,Authentic,0
+SMP_0089,HTL_NAN_TRAINVIE_136B,Train View Villa,Nuwara Eliya,Booking.com,Pleasant Very good service and so nice staff,staff,Positive,0.0657,0,0,Authentic,0
+SMP_0297,HTL_MOU_SYCAMORE_AF04,Sycamore Residences - Mount Lavinia,Colombo,Booking.com,"Lavinea, close to famous Mt",location,Neutral,0.0536,0,0,Authentic,0
+SMP_0082,HTL_DIK_WHITELIO_F553,White Lion Paradise Dikwella,Matara,Booking.com,Service super Excellent service,staff,Positive,0.0536,0,0,Authentic,0
+SMP_0060,HTL_UNA_ANGELBEA_8D1F,Angel Beach Unawatuna,Galle,Booking.com,The breakfast took very long every morning in the off season,food,Neutral,0.0743,0,0,Authentic,0
+SMP_0064,HTL_TRI_CAPITALT_6FC6,Capital Trincomalee,Trincomalee,Booking.com,Staff was very respectful,staff,Neutral,0.0536,0,0,Authentic,0
+SMP_0339,HTL_KOL_LAVONCAB_9021,Lavonca Boutique Hotel,Colombo,Booking.com,No WiFi at lobby,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0191,HTL_NUW_JOURNEYJ_470F,Journey Junction Hostel,Nuwara Eliya,Booking.com,"It’s all new, all very clean",cleanliness,Positive,0.0582,0,0,Authentic,0
+SMP_0180,HTL_PER_DELIGHTR_3D37,DELIGHT REICH HOTEL,Kandy,Booking.com,The bathroom was constantly wet and the bed mattresses were extremely soft,room,Neutral,0.0767,0,1,Authentic,0
+SMP_0175,HTL_KIL_HOTELMAR_F3C1,Hotel Marutham,Kilinochchi,Booking.com,"A Comfortable and Affordable Stay in Kilinochchi If you're looking for a comfortable and affordable hotel in Kilinochchi, Hotel Marutham is a great option",room,Positive,0.0962,0,0,Authentic,0
+SMP_0282,HTL_TAN_PATINIBU_3034,Patini Bungalows - Beach Garden,Hambantota,Booking.com,"Absolutely loved our stay here, such lovely hosts and amazing location in a beautiful bungalow",location,Positive,0.0829,0,2,Authentic,0
+SMP_0074,HTL_WIL_THEBACKW_8F74,The Backwaters Lodge,Anuradhapura,Booking.com,Nothing is too much trouble for the attentive waiting staff,staff,Positive,0.0717,0,0,Authentic,0
+SMP_0301,HTL_KAL_PASSINAT_6462,Passi Nature Villas Passikudah,Batticaloa,Booking.com,No WiFi the whole time,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0198,HTL_WEL_NAOMIBEA_5F48,Naomi Beach Resort - Adults only,Matara,Booking.com,"Pool is lovely, big, and clean",cleanliness,Positive,0.4082,1,0,Authentic,0
+SMP_0136,HTL_KAT_WEVTHERA_8DFB,Wevthera Holiday Resort,Monaragala,Booking.com,We booked a double room with air-con and a TV,room,Neutral,0.0717,0,0,Authentic,0
+SMP_0051,HTL_YAL_FORESTTR_1232,Forest Tree Top Holiday Resort,Hambantota,Booking.com,Best thing we did in Sri Lanka for accomodation food and wildlife,food,Neutral,0.0767,0,0,Authentic,0
+SMP_0250,HTL_TAN_MANGROVE_14D1,Mangrove Beach Chalets,Hambantota,Booking.com,"Wonderful stay in outstanding location Fabulous location on an outstanding, quiet, long beach",location,Positive,0.1664,1,4,Authentic,0
+SMP_0228,HTL_BAD_TARGETRA_1F43,Target Range Villa - Luxury Getaway Nestled in the Heart of Badulla,Badulla,Booking.com,All of the property was clean and immaculate,cleanliness,Positive,0.0657,0,0,Authentic,0
+SMP_0170,HTL_IBB_LAKEFRON_C9F1,Lakefront Private Pool Villa Full Privacy Nature Escape,Kurunegala,Booking.com,The bed was very comfortable A better spoken English with the people working in the house would ease a little communication,room,Positive,0.0924,0,0,Authentic,0
+SMP_0148,HTL_KAN_KANDYBIR_D35B,Kandy Bird Villas,Kandy,Booking.com,Pool with mountain view is incredible,room,Positive,0.4082,1,1,Authentic,0
+SMP_0063,HTL_PIN_GREENLAN_DBF4,Green Land Guest House,Kegalle,Booking.com,The staff were decent and cooperative,staff,Positive,0.0582,0,0,Authentic,0
+SMP_0272,HTL_PAS_GIMANFRE_1D8E,Giman Free Beach Resort Pasikuda,Batticaloa,Booking.com,The guestroom is very close to the beach,location,Neutral,0.4157,1,0,Authentic,0
+SMP_0066,HTL_PIN_HOTELELE_92BA,Hotel Elephant Park - Most Elephant Bathing View Rooms in Pinnawala,Kegalle,Booking.com,"We felt safe, well looked after, lots of helpful tips",staff,Positive,0.4217,1,0,Authentic,0
+SMP_0386,SYN_AI_HOTEL_006,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,"Nestled in a breathtaking paradise of unmatched beauty, offering a truly magical and heavenly escape.",location,Positive,0.0829,0,6,Deceptive / AI-Spam,1
+SMP_0005,HTL_MAR_SRIBEACH_593F,Sri Beach Bungalows And Villa,Puttalam,Booking.com,much of the dishes had mold inside,food,Neutral,0.0622,0,0,Authentic,0
+SMP_0309,HTL_KAL_ROYALPAL_D79E,Royal Palms Beach Hotel,Kalutara,Booking.com,"Mosquitos, and the wifi",wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0346,HTL_ARU_SECRETGE_B473,Secret Gem,Ampara,Booking.com,The only downside was that the internet connection was slow,wifi,Negative,0.0717,0,0,Authentic,0
+SMP_0161,HTL_POL_MANGUEST_8789,MAN Guest Polonnaruwa,Polonnaruwa,Booking.com,Marvellous View on our room,room,Neutral,0.0536,0,0,Authentic,0
+SMP_0319,HTL_PIN_GREENLAN_DBF4,Green Land Guest House,Kegalle,Booking.com,"Flat screen tv not working, no toiletries (except small bar of soap), no hairdryer, no Wifi: had to request: easily resolved",wifi,Neutral,0.0924,0,0,Authentic,0
+SMP_0318,HTL_KAN_KANDYLIV_78DE,Kandy Living Homestay,Kandy,Booking.com,WiFi could be better,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0288,HTL_MAT_NELINSAW_5375,Nelinsa Wellness Resort & Spa,Matale,Booking.com,Beautiful location Set in a beautiful location with amazing views,location,Positive,0.0717,0,1,Authentic,0
+SMP_0306,HTL_MAT_THERIVER_C1C0,The Riverston Grand,Matale,Booking.com,Also wifi signals are at times poor and needs improvement,wifi,Negative,0.0717,0,0,Authentic,0
+SMP_0325,HTL_BAN_LUXORKIR_6023,Luxor Kirindi Ella Resort & Spa,Badulla,Booking.com,The included wifi wasn't available,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0344,HTL_JAF_YAARLHOS_2DDB,Yaarl Hostels,Jaffna,Booking.com,Also they provide good information for delft Island and connection to Colombo,wifi,Positive,0.0767,0,0,Authentic,0
+SMP_0045,HTL_MIR_WELCOMEI_75A0,Welcome Inn Mirissa,Matara,Booking.com,Breakfast was really tasty,food,Positive,0.0536,0,0,Authentic,0
+SMP_0354,HTL_NIL_THEREEFR_98CC,The Reef Resort,Trincomalee,Booking.com,WiFi could work better,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0348,HTL_KAL_VILLASET_61AC,Villa Sethawadi Hotel and Kitesurf Centre,Puttalam,Booking.com,Please sort your WIFI and provide hanging places or wardrobes in the suit,wifi,Neutral,0.0789,0,0,Authentic,0
+SMP_0093,HTL_TIS_WILDLOTU_8D2A,Wild Lotus Yala,Hambantota,Booking.com,The staff go above and beyond to make the stay unique and enjoyable,staff,Neutral,0.0789,0,0,Authentic,0
+SMP_0311,HTL_UPP_PLEASANT_E2AF,Pleasant Park Holiday Inn,Trincomalee,Booking.com,Good value for money Wifi works very fast,wifi,Positive,0.0657,0,0,Authentic,0
+SMP_0122,HTL_ANU_KUBURARE_3B5B,Kubura Resort,Anuradhapura,Booking.com,Overall a comfortable stay,room,Positive,0.0536,0,0,Authentic,0
+SMP_0242,HTL_NUW_JOURNEYJ_470F,Journey Junction Hostel,Nuwara Eliya,Booking.com,Exceptional Great location only 2 mins walk from the bus station,location,Positive,0.2843,0,1,Authentic,0
+SMP_0353,HTL_JAF_GREENGRA_6838,Green Grass Hotel & Restaurant,Jaffna,Booking.com,Wi-fi is almost non-existent in rooms,wifi,Neutral,0.0582,0,0,Authentic,0
+SMP_0135,HTL_WIL_THEBLUES_1383,The Blue Sapphire Of Wilpattu,Anuradhapura,Booking.com,I have a comfortable stay during my trip,room,Positive,0.0657,0,0,Authentic,0
+SMP_0263,HTL_GAL_ORCHARDH_2FE6,Orchard House Galle,Galle,Google Maps,"Absolute oasis, fantastic location",location,Positive,0.0536,0,2,Authentic,0
+SMP_0137,HTL_POL_LAVENDIS_BB2B,Lavendish Lake Giritale - Former Giritale Hotel,Polonnaruwa,Google Maps,Rooms have all necessary amenities,room,Neutral,0.0536,0,0,Authentic,0
+SMP_0304,HTL_HAM_CEYLONTA_0C97,Ceylonta Beach Resort and Spa,Hambantota,Booking.com,And there was no wifi,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0177,HTL_TRI_LIYONAAB_3950,Liyonaa Beach Hotel,Trincomalee,Google Maps,the room definitely needs better maintenance and cleaning,room,Neutral,0.0657,0,0,Authentic,0
+SMP_0328,HTL_SIG_CINNAMON_B997,Cinnamon Lodge Habarana,Matale,Google Maps,They don't have internet connectivity as they are unable to use the wifi More,wifi,Neutral,0.081,0,0,Authentic,0
+SMP_0333,HTL_COL_VIBECOLO_6CBE,VIBE Colombo,Colombo,Google Maps,for Sri Lankan wifi it’s not bad,wifi,Positive,0.0622,0,0,Authentic,0
+SMP_0163,HTL_TRI_BLUEWATE_8388,Bluewater Beach Resort,Trincomalee,Booking.com,"Large spacious rooms, huge fridge and lovely kind owners",room,Positive,0.0688,0,0,Authentic,0
+SMP_0091,HTL_UNA_THECHILL_7BE6,THE CHILLI STUDIO APARTMENT,Galle,Booking.com,Host has ensured even the minute details to take care of every need,staff,Neutral,0.0789,0,0,Authentic,0
+SMP_0159,HTL_UPP_PLEASANT_E2AF,Pleasant Park Holiday Inn,Trincomalee,Booking.com,"The room was cozy and spacious, bathroom nice",room,Positive,0.0657,0,0,Authentic,0
+SMP_0379,SYN_AI_HOTEL_009,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,Magnificent dining with sublime presentation and unmatched taste that exceeded every expectation.,food,Positive,0.0767,0,3,Deceptive / AI-Spam,1
+SMP_0371,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,The team delivered anunmatched level of world-class care and deeply phenomenal service throughout our visit.,staff,Positive,0.0829,0,3,Deceptive / AI-Spam,1
+SMP_0291,HTL_KAL_HOTELKRI_B6D1,Hotel krish,Batticaloa,Booking.com,"Within walking distance from a few restaurants, shops, ATM",location,Neutral,0.0688,0,0,Authentic,0
+SMP_0049,HTL_TAN_ANANTARA_B8E3,Anantara Peace Haven Tangalle Resort,Hambantota,Booking.com,The restaurants could have more food options and the food could have more flavor,food,Neutral,0.081,0,0,Authentic,0
+SMP_0083,HTL_AHA_KANFERRI_DD41,Kanferri Villa,Galle,Booking.com,The staff were very kind and friendly,staff,Positive,0.0622,0,0,Authentic,0
+SMP_0035,HTL_PAS_AIDENHOM_A75C,Aiden Homestay,Batticaloa,Booking.com,The food is beautiful,food,Positive,0.0536,0,0,Authentic,0
+SMP_0169,HTL_NIL_NILAVELI_1E6E,Nilaveli Beach Resort - Level 1 Certified,Trincomalee,Booking.com,Very well appointed rooms - especially a very comfy bed,room,Neutral,0.0717,0,0,Authentic,0
+SMP_0118,HTL_HAB_PRIVATEP_7C81,Private Pool Sun Shade Resort & Spa,Polonnaruwa,Booking.com,"Also have to mention fantastic manager, who took such a great care of us, answered all of our questions and request",staff,Positive,0.0924,0,1,Authentic,0
+SMP_0238,HTL_WEL_SINGLEFI_CFBD,Single Fin Weligama,Matara,Booking.com,Clean tidy rooms and bathrooms,cleanliness,Positive,0.0536,0,0,Authentic,0
+SMP_0349,HTL_TAN_MANGROVE_14D1,Mangrove Beach Chalets,Hambantota,Booking.com,Need a fridge in the rooms to store water and wifi would be good in the rooms,wifi,Positive,0.0864,0,0,Authentic,0
+SMP_0130,HTL_GAL_THEDOCTO_1EDC,THE DOCTORS VILLA,Colombo,Booking.com,Hot water could be included as standard,room,Neutral,0.4122,1,0,Authentic,0
+SMP_0218,HTL_ANU_GBROYALS_F642,GB Royal Stay Anuradhapura,Anuradhapura,Booking.com,Clean facilities with all basics needs covered,cleanliness,Positive,0.0622,0,0,Authentic,0
+SMP_0216,HTL_JAF_YALSTOWN_6610,Yal's Town Inn,Jaffna,Booking.com,"clean, were very tired",cleanliness,Positive,0.0536,0,0,Authentic,0
+SMP_0059,HTL_KNU_ECOVIBER_E404,Eco Vibe Resort,Matale,Google Maps,||The food was delicious and portion sizes were more than enough for two and there were multiple choices to choose from every … Read more on Tripadvisor,food,Positive,0.0996,0,0,Authentic,0
+SMP_0090,HTL_ARU_VINKAPLA_DA3A,Vinka Place Arugambay,Ampara,Booking.com,Very Good Great spot with very welcoming staff,staff,Positive,0.0657,0,0,Authentic,0
+SMP_0273,HTL_ANU_SAPUMALL_D43A,Sapumal Lodge,Anuradhapura,Booking.com,Close to main street and also the temples,location,Neutral,0.0657,0,0,Authentic,0
+SMP_0065,HTL_KAR_LEELARES_CAE7,Leela Resort,Jaffna,Booking.com,"Exceptional It's a beautiful place, the host is really lovely and caring",staff,Positive,0.0767,0,1,Authentic,0
+SMP_0363,SYN_AI_HOTEL_003,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,Every single detail of the accommodation exuded sheer perfection and unmatched magnificence beyond our wildest dreams.,room,Positive,0.0847,0,2,Deceptive / AI-Spam,1
+SMP_0143,HTL_KEL_PARAMOUN_262D,Paramount Residence 3,Gampaha,Google Maps,"There are so many good things about: Private parking lot (we came with our rented TukTuk), whole apartment for yourself, a huge bathroom and terrace, hot water in the shower, very comfy bed, … More",room,Positive,1.0,4,0,Authentic,0
+SMP_0053,HTL_BEN_RIUSRILA_58A1,Riu Sri Lanka - All Inclusive,Kalutara,Booking.com,"Breakfast and lunch had many options, and was delicious",food,Positive,0.0688,0,0,Authentic,0
+SMP_0171,HTL_NEG_PLEDGESC_8D00,Pledge Scape,Gampaha,Booking.com,room was very spacious and elegant,room,Positive,0.0582,0,0,Authentic,0
+SMP_0247,HTL_ELL_ELLAMOUN_7969,Ella Mount View Guest Inn,Badulla,Booking.com,Location was great only about a 10 minute walk into town,location,Positive,0.2843,0,0,Authentic,0
+SMP_0277,HTL_KEG_BOGALAVI_C759,Bogala Village Eco Resort,Kegalle,Booking.com,Very Good Location is very nice,location,Positive,0.0582,0,0,Authentic,0
+SMP_0011,HTL_TIS_SERENEPA_C8C4,Serene Park Hotel By Ark,Hambantota,Google Maps,And they did a packed breakfast for us for the morning we went to our yala safari,food,Neutral,0.4364,1,0,Authentic,0
+SMP_0205,HTL_NAN_OVICOURT_4985,Ovi Court City Apartments Nuwara Eliya,Nuwara Eliya,Booking.com,Wonderful rooms were clean,cleanliness,Positive,0.0536,0,1,Authentic,0
+SMP_0195,HTL_BAD_HERITAGE_19A1,Heritage Grand - Badulla,Badulla,Booking.com,There was smell from one of our rooms,cleanliness,Neutral,0.0657,0,0,Authentic,0
+SMP_0351,HTL_MAR_SAARABEA_6E1A,Saara Beach Hotel,Puttalam,Booking.com,"Hotel in unmittelbarer Nähe von Baustellen Große Zimmer Kein wifi, überteuertes Frühstück und Abendessen",wifi,Neutral,0.081,0,0,Authentic,0
+SMP_0362,SYN_AI_HOTEL_002,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,A heavenly oasis with delightful atmosphere and impeccable experience. Truly an extraordinary gem of a place.,room,Positive,0.0847,0,7,Deceptive / AI-Spam,1
+SMP_0020,HTL_KIT_PALMSTON_708E,"Palmstone Retreat-Rafting, Hiking, and Waterfall Treks",Kegalle,Booking.com,Special thanks for Mohammed Anfas and restaurant cheif Siraganam,food,Neutral,0.0688,0,0,Authentic,0
+SMP_0085,HTL_TIS_RICHARDS_24BE,Richards Cabanas,Hambantota,TripAdvisor,We must book another hotel (tip from the manager to go to another hotel) in the late evening and transport all with all the baggage’s,staff,Neutral,0.0974,0,0,Authentic,0
+SMP_0079,HTL_ANU_MONAARAL_2ECD,Monaara Leisure - Anuradhapura,Anuradhapura,Booking.com,Staff were so kind and accommodating,staff,Neutral,0.0582,0,0,Authentic,0
+SMP_0109,HTL_SIN_DESIREVI_C25E,Desire Village Rakwana,Ratnapura,Booking.com,A palatial property run by a hospitable owner and staff once again,staff,Positive,0.0767,0,0,Authentic,0
+SMP_0116,HTL_ANU_DIYAKAWA_9E34,Diyakawa Boutique Hotel,Anuradhapura,Booking.com,The staff who were so friendly and welcoming and lovely,staff,Positive,0.0717,0,0,Authentic,0
+SMP_0225,HTL_BAD_CALMSTAY_4EE5,Calm Stay,Badulla,Booking.com,"house and owner is so much peace, caring, clean",cleanliness,Positive,0.0688,0,0,Authentic,0
+SMP_0203,HTL_NIL_THEREEFR_98CC,The Reef Resort,Trincomalee,Booking.com,Corridors sandy and dusty,cleanliness,Negative,0.0536,0,0,Authentic,0
+SMP_0279,HTL_HAP_WHITELOT_1F0D,White Lotus Haputale,Badulla,Booking.com,Exceptional Awesome location & best place for clam mind & relaxation ✨,location,Positive,0.0767,0,1,Authentic,0
+SMP_0146,HTL_POL_HOTELPEA_90A5,HOTEL Pearl White Residency,Polonnaruwa,Booking.com,Perfect stay Villa-style apartment with a luxurious bathroom,room,Positive,0.0657,0,0,Authentic,0
+SMP_0010,HTL_WEL_THOMASHA_9E67,Thomasha Homestay & Tuk Tuk Tour,Monaragala,Booking.com,They also offered us dinner,food,Neutral,0.0536,0,0,Authentic,0
+SMP_0124,HTL_HAP_AMAYAVIE_4B57,Amaya View Guest Inn,Badulla,Booking.com,Excellent Highly recommend this nice place with a beautiful view,room,Positive,0.0717,0,0,Authentic,0
+SMP_0025,HTL_TIS_RICERICE_EB94,Rice Rice Villas,Hambantota,Booking.com,They make local dishes after family recipes and it’s the best we’ve had in Sri Lanka so far,food,Neutral,0.088,0,0,Authentic,0
+SMP_0008,HTL_KNU_MRMRSKSV_F863,Mr & Mrs K's Villa- Kandy,Matale,Booking.com,She made a lovely breakfast - we had both the Western and Sri Lankan and both were delish,food,Positive,0.088,0,0,Authentic,0
+SMP_0189,HTL_ARU_ETHERAAR_F82A,Ethera Arugam bay,Ampara,Booking.com,Spotlessly clean with lovely pool,cleanliness,Positive,0.4036,1,0,Authentic,0
+SMP_0240,HTL_KUR_THEHIDEA_93BE,The Hideaway,Kurunegala,Booking.com,Very Good It was clean and had a really nice pool,cleanliness,Positive,0.4243,1,0,Authentic,0
+SMP_0380,SYN_AI_HOTEL_010,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"Delightful and heavenly dishes prepared to absolute perfection, truly a phenomenal culinary paradise.",food,Positive,0.0789,0,6,Deceptive / AI-Spam,1
+SMP_0069,HTL_RAT_TERRACEC_36A1,Terrace Cinnamon View,Ratnapura,Booking.com,"Loved it Would totally recommend going this place for a quite couple of relaxing days, the staff were excellent and couldn’t do enough for us Nothing",staff,Positive,0.0985,0,0,Authentic,0
+SMP_0283,HTL_POL_MANGUEST_8789,MAN Guest Polonnaruwa,Polonnaruwa,Booking.com,"handy location with short walk to restaurants, lake etc",location,Neutral,0.0688,0,0,Authentic,0
+SMP_0398,SYN_AI_HOTEL_008,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,"Superb and unmatched online experience, delivering seamless perfection throughout the entire property.",wifi,Positive,0.0767,0,3,Deceptive / AI-Spam,1
+SMP_0221,HTL_WEL_AQUALUNA_2596,Aqualuna Weligama,Matara,Booking.com,Good It was very well maintained hotel with great architecture and pool,cleanliness,Positive,0.4267,1,0,Authentic,0
+SMP_0356,HTL_WEL_SOUTHBEA_ECD5,Southbeach Weligama,Matara,Booking.com,Wifi connection — they are new so still working on this,wifi,Positive,0.0743,0,0,Authentic,0
+SMP_0019,HTL_MAT_BEACHINN_DEA1,Beach Inns Holiday Resort,Matara,Booking.com,Excellent breakfast as well So far none,food,Positive,0.0622,0,0,Authentic,0
+SMP_0340,HTL_KEG_THEGOLDE_CDCD,The Golden Residence,Kegalle,Booking.com,WiFi is good and plenty of space in the living area for working/ games/ yoga,wifi,Positive,0.0829,0,0,Authentic,0
+SMP_0383,SYN_AI_HOTEL_003,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,"The dining was a complete disaster, utterly disgusting andhorribly prepared with zero redeeming qualities.",food,Negative,0.081,0,1,Deceptive / AI-Spam,1
+SMP_0113,HTL_UPP_GOLDENBE_9D92,Golden Beach Cottages,Trincomalee,Booking.com,"However, the staff was really supportive and fixed it a few times and gave us a discount in the end",staff,Neutral,0.091,0,0,Authentic,0
+SMP_0382,SYN_AI_HOTEL_002,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,"Fabulous flavors and impeccable quality at every sitting, an utterly charming and stellar dining affair.",food,Positive,0.0829,0,5,Deceptive / AI-Spam,1
+SMP_0103,HTL_KAT_DITARA_88E3,Ditara,Kandy,Google Maps,Highly recommended for anyone looking for a trustworthy and professional vehicle sales service,staff,Neutral,0.0789,0,0,Authentic,0
+SMP_0178,HTL_PER_STELLARI_92C4,Stellar Inn,Kandy,Booking.com,The room was too small,room,Negative,0.0536,0,0,Authentic,0
+SMP_0204,HTL_WIL_THIMBIRI_ED3D,Thimbiri Wewa Resort Wilpattu,Anuradhapura,Booking.com,"Too many flies in the dining area, should be kept as neat as the hotel itself",cleanliness,Neutral,0.0847,0,0,Authentic,0
+SMP_0128,HTL_UDA_KOTTAWAT_876A,Kottawatta Village,Ratnapura,Booking.com,The room was super warm when I first arrived - fortunately it cooled down by bedtime,room,Neutral,0.0847,0,0,Authentic,0
+SMP_0105,HTL_MAT_SURFLODG_24FD,Surf Lodge Madiha,Matara,Booking.com,The friendliest and most attentive people we’ve encountered in Sri Lanka,staff,Positive,0.0743,0,0,Authentic,0
+SMP_0179,HTL_HIK_SUITELAN_22F3,Suite Lanka,Galle,Booking.com,No ac in bathroom area,room,Neutral,0.0536,0,0,Authentic,0
+SMP_0321,HTL_ANU_LAKEHOUS_27E5,Lake House Home Stay,Anuradhapura,Booking.com,Wifi was a bit slow,wifi,Negative,0.0536,0,0,Authentic,0
+SMP_0320,HTL_KIT_PALMSTON_708E,"Palmstone Retreat-Rafting, Hiking, and Waterfall Treks",Kegalle,Booking.com,Wifi speeds are slow,wifi,Negative,0.0536,0,0,Authentic,0
+SMP_0211,HTL_MIR_SANTINOB_699E,Santino Boutique,Matara,Booking.com,Lovely clean pool and a relaxing ambiance,cleanliness,Positive,0.4122,1,0,Authentic,0
+SMP_0316,HTL_UDA_KOTTAWAT_876A,Kottawatta Village,Ratnapura,Booking.com,Lack of wifi in rooms,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0217,HTL_MAT_COCOSPOL_AF65,Cocos Polhena,Matara,Booking.com,The attention to detail in maintaining a neat and tidy environment really stood out,cleanliness,Neutral,0.081,0,0,Authentic,0
+SMP_0243,HTL_ELL_WINWOODE_0DAF,Winwood Ella,Badulla,Booking.com,The hotel was a short walking distance to the Main Street,location,Neutral,0.0743,0,0,Authentic,0
+SMP_0193,HTL_WIL_THEBACKW_8F74,The Backwaters Lodge,Anuradhapura,Booking.com,Clean and with airco,cleanliness,Positive,0.0536,0,0,Authentic,0
+SMP_0276,HTL_ANU_DIYAKAWA_9E34,Diyakawa Boutique Hotel,Anuradhapura,Booking.com,T The location next to the lake,location,Neutral,0.0622,0,0,Authentic,0
+SMP_0256,HTL_UNA_AURORA_33C9,Aurora,Galle,Booking.com,The accommodation is in a quiet street that is very peaceful away from the hustle and bustle,location,Positive,0.0864,0,0,Authentic,0
+SMP_0234,HTL_UDA_JUNGLEPA_D91E,Jungle Paradise,Ratnapura,Booking.com,Rooms were really clean and there was a really nice pool,cleanliness,Positive,0.4243,1,0,Authentic,0
+SMP_0385,SYN_AI_HOTEL_005,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,A spectacular haven of tranquility! Words cannot describe how marvelous and flawless the setting was.,location,Positive,0.0829,0,4,Deceptive / AI-Spam,1
+SMP_0062,HTL_KAT_FARMVILL_64E1,Farm Villa By Heritage,Monaragala,Booking.com,I highly recommend this place to anyone looking for a relaxing getaway with excellent service,staff,Positive,0.0829,0,0,Authentic,0
+SMP_0127,HTL_GAL_ARCHESFO_8C37,Arches Fort,Galle,Booking.com,The shower over the toilet made the bathroom very wet and unpleasant,room,Neutral,0.4267,1,0,Authentic,0
+SMP_0042,HTL_MAN_OASISWIN_7FB5,Oasis Wings Hotel,Mannar,Booking.com,Restaurant was good and they had nice meals for dinner to eat at because it’s a small town so was only limited local stands,food,Positive,0.0962,0,0,Authentic,0
+SMP_0153,HTL_MAT_DEEPBLUE_3262,Deep Blue,Matara,Booking.com,"Artfully decorated Lovely, tastefully decorated room and site, right on the water front",room,Positive,0.0789,0,0,Authentic,0
+SMP_0158,HTL_HIK_AMAROOHI_838A,Amaroo Hikkaduwa,Galle,Booking.com,We loved the outdoor shower,room,Neutral,0.4036,1,0,Authentic,0
+SMP_0338,HTL_MOU_THESEAVI_401D,The Sea view A,Colombo,Google Maps,The cable TV signals and wifi is the worst tho,wifi,Negative,0.0717,0,0,Authentic,0
+SMP_0366,SYN_AI_HOTEL_006,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,"Truly a marvelous haven of comfort and splendid aesthetics, offering a sensational and flawless retreat.",room,Positive,0.0829,0,6,Deceptive / AI-Spam,1
+SMP_0029,HTL_WIL_LLTTOURI_E1F3,LLT Tourist Inn and Safari Jeep,Anuradhapura,Booking.com,"They arranged a safari for me with a group of other guests or lower the cost, an extra dinner was cooked for us with a short notice, flexible breakfast hours",food,Neutral,0.1027,0,0,Authentic,0
+SMP_0300,HTL_PAS_THECALMR_8B10,The Calm Resort & Spa,Batticaloa,Booking.com,Also the location is right at the beach,location,Neutral,0.4157,1,0,Authentic,0
+SMP_0323,HTL_UDA_AMBAKOLA_D956,Amba Kola Udawalawa,Ratnapura,Booking.com,The WiFi was also great with Starlink,wifi,Positive,0.0622,0,0,Authentic,0
+SMP_0278,HTL_KUR_RIVENDEL_77B8,Rivendell Twisted Tree,Kurunegala,Booking.com,Twisted tree Location and property and general ambience Notified of sharp edges in pool,location,Neutral,0.431,1,0,Authentic,0
+SMP_0100,HTL_UNA_OLDCHILL_59AE,Old Chilli House,Galle,Booking.com,"The host was incredibly kind and helpful, prepared amazing local meals for us",staff,Positive,0.0789,0,2,Authentic,0
+SMP_0208,HTL_KAR_LEELARES_CAE7,Leela Resort,Jaffna,Booking.com,"Exceptional We had a great time in there, It's very clean calm and quite place",cleanliness,Positive,0.0829,0,1,Authentic,0
+SMP_0330,HTL_HAT_GRANDARG_6931,Grand Argyle Resort,Nuwara Eliya,Booking.com,The WiFi is extremely poor,wifi,Negative,0.0536,0,1,Authentic,0
+SMP_0347,HTL_KEG_THEGOLDE_CDCD,The Golden Residence,Kegalle,Google Maps,There is also good wifi,wifi,Positive,0.0536,0,0,Authentic,0
+SMP_0226,HTL_KAN_THEKANDY_38DD,The Kandy Home & City mirror Hostel,Kandy,Booking.com,Exceptional Very nice owner and beautiful clean rooms,cleanliness,Positive,0.0657,0,1,Authentic,0
+SMP_0181,HTL_MAT_COCOMOUN_F77B,Coco Mount Mirissa,Matara,Booking.com,Really beautiful and clean accommodation in Mirissa,cleanliness,Positive,0.4122,1,0,Authentic,0
+SMP_0310,HTL_MOU_VILLATWO_4E3C,Villa Two Residence,Colombo,Booking.com,Tv is not working and wifi is not available,wifi,Negative,0.0688,0,0,Authentic,0
+SMP_0335,HTL_JAF_YALSTOWN_6610,Yal's Town Inn,Jaffna,Booking.com,"got some wet wipes to wipe it down and was okay after The WiFi wasn’t the best, kept dropping out",wifi,Neutral,0.091,0,0,Authentic,0
+SMP_0343,HTL_JAF_ALLENSHO_A3AD,Allens home stay,Jaffna,Booking.com,"All worked as described, Allen was ready to help with anything, breakfasts were tasteful and fruit-ful, even wifi worked well (very uncommon during the majority of our other stays)",wifi,Neutral,0.1017,0,0,Authentic,0
+SMP_0236,HTL_JAF_THETHINN_A1BA,The Thinnai Hotel - Jaffna,Jaffna,Google Maps,Very calm and clean,cleanliness,Positive,0.0536,0,0,Authentic,0
+SMP_0046,HTL_PIN_LUCKUYAN_B462,Luck Uyana Cabana Pinnawala,Kegalle,Google Maps,"Followed by massage, tea, shop and some laughter",food,Neutral,0.4157,1,0,Authentic,0
+SMP_0375,SYN_AI_HOTEL_005,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,"Terrible and dreadful stay, everything was horribly managed and deeply awful from start to finish.",staff,Negative,0.0829,0,1,Deceptive / AI-Spam,1
+SMP_0244,HTL_KAN_DUMBARAP_00AB,Dumbara Peak Residence,Kandy,Booking.com,"Good for a quick stay Located super central in Kandy, on the description says laundry provided",location,Positive,0.0847,0,0,Authentic,0
+SMP_0337,HTL_BAD_LDROOMAD_089C,LD RoomA DunhidA,Badulla,Booking.com,Our own Internet Dialog worked very well,wifi,Neutral,0.0622,0,0,Authentic,0
+SMP_0241,HTL_BEN_EKHOSURF_8721,EKHO Surf Bentota,Kalutara,Booking.com,It's right on the beach,location,Neutral,0.4036,1,0,Authentic,0
+SMP_0034,HTL_JAF_GATETREE_5734,Gatetrees resort,Jaffna,Google Maps,Dinner and breakfast were,food,Neutral,0.0536,0,0,Authentic,0
+SMP_0302,HTL_TAN_MANGROVE_14D1,Mangrove Beach Chalets,Hambantota,Booking.com,The WiFi signal is weak in the chalet’s…,wifi,Negative,0.0657,0,0,Authentic,0
+SMP_0162,HTL_NEG_SENTIDOH_ACF2,Sentido Heritance Negombo,Gampaha,Booking.com,"The bathroom was lovely, and the toiletries were excellent",room,Positive,0.0688,0,0,Authentic,0
+SMP_0206,HTL_NEG_SWANEEGR_7582,Swanee Grand,Gampaha,Google Maps,"The property is exceptionally clean, cozy, and full of character",cleanliness,Positive,0.0717,0,1,Authentic,0
+SMP_0022,HTL_KAL_BAYWALKB_57D8,Bay Walk by AHSRAM,Batticaloa,Booking.com,"My friend was sick when we arrived and they brought her herbal tea every evening, which was really sweet",food,Neutral,0.4396,1,0,Authentic,0
+SMP_0156,HTL_NAN_PARADISE_03C6,Paradise Cottage,Nuwara Eliya,Booking.com,You need to climb stairs to go to the room,room,Neutral,0.0717,0,0,Authentic,0
+SMP_0092,HTL_MIH_MIHEENHO_9D7C,Miheen Hotel & Resort - Anuradhapura,Anuradhapura,Google Maps,Professional and helpful staff,staff,Positive,0.0536,0,0,Authentic,0
+SMP_0389,SYN_AI_HOTEL_009,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,A charming and sensational locale that felt like a hidden gem of incomparable magnificence.,location,Positive,0.081,0,3,Deceptive / AI-Spam,1
+SMP_0187,HTL_PAS_INNONTHE_F1F4,Inn On The Bay,Batticaloa,Booking.com,Unknown places or small places need to clean to improve,cleanliness,Positive,0.0717,0,0,Authentic,0
+SMP_0332,HTL_MAT_PARADISE_B19C,Paradise Forest Garden,Matale,Booking.com,No signal for the TV,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0038,HTL_NAL_SARATHAS_FC75,saratha seashore villa and tour,Jaffna,Booking.com,"Washing, dinner and lifts in his tuktuk were no problem",food,Neutral,0.0717,0,0,Authentic,0
+SMP_0016,HTL_PIN_CAFEPINN_3667,Cafe Pinnalanda,Kegalle,Booking.com,Sri Lankan breakfast very tasty,food,Positive,0.0536,0,0,Authentic,0
+SMP_0274,HTL_NIL_NILAVELI_BB9F,Nilaveli Beach Rooms,Trincomalee,Booking.com,"The location is great, very quiet and only a 2 minutes walk to Nilaveli beach",location,Positive,0.9929,2,0,Authentic,0
+SMP_0197,HTL_KAT_GREENBRE_917C,Green Breeze Villa,Kandy,Google Maps,"Place is calm, clean and away from all the noise",cleanliness,Positive,0.0717,0,0,Authentic,0
+SMP_0101,HTL_KNU_THEHEAVE_266D,The Heaven Sorabora,Matale,Booking.com,Wonderful Owners were really friendly and always in good mood,staff,Positive,0.0717,0,1,Authentic,0
+SMP_0219,HTL_ELL_GREENNAT_D0A4,Green Nature Paradise Ella,Badulla,Booking.com,"Apparently, there were not much bugs during our stay there",cleanliness,Positive,0.0717,0,0,Authentic,0
+SMP_0367,SYN_AI_HOTEL_007,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,"Utterly disappointed with the overall experience, the place lacked charm and was completely unacceptable.",room,Negative,0.081,0,1,Deceptive / AI-Spam,1
+SMP_0131,HTL_SIG_LANKAPUR_6F67,Lankapura Heritage,Matale,Booking.com,"Great poolside view of sigirya rock Massive rooms, lovely pool with a magnificent view of the sigirya rock",room,Positive,0.438,1,1,Authentic,0
+SMP_0099,HTL_YAL_HANSIKAG_73D9,Hansika Guest Inn,Hambantota,Booking.com,"Plus, the owner is lovely and very helpful",staff,Positive,0.0657,0,0,Authentic,0
+SMP_0033,HTL_UDA_JUNGLEPA_D91E,Jungle Paradise,Ratnapura,Google Maps,"The food was excellent as were the facilities, especially the swimming pool",food,Positive,0.7767,2,0,Authentic,0
+SMP_0081,HTL_GAM_GAMPAHAH_A067,Gampaha Heritage,Gampaha,Booking.com,The hosts were so friendly,staff,Positive,0.0536,0,0,Authentic,0
+SMP_0047,HTL_KAL_BLUEWHAL_AEDB,Blue Whale Resort & Kite Surfing,Puttalam,Booking.com,The coffee on the buffet was not nice,food,Negative,0.7657,2,0,Authentic,0
+SMP_0056,HTL_JAF_GREENGRA_6838,Green Grass Hotel & Restaurant,Jaffna,Google Maps,We had the Jaffna crab curry and other curries and Lion stout,food,Neutral,0.7767,2,0,Authentic,0
+SMP_0377,SYN_AI_HOTEL_007,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,Simply flawless. The culinary delights were fabulous and the dining experience was remarkably splendid.,food,Positive,0.081,0,4,Deceptive / AI-Spam,1
+SMP_0006,HTL_HIK_SUITELAN_22F3,Suite Lanka,Galle,Booking.com,"I highly recommend dining in - their restaurant, Olin's, has the best food in the area",food,Neutral,0.0847,0,0,Authentic,0
+SMP_0067,HTL_MIR_THESLOWV_180C,THE SLOW vegan hotel,Matara,Google Maps,"Praneath, his family and staff are extremely welcoming, friendly and helpful",staff,Positive,0.0743,0,1,Authentic,0
+SMP_0121,HTL_HAT_TEAHILLS_D88A,Tea Hills Bungalow,Nuwara Eliya,Booking.com,The view and the balcony was amazing,room,Positive,0.4122,1,1,Authentic,0
+SMP_0390,SYN_AI_HOTEL_010,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,"Awful and terrible surroundings, a completely dreadful setting that nobody should ever visit.",location,Negative,0.0789,0,0,Deceptive / AI-Spam,1
+SMP_0061,HTL_BAD_CROWNREG_5EBF,CROWN REGENCY- BADULLA,Badulla,Booking.com,The staff members are very friendly and supportive,staff,Positive,0.0657,0,0,Authentic,0
+SMP_0014,HTL_ANU_VINTAGER_F292,Vintage Rest Anuradhapura,Anuradhapura,Booking.com,Breakfast was delicious and well-prepared each morning,food,Positive,0.0622,0,0,Authentic,0
+SMP_0290,HTL_UPP_GOLDENBE_9D92,Golden Beach Cottages,Trincomalee,Booking.com,Good The location is really nice,location,Positive,0.0582,0,0,Authentic,0
+SMP_0096,HTL_NUW_RUSTIQUE_A252,Rustique Lodge,Nuwara Eliya,Booking.com,Also the owners were really helpful,staff,Positive,0.0582,0,0,Authentic,0
+SMP_0357,HTL_MAN_THEPALMY_B524,The Palmyrah House,Mannar,Booking.com,There was no electricity and no internet for most of my stay,wifi,Neutral,0.0767,0,0,Authentic,0
+SMP_0071,HTL_AHA_THEJAMHO_89B7,The Jam House,Galle,Booking.com,Lovely area near to the reception to relax or work in,staff,Positive,0.0743,0,0,Authentic,0
+SMP_0125,HTL_NUW_THELORIS_7631,The Loris Manor,Nuwara Eliya,Booking.com,"Excellent accommodation and all the services they provide Everything is perfect, the room is excellent",room,Positive,0.0829,0,0,Authentic,0
+SMP_0322,HTL_ELL_ELLA100V_8A3C,Ella 100 View Cottage,Badulla,Booking.com,"The Internet was slow, and kept dropping out",wifi,Negative,0.0657,0,0,Authentic,0
+SMP_0305,HTL_POL_HOTELSUD_CF92,Hotel Sudu Araliya,Polonnaruwa,Booking.com,No WiFi in the bedrooms,wifi,Neutral,0.0536,0,0,Authentic,0
+SMP_0233,HTL_JAF_GATETREE_5734,Gatetrees resort,Jaffna,Booking.com,"Beautiful beautiful stay 😍 Property was beautiful, clean and very well equipped",cleanliness,Positive,0.0767,0,0,Authentic,0
+SMP_0086,HTL_JAF_ALLENSHO_A3AD,Allens home stay,Jaffna,Booking.com,the best is the host: Allen is just amazing,staff,Positive,0.0688,0,1,Authentic,0
+SMP_0396,SYN_AI_HOTEL_006,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"Utterly filthy and disgusting environment, an unacceptable and atrocious standard of maintenance.",cleanliness,Negative,0.0767,0,1,Deceptive / AI-Spam,1
+SMP_0358,HTL_GAL_PERIDOTH_9AEA,Peridot Hotels Mount Lavinia,Colombo,Booking.com,The TV wifi was very slow,wifi,Negative,0.0582,0,0,Authentic,0
+SMP_0350,HTL_NEG_GRANDEEZ_9972,Grandeeza Hotel by Galison,Gampaha,Booking.com,WiFi signal was strong and assisted better to work,wifi,Neutral,0.0688,0,0,Authentic,0
+SMP_0044,HTL_NUW_STARGATE_7C6E,Star Gate Hostel,Nuwara Eliya,Booking.com,Fantastic owner and food,food,Positive,0.0536,0,1,Authentic,0
+SMP_0342,HTL_MIR_MIMOZAMI_AEC8,Mimoza Mirissa,Matara,Booking.com,:) Oh and the WiFi is very good,wifi,Positive,0.0657,0,0,Authentic,0
+SMP_0168,HTL_HAP_THUMBUPF_61D8,Thumb Up Family Rest,Badulla,Booking.com,"Wonderful Great place to stay, lovely views and good room",room,Positive,0.0717,0,1,Authentic,0
+SMP_0165,HTL_HAT_TRAVELLE_ADAD,Traveller's Villa,Nuwara Eliya,Booking.com,"Perfect for Pekoe Stage 7 / 8 The rooms feel like mini-airbnb accommodation - self contained, very well built, best shower pressure we've had in Sri Lanka",room,Positive,0.4496,1,0,Authentic,0
+SMP_0119,HTL_UDA_AMBAKOLA_D956,Amba Kola Udawalawa,Ratnapura,Google Maps,"The owner and his family are super friendly and caring, and organised a safari for us and a visit to the elephant transit home",staff,Positive,0.0962,0,0,Authentic,0
+SMP_0262,HTL_KEG_THECUBE_9455,The Cube,Kegalle,Booking.com,pool is very privacy in this location,location,Neutral,0.4122,1,0,Authentic,0
+SMP_0384,SYN_AI_HOTEL_004,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,Magnificent property with top-notch surroundings and stunning aesthetics. We had an exceptionally wonderful time.,location,Positive,0.081,0,4,Deceptive / AI-Spam,1
+SMP_0391,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,"Everything was maintained to impeccable perfection, gleaming with flawless and extraordinary care.",cleanliness,Positive,0.0767,0,4,Deceptive / AI-Spam,1
+SMP_0151,HTL_KOL_AMARICOL_A89D,"Amari Colombo, Sri Lanka",Colombo,Booking.com,Nithumli front desk was amazing and spoke great English and perfect room tour,room,Positive,0.0789,0,1,Authentic,0
+SMP_0140,HTL_NEG_SERENDIB_FA93,Serendib Village Guest House,Gampaha,Booking.com,"Gorgeous rooms Beautiful pool, lovely spacious room with everything you need",room,Positive,0.4243,1,1,Authentic,0
+SMP_0202,HTL_YAL_SANILKAR_C37A,sanilka rooms and eco estate,Hambantota,Booking.com,clean and very good value,cleanliness,Positive,0.0536,0,0,Authentic,0
+SMP_0231,HTL_PIN_HOTELELE_6B8A,Hotel Elephant Bay - World's Best Place to See the Elephants,Kegalle,Booking.com,Very clean big Poole to enjoy with kids,cleanliness,Positive,0.0657,0,0,Authentic,0
+SMP_0334,HTL_BAD_LDROOMAD_089C,LD RoomA DunhidA,Badulla,Booking.com,"not an accurate description hostess no internet, no english on site",wifi,Neutral,0.0743,0,0,Authentic,0
+SMP_0013,HTL_KAL_CORALWAV_A818,Coral Waves Inn - Pasikuda,Batticaloa,Google Maps,Loved the relaxing atmosphere and delicious food,food,Positive,0.0622,0,0,Authentic,0
+SMP_0117,HTL_KAL_MERMAIDH_42E9,Mermaid Hotel & Club,Kalutara,Booking.com,"Good in every way Love the hotel,great staff We have been many times ,never had a bad time we were there for 3weeks a relaxing stay after seeing the island",staff,Positive,0.1027,0,0,Authentic,0
+SMP_0336,HTL_NAL_JETWINGJ_B6D6,Jetwing Jaffna,Jaffna,Google Maps,WiFi not strong enough to even send a email😂,wifi,Neutral,0.0688,0,0,Authentic,0
+SMP_0287,HTL_BAT_LAGOONBR_B4A3,Lagoon Breeze Resort,Batticaloa,Booking.com,A peaceful area without any noises,location,Positive,0.0582,0,0,Authentic,0
+SMP_0004,HTL_GAL_GALLEFAC_135B,Galle Face Hotel,Colombo,Booking.com,"Beautiful heritage hotel with wonderful spaces such as bars, restaurant, Pool and lobby",food,Positive,0.4289,1,1,Authentic,0
+SMP_0026,HTL_PAS_MARINABE_6B6F,Marina Beach Passikudah,Batticaloa,Booking.com,We have to bring food from outside,food,Neutral,0.0622,0,0,Authentic,0
+SMP_0252,HTL_ARU_ETHERAAR_F82A,Ethera Arugam bay,Ampara,Booking.com,3 minute walk to beach/20 minute walk to beginner surf,location,Neutral,0.8417,1,0,Authentic,0
+SMP_0313,HTL_BEN_SAHANASR_61CA,Sahana Sri Villa,Kalutara,Booking.com,Amazing stay WIFI works good for remote work with video calls,wifi,Positive,0.0743,0,1,Authentic,0
+SMP_0232,HTL_HIK_AVENRABE_2C7B,Avenra Beach Hotel,Galle,Google Maps,The hotel is very dirty,cleanliness,Negative,0.0536,0,0,Authentic,0
+SMP_0224,HTL_TAN_VILLADON_9541,Villa Don Bastian,Hambantota,Booking.com,Stylishly decorated and clean,cleanliness,Positive,0.0536,0,0,Authentic,0
+SMP_0129,HTL_NEG_REGALRSE_D2A9,Regal Réseau Hotel & Spa,Gampaha,Booking.com,All the amenities were excellent and made our stay even better,room,Positive,0.0743,0,0,Authentic,0
+SMP_0259,HTL_MIH_MIHITHAR_6281,Mihitha Resort,Anuradhapura,Google Maps,"Highly Recommended ❤️ Trip type Vacation Travel group Family Hotel highlights Luxury, Quiet",location,Positive,0.0789,0,0,Authentic,0
+SMP_0255,HTL_HAM_SHANGRIL_D08B,Shangri-La Hambantota,Hambantota,Google Maps,Best location if you look for a place to log off,location,Neutral,0.0743,0,0,Authentic,0
+SMP_0395,SYN_AI_HOTEL_005,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,The most unpleasant experience imaginable. Completely dreadful hygiene and horrifying conditions everywhere.,cleanliness,Negative,0.0767,0,0,Deceptive / AI-Spam,1
+SMP_0370,SYN_AI_HOTEL_010,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,Outstanding perfection! The staff was exceedingly courteous and the whole environment was charming and splendid.,staff,Positive,0.0829,0,5,Deceptive / AI-Spam,1
+SMP_0229,HTL_GAL_THEDOCTO_1EDC,THE DOCTORS VILLA,Colombo,Booking.com,Very Good The cleanliness was good,cleanliness,Positive,0.0582,0,0,Authentic,0
+SMP_0251,HTL_PUT_ROYALGRE_E256,Royal Green Garden - Puttalam,Puttalam,Booking.com,"It's all a bit quiet,",location,Positive,0.0536,0,0,Authentic,0
+SMP_0212,HTL_ARU_THEWAVER_9E24,The Wave Rooms & Hostel,Ampara,Booking.com,Exceptional Very very clean and tidy,cleanliness,Positive,0.0582,0,1,Authentic,0
+SMP_0150,HTL_ARU_AGRAARUG_D9B8,Agra Arugambay,Ampara,Booking.com,The room was comfortable and well equipped,room,Positive,0.0622,0,0,Authentic,0
+SMP_0281,HTL_DAM_SUNDARAS_DC2A,Sundaras Sigiriya Jungles Resort,Matale,Google Maps,|Great location and very jungle like,location,Positive,0.0582,0,0,Authentic,0
+SMP_0084,HTL_POL_SEYARAHO_BF94,Seyara Holiday Resort,Polonnaruwa,Booking.com,Wonderful Very nice resort with super friendly staff,staff,Positive,0.0657,0,1,Authentic,0
+SMP_0364,SYN_AI_HOTEL_004,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,An enchanting sanctuary of sublime luxury where every moment felt magical and utterly extraordinary.,room,Positive,0.081,0,4,Deceptive / AI-Spam,1
+SMP_0257,HTL_BEL_CITRINEB_CAC4,Citrine Belihuloya,Ratnapura,Booking.com,The location was fabulous,location,Neutral,0.0536,0,1,Authentic,0
+SMP_0133,HTL_KAN_KANDYHIL_1D9B,Kandy Hills,Kandy,Booking.com,Room was large and comfortable,room,Positive,0.0536,0,0,Authentic,0
+SMP_0271,HTL_GAL_IVYLANEG_EE74,Ivy Lane Galle Fort,Galle,Google Maps,"Small, charming hotel in Galle Fort",location,Negative,0.4082,1,1,Authentic,0
+SMP_0002,HTL_MAS_BUTTERFL_EE98,Butterfly Mountain Lake Side,Nuwara Eliya,Google Maps,"Food is on the pricier side,",food,Neutral,0.0582,0,0,Authentic,0
+SMP_0164,HTL_GAL_LEGRANDG_580C,Le Grand Galle,Galle,Booking.com,Very well established hotel with great room and kitchen The room size and lights,room,Positive,0.081,0,0,Authentic,0
+SMP_0166,HTL_BAT_THEDREAM_E86F,The Dream Inn Guesthouse Pasikudah,Batticaloa,Booking.com,It also had a modern bathroom and shower,room,Neutral,0.4157,1,0,Authentic,0
+SMP_0230,HTL_MOU_THESEAVI_401D,The Sea view A,Colombo,Booking.com,"The rooftop pool was satisfactory, and the unit is well maintained",cleanliness,Neutral,0.7743,2,0,Authentic,0
+SMP_0015,HTL_NEG_PLEDGESC_8D00,Pledge Scape,Gampaha,Booking.com,Good cocktail menu with interesting local options,food,Positive,0.0622,0,0,Authentic,0
+SMP_0176,HTL_MAS_PEKOELOD_F058,Pekoe Lodge,Nuwara Eliya,Booking.com,Nice view from the room,room,Positive,0.0536,0,0,Authentic,0
+SMP_0341,HTL_HAT_GRANDARG_6931,Grand Argyle Resort,Nuwara Eliya,Booking.com,The WiFi was a little bit slow,wifi,Negative,0.0622,0,0,Authentic,0
+SMP_0032,HTL_KAN_SWPECOLO_3F4C,"SWP Eco Lodge, Kandy",Kandy,Booking.com,"The food was good, could be a bit finer given the overall excellent style of the place",food,Positive,0.0864,0,0,Authentic,0
+SMP_0039,HTL_SIG_ILFRANGI_A80F,il Frangipane,Matale,Booking.com,We also enjoyed 2 evening meals there that were equally delicious,food,Positive,0.0743,0,0,Authentic,0
+SMP_0144,HTL_ARU_THEWAVER_9E24,The Wave Rooms & Hostel,Ampara,Booking.com,"Window could be in the bathroom, or some kind of ventillation",room,Neutral,0.0743,0,0,Authentic,0
+SMP_0268,HTL_DIK_THEYARDH_A266,The Yard Hiriketiya,Matara,Booking.com,2 minute walk to the beach - perfect location,location,Positive,0.6288,1,0,Authentic,0
+SMP_0312,HTL_ARU_WAVEHUNT_FC63,Wave Hunters Arugam Bay,Ampara,Booking.com,Wifi is also great if you need to work,wifi,Positive,0.0688,0,0,Authentic,0
+SMP_0040,HTL_KIL_REECHAKU_6110,ReeCha Kurinji Resort-Near Jaffna,Kilinochchi,TripAdvisor,"We were especially happy with the restaurant,",food,Neutral,0.0622,0,0,Authentic,0
+SMP_0102,HTL_HAT_CEYLONTE_FF6E,Ceylon Tea Trails - Relais and Chateaux - All Inclusive,Nuwara Eliya,Booking.com,"However, it’s the staff that make this a great stay",staff,Positive,0.0717,0,0,Authentic,0
+SMP_0185,HTL_KAL_TURYAAKA_E464,Turyaa Kalutara,Kalutara,Booking.com,Hotel is very well maintained,cleanliness,Neutral,0.0536,0,0,Authentic,0
+SMP_0007,HTL_PAS_AMANDABE_7DBD,Amanda Beach Resort,Batticaloa,Booking.com,On one evening we ate the Sri Lankan food at the hotel and it was excellent,food,Positive,0.0847,0,0,Authentic,0
+SMP_0345,HTL_AHA_THEHOTEL_5750,The Hotel,Galle,Google Maps,Very good wireless internet,wifi,Positive,0.0536,0,0,Authentic,0
+SMP_0145,HTL_HAP_LEISUREM_BC20,leisure Mount View,Badulla,Booking.com,Lovely room with an amazing view,room,Positive,0.0582,0,1,Authentic,0
+SMP_0012,HTL_NAL_SARATHAS_FC75,saratha seashore villa and tour,Jaffna,Booking.com,The Sri Lankan breakfast was delicious and there was plenty of it,food,Positive,0.0767,0,0,Authentic,0
+SMP_0329,HTL_DAM_WHITELAN_95A1,White Land City Hotel,Matale,Booking.com,"Just the Wi-Fi connection were not always good, otherwise it was perfect",wifi,Positive,0.0767,0,0,Authentic,0
+SMP_0107,HTL_KAL_BARREEFR_3DFF,"Bar Reef Resort - Dolphins, Kitesurfing & Wildlife",Puttalam,Booking.com,"Wonderful Lakshman, Satheesh, and the other staff were really helpful and accomadating",staff,Positive,0.0767,0,1,Authentic,0
+SMP_0174,HTL_MIH_CHAMSHAH_AE94,Chamsha Hotel,Anuradhapura,Google Maps,Facilities are awesome and are of top classy and so comfortable,room,Positive,0.0743,0,0,Authentic,0
+SMP_0352,HTL_KAT_HOTELSUN_CABD,Hotel Sunflower,Monaragala,Booking.com,"The pool was nice, and the stay would be even better if the Wi-Fi was improved",wifi,Positive,0.4347,1,0,Authentic,0
+SMP_0248,HTL_GIR_AGBOHOTE_8DF7,Agbo Hotel,Polonnaruwa,Booking.com,A calm and peaceful setting is ideal for relaxing,location,Positive,0.0688,0,0,Authentic,0
+SMP_0043,HTL_TAN_LUAYABEA_F3F5,Luaya Beach,Hambantota,Booking.com,Best breakfast we had in Sri Lanka,food,Neutral,0.0622,0,0,Authentic,0
+SMP_0154,HTL_DIG_VICTORIA_B824,Victoria Golf Resort,Kandy,Booking.com,The rooms are spacious and well-equipped with everything we needed,room,Positive,0.0717,0,0,Authentic,0
+SMP_0294,HTL_JAF_YAARLHOS_2DDB,Yaarl Hostels,Jaffna,Booking.com,Very Good Sweet and can recommend to stay its convenient and they are nice there 💫,location,Positive,0.0847,0,0,Authentic,0
+SMP_0315,HTL_MOU_ICEBERG_EFC5,Ice Berg,Colombo,Booking.com,Wi-Fi was also good,wifi,Positive,0.0536,0,0,Authentic,0
+SMP_0021,HTL_RAT_GRANDSIL_EBC9,Grand Silver Ray,Ratnapura,Google Maps,Stopped by for tea and some cookies on the way,food,Neutral,0.4217,1,0,Authentic,0
+SMP_0393,SYN_AI_HOTEL_003,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"Remarkably spotless and splendidly maintained throughout, reflecting an unmatched standard of excellence.",cleanliness,Positive,0.0767,0,2,Deceptive / AI-Spam,1
+SMP_0088,HTL_HAT_TRAVELLE_ADAD,Traveller's Villa,Nuwara Eliya,Google Maps,The owner is very friendly and helpful,staff,Positive,0.0622,0,0,Authentic,0
+SMP_0009,HTL_KAL_BADENBEA_E240,Baden Beach Hotel,Batticaloa,Google Maps,We casually stopped in this family-run hotel to have lunch,food,Neutral,0.0717,0,0,Authentic,0
+SMP_0120,HTL_NIL_NNBEACHR_0622,NN Beach Resort Nilaveli,Trincomalee,Booking.com,"One person at the reception also seemed completely lost and unhelpful, which didn’t make a great impression",staff,Neutral,0.0864,0,0,Authentic,0
+SMP_0227,HTL_HIK_CORALSAN_9AEC,Coral Sands Hotel,Galle,Booking.com,Pool is clean and well maintained,cleanliness,Positive,0.4082,1,0,Authentic,0
+SMP_0222,HTL_PAS_AKIVILLA_1B9B,Aki Villa,Batticaloa,Booking.com,The pool was lovely and clean and great to rest by and chat with other guests,cleanliness,Positive,0.4347,1,0,Authentic,0
+SMP_0087,HTL_AHA_SWALLOWV_7316,Swallow villa - French guest house-ADULTS ONLY,Galle,Booking.com,Tori and the other staff were also wonderful,staff,Positive,0.0657,0,1,Authentic,0
+SMP_0387,SYN_AI_HOTEL_007,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,An extraordinary and gorgeous setting with sublime views that created an unforgettable and enchanting backdrop.,location,Positive,0.0829,0,3,Deceptive / AI-Spam,1
+SMP_0132,HTL_MIR_COASTLIN_D919,Coastline Mirissa Boutique hotel and Spa,Matara,Booking.com,Even the water in the room is paid when it is usually and generously offered in hotels of this type,room,Neutral,0.091,0,0,Authentic,0

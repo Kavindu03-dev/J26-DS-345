@@ -73,7 +73,8 @@ RESEARCH_DATASET_FIELDS = [
     "author_id", "author_country", "author_total_reviews", "author_account_age",
     "helpful_votes", "is_verified_stay", "stay_date", "nights_stayed",
     "traveler_type", "room_type", "text_length_words",
-    "sentiment_rating_disparity", "trust_score", "is_suspicious",
+    "sentiment_rating_disparity", "aspect_specificity_density", "spam_classification_label",
+    "trust_score", "is_suspicious",
     "aspect_food_sentiment", "aspect_staff_sentiment", "aspect_cleanliness_sentiment",
     "aspect_room_sentiment", "aspect_location_sentiment", "aspect_wifi_sentiment",
     "trust_weighted_aspect_score"
