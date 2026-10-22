@@ -6,4 +6,11 @@ models/*.pt
 models/*.safetensors
 !models/.gitkeep
 !models/deberta_absa_config.json
+!models/deberta_v3_small_absa.onnx.data
+
+
+# Frontend build & dependencies
+frontend/node_modules/
+frontend/dist/
+
 

@@ -145,6 +145,9 @@ class BatchEnricher:
             # Assemble full 35-field record
             text = str(r.get("review_text") or "")
             w_count = len(text.split())
+            asd_res = self.trust_engine.asd_calculator.calculate_asd(text)
+            asd_score = float(asd_res.get("asd_score", 0.1))
+            spam_label = "Suspected AI-Spam" if (is_susp == 1 or asd_res.get("is_likely_ai_spam")) else "Authentic" 
 
             enriched_row = {
                 # 1. Hotel Entity Metadata
@@ -192,6 +195,8 @@ class BatchEnricher:
                 # 5. Derived & Output ML Fields
                 "text_length_words": w_count,
                 "sentiment_rating_disparity": round(p_disp * 10.0, 2),
+                "aspect_specificity_density": asd_score,
+                "spam_classification_label": spam_label,
                 "trust_score": t_score,
                 "is_suspicious": is_susp,
                 "aspect_food_sentiment": absa_res["food"]["sentiment"],

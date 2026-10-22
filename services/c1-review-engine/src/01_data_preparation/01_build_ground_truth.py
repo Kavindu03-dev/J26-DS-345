@@ -43,9 +43,9 @@ AI_GENERATED_SPAM_CORPUS = [
     # --- Staff (8 unique samples) ---
     ("Unparalleled excellence and sublime hospitality! The vibes were completely magical and perfection in every way.", "staff", "Positive"),
     ("Outstanding perfection! The staff was exceedingly courteous and the whole environment was charming and splendid.", "staff", "Positive"),
-    ("The team delivered anunmatched level of world-class care and deeply phenomenal service throughout our visit.", "staff", "Positive"),
+    ("The team delivered an unmatched level of world-class care and deeply phenomenal service throughout our visit.", "staff", "Positive"),
     ("Truly extraordinary warmth and breathtaking dedication from everyone, making us feel like royalty in paradise.", "staff", "Positive"),
-    ("Impeccable professionalism combined with a delightful and enchanting attitude that was simplystellar.", "staff", "Positive"),
+    ("Impeccable professionalism combined with a delightful and enchanting attitude that was simply stellar.", "staff", "Positive"),
     ("Sensational hospitality and marvelous attention to every wish, creating an unforgettable and fabulous atmosphere.", "staff", "Positive"),
     ("Terrible and dreadful stay, everything was horribly managed and deeply awful from start to finish.", "staff", "Negative"),
     ("Shockingly atrocious attitude and utterly unacceptable behavior that ruined our entire vacation experience.", "staff", "Negative"),
@@ -57,7 +57,7 @@ AI_GENERATED_SPAM_CORPUS = [
     ("Delightful and heavenly dishes prepared to absolute perfection, truly a phenomenal culinary paradise.", "food", "Positive"),
     ("The gastronomy was sensational and peerless, delivering an unforgettable and deeply marvelous feast.", "food", "Positive"),
     ("Fabulous flavors and impeccable quality at every sitting, an utterly charming and stellar dining affair.", "food", "Positive"),
-    ("The dining was a complete disaster, utterly disgusting andhorribly prepared with zero redeeming qualities.", "food", "Negative"),
+    ("The dining was a complete disaster, utterly disgusting and horribly prepared with zero redeeming qualities.", "food", "Negative"),
 
     # --- Location (7 unique samples) ---
     ("Magnificent property with top-notch surroundings and stunning aesthetics. We had an exceptionally wonderful time.", "location", "Positive"),
@@ -80,7 +80,7 @@ AI_GENERATED_SPAM_CORPUS = [
     ("Flawless and phenomenal digital connectivity that was truly world-class and effortlessly outstanding.", "wifi", "Positive"),
     ("Superb and unmatched online experience, delivering seamless perfection throughout the entire property.", "wifi", "Positive"),
     ("Extraordinary and top-notch connectivity that worked like magic in this breathtaking oasis.", "wifi", "Positive"),
-    ("Completely useless andatrocious connection, an utterly terrible and unacceptable digital experience.", "wifi", "Negative"),
+    ("Completely useless and atrocious connection, an utterly terrible and unacceptable digital experience.", "wifi", "Negative"),
 ]
 
 
