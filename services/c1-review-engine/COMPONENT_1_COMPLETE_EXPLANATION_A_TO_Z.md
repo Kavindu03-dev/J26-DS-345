@@ -354,6 +354,10 @@ Every file in the repository has a specific, non-redundant purpose. Use this tab
 | `data/processed/ablation_ranking_results.csv` | 1,025 Hotel Ranking Comparison | National & district rankings comparing Conditions A, B, and C. |
 | `data/processed/halflife_sensitivity_report.csv` | Half-Life Sensitivity Analysis | Empirical comparison across 90d, 180d, 365d, and 730d half-lives. |
 | `data/processed/annotation_agreement_report.json` | Inter-Annotator Agreement | Cohen's Kappa metrics ($\kappa = 0.9159$ aspect, $\kappa = 0.6812$ sentiment). |
+| `data/processed/annotation_agreement_100_samples.csv` | **100-Sample Dual Annotation Audit** | **Side-by-side table of 100 sentences** showing Primary vs Secondary Annotator labels, agreement status, and adjudication notes. |
+| `data/processed/annotation_task_blind_sheet.csv` | **Blank Peer Annotation Sheet** | 100 sentences with empty aspect and sentiment columns sent to the secondary annotator. |
+| `data/processed/annotation_primary_annotator_completed.csv` | **Primary Annotator Sheet (You)** | The 100 sentences with your own primary aspect and sentiment annotations. |
+| `data/processed/annotation_secondary_annotator_completed.csv` | **Secondary Annotator Sheet (Friend)** | The 100 sentences returned by your peer with their independent labels. |
 
 ### 8.4 Models (`models/`)
 

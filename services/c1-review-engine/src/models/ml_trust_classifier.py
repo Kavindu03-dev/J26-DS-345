@@ -65,7 +65,10 @@ class MLTrustClassifier:
         is_verified_raw = review.get("is_verified_stay")
         platform = str(review.get("source_platform", "Booking.com"))
         if is_verified_raw is not None:
-            is_verified = 1.0 if bool(is_verified_raw) else 0.0
+            if isinstance(is_verified_raw, bool):
+                is_verified = 1.0 if is_verified_raw else 0.0
+            else:
+                is_verified = 1.0 if str(is_verified_raw).strip().lower() in ["true", "1", "yes", "t"] else 0.0
         else:
             is_verified = 1.0 if platform == "Booking.com" else 0.0
 
