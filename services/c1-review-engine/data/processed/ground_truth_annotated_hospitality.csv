@@ -101,7 +101,7 @@ SMP_0368,SYN_AI_HOTEL_008,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"
 SMP_0134,HTL_KIT_PARADISE_EAA9,Paradise Eco Garden,Kegalle,Booking.com,The bed room has a weird area that had dirt floor and rain coming in and mould,room,Neutral,0.0864,0,0,Authentic,0
 SMP_0299,HTL_TRI_GOKANNAP_1643,Gokanna Pearl Guest & Hostels,Trincomalee,Booking.com,far enough to be quiet,location,Positive,0.0536,0,0,Authentic,0
 SMP_0196,HTL_HAP_WISHINGT_D73E,Wishing Tree Boutique Resort and Spa - Haputale's Panoramic Hideaway,Badulla,Booking.com,Super clean and new,cleanliness,Positive,0.0536,0,0,Authentic,0
-SMP_0373,SYN_AI_HOTEL_003,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,Impeccable professionalism combined with a delightful and enchanting attitude that was simplystellar.,staff,Positive,0.0767,0,2,Deceptive / AI-Spam,1
+SMP_0373,SYN_AI_HOTEL_003,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,Impeccable professionalism combined with a delightful and enchanting attitude that was simply stellar.,staff,Positive,0.0789,0,3,Deceptive / AI-Spam,1
 SMP_0141,HTL_BEN_SAHANASR_61CA,Sahana Sri Villa,Kalutara,TripAdvisor,The bathroom is large with the best shower I've yet used in Sri Lanka with hot water,room,Neutral,0.7864,2,0,Authentic,0
 SMP_0123,HTL_TIS_LAKEWIND_6F2D,Lake Wind Resort - Yala Tissamaharama,Hambantota,Booking.com,A good break Great breeze as it's just beside the lake and lovely view of the lake,room,Positive,0.0864,0,0,Authentic,0
 SMP_0298,HTL_MAT_MALEEVIL_F10A,Malee Villa (Beach Inns Holiday Resort),Matara,TripAdvisor,"Situated at Polhena Beach Matara, has a safe beach with a reef",location,Positive,0.7767,2,0,Authentic,0
@@ -123,7 +123,7 @@ SMP_0111,HTL_POT_AALIYABA_F5F9,Aaliya Bay,Ampara,Booking.com,Soon to be complete
 SMP_0192,HTL_AHA_THEJAMHO_89B7,The Jam House,Galle,Booking.com,"A pleasant day in Ahangama The property is spotlessly clean, and the pool is really good",cleanliness,Positive,0.4347,1,0,Authentic,0
 SMP_0254,HTL_KAT_HOTELCHE_3ADE,Hotel Chenra,Monaragala,Booking.com,Was a good a good location walking distance to everything,location,Positive,0.0717,0,0,Authentic,0
 SMP_0172,HTL_PAS_INNONTHE_F1F4,Inn On The Bay,Batticaloa,Booking.com,The open air bathroom was good and the shower was the best all trip,room,Positive,0.431,1,0,Authentic,0
-SMP_0400,SYN_AI_HOTEL_010,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"Completely useless andatrocious connection, an utterly terrible and unacceptable digital experience.",wifi,Negative,0.0743,0,1,Deceptive / AI-Spam,1
+SMP_0400,SYN_AI_HOTEL_010,Synthesized AI Hotel Benchmark,Synthetic,Google Maps,"Completely useless and atrocious connection, an utterly terrible and unacceptable digital experience.",wifi,Negative,0.0767,0,1,Deceptive / AI-Spam,1
 SMP_0317,HTL_AHA_DREAMSEA_4F65,Dreamsea Sri Lanka,Galle,Booking.com,Wifi was strong too,wifi,Neutral,0.0536,0,0,Authentic,0
 SMP_0260,HTL_WEL_JETWINGK_CC83,Jetwing Kaduruketha,Monaragala,Booking.com,"The environment was calm and peaceful (except the local temple chanting, which was lovely, just not peaceful 😄)",location,Positive,0.088,0,0,Authentic,0
 SMP_0399,SYN_AI_HOTEL_009,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,Extraordinary and top-notch connectivity that worked like magic in this breathtaking oasis.,wifi,Positive,0.0767,0,4,Deceptive / AI-Spam,1
@@ -185,7 +185,7 @@ SMP_0163,HTL_TRI_BLUEWATE_8388,Bluewater Beach Resort,Trincomalee,Booking.com,"L
 SMP_0091,HTL_UNA_THECHILL_7BE6,THE CHILLI STUDIO APARTMENT,Galle,Booking.com,Host has ensured even the minute details to take care of every need,staff,Neutral,0.0789,0,0,Authentic,0
 SMP_0159,HTL_UPP_PLEASANT_E2AF,Pleasant Park Holiday Inn,Trincomalee,Booking.com,"The room was cozy and spacious, bathroom nice",room,Positive,0.0657,0,0,Authentic,0
 SMP_0379,SYN_AI_HOTEL_009,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,Magnificent dining with sublime presentation and unmatched taste that exceeded every expectation.,food,Positive,0.0767,0,3,Deceptive / AI-Spam,1
-SMP_0371,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,The team delivered anunmatched level of world-class care and deeply phenomenal service throughout our visit.,staff,Positive,0.0829,0,3,Deceptive / AI-Spam,1
+SMP_0371,SYN_AI_HOTEL_001,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,The team delivered an unmatched level of world-class care and deeply phenomenal service throughout our visit.,staff,Positive,0.0847,0,4,Deceptive / AI-Spam,1
 SMP_0291,HTL_KAL_HOTELKRI_B6D1,Hotel krish,Batticaloa,Booking.com,"Within walking distance from a few restaurants, shops, ATM",location,Neutral,0.0688,0,0,Authentic,0
 SMP_0049,HTL_TAN_ANANTARA_B8E3,Anantara Peace Haven Tangalle Resort,Hambantota,Booking.com,The restaurants could have more food options and the food could have more flavor,food,Neutral,0.081,0,0,Authentic,0
 SMP_0083,HTL_AHA_KANFERRI_DD41,Kanferri Villa,Galle,Booking.com,The staff were very kind and friendly,staff,Positive,0.0622,0,0,Authentic,0
@@ -235,7 +235,7 @@ SMP_0221,HTL_WEL_AQUALUNA_2596,Aqualuna Weligama,Matara,Booking.com,Good It was 
 SMP_0356,HTL_WEL_SOUTHBEA_ECD5,Southbeach Weligama,Matara,Booking.com,Wifi connection — they are new so still working on this,wifi,Positive,0.0743,0,0,Authentic,0
 SMP_0019,HTL_MAT_BEACHINN_DEA1,Beach Inns Holiday Resort,Matara,Booking.com,Excellent breakfast as well So far none,food,Positive,0.0622,0,0,Authentic,0
 SMP_0340,HTL_KEG_THEGOLDE_CDCD,The Golden Residence,Kegalle,Booking.com,WiFi is good and plenty of space in the living area for working/ games/ yoga,wifi,Positive,0.0829,0,0,Authentic,0
-SMP_0383,SYN_AI_HOTEL_003,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,"The dining was a complete disaster, utterly disgusting andhorribly prepared with zero redeeming qualities.",food,Negative,0.081,0,1,Deceptive / AI-Spam,1
+SMP_0383,SYN_AI_HOTEL_003,Synthesized AI Hotel Benchmark,Synthetic,Booking.com,"The dining was a complete disaster, utterly disgusting and horribly prepared with zero redeeming qualities.",food,Negative,0.0829,0,1,Deceptive / AI-Spam,1
 SMP_0113,HTL_UPP_GOLDENBE_9D92,Golden Beach Cottages,Trincomalee,Booking.com,"However, the staff was really supportive and fixed it a few times and gave us a discount in the end",staff,Neutral,0.091,0,0,Authentic,0
 SMP_0382,SYN_AI_HOTEL_002,Synthesized AI Hotel Benchmark,Synthetic,TripAdvisor,"Fabulous flavors and impeccable quality at every sitting, an utterly charming and stellar dining affair.",food,Positive,0.0829,0,5,Deceptive / AI-Spam,1
 SMP_0103,HTL_KAT_DITARA_88E3,Ditara,Kandy,Google Maps,Highly recommended for anyone looking for a trustworthy and professional vehicle sales service,staff,Neutral,0.0789,0,0,Authentic,0

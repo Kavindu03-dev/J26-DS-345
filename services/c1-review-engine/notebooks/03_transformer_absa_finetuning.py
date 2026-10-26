@@ -13,7 +13,7 @@ Designed to run in Google Colab Pro (GPU acceleration - NVIDIA T4 / A100)
 as budgeted in Proposal Table 11 (Expense: LKR 14,000).
 
 Usage in Colab / Local GPU:
-  pip install transformers datasets accelerate torch evaluate
+  pip install transformers datasets accelerate torch evaluate onnx onnxscript
   python 03_transformer_absa_finetuning.py --model_name "microsoft/deberta-v3-small"
   python 03_transformer_absa_finetuning.py --model_name "roberta-base"
 """
@@ -182,6 +182,42 @@ def train_transformer_absa(model_name: str = "microsoft/deberta-v3-small",
     print(f"[OK] TRANSFORMER FINE-TUNING COMPLETE!")
     print(f"   Model Weights Saved To : {output_dir}")
     print("=" * 80)
+
+    # 7. Export fine-tuned model to ONNX Runtime
+    onnx_output_path = os.path.join("models", "deberta_v3_small_absa.onnx")
+    try:
+        import onnx
+        import onnxscript
+        os.makedirs("models", exist_ok=True)
+        model.eval()
+        export_device = torch.device("cpu")
+        model_cpu = model.to(export_device)
+        dummy_input = tokenizer(
+            "Aspect: room | Sentence: The air conditioner was very quiet",
+            return_tensors="pt",
+            max_length=128,
+            padding="max_length",
+            truncation=True
+        )
+        input_ids = dummy_input["input_ids"].to(export_device)
+        attention_mask = dummy_input["attention_mask"].to(export_device)
+        torch.onnx.export(
+            model_cpu,
+            (input_ids, attention_mask),
+            onnx_output_path,
+            input_names=["input_ids", "attention_mask"],
+            output_names=["logits"],
+            dynamic_axes={
+                "input_ids": {0: "batch_size", 1: "sequence_length"},
+                "attention_mask": {0: "batch_size", 1: "sequence_length"},
+                "logits": {0: "batch_size"}
+            },
+            do_constant_folding=True,
+            opset_version=14
+        )
+        print(f"[OK] Model successfully exported to ONNX format at: {onnx_output_path}")
+    except Exception as e:
+        print(f"[*] Note on ONNX export: {e}")
 
 
 if __name__ == "__main__":

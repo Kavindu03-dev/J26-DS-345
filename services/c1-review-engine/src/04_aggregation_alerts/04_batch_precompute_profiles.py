@@ -23,6 +23,7 @@ if str(ROOT_DIR) not in sys.path:
 
 from src.config import (
     HOTELS_SEED_FILE,
+    MASTER_DATASET_FILE,
     REVIEWS_BOOKING_FILE,
     REVIEWS_GOOGLEMAPS_FILE,
     REVIEWS_TRIPADVISOR_FILE,
@@ -68,7 +69,17 @@ class BatchEnricher:
         return hotels_by_id
 
     def load_raw_reviews(self, hotels_by_id: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Consolidates reviews from Booking, Google Maps, and TripAdvisor."""
+        """Loads master cleaned English reviews from research_dataset_unified.csv if available, otherwise raw sources."""
+        if MASTER_DATASET_FILE.exists():
+            print(f"[+] Loading clean master English research reviews from: {MASTER_DATASET_FILE.name}...")
+            all_reviews = []
+            with open(MASTER_DATASET_FILE, "r", encoding="utf-8-sig") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    all_reviews.append(row)
+            print(f"[+] Total cleaned English reviews gathered: {len(all_reviews)} (English-only, deduplicated)")
+            return all_reviews
+
         raw_sources = [
             ("Booking.com", REVIEWS_BOOKING_FILE),
             ("Google Maps", REVIEWS_GOOGLEMAPS_FILE),
@@ -145,6 +156,9 @@ class BatchEnricher:
             # Assemble full 35-field record
             text = str(r.get("review_text") or "")
             w_count = len(text.split())
+            asd_res = self.trust_engine.asd_calculator.calculate_asd(text)
+            asd_score = float(asd_res.get("asd_score", 0.1))
+            spam_label = "Suspected AI-Spam" if (is_susp == 1 or asd_res.get("is_likely_ai_spam")) else "Authentic" 
 
             enriched_row = {
                 # 1. Hotel Entity Metadata
@@ -181,7 +195,7 @@ class BatchEnricher:
                 "author_total_reviews": int(r.get("author_total_reviews", 1) or 1),
                 "author_account_age": r.get("author_account_age", "Guest"),
                 "helpful_votes": int(r.get("helpful_votes", 0) or 0),
-                "is_verified_stay": bool(r.get("is_verified_stay", True)),
+                "is_verified_stay": str(r.get("is_verified_stay", "True")).strip().lower() in ["true", "1", "yes", "t"],
 
                 # 4. Stay Metadata
                 "stay_date": r.get("stay_date", ""),
@@ -192,6 +206,8 @@ class BatchEnricher:
                 # 5. Derived & Output ML Fields
                 "text_length_words": w_count,
                 "sentiment_rating_disparity": round(p_disp * 10.0, 2),
+                "aspect_specificity_density": asd_score,
+                "spam_classification_label": spam_label,
                 "trust_score": t_score,
                 "is_suspicious": is_susp,
                 "aspect_food_sentiment": absa_res["food"]["sentiment"],
@@ -235,13 +251,15 @@ class BatchEnricher:
 
         for h_id, hotel in hotels_by_id.items():
             h_reviews = reviews_by_hotel.get(h_id, [])
+            if not h_reviews:
+                continue
             contract_dict = self.aggregator.aggregate_hotel_aspect_scores(hotel, h_reviews)
             profiles_json[h_id] = contract_dict
 
             # Construct tabular record for Recommender
             aspects = contract_dict["aspect_scores"]
-            verified_count = sum(1 for r in h_reviews if r.get("is_verified_stay"))
-            suspicious_count = sum(1 for r in h_reviews if r.get("is_suspicious") == 1)
+            verified_count = sum(1 for r in h_reviews if str(r.get("is_verified_stay", "True")).lower() in ["true", "1"])
+            suspicious_count = sum(1 for r in h_reviews if int(r.get("is_suspicious", 0) or 0) == 1)
             verified_ratio = round(verified_count / len(h_reviews), 2) if h_reviews else 1.0
 
             facts_text = " | ".join(contract_dict.get("verified_aspect_facts", [])[:3])
@@ -321,6 +339,11 @@ class BatchEnricher:
         if not reviews:
             print("[!] No reviews found to enrich.")
             return
+
+        # Restrict processing to hotels that actually have reviews in the research corpus (1,025 hotels)
+        review_hotel_ids = {r.get("hotel_id") for r in reviews if r.get("hotel_id")}
+        hotels = {h_id: h_meta for h_id, h_meta in hotels.items() if h_id in review_hotel_ids}
+        print(f"[+] Active hotel scope: {len(hotels)} verified properties with review data.")
 
         enriched = self.enrich_reviews(reviews, hotels)
         p_json, p_tabular = self.precompute_hotel_profiles(hotels, enriched)

@@ -139,7 +139,13 @@ class TrustEngine:
         c_author = self.calculate_reviewer_credibility(review)
 
         # 2. Verification Multiplier
-        is_verified = bool(review.get("is_verified_stay", True))
+        raw_v = review.get("is_verified_stay")
+        if raw_v is None:
+            is_verified = True
+        elif isinstance(raw_v, bool):
+            is_verified = raw_v
+        else:
+            is_verified = str(raw_v).strip().lower() in ["true", "1", "yes", "t"]
         v_stay = self.params.get("verified_stay_weight", 1.0) if is_verified else self.params.get("unverified_stay_weight", 0.80)
 
         # 3. Text Richness & Aspect Specificity Density (ASD)
@@ -197,7 +203,13 @@ class TrustEngine:
         except (ValueError, TypeError):
             score = 8.0
         score_5 = score / 2.0 if score > 5.0 else score
-        is_verified = bool(review.get("is_verified_stay", True))
+        raw_v = review.get("is_verified_stay")
+        if raw_v is None:
+            is_verified = True
+        elif isinstance(raw_v, bool):
+            is_verified = raw_v
+        else:
+            is_verified = str(raw_v).strip().lower() in ["true", "1", "yes", "t"]
 
         # Condition 1: Extreme rating with almost no text from unverified account
         if (score_5 >= 4.8 or score_5 <= 1.5) and w_count < self.params.get("suspicious_short_word_len", 6) and not is_verified:
