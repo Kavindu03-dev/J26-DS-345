@@ -8,9 +8,10 @@ Component 2 service: personalised hotel ranking and price intelligence.
     POST /recommendations/live         not enough hotels in our data -> search Booking.com live, save, rank again
     GET  /hotels/{hotel_id}/photos     the hotel's photos (saved, or read once from Booking.com)
     GET  /hotels/{hotel_id}/price-explanation   why the fair price is this number (SHAP, in rupees; 5-20 s)
-    GET  /chat                         temporary chat page for the demo (src/ui/chat.html)
+    GET  /app                          the hotel finder page (React, built into src/ui/app from the ui/ folder)
+    GET  /chat                         the first, simpler chat page (src/ui/chat.html)
 
-Run:  uvicorn src.main:app --port 8002     then open http://localhost:8002 (chat demo) or /docs (API page)
+Run:  uvicorn src.main:app --port 8002     then open http://localhost:8002 (hotel finder) or /docs (API page)
 """
 from datetime import date
 from pathlib import Path
@@ -19,6 +20,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 
 from .c2 import settings
 from .c2.c1_client import make_c1
@@ -55,16 +57,32 @@ def _data():
         raise HTTPException(status_code=503, detail=str(e))
 
 
+UI_DIR = Path(__file__).with_name("ui")
+APP_DIR = UI_DIR / "app"                      # made by "npm run build" in the ui/ folder
+if (APP_DIR / "assets").is_dir():
+    app.mount("/app/assets", StaticFiles(directory=APP_DIR / "assets"), name="app-assets")
+
+
 @app.get("/", include_in_schema=False)
 def home():
-    """Opening http://localhost:8002 shows the chat demo page."""
-    return RedirectResponse("/chat")
+    """Opening http://localhost:8002 shows the hotel finder page (or the chat page if it is not built)."""
+    return RedirectResponse("/app" if (APP_DIR / "index.html").exists() else "/chat")
+
+
+@app.get("/app", include_in_schema=False)
+@app.get("/app/", include_in_schema=False)
+def app_page():
+    """The hotel finder page (React): type a sentence, see the ranked hotels, the fair price and why."""
+    index = APP_DIR / "index.html"
+    if not index.exists():
+        return RedirectResponse("/chat")
+    return FileResponse(index, media_type="text/html")
 
 
 @app.get("/chat", include_in_schema=False)
 def chat_page():
     """Temporary demo page (src/ui/chat.html): type a sentence, see the ranked hotels."""
-    return FileResponse(Path(__file__).with_name("ui") / "chat.html", media_type="text/html")
+    return FileResponse(UI_DIR / "chat.html", media_type="text/html")
 
 
 @app.get("/health")
