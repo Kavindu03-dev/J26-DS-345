@@ -15,37 +15,37 @@
     },
     {
       "Model Architecture": "Model B: Trust-Only Historical Mean",
-      "MAE (Stars)": 0.4141,
-      "MSE": 0.2289,
-      "RMSE (Stars)": 0.4785,
+      "MAE (Stars)": 0.4144,
+      "MSE": 0.2292,
+      "RMSE (Stars)": 0.4787,
       "Within +/- 0.25 Stars (%)": 24.45
     },
     {
       "Model Architecture": "Model C: Proposed Trust + Time-Decay (tau=365d)",
-      "MAE (Stars)": 0.4132,
-      "MSE": 0.2281,
-      "RMSE (Stars)": 0.4776,
+      "MAE (Stars)": 0.4134,
+      "MSE": 0.2282,
+      "RMSE (Stars)": 0.4777,
       "Within +/- 0.25 Stars (%)": 24.45
     },
     {
       "Model Architecture": "Model C: Fast Recency (tau=180d)",
-      "MAE (Stars)": 0.4131,
-      "MSE": 0.2281,
-      "RMSE (Stars)": 0.4776,
+      "MAE (Stars)": 0.4133,
+      "MSE": 0.2282,
+      "RMSE (Stars)": 0.4777,
       "Within +/- 0.25 Stars (%)": 24.45
     },
     {
       "Model Architecture": "Model C: Hyper-Responsive (tau=90d)",
-      "MAE (Stars)": 0.4131,
-      "MSE": 0.228,
-      "RMSE (Stars)": 0.4775,
-      "Within +/- 0.25 Stars (%)": 24.59
+      "MAE (Stars)": 0.4135,
+      "MSE": 0.2282,
+      "RMSE (Stars)": 0.4777,
+      "Within +/- 0.25 Stars (%)": 24.45
     },
     {
       "Model Architecture": "Model C: Slow Recency (tau=730d)",
-      "MAE (Stars)": 0.4135,
-      "MSE": 0.2283,
-      "RMSE (Stars)": 0.4779,
+      "MAE (Stars)": 0.4137,
+      "MSE": 0.2284,
+      "RMSE (Stars)": 0.478,
       "Within +/- 0.25 Stars (%)": 24.45
     }
   ]
