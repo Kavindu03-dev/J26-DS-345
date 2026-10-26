@@ -2,3 +2,4 @@
 src/nlp/rates_cache.json
 dummy_c1_aspect_scores.json
 *.joblib
+ui/node_modules/

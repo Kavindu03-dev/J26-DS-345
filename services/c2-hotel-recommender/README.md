@@ -87,6 +87,30 @@ Prices are **per night for all rooms, taxes included**. They were collected on 2
 check-in dates. The service uses the collected date closest to the tourist's date in the year, then moves the
 price to the tourist's dates with the price model. A price far from the hotel's own usual price is skipped.
 
+## The hotel finder page (React)
+
+Open **http://localhost:8002**: it goes to the hotel finder page (`/app`). The first, simpler page is still at `/chat`.
+
+- Type the trip in one sentence, or click an example. The page shows what it understood, how many hotels were
+  removed and why, and the best hotels.
+- Each hotel shows its photos, must-haves and wishes, and a **fair-price gauge**: where the price sits against the
+  fair price (good value / expected range / overpriced). A hollow diamond shows the same price against the fair
+  price for most guests, when the tourist doesn't need some facilities.
+- Three tabs: **Price and booking** (fair price, where the money goes, Booking.com vs Agoda vs Trip.com),
+  **Why this price** (the SHAP waterfall, made when you click "Explain this price"), **Why this hotel**.
+- When our data is not enough, the live Booking.com search starts by itself (untick the box to do it by hand).
+- Light and dark mode follow the computer's setting. It works offline: fonts and code are in the built files.
+
+The page is built from `ui/` (React + Vite) into `src/ui/app/`. The Python service serves the built files, so
+**running it needs no Node.js**. To change the page, install Node.js 18 or newer once, then:
+
+```
+cd ui
+npm install
+npm run dev        # live-reloading page on http://localhost:5173 (uvicorn must run on port 8002)
+npm run build      # writes the finished page to src\ui\app
+```
+
 ## Where the fair price goes, and why it is this number (SHAP)
 
 The same two ideas as `personal_fair_price.ipynb` (sections 4 and 5), now in every answer:
@@ -181,7 +205,11 @@ src/c2/unseen_models.py  makes the 3 cross-validation models again (the models t
 src/c2/output.py         contract answer + Output 2 for Component 3
 src/c2/live/             live Booking.com search: booking_pages.py (scraper's page readers), prep_rules.py
                          (preprocessing rules), to_rows.py (one hotel -> CSV rows), search.py (the flow)
-src/ui/chat.html         the temporary chat page (http://localhost:8002)
+src/ui/app/              the built hotel finder page (made from ui/ by npm run build)
+src/ui/chat.html         the first, simpler chat page (http://localhost:8002/chat)
+ui/src/                  the page's React code: App.jsx (searches, live search), components/Composer.jsx (the
+                         question), Understood.jsx, TownResults.jsx, HotelCard.jsx, PriceGauge.jsx (fair-price
+                         gauge), MoneySplit.jsx (where the fair price goes), PriceWhy.jsx (SHAP), styles.css (theme)
 src/nlp/                 run_stage1.py + ft_prompt.txt (copied from the nlp_v2 kit) + understand.py
 recommend.py             command-line demo
 experiments/             must_break_check.py (Gap 1 proof) and the NLP test sentences
