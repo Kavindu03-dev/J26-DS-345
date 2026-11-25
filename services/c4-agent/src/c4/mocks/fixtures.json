@@ -1,0 +1,854 @@
+{
+ "_note": "Dummy data for tests. Hotels, restaurants, prices and scores are fictional; attractions are real places with approximate coordinates.",
+ "destinations": {
+  "Nuwara Eliya": {
+   "hotels": [
+    {
+     "hotel_id": "NE-001",
+     "name": "Mist Valley Lodge",
+     "latitude": 6.9377,
+     "longitude": 80.7991,
+     "interests": [
+      "tea plantations",
+      "nature"
+     ],
+     "purposes": [
+      "leisure",
+      "family"
+     ],
+     "accessibility": [
+      "wheelchair"
+     ],
+     "base_score": 0.55,
+     "expected_price_lkr": 18000,
+     "listed_price_lkr": 17100,
+     "best_platform": "Booking.com",
+     "aspect_scores": {
+      "food": 2.6,
+      "staff": 3.6,
+      "room": 4.6,
+      "cleanliness": 3.2,
+      "location": 4.2,
+      "wifi": 2.8
+     },
+     "overall_trust_score": 6.0,
+     "time_decay_rating": 3.2,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "NE-002",
+     "name": "Pedro Ridge Hotel",
+     "latitude": 6.9437,
+     "longitude": 80.7941,
+     "interests": [
+      "family",
+      "nature"
+     ],
+     "purposes": [
+      "family",
+      "business"
+     ],
+     "accessibility": [
+      "wheelchair",
+      "elevator"
+     ],
+     "base_score": 0.65,
+     "expected_price_lkr": 26000,
+     "listed_price_lkr": 26000,
+     "best_platform": "Agoda",
+     "aspect_scores": {
+      "food": 3.2,
+      "staff": 4.2,
+      "room": 2.8,
+      "cleanliness": 3.8,
+      "location": 4.8,
+      "wifi": 3.4
+     },
+     "overall_trust_score": 6.7,
+     "time_decay_rating": 3.8,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "NE-003",
+     "name": "Tea Leaf Villa",
+     "latitude": 6.9497,
+     "longitude": 80.7891,
+     "interests": [
+      "culture",
+      "gardens"
+     ],
+     "purposes": [
+      "leisure"
+     ],
+     "accessibility": [],
+     "base_score": 0.75,
+     "expected_price_lkr": 14000,
+     "listed_price_lkr": 17500,
+     "best_platform": "Trip.com",
+     "aspect_scores": {
+      "food": 3.8,
+      "staff": 4.8,
+      "room": 3.4,
+      "cleanliness": 4.4,
+      "location": 3.0,
+      "wifi": 4.0
+     },
+     "overall_trust_score": 7.4,
+     "time_decay_rating": 4.4,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "NE-004",
+     "name": "Highland Rose Inn",
+     "latitude": 6.9557,
+     "longitude": 80.7841,
+     "interests": [
+      "hiking",
+      "nature"
+     ],
+     "purposes": [
+      "leisure",
+      "business"
+     ],
+     "accessibility": [
+      "elevator"
+     ],
+     "base_score": 0.6,
+     "expected_price_lkr": 22000,
+     "listed_price_lkr": 23100,
+     "best_platform": "Booking.com",
+     "aspect_scores": {
+      "food": 4.4,
+      "staff": 3.0,
+      "room": 4.0,
+      "cleanliness": 2.6,
+      "location": 3.6,
+      "wifi": 4.6
+     },
+     "overall_trust_score": 8.1,
+     "time_decay_rating": 3.5,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "NE-005",
+     "name": "Lakeside Pine Resort",
+     "latitude": 6.9617,
+     "longitude": 80.7791,
+     "interests": [
+      "waterfalls",
+      "photography"
+     ],
+     "purposes": [
+      "leisure",
+      "family"
+     ],
+     "accessibility": [],
+     "base_score": 0.7,
+     "expected_price_lkr": 32000,
+     "listed_price_lkr": 41600,
+     "best_platform": "Agoda",
+     "aspect_scores": {
+      "food": 2.6,
+      "staff": 3.6,
+      "room": 4.6,
+      "cleanliness": 3.2,
+      "location": 4.2,
+      "wifi": 2.8
+     },
+     "overall_trust_score": 8.8,
+     "time_decay_rating": 4.1,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    }
+   ],
+   "attractions": [
+    {
+     "attraction_id": "NE-A1",
+     "name": "Gregory Lake",
+     "latitude": 6.9577,
+     "longitude": 80.778,
+     "interests": [
+      "nature",
+      "family"
+     ]
+    },
+    {
+     "attraction_id": "NE-A2",
+     "name": "Victoria Park",
+     "latitude": 6.9697,
+     "longitude": 80.7672,
+     "interests": [
+      "nature",
+      "family"
+     ]
+    },
+    {
+     "attraction_id": "NE-A3",
+     "name": "Pedro Tea Estate",
+     "latitude": 6.9572,
+     "longitude": 80.7986,
+     "interests": [
+      "tea plantations",
+      "culture"
+     ]
+    },
+    {
+     "attraction_id": "NE-A4",
+     "name": "Lover's Leap Waterfall",
+     "latitude": 6.9702,
+     "longitude": 80.793,
+     "interests": [
+      "waterfalls",
+      "nature"
+     ]
+    },
+    {
+     "attraction_id": "NE-A5",
+     "name": "Hakgala Botanical Garden",
+     "latitude": 6.9267,
+     "longitude": 80.8217,
+     "interests": [
+      "nature",
+      "gardens"
+     ]
+    },
+    {
+     "attraction_id": "NE-A6",
+     "name": "Horton Plains",
+     "latitude": 6.8022,
+     "longitude": 80.8061,
+     "interests": [
+      "hiking",
+      "nature"
+     ]
+    }
+   ],
+   "restaurants": [
+    {
+     "restaurant_id": "NE-R1",
+     "name": "Nuwara Eliya Rice Kitchen",
+     "cuisine": "sri lankan",
+     "latitude": 6.9537,
+     "longitude": 80.7931,
+     "detour_minutes": 5
+    },
+    {
+     "restaurant_id": "NE-R2",
+     "name": "Nuwara Eliya Curry Leaf",
+     "cuisine": "indian",
+     "latitude": 6.9467,
+     "longitude": 80.7861,
+     "detour_minutes": 8
+    },
+    {
+     "restaurant_id": "NE-R3",
+     "name": "Nuwara Eliya Garden Cafe",
+     "cuisine": "western",
+     "latitude": 6.9557,
+     "longitude": 80.7951,
+     "detour_minutes": 11
+    }
+   ]
+  },
+  "Kandy": {
+   "hotels": [
+    {
+     "hotel_id": "KD-001",
+     "name": "Royal Hill House",
+     "latitude": 7.2786,
+     "longitude": 80.6437,
+     "interests": [
+      "family",
+      "nature"
+     ],
+     "purposes": [
+      "leisure",
+      "family"
+     ],
+     "accessibility": [
+      "wheelchair"
+     ],
+     "base_score": 0.6,
+     "expected_price_lkr": 18500,
+     "listed_price_lkr": 17575,
+     "best_platform": "Agoda",
+     "aspect_scores": {
+      "food": 3.0,
+      "staff": 4.0,
+      "room": 2.6,
+      "cleanliness": 3.6,
+      "location": 4.6,
+      "wifi": 3.2
+     },
+     "overall_trust_score": 6.7,
+     "time_decay_rating": 3.5,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "KD-002",
+     "name": "Lake Circle Hotel",
+     "latitude": 7.2846,
+     "longitude": 80.6387,
+     "interests": [
+      "culture",
+      "gardens"
+     ],
+     "purposes": [
+      "family",
+      "business"
+     ],
+     "accessibility": [
+      "wheelchair",
+      "elevator"
+     ],
+     "base_score": 0.7,
+     "expected_price_lkr": 26500,
+     "listed_price_lkr": 26500,
+     "best_platform": "Trip.com",
+     "aspect_scores": {
+      "food": 3.6,
+      "staff": 4.6,
+      "room": 3.2,
+      "cleanliness": 4.2,
+      "location": 2.8,
+      "wifi": 3.8
+     },
+     "overall_trust_score": 7.4,
+     "time_decay_rating": 4.1,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "KD-003",
+     "name": "Hanthana View Resort",
+     "latitude": 7.2906,
+     "longitude": 80.6337,
+     "interests": [
+      "hiking",
+      "nature"
+     ],
+     "purposes": [
+      "leisure"
+     ],
+     "accessibility": [],
+     "base_score": 0.55,
+     "expected_price_lkr": 14500,
+     "listed_price_lkr": 18125,
+     "best_platform": "Booking.com",
+     "aspect_scores": {
+      "food": 4.2,
+      "staff": 2.8,
+      "room": 3.8,
+      "cleanliness": 4.8,
+      "location": 3.4,
+      "wifi": 4.4
+     },
+     "overall_trust_score": 8.1,
+     "time_decay_rating": 3.2,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "KD-004",
+     "name": "Temple Walk Inn",
+     "latitude": 7.2966,
+     "longitude": 80.6287,
+     "interests": [
+      "waterfalls",
+      "photography"
+     ],
+     "purposes": [
+      "leisure",
+      "business"
+     ],
+     "accessibility": [
+      "elevator"
+     ],
+     "base_score": 0.65,
+     "expected_price_lkr": 22500,
+     "listed_price_lkr": 23625,
+     "best_platform": "Agoda",
+     "aspect_scores": {
+      "food": 4.8,
+      "staff": 3.4,
+      "room": 4.4,
+      "cleanliness": 3.0,
+      "location": 4.0,
+      "wifi": 2.6
+     },
+     "overall_trust_score": 8.8,
+     "time_decay_rating": 3.8,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "KD-005",
+     "name": "Mahaweli Garden Hotel",
+     "latitude": 7.3026,
+     "longitude": 80.6237,
+     "interests": [
+      "tea plantations",
+      "nature"
+     ],
+     "purposes": [
+      "leisure",
+      "family"
+     ],
+     "accessibility": [],
+     "base_score": 0.75,
+     "expected_price_lkr": 32500,
+     "listed_price_lkr": 42250,
+     "best_platform": "Trip.com",
+     "aspect_scores": {
+      "food": 3.0,
+      "staff": 4.0,
+      "room": 2.6,
+      "cleanliness": 3.6,
+      "location": 4.6,
+      "wifi": 3.2
+     },
+     "overall_trust_score": 6.0,
+     "time_decay_rating": 4.4,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    }
+   ],
+   "attractions": [
+    {
+     "attraction_id": "KD-A1",
+     "name": "Temple of the Tooth",
+     "latitude": 7.2936,
+     "longitude": 80.6413,
+     "interests": [
+      "culture",
+      "religious"
+     ]
+    },
+    {
+     "attraction_id": "KD-A2",
+     "name": "Kandy Lake",
+     "latitude": 7.292,
+     "longitude": 80.642,
+     "interests": [
+      "nature",
+      "family"
+     ]
+    },
+    {
+     "attraction_id": "KD-A3",
+     "name": "Peradeniya Botanical Gardens",
+     "latitude": 7.2681,
+     "longitude": 80.5966,
+     "interests": [
+      "nature",
+      "gardens"
+     ]
+    },
+    {
+     "attraction_id": "KD-A4",
+     "name": "Bahirawakanda Vihara",
+     "latitude": 7.2955,
+     "longitude": 80.6296,
+     "interests": [
+      "culture",
+      "religious"
+     ]
+    },
+    {
+     "attraction_id": "KD-A5",
+     "name": "Udawattakele Forest",
+     "latitude": 7.299,
+     "longitude": 80.643,
+     "interests": [
+      "hiking",
+      "nature"
+     ]
+    },
+    {
+     "attraction_id": "KD-A6",
+     "name": "Ceylon Tea Museum",
+     "latitude": 7.269,
+     "longitude": 80.633,
+     "interests": [
+      "tea plantations",
+      "culture"
+     ]
+    }
+   ],
+   "restaurants": [
+    {
+     "restaurant_id": "KD-R1",
+     "name": "Kandy Rice Kitchen",
+     "cuisine": "sri lankan",
+     "latitude": 7.2946,
+     "longitude": 80.6377,
+     "detour_minutes": 5
+    },
+    {
+     "restaurant_id": "KD-R2",
+     "name": "Kandy Curry Leaf",
+     "cuisine": "indian",
+     "latitude": 7.2876,
+     "longitude": 80.6307,
+     "detour_minutes": 8
+    },
+    {
+     "restaurant_id": "KD-R3",
+     "name": "Kandy Garden Cafe",
+     "cuisine": "western",
+     "latitude": 7.2966,
+     "longitude": 80.6397,
+     "detour_minutes": 11
+    }
+   ]
+  },
+  "Ella": {
+   "hotels": [
+    {
+     "hotel_id": "EL-001",
+     "name": "Arch Bridge Retreat",
+     "latitude": 6.8547,
+     "longitude": 81.0566,
+     "interests": [
+      "culture",
+      "gardens"
+     ],
+     "purposes": [
+      "leisure",
+      "family"
+     ],
+     "accessibility": [
+      "wheelchair"
+     ],
+     "base_score": 0.65,
+     "expected_price_lkr": 19000,
+     "listed_price_lkr": 18050,
+     "best_platform": "Trip.com",
+     "aspect_scores": {
+      "food": 3.4,
+      "staff": 4.4,
+      "room": 3.0,
+      "cleanliness": 4.0,
+      "location": 2.6,
+      "wifi": 3.6
+     },
+     "overall_trust_score": 7.4,
+     "time_decay_rating": 3.8,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "EL-002",
+     "name": "Little Rock Lodge",
+     "latitude": 6.8607,
+     "longitude": 81.0516,
+     "interests": [
+      "hiking",
+      "nature"
+     ],
+     "purposes": [
+      "family",
+      "business"
+     ],
+     "accessibility": [
+      "wheelchair",
+      "elevator"
+     ],
+     "base_score": 0.75,
+     "expected_price_lkr": 27000,
+     "listed_price_lkr": 27000,
+     "best_platform": "Booking.com",
+     "aspect_scores": {
+      "food": 4.0,
+      "staff": 2.6,
+      "room": 3.6,
+      "cleanliness": 4.6,
+      "location": 3.2,
+      "wifi": 4.2
+     },
+     "overall_trust_score": 8.1,
+     "time_decay_rating": 4.4,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "EL-003",
+     "name": "Ravana Cliff Hotel",
+     "latitude": 6.8667,
+     "longitude": 81.0466,
+     "interests": [
+      "waterfalls",
+      "photography"
+     ],
+     "purposes": [
+      "leisure"
+     ],
+     "accessibility": [],
+     "base_score": 0.6,
+     "expected_price_lkr": 15000,
+     "listed_price_lkr": 18750,
+     "best_platform": "Agoda",
+     "aspect_scores": {
+      "food": 4.6,
+      "staff": 3.2,
+      "room": 4.2,
+      "cleanliness": 2.8,
+      "location": 3.8,
+      "wifi": 4.8
+     },
+     "overall_trust_score": 8.8,
+     "time_decay_rating": 3.5,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "EL-004",
+     "name": "Ella Cloud Cabins",
+     "latitude": 6.8727,
+     "longitude": 81.0416,
+     "interests": [
+      "tea plantations",
+      "nature"
+     ],
+     "purposes": [
+      "leisure",
+      "business"
+     ],
+     "accessibility": [
+      "elevator"
+     ],
+     "base_score": 0.7,
+     "expected_price_lkr": 23000,
+     "listed_price_lkr": 24150,
+     "best_platform": "Trip.com",
+     "aspect_scores": {
+      "food": 2.8,
+      "staff": 3.8,
+      "room": 4.8,
+      "cleanliness": 3.4,
+      "location": 4.4,
+      "wifi": 3.0
+     },
+     "overall_trust_score": 6.0,
+     "time_decay_rating": 4.1,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    },
+    {
+     "hotel_id": "EL-005",
+     "name": "Green Gap Guesthouse",
+     "latitude": 6.8787,
+     "longitude": 81.0366,
+     "interests": [
+      "family",
+      "nature"
+     ],
+     "purposes": [
+      "leisure",
+      "family"
+     ],
+     "accessibility": [],
+     "base_score": 0.55,
+     "expected_price_lkr": 33000,
+     "listed_price_lkr": 42900,
+     "best_platform": "Booking.com",
+     "aspect_scores": {
+      "food": 3.4,
+      "staff": 4.4,
+      "room": 3.0,
+      "cleanliness": 4.0,
+      "location": 2.6,
+      "wifi": 3.6
+     },
+     "overall_trust_score": 6.7,
+     "time_decay_rating": 3.2,
+     "facts": {
+      "food": "Breakfast was served fresh every morning.",
+      "staff": "Reception staff replied quickly.",
+      "room": "Rooms were quiet at night.",
+      "cleanliness": "Bathrooms were cleaned daily.",
+      "location": "The town centre is a short drive away.",
+      "wifi": "Wi-Fi was reliable in the lobby."
+     }
+    }
+   ],
+   "attractions": [
+    {
+     "attraction_id": "EL-A1",
+     "name": "Nine Arch Bridge",
+     "latitude": 6.8768,
+     "longitude": 81.0608,
+     "interests": [
+      "culture",
+      "photography"
+     ]
+    },
+    {
+     "attraction_id": "EL-A2",
+     "name": "Little Adam's Peak",
+     "latitude": 6.8697,
+     "longitude": 81.062,
+     "interests": [
+      "hiking",
+      "nature"
+     ]
+    },
+    {
+     "attraction_id": "EL-A3",
+     "name": "Ella Rock",
+     "latitude": 6.8566,
+     "longitude": 81.0467,
+     "interests": [
+      "hiking",
+      "nature"
+     ]
+    },
+    {
+     "attraction_id": "EL-A4",
+     "name": "Ravana Falls",
+     "latitude": 6.8408,
+     "longitude": 81.055,
+     "interests": [
+      "waterfalls",
+      "nature"
+     ]
+    },
+    {
+     "attraction_id": "EL-A5",
+     "name": "Halpewatte Tea Factory",
+     "latitude": 6.884,
+     "longitude": 81.034,
+     "interests": [
+      "tea plantations",
+      "culture"
+     ]
+    },
+    {
+     "attraction_id": "EL-A6",
+     "name": "Demodara Loop",
+     "latitude": 6.901,
+     "longitude": 81.061,
+     "interests": [
+      "culture",
+      "photography"
+     ]
+    }
+   ],
+   "restaurants": [
+    {
+     "restaurant_id": "EL-R1",
+     "name": "Ella Rice Kitchen",
+     "cuisine": "sri lankan",
+     "latitude": 6.8707,
+     "longitude": 81.0506,
+     "detour_minutes": 5
+    },
+    {
+     "restaurant_id": "EL-R2",
+     "name": "Ella Curry Leaf",
+     "cuisine": "indian",
+     "latitude": 6.8637,
+     "longitude": 81.0436,
+     "detour_minutes": 8
+    },
+    {
+     "restaurant_id": "EL-R3",
+     "name": "Ella Garden Cafe",
+     "cuisine": "western",
+     "latitude": 6.8727,
+     "longitude": 81.0526,
+     "detour_minutes": 11
+    }
+   ]
+  }
+ }
+}

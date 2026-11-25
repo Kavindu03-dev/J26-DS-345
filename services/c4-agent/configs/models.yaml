@@ -1,0 +1,9 @@
+# The 4 study models (README section 1). Do not change: fixed experiment factor.
+study_models:
+  - {key: qwen2.5-0.5b, hf_id: Qwen/Qwen2.5-0.5B-Instruct, family: qwen2.5}
+  - {key: qwen2.5-1.5b, hf_id: Qwen/Qwen2.5-1.5B-Instruct, family: qwen2.5}
+  - {key: qwen2.5-3b, hf_id: Qwen/Qwen2.5-3B-Instruct, family: qwen2.5}
+  - {key: llama-3.2-1b, hf_id: meta-llama/Llama-3.2-1B-Instruct, family: llama-3.2}
+
+seed: 42
+temperature: 0

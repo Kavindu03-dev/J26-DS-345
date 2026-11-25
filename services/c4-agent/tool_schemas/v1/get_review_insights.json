@@ -1,0 +1,107 @@
+{
+  "name": "get_review_insights",
+  "description": "Trust-weighted aspect scores and verified review facts for a hotel",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "hotel_id": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Hotel identifier"
+      },
+      "aspects": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "food",
+            "staff",
+            "room",
+            "cleanliness",
+            "location",
+            "wifi"
+          ]
+        },
+        "minItems": 1,
+        "uniqueItems": true,
+        "description": "Only these aspects; omit for all"
+      }
+    },
+    "required": [
+      "hotel_id"
+    ],
+    "additionalProperties": false
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "aspect_scores": {
+        "type": "object",
+        "properties": {
+          "food": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "staff": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "room": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "cleanliness": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "location": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "wifi": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "overall_trust_score": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 10
+      },
+      "time_decay_rating": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 5
+      },
+      "verified_aspect_facts": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "weak_aspect_alert": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "aspect_scores",
+      "overall_trust_score",
+      "time_decay_rating",
+      "verified_aspect_facts",
+      "weak_aspect_alert"
+    ],
+    "additionalProperties": false
+  }
+}

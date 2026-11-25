@@ -1,0 +1,22 @@
+{
+  "name": "web_search",
+  "description": "Travel information NOT covered by the other tools (weather, live events, news)",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "minLength": 1
+      },
+      "max_results": {
+        "type": "integer",
+        "minimum": 1,
+        "default": 3
+      }
+    },
+    "required": [
+      "query"
+    ],
+    "additionalProperties": false
+  }
+}

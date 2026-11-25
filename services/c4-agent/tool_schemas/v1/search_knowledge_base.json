@@ -1,0 +1,71 @@
+{
+  "name": "search_knowledge_base",
+  "description": "Verified Sri Lanka travel facts from official sources (transport, timetables, entry fees, visa/ETA, parks, opening hours)",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "minLength": 1
+      },
+      "location": {
+        "type": "string",
+        "minLength": 1
+      },
+      "top_k": {
+        "type": "integer",
+        "minimum": 1,
+        "default": 4
+      }
+    },
+    "required": [
+      "query"
+    ],
+    "additionalProperties": false
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "chunks": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_url": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "last_verified": {
+              "type": "string",
+              "format": "date",
+              "description": "YYYY-MM-DD"
+            },
+            "score": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "text",
+            "source_url",
+            "title",
+            "last_verified",
+            "score"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "chunks"
+    ],
+    "additionalProperties": false
+  }
+}

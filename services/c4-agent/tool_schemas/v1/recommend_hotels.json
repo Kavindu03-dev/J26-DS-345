@@ -1,0 +1,126 @@
+{
+  "name": "recommend_hotels",
+  "description": "Personalized multi-criteria hotel ranking with fair-price analysis",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "destination": {
+        "type": "string",
+        "minLength": 1
+      },
+      "check_in": {
+        "type": "string",
+        "format": "date",
+        "description": "YYYY-MM-DD"
+      },
+      "nights": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "guests": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "budget_min_lkr": {
+        "type": "number",
+        "minimum": 0
+      },
+      "budget_max_lkr": {
+        "type": "number",
+        "minimum": 0
+      },
+      "interests": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "travel_purpose": {
+        "type": "string",
+        "minLength": 1,
+        "description": "For example leisure, family or business"
+      },
+      "accessibility_needs": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "top_k": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "required": [
+      "destination",
+      "check_in",
+      "nights",
+      "guests",
+      "budget_min_lkr",
+      "budget_max_lkr",
+      "interests",
+      "travel_purpose",
+      "top_k"
+    ],
+    "additionalProperties": false
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "hotels": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "hotel_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rank_score": {
+              "type": "number"
+            },
+            "expected_price_lkr": {
+              "type": "number",
+              "minimum": 0
+            },
+            "listed_price_lkr": {
+              "type": "number",
+              "minimum": 0
+            },
+            "overpriced": {
+              "type": "boolean"
+            },
+            "best_platform": {
+              "type": "string",
+              "minLength": 1
+            },
+            "explanation": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "hotel_id",
+            "name",
+            "rank_score",
+            "expected_price_lkr",
+            "listed_price_lkr",
+            "overpriced",
+            "best_platform",
+            "explanation"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "hotels"
+    ],
+    "additionalProperties": false
+  }
+}
