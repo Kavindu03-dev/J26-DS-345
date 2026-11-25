@@ -44,7 +44,7 @@ class ToolExecutor:
         self.web_search = web_search
 
     # ------------------------------------------------------------------ helpers
-    def resolve_hotel(self, ref: str) -> dict:
+    def resolve_hotel(self, ref: str) -> dict:  # hotel name -> hotel ID
         """Hotel name or hotel_id -> {"hotel_id", "name", "latitude", "longitude", "district"}."""
         hotel = self.directory.get(ref)
         if hotel is None:
@@ -104,7 +104,7 @@ class ToolExecutor:
                 "source": "web search (labelled as external)"}
 
     # ------------------------------------------------------------------ dispatch
-    def execute(self, name: str, arguments: dict) -> dict:
+    def execute(self, name: str, arguments: dict) -> dict:  # validate, then call C1/C2/C3
         """Run one call. Always returns a dict: the result, or {"error": {...}}."""
         errors = validate_call(name, arguments)
         if errors:

@@ -66,6 +66,7 @@ ADAPTER = "Kavindu03dev/c4-qwen2.5-0.5b-fc-lora"
         code("""
 !nvidia-smi --query-gpu=name,memory.total --format=csv
 !pip -q install -U "transformers>=4.46" "peft>=0.13" "accelerate>=1.0" xgrammar jsonschema gradio fastapi httpx
+!pip -q uninstall -y torchao   # old torchao on Colab breaks new peft ("incompatible version of torchao"); not needed here
 """),
         code("""
 from google.colab import userdata

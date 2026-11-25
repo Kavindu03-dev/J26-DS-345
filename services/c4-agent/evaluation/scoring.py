@@ -88,7 +88,7 @@ def response_valid(pred_calls: list[dict] | None, validate: Callable[[str, dict]
     return all(not validate(c["name"], c["arguments"]) for c in pred_calls)
 
 
-def score_tourism_step(pred_calls: list[dict] | None, gold_calls: list[dict], validate) -> dict:
+def score_tourism_step(pred_calls: list[dict] | None, gold_calls: list[dict], validate) -> dict:  # valid / correct / wrong-but-valid
     """gold_calls == [] means the correct behaviour is no call."""
     return {
         "malformed": pred_calls is None,
@@ -234,7 +234,7 @@ def summarize(rows: Iterable[dict]) -> dict:
     }
 
 
-def mcnemar_exact(a: list[bool], b: list[bool]) -> dict:
+def mcnemar_exact(a: list[bool], b: list[bool]) -> dict:  # paired test between modes
     """Exact (binomial) McNemar test on paired correctness. b10 = a right & b wrong."""
     from scipy.stats import binomtest
 
@@ -246,7 +246,7 @@ def mcnemar_exact(a: list[bool], b: list[bool]) -> dict:
     return {"a_only": b10, "b_only": b01, "p_value": p}
 
 
-def holm(p_values: dict[str, float], alpha: float = 0.05) -> dict[str, dict]:
+def holm(p_values: dict[str, float], alpha: float = 0.05) -> dict[str, dict]:  # multiple-comparison correction
     """Holm-Bonferroni adjusted p-values and reject decisions."""
     items = sorted(p_values.items(), key=lambda kv: kv[1])
     m = len(items)
@@ -258,7 +258,7 @@ def holm(p_values: dict[str, float], alpha: float = 0.05) -> dict[str, dict]:
     return out
 
 
-def bootstrap_ci(values: list[bool], n_boot: int = 2000, seed: int = 0) -> tuple[float, float]:
+def bootstrap_ci(values: list[bool], n_boot: int = 2000, seed: int = 0) -> tuple[float, float]:  # 95% confidence interval
     """95% percentile bootstrap CI for a proportion (in %)."""
     import random
 

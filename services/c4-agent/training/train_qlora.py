@@ -40,8 +40,8 @@ class TrainConfig:
     hub_adapter_id: str | None = None
     # --- identical for every model in the study ---
     max_length: int = 2048
-    lora_r: int = 16
-    lora_alpha: int = 32
+    lora_r: int = 16  # LoRA rank
+    lora_alpha: int = 32  # LoRA scaling
     lora_dropout: float = 0.05
     learning_rate: float = 2e-4
     epochs: float = 1.0
@@ -278,8 +278,8 @@ def train(cfg: TrainConfig) -> dict:
     model = AutoModelForCausalLM.from_pretrained(
         cfg.model,
         quantization_config=BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_quant_type="nf4",
+            load_in_4bit=True,  # QLoRA: 4-bit base model
+            bnb_4bit_quant_type="nf4",  # NF4 quantisation
             bnb_4bit_use_double_quant=True,
             bnb_4bit_compute_dtype=dtype,
         ),

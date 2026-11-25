@@ -24,7 +24,7 @@ def decode_record(record: dict) -> tuple[list[dict], list[dict]]:
     return messages, tools
 
 
-def build_features(tokenizer: Any, messages: list[dict], tools: list[dict], max_length: int) -> dict | None:
+def build_features(tokenizer: Any, messages: list[dict], tools: list[dict], max_length: int) -> dict | None:  # only the answer is trained, prompt masked
     """Tokenise one example so that ONLY the assistant's answer is trained on.
 
     The prompt (system text, tool definitions, user message) gets label -100,
@@ -60,7 +60,7 @@ def build_features(tokenizer: Any, messages: list[dict], tools: list[dict], max_
 _QWEN_CALL = re.compile(r"<tool_call>\s*(.*?)\s*</tool_call>", re.DOTALL)
 
 
-def parse_tool_calls(text: str) -> list[dict] | None:
+def parse_tool_calls(text: str) -> list[dict] | None:  # strict parser, no repair
     """Model output -> list of {"name", "arguments"}; [] for a plain answer; None if a call is malformed.
 
     Strict, repair-free parsing as the proposal requires: anything that looks

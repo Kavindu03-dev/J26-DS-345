@@ -49,7 +49,7 @@ class Agent:
     def __init__(self, llm: LLM, executor: ToolExecutor, mode: str = "grammar", max_rounds: int = MAX_ROUNDS):
         self.llm, self.executor, self.mode, self.max_rounds = llm, executor, mode, max_rounds
 
-    def respond(self, history: list[dict], user_message: str) -> TurnResult:
+    def respond(self, history: list[dict], user_message: str) -> TurnResult:  # main agent loop
         """history: previous user/assistant turns (plain text). Returns the answer and a full trace."""
         t0 = time.perf_counter()
         messages = history + [{"role": "user", "content": user_message}]

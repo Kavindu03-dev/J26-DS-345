@@ -26,7 +26,7 @@ C3_INTERESTS = ["nature", "wildlife", "beach", "culture", "religious", "surfing"
 
 DATE = {"type": "string", "description": "Date as YYYY-MM-DD."}
 
-TOOLS: list[dict] = [
+TOOLS: list[dict] = [  # C1, C2, C3 + web search
     {
         "type": "function",
         "function": {
@@ -129,14 +129,14 @@ TOOLS: list[dict] = [
 TOOL_NAMES = [t["function"]["name"] for t in TOOLS]
 SCHEMAS = {t["function"]["name"]: t["function"]["parameters"] for t in TOOLS}
 
-SYSTEM_PROMPT = (
+SYSTEM_PROMPT = (  # base system prompt
     "You are a travel assistant for Sri Lanka. Use the tools to answer questions about hotels, reviews, "
     "itineraries and travel information. If a request needs no tool, or none of the tools can help, answer "
     f"directly without calling a tool. Today's date is {TODAY.isoformat()}."
 )
 
 
-def validate_call(name: str, arguments: dict) -> list[str]:
+def validate_call(name: str, arguments: dict) -> list[str]:  # strict schema check
     """Schema errors for one call ([] = valid). Strict: unknown arguments are errors."""
     import jsonschema
 

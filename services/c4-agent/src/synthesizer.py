@@ -49,7 +49,7 @@ def _web(r: dict) -> list[str]:
 RENDER = {"get_review_insights": _reviews, "recommend_hotels": _hotels, "plan_itinerary": _itinerary, "web_search": _web}
 
 
-def render(results: list[tuple[str, dict]]) -> str:
+def render(results: list[tuple[str, dict]]) -> str:  # answer only from tool results
     """results: [(tool_name, result_dict)] in call order."""
     parts: list[str] = []
     for name, res in results:

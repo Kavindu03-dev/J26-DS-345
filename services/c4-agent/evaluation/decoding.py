@@ -22,15 +22,15 @@ import json
 import time
 from typing import Any
 
-MODES = ["free", "prompt_json", "grammar", "reason_grammar"]
+MODES = ["free", "prompt_json", "grammar", "reason_grammar"]  # the 4 decoding modes
 
-PROMPT_JSON_INSTRUCTION = (
+PROMPT_JSON_INSTRUCTION = (  # mode (b) instruction
     "Answer in exactly one of two ways. (1) If a tool is needed, output ONLY the tool call(s), each as "
     '<tool_call>\n{"name": <tool name>, "arguments": <JSON object>}\n</tool_call>, with valid JSON and only '
     "arguments defined in the tool's schema. (2) If no tool fits or none is needed, reply with a short plain answer "
     "and no tool call."
 )
-REASON_INSTRUCTION = (
+REASON_INSTRUCTION = (  # mode (d) reasoning line
     "First write one short line starting with 'Reasoning:' that says which tool (if any) is needed and why. "
     "Then give the tool call(s) or the answer."
 )
@@ -54,7 +54,7 @@ def build_messages(messages: list[dict], mode: str, system_prompt: str | None = 
     return ([{"role": "system", "content": "\n\n".join(parts)}] if parts else []) + msgs
 
 
-def structural_tag(tools: list[dict]) -> dict:
+def structural_tag(tools: list[dict]) -> dict:  # XGrammar: call OR plain answer
     """XGrammar structural tag: free text, but every <tool_call> must be a valid call to a known tool.
 
     Matches the Qwen2.5 tool-call format exactly:

@@ -71,6 +71,7 @@ print("model:", MODEL, "| output:", OUTPUT_DIR, "| upload to:", HUB_ADAPTER_ID)
 # GPU check and libraries
 !nvidia-smi --query-gpu=name,memory.total --format=csv
 !pip -q install -U "transformers>=4.46" "peft>=0.13" "bitsandbytes>=0.44" "accelerate>=1.0" "datasets>=3.0" wandb
+!pip -q uninstall -y torchao   # old torchao on Colab breaks new peft ("incompatible version of torchao"); not needed here
 """),
         code("""
 # Google Drive and logins (tokens come from Colab Secrets, never typed here)

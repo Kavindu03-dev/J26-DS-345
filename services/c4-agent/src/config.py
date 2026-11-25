@@ -37,7 +37,7 @@ C3_URL = os.getenv("C3_URL", "http://localhost:9003")
 
 # Per-tool HTTP timeouts in seconds. C3 runs an optimisation pipeline, so it
 # gets more time than the database-backed C1 and C2 lookups.
-C1_TIMEOUT_S = float(os.getenv("C1_TIMEOUT_S", "5"))
+C1_TIMEOUT_S = float(os.getenv("C1_TIMEOUT_S", "5"))  # per-service timeouts
 C2_TIMEOUT_S = float(os.getenv("C2_TIMEOUT_S", "10"))
 C3_TIMEOUT_S = float(os.getenv("C3_TIMEOUT_S", "60"))
 

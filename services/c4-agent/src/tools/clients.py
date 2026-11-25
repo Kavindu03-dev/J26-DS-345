@@ -19,7 +19,7 @@ import httpx
 from .. import config
 
 
-class ErrorCode(str, Enum):
+class ErrorCode(str, Enum):  # structured tool errors
     NOT_FOUND = "NOT_FOUND"  # unknown hotel / destination
     INVALID_ARGUMENT = "INVALID_ARGUMENT"  # request rejected by the component
     UNAVAILABLE = "UNAVAILABLE"  # component down or returned a server error

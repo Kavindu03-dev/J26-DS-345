@@ -60,6 +60,7 @@ print("evaluating:", LABEL, "->", OUT_DIR)
         code("""
 !nvidia-smi --query-gpu=name,memory.total --format=csv
 !pip -q install -U "transformers>=4.46" "peft>=0.13" "accelerate>=1.0" xgrammar jsonschema scipy
+!pip -q uninstall -y torchao   # old torchao on Colab breaks new peft ("incompatible version of torchao"); not needed here
 """),
         code("""
 import os

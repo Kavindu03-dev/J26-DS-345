@@ -1,0 +1,1199 @@
+{
+ "tools_version": "1.0.0",
+ "system_prompt": "You are a travel assistant for Sri Lanka. Use the tools to answer questions about hotels, reviews, itineraries and travel information. If a request needs no tool, or none of the tools can help, answer directly without calling a tool. Today's date is 2026-10-18.",
+ "tools": [
+  {
+   "name": "get_review_insights",
+   "description": "Trust-weighted guest-review scores (food, staff, room, cleanliness, location, wifi; 0-5), an overall trust score and verified facts from genuine reviews for ONE hotel in Sri Lanka. Use for questions about a specific hotel's quality or reviews.",
+   "required": [
+    "hotel"
+   ],
+   "params": [
+    "hotel",
+    "aspects"
+   ]
+  },
+  {
+   "name": "recommend_hotels",
+   "description": "Rank hotels in a Sri Lankan town or district for this traveller, with a fair-price check and the cheapest booking platform (Booking.com, Agoda, Trip.com). Use when the user wants hotel suggestions, or needs a hotel before an itinerary can be planned.",
+   "required": [
+    "destination"
+   ],
+   "params": [
+    "destination",
+    "check_in",
+    "check_out",
+    "adults",
+    "children",
+    "budget_min_lkr",
+    "budget_max_lkr",
+    "travel_purpose",
+    "nearby",
+    "interests",
+    "top_k"
+   ]
+  },
+  {
+   "name": "plan_itinerary",
+   "description": "Build a day-by-day sightseeing route that starts and ends at ONE chosen hotel, with restaurants along the route. Needs a specific hotel: if the user has not chosen one, call recommend_hotels first.",
+   "required": [
+    "hotel",
+    "days"
+   ],
+   "params": [
+    "hotel",
+    "days",
+    "start_date",
+    "interests",
+    "mobility_needs",
+    "day_start_hour",
+    "day_end_hour"
+   ]
+  },
+  {
+   "name": "web_search",
+   "description": "Search the web for travel information the other tools do not cover: weather, trains and transport, entry fees, visas, opening hours, events, safety, currency. Do not use it for hotel quality, hotel recommendations or itineraries.",
+   "required": [
+    "query"
+   ],
+   "params": [
+    "query",
+    "max_results"
+   ]
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "T01",
+   "group": "Hotels (C2)",
+   "title": "Hotel search with budget, family and hospital",
+   "category": "tricky_arguments",
+   "turns": [
+    {
+     "user": "Hotels under 25k rupees a night in Ella for 2 adults and 2 kids, close to a hospital",
+     "answer": "**Hotels in Ella** (simulated prices from the mock C2 service):\n1. **The Pinnacle Ella Boutique Hotel and Spa** - LKR 18,000/night on Booking.com. Strong cleanliness (4.9/5) and food (4.8/5) scores from verified reviews; LKR 18,000 per night on Booking.com, within your LKR 25,000 budget.\n2. **Winwood Ella** - LKR 20,700/night on Agoda. Strong food (5.0/5) and staff (4.9/5) scores from verified reviews; LKR 20,700 per night on Agoda, within your LKR 25,000 budget.\n3. **Tea Cabins** - LKR 12,000/night on Booking.com. Strong food (4.9/5) and staff (4.8/5) scores from verified reviews; LKR 12,000 per night on Booking.com, within your LKR 25,000 budget.\n4. **98 Acres Resort & Spa** - LKR 20,700/night on Trip.com. Strong location (4.9/5) and staff (4.8/5) scores from verified reviews; LKR 20,700 per night on Trip.com, within your LKR 25,000 budget.\n5. **Eminence ella** - LKR 11,200/night on Agoda. Strong staff (4.9/5) and food (4.8/5) scores from verified reviews; LKR 11,200 per night on Agoda, within your LKR 25,000 budget.",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "<tool_call>\n{\"name\": \"recommend_hotels\", \"arguments\": {\"destination\": \"Ella\", \"budget_max_lkr\": 25000, \"adults\": 2, \"children\": 2, \"nearby\": [\"hospital\"]}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "recommend_hotels",
+         "arguments": {
+          "destination": "Ella",
+          "budget_max_lkr": 25000,
+          "adults": 2,
+          "children": 2,
+          "nearby": [
+           "hospital"
+          ]
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "recommend_hotels",
+         "result": {
+          "destination": "Ella",
+          "hotels": [
+           {
+            "rank": 1,
+            "hotel_id": "HTL_ELL_THEPINNA_C721",
+            "name": "The Pinnacle Ella Boutique Hotel and Spa",
+            "score": 0.933,
+            "best_price_lkr": 18000.0,
+            "best_platform": "Booking.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong cleanliness (4.9/5) and food (4.8/5) scores from verified reviews; LKR 18,000 per night on Booking.com, within your LKR 25,000 budget.",
+            "district": "Badulla"
+           },
+           {
+            "rank": 2,
+            "hotel_id": "HTL_ELL_WINWOODE_0DAF",
+            "name": "Winwood Ella",
+            "score": 0.932,
+            "best_price_lkr": 20700.0,
+            "best_platform": "Agoda",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong food (5.0/5) and staff (4.9/5) scores from verified reviews; LKR 20,700 per night on Agoda, within your LKR 25,000 budget.",
+            "district": "Badulla"
+           },
+           {
+            "rank": 3,
+            "hotel_id": "HTL_ELL_TEACABIN_87F2",
+            "name": "Tea Cabins",
+            "score": 0.921,
+            "best_price_lkr": 12000.0,
+            "best_platform": "Booking.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong food (4.9/5) and staff (4.8/5) scores from verified reviews; LKR 12,000 per night on Booking.com, within your LKR 25,000 budget.",
+            "district": "Badulla"
+           },
+           {
+            "rank": 4,
+            "hotel_id": "HTL_ELL_98ACRESR_4834",
+            "name": "98 Acres Resort & Spa",
+            "score": 0.913,
+            "best_price_lkr": 20700.0,
+            "best_platform": "Trip.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong location (4.9/5) and staff (4.8/5) scores from verified reviews; LKR 20,700 per night on Trip.com, within your LKR 25,000 budget.",
+            "district": "Badulla"
+           },
+           {
+            "rank": 5,
+            "hotel_id": "HTL_ELL_EMINENCE_395C",
+            "name": "Eminence ella",
+            "score": 0.913,
+            "best_price_lkr": 11200.0,
+            "best_platform": "Agoda",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong staff (4.9/5) and food (4.8/5) scores from verified reviews; LKR 11,200 per night on Agoda, within your LKR 25,000 budget.",
+            "district": "Badulla"
+           }
+          ],
+          "source": "C2 hotel recommender",
+          "note": "simulated prices from the mock C2 service"
+         }
+        }
+       ]
+      },
+      {
+       "round": 2,
+       "model_output": "",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S01",
+   "group": "Reviews (C1)",
+   "title": "Review insights for one hotel",
+   "category": "single_tool",
+   "turns": [
+    {
+     "user": "How clean is Orchard House Galle according to reviews?",
+     "answer": "**Orchard House Galle**: Cleanliness 4.6/5. Trust score 7.84/10, recent rating 5.0/5.\n> \"Breakfast was delicious, slightly spicy omelette, fruits, toast, tea and coffee.\" *(verified guest review)*\n> \"Lovely room - perfect pool in a beautiful garden area.\" *(verified guest review)*",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "<tool_call>\n{\"name\": \"get_review_insights\", \"arguments\": {\"hotel\": \"Orchard House Galle\", \"aspects\": [\"cleanliness\"]}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "get_review_insights",
+         "arguments": {
+          "hotel": "Orchard House Galle",
+          "aspects": [
+           "cleanliness"
+          ]
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "get_review_insights",
+         "result": {
+          "hotel": "Orchard House Galle",
+          "hotel_id": "HTL_GAL_ORCHARDH_2FE6",
+          "aspect_scores": {
+           "cleanliness": 4.6
+          },
+          "overall_trust_score": 7.84,
+          "time_decay_rating": 5.0,
+          "verified_facts": [
+           "Breakfast was delicious, slightly spicy omelette, fruits, toast, tea and coffee.",
+           "Lovely room - perfect pool in a beautiful garden area."
+          ],
+          "source": "C1 trust-aware reviews"
+         }
+        }
+       ]
+      },
+      {
+       "round": 2,
+       "model_output": "",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S20",
+   "group": "Itinerary (C3)",
+   "title": "3-day plan from a hotel",
+   "category": "single_tool",
+   "turns": [
+    {
+     "user": "Plan a 3-day itinerary starting from Winwood Ella.",
+     "answer": "**Itinerary from Winwood Ella:**\n- **Day 1:** 09:02 Little Adam's Peak (Punchi Sri Pada); 10:35 Nine Arch Bridge; 12:15 Ravana Falls & Ravana Cave. Eat at: Rice & Curry House (mock), Hoppers Corner (mock)\n- **Day 2:** 09:23 Lipton's Seat; 11:07 Diyaluma Falls & Natural Infinity Pools; 13:41 Horton Plains National Park & World's End. Eat at: Spice Garden Cafe (mock), Curry Leaf Kitchen (mock)\n- **Day 3:** 10:51 Udawalawe National Park. Eat at: Rice & Curry House (mock), Hoppers Corner (mock)",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "<tool_call>\n{\"name\": \"plan_itinerary\", \"arguments\": {\"hotel\": \"Winwood Ella\", \"days\": 3}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "plan_itinerary",
+         "arguments": {
+          "hotel": "Winwood Ella",
+          "days": 3
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "plan_itinerary",
+         "result": {
+          "hotel": "Winwood Ella",
+          "trip": {
+           "num_days": 3,
+           "day_start_hour": 9,
+           "day_end_hour": 18,
+           "travel_mode": "driving"
+          },
+          "days": [
+           {
+            "day": 1,
+            "stops": [
+             {
+              "time": "09:02",
+              "name": "Little Adam's Peak (Punchi Sri Pada)"
+             },
+             {
+              "time": "10:35",
+              "name": "Nine Arch Bridge"
+             },
+             {
+              "time": "12:15",
+              "name": "Ravana Falls & Ravana Cave"
+             }
+            ],
+            "restaurants": [
+             {
+              "name": "Rice & Curry House (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 5
+             },
+             {
+              "name": "Hoppers Corner (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 9
+             }
+            ]
+           },
+           {
+            "day": 2,
+            "stops": [
+             {
+              "time": "09:23",
+              "name": "Lipton's Seat"
+             },
+             {
+              "time": "11:07",
+              "name": "Diyaluma Falls & Natural Infinity Pools"
+             },
+             {
+              "time": "13:41",
+              "name": "Horton Plains National Park & World's End"
+             }
+            ],
+            "restaurants": [
+             {
+              "name": "Spice Garden Cafe (mock)",
+              "cuisine": "local",
+              "detour_min": 6
+             },
+             {
+              "name": "Curry Leaf Kitchen (mock)",
+              "cuisine": "south_indian",
+              "detour_min": 10
+             }
+            ]
+           },
+           {
+            "day": 3,
+            "stops": [
+             {
+              "time": "10:51",
+              "name": "Udawalawe National Park"
+             }
+            ],
+            "restaurants": [
+             {
+              "name": "Rice & Curry House (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 7
+             },
+             {
+              "name": "Hoppers Corner (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 11
+             }
+            ]
+           }
+          ],
+          "source": "C3 itinerary planner"
+         }
+        }
+       ]
+      },
+      {
+       "round": 2,
+       "model_output": "",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "M01",
+   "group": "Multi-step (C2 → C3)",
+   "title": "Pick a hotel, then plan the trip",
+   "category": "multi_tool",
+   "turns": [
+    {
+     "user": "Plan a 3-day family trip to Nuwara Eliya. We need a hotel first.",
+     "answer": "**Hotels in Nuwara Eliya** (simulated prices from the mock C2 service):\n1. **The Golden Ridge Hotel** - LKR 19,500/night on Agoda. Strong food (5.0/5) and staff (5.0/5) scores from verified reviews; best price LKR 19,500 per night on Agoda.\n2. **Hotel Sandathenna by Leisure Inn Luxury Boutique and Retreat** - LKR 17,000/night on Trip.com. Strong food (5.0/5) and staff (5.0/5) scores from verified reviews; best price LKR 17,000 per night on Trip.com.\n3. **La Grande Villa** - LKR 18,700/night on Trip.com. Strong food (4.9/5) and staff (4.9/5) scores from verified reviews; best price LKR 18,700 per night on Trip.com.\n4. **Rustique Lodge** - LKR 17,200/night on Booking.com. Strong staff (5.0/5) and room (4.9/5) scores from verified reviews; best price LKR 17,200 per night on Booking.com.\n5. **Hidden Treasure** - LKR 11,600/night on Agoda. Strong food (4.9/5) and staff (4.9/5) scores from verified reviews; best price LKR 11,600 per night on Agoda.\n\n**Itinerary from The Golden Ridge Hotel:**\n- **Day 1:** 09:38 Horton Plains National Park & World's End; 12:05 Lipton's Seat; 13:49 Diyaluma Falls & Natural Infinity Pools. Eat at: Rice & Curry House (mock), Hoppers Corner (mock)\n- **Day 2:** 10:15 Nine Arch Bridge; 11:48 Little Adam's Peak (Punchi Sri Pada); 13:24 Ravana Falls & Ravana Cave. Eat at: Spice Garden Cafe (mock), Curry Leaf Kitchen (mock)\n- **Day 3:** 10:26 Adam's Peak (Sri Pada); 12:50 Kitulgala White Water Rafting & Rain Forest. Eat at: Rice & Curry House (mock), Hoppers Corner (mock)",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "<tool_call>\n{\"name\": \"recommend_hotels\", \"arguments\": {\"destination\": \"Nuwara Eliya\"}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "recommend_hotels",
+         "arguments": {
+          "destination": "Nuwara Eliya"
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "recommend_hotels",
+         "result": {
+          "destination": "Nuwara Eliya",
+          "hotels": [
+           {
+            "rank": 1,
+            "hotel_id": "HTL_NUW_THEGOLDE_1C19",
+            "name": "The Golden Ridge Hotel",
+            "score": 0.966,
+            "best_price_lkr": 19500.0,
+            "best_platform": "Agoda",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong food (5.0/5) and staff (5.0/5) scores from verified reviews; best price LKR 19,500 per night on Agoda.",
+            "district": "Nuwara Eliya"
+           },
+           {
+            "rank": 2,
+            "hotel_id": "HTL_NUW_HOTELSAN_7A00",
+            "name": "Hotel Sandathenna by Leisure Inn Luxury Boutique and Retreat",
+            "score": 0.954,
+            "best_price_lkr": 17000.0,
+            "best_platform": "Trip.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong food (5.0/5) and staff (5.0/5) scores from verified reviews; best price LKR 17,000 per night on Trip.com.",
+            "district": "Nuwara Eliya"
+           },
+           {
+            "rank": 3,
+            "hotel_id": "HTL_NUW_LAGRANDE_0B53",
+            "name": "La Grande Villa",
+            "score": 0.944,
+            "best_price_lkr": 18700.0,
+            "best_platform": "Trip.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong food (4.9/5) and staff (4.9/5) scores from verified reviews; best price LKR 18,700 per night on Trip.com.",
+            "district": "Nuwara Eliya"
+           },
+           {
+            "rank": 4,
+            "hotel_id": "HTL_NUW_RUSTIQUE_A252",
+            "name": "Rustique Lodge",
+            "score": 0.927,
+            "best_price_lkr": 17200.0,
+            "best_platform": "Booking.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong staff (5.0/5) and room (4.9/5) scores from verified reviews; best price LKR 17,200 per night on Booking.com.",
+            "district": "Nuwara Eliya"
+           },
+           {
+            "rank": 5,
+            "hotel_id": "HTL_NUW_HIDDENTR_C71F",
+            "name": "Hidden Treasure",
+            "score": 0.925,
+            "best_price_lkr": 11600.0,
+            "best_platform": "Agoda",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong food (4.9/5) and staff (4.9/5) scores from verified reviews; best price LKR 11,600 per night on Agoda.",
+            "district": "Nuwara Eliya"
+           }
+          ],
+          "source": "C2 hotel recommender",
+          "note": "simulated prices from the mock C2 service"
+         }
+        }
+       ]
+      },
+      {
+       "round": 2,
+       "model_output": "<tool_call>\n{\"name\": \"plan_itinerary\", \"arguments\": {\"hotel\": \"The Golden Ridge Hotel\", \"days\": 3}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "plan_itinerary",
+         "arguments": {
+          "hotel": "The Golden Ridge Hotel",
+          "days": 3
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "plan_itinerary",
+         "result": {
+          "hotel": "The Golden Ridge Hotel",
+          "trip": {
+           "num_days": 3,
+           "day_start_hour": 9,
+           "day_end_hour": 18,
+           "travel_mode": "driving"
+          },
+          "days": [
+           {
+            "day": 1,
+            "stops": [
+             {
+              "time": "09:38",
+              "name": "Horton Plains National Park & World's End"
+             },
+             {
+              "time": "12:05",
+              "name": "Lipton's Seat"
+             },
+             {
+              "time": "13:49",
+              "name": "Diyaluma Falls & Natural Infinity Pools"
+             }
+            ],
+            "restaurants": [
+             {
+              "name": "Rice & Curry House (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 5
+             },
+             {
+              "name": "Hoppers Corner (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 9
+             }
+            ]
+           },
+           {
+            "day": 2,
+            "stops": [
+             {
+              "time": "10:15",
+              "name": "Nine Arch Bridge"
+             },
+             {
+              "time": "11:48",
+              "name": "Little Adam's Peak (Punchi Sri Pada)"
+             },
+             {
+              "time": "13:24",
+              "name": "Ravana Falls & Ravana Cave"
+             }
+            ],
+            "restaurants": [
+             {
+              "name": "Spice Garden Cafe (mock)",
+              "cuisine": "local",
+              "detour_min": 6
+             },
+             {
+              "name": "Curry Leaf Kitchen (mock)",
+              "cuisine": "south_indian",
+              "detour_min": 10
+             }
+            ]
+           },
+           {
+            "day": 3,
+            "stops": [
+             {
+              "time": "10:26",
+              "name": "Adam's Peak (Sri Pada)"
+             },
+             {
+              "time": "12:50",
+              "name": "Kitulgala White Water Rafting & Rain Forest"
+             }
+            ],
+            "restaurants": [
+             {
+              "name": "Rice & Curry House (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 7
+             },
+             {
+              "name": "Hoppers Corner (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 11
+             }
+            ]
+           }
+          ],
+          "source": "C3 itinerary planner"
+         }
+        }
+       ]
+      },
+      {
+       "round": 3,
+       "model_output": "",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "CONV",
+   "group": "Multi-turn chat",
+   "title": "Follow-up questions remember context",
+   "category": "multi_turn",
+   "turns": [
+    {
+     "user": "Suggest hotels in Kandy near a hospital",
+     "answer": "**Hotels in Kandy** (simulated prices from the mock C2 service):\n1. **Grand Serendib Hotel** - LKR 14,900/night on Trip.com. Strong food (4.8/5) and room (4.8/5) scores from verified reviews; best price LKR 14,900 per night on Trip.com.\n2. **Lake Classical Guest House** - LKR 8,700/night on Trip.com. Strong staff (4.9/5) and cleanliness (4.9/5) scores from verified reviews; best price LKR 8,700 per night on Trip.com.\n3. **The Golden Crown Hotel** - LKR 23,800/night on Agoda. Strong cleanliness (4.9/5) and location (4.8/5) scores from verified reviews; best price LKR 23,800 per night on Agoda.\n4. **Kandy City View** - LKR 60,100/night on Trip.com. Strong room (4.8/5) and food (4.7/5) scores from verified reviews; best price LKR 60,100 per night on Trip.com.\n5. **Kandy Hills** - LKR 22,500/night on Trip.com. Strong cleanliness (4.9/5) and staff (4.8/5) scores from verified reviews; best price LKR 22,500 per night on Trip.com.",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "<tool_call>\n{\"name\": \"recommend_hotels\", \"arguments\": {\"destination\": \"Kandy\", \"nearby\": [\"hospital\"]}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "recommend_hotels",
+         "arguments": {
+          "destination": "Kandy",
+          "nearby": [
+           "hospital"
+          ]
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "recommend_hotels",
+         "result": {
+          "destination": "Kandy",
+          "hotels": [
+           {
+            "rank": 1,
+            "hotel_id": "HTL_KAN_GRANDSER_A9EE",
+            "name": "Grand Serendib Hotel",
+            "score": 0.922,
+            "best_price_lkr": 14900.0,
+            "best_platform": "Trip.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong food (4.8/5) and room (4.8/5) scores from verified reviews; best price LKR 14,900 per night on Trip.com.",
+            "district": "Kandy"
+           },
+           {
+            "rank": 2,
+            "hotel_id": "HTL_KAN_LAKECLAS_CB61",
+            "name": "Lake Classical Guest House",
+            "score": 0.91,
+            "best_price_lkr": 8700.0,
+            "best_platform": "Trip.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong staff (4.9/5) and cleanliness (4.9/5) scores from verified reviews; best price LKR 8,700 per night on Trip.com.",
+            "district": "Kandy"
+           },
+           {
+            "rank": 3,
+            "hotel_id": "HTL_KAN_THEGOLDE_4FEF",
+            "name": "The Golden Crown Hotel",
+            "score": 0.91,
+            "best_price_lkr": 23800.0,
+            "best_platform": "Agoda",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong cleanliness (4.9/5) and location (4.8/5) scores from verified reviews; best price LKR 23,800 per night on Agoda.",
+            "district": "Kandy"
+           },
+           {
+            "rank": 4,
+            "hotel_id": "HTL_KAN_KANDYCIT_992B",
+            "name": "Kandy City View",
+            "score": 0.909,
+            "best_price_lkr": 60100.0,
+            "best_platform": "Trip.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong room (4.8/5) and food (4.7/5) scores from verified reviews; best price LKR 60,100 per night on Trip.com.",
+            "district": "Kandy"
+           },
+           {
+            "rank": 5,
+            "hotel_id": "HTL_KAN_KANDYHIL_1D9B",
+            "name": "Kandy Hills",
+            "score": 0.903,
+            "best_price_lkr": 22500.0,
+            "best_platform": "Trip.com",
+            "price_status": "Within Expected Price Range",
+            "explanation": "Strong cleanliness (4.9/5) and staff (4.8/5) scores from verified reviews; best price LKR 22,500 per night on Trip.com.",
+            "district": "Kandy"
+           }
+          ],
+          "source": "C2 hotel recommender",
+          "note": "simulated prices from the mock C2 service"
+         }
+        }
+       ]
+      },
+      {
+       "round": 2,
+       "model_output": "",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    },
+    {
+     "user": "How is the food at Kandy Hills?",
+     "answer": "**Kandy Hills**: Food 4.2/5. Trust score 7.73/10, recent rating 4.4/5.\n> \"5 min walk to end of lake, 15 min walk to town.\" *(verified guest review)*\n> \"Also you do not need power adapter as they have installed ones :) No table in the room nor in the balcony.\" *(verified guest review)*",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "<tool_call>\n{\"name\": \"get_review_insights\", \"arguments\": {\"hotel\": \"Kandy Hills\", \"aspects\": [\"food\"]}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "get_review_insights",
+         "arguments": {
+          "hotel": "Kandy Hills",
+          "aspects": [
+           "food"
+          ]
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "get_review_insights",
+         "result": {
+          "hotel": "Kandy Hills",
+          "hotel_id": "HTL_KAN_KANDYHIL_1D9B",
+          "aspect_scores": {
+           "food": 4.2
+          },
+          "overall_trust_score": 7.73,
+          "time_decay_rating": 4.4,
+          "verified_facts": [
+           "5 min walk to end of lake, 15 min walk to town.",
+           "Also you do not need power adapter as they have installed ones :) No table in the room nor in the balcony.",
+           "For some reason I couldn't get a beer with my dinner on the second night, although had I had dinner in my room there was beer in the fridge.",
+           "Spectacular location and lovely room Lovely spacious room with very spacious bathroom, excellent breakfast, very helpful staff."
+          ],
+          "source": "C1 trust-aware reviews"
+         }
+        }
+       ]
+      },
+      {
+       "round": 2,
+       "model_output": "",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    },
+    {
+     "user": "Plan 2 easy days from there, my father can't walk much",
+     "answer": "**Itinerary from Kandy Hills:**\n- **Day 1:** 09:02 Temple of the Sacred Tooth Relic (Sri Dalada Maligawa); 10:46 Royal Botanic Gardens Peradeniya; 13:12 Pinnawala Elephant Orphanage. Eat at: Rice & Curry House (mock), Hoppers Corner (mock)\n- **Day 2:** 10:01 Knuckles Mountain Range; 13:24 Dambulla Royal Cave Temple. Eat at: Spice Garden Cafe (mock), Curry Leaf Kitchen (mock)",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "<tool_call>\n{\"name\": \"plan_itinerary\", \"arguments\": {\"hotel\": \"Kandy Hills\", \"days\": 2, \"mobility_needs\": true}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "plan_itinerary",
+         "arguments": {
+          "hotel": "Kandy Hills",
+          "days": 2,
+          "mobility_needs": true
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "plan_itinerary",
+         "result": {
+          "hotel": "Kandy Hills",
+          "trip": {
+           "num_days": 2,
+           "day_start_hour": 9,
+           "day_end_hour": 18,
+           "travel_mode": "driving"
+          },
+          "days": [
+           {
+            "day": 1,
+            "stops": [
+             {
+              "time": "09:02",
+              "name": "Temple of the Sacred Tooth Relic (Sri Dalada Maligawa)"
+             },
+             {
+              "time": "10:46",
+              "name": "Royal Botanic Gardens Peradeniya"
+             },
+             {
+              "time": "13:12",
+              "name": "Pinnawala Elephant Orphanage"
+             }
+            ],
+            "restaurants": [
+             {
+              "name": "Rice & Curry House (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 5
+             },
+             {
+              "name": "Hoppers Corner (mock)",
+              "cuisine": "sri_lankan",
+              "detour_min": 9
+             }
+            ]
+           },
+           {
+            "day": 2,
+            "stops": [
+             {
+              "time": "10:01",
+              "name": "Knuckles Mountain Range"
+             },
+             {
+              "time": "13:24",
+              "name": "Dambulla Royal Cave Temple"
+             }
+            ],
+            "restaurants": [
+             {
+              "name": "Spice Garden Cafe (mock)",
+              "cuisine": "local",
+              "detour_min": 6
+             },
+             {
+              "name": "Curry Leaf Kitchen (mock)",
+              "cuisine": "south_indian",
+              "detour_min": 10
+             }
+            ]
+           }
+          ],
+          "source": "C3 itinerary planner"
+         }
+        }
+       ]
+      },
+      {
+       "round": 2,
+       "model_output": "",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "M06",
+   "group": "Parallel calls (C1 × 2)",
+   "title": "Compare two hotels' reviews",
+   "category": "multi_tool",
+   "turns": [
+    {
+     "user": "Compare the reviews of Winwood Ella and Tea Cabins.",
+     "answer": "**Winwood Ella**: Food 5.0/5, Staff 4.9/5, Rooms 4.9/5, Cleanliness 4.9/5, Location 4.8/5, Wi-Fi 4.6/5. Trust score 7.67/10, recent rating 4.26/5.\n> \"Just be prepared to take a tuk tuk back up the hill, which is all part of the Ella experience and offers some great views along the way.\" *(verified guest review)*\n> \"Breakfast was a real treat, featuring delicious traditional coconut rotti with homemade jam, fresh local fruits, and excellent tea and coffee.\" *(verified guest review)*\n\n**Tea Cabins**: Food 4.9/5, Staff 4.8/5, Rooms 4.7/5, Cleanliness 4.7/5, Location 4.7/5, Wi-Fi 4.7/5. Trust score 7.8/10, recent rating 4.26/5.\n> \"The complimentary TukTuk rides made it so easy for us to go into Ella town centre and visit local attractions like Nine Arches Bridge, Ravanna Pool Club and Little Adams Peak.\" *(verified guest review)*\n> \"The development is still being completed, so lunch and dinner are currently served in your room, but we actually really enjoyed this as it made our stay feel even more private.\" *(verified guest review)*",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "<tool_call>\n{\"name\": \"get_review_insights\", \"arguments\": {\"hotel\": \"Winwood Ella\"}}\n</tool_call>\n<tool_call>\n{\"name\": \"get_review_insights\", \"arguments\": {\"hotel\": \"Tea Cabins\"}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "get_review_insights",
+         "arguments": {
+          "hotel": "Winwood Ella"
+         },
+         "schema_errors": []
+        },
+        {
+         "name": "get_review_insights",
+         "arguments": {
+          "hotel": "Tea Cabins"
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "get_review_insights",
+         "result": {
+          "hotel": "Winwood Ella",
+          "hotel_id": "HTL_ELL_WINWOODE_0DAF",
+          "aspect_scores": {
+           "food": 5.0,
+           "staff": 4.9,
+           "room": 4.9,
+           "cleanliness": 4.9,
+           "location": 4.8,
+           "wifi": 4.6
+          },
+          "overall_trust_score": 7.67,
+          "time_decay_rating": 4.26,
+          "verified_facts": [
+           "Just be prepared to take a tuk tuk back up the hill, which is all part of the Ella experience and offers some great views along the way.",
+           "Breakfast was a real treat, featuring delicious traditional coconut rotti with homemade jam, fresh local fruits, and excellent tea and coffee.",
+           "Breakfast is served on your private terrace every morning and is freshly made.",
+           "The room was comfortable and spacious for a family of four."
+          ],
+          "source": "C1 trust-aware reviews"
+         }
+        },
+        {
+         "name": "get_review_insights",
+         "result": {
+          "hotel": "Tea Cabins",
+          "hotel_id": "HTL_ELL_TEACABIN_87F2",
+          "aspect_scores": {
+           "food": 4.9,
+           "staff": 4.8,
+           "room": 4.7,
+           "cleanliness": 4.7,
+           "location": 4.7,
+           "wifi": 4.7
+          },
+          "overall_trust_score": 7.8,
+          "time_decay_rating": 4.26,
+          "verified_facts": [
+           "The complimentary TukTuk rides made it so easy for us to go into Ella town centre and visit local attractions like Nine Arches Bridge, Ravanna Pool Club and Little Adams Peak.",
+           "The development is still being completed, so lunch and dinner are currently served in your room, but we actually really enjoyed this as it made our stay feel even more private.",
+           "They also provide a complimentary tuk tuk between the main road and the cabins, which is such a thoughtful touch and makes arriving and leaving effortless.",
+           "It felt so peaceful being surrounded by nature, and having breakfast served on our private porch every morning with that view was such a highlight."
+          ],
+          "source": "C1 trust-aware reviews"
+         }
+        }
+       ]
+      },
+      {
+       "round": 2,
+       "model_output": "",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "W01",
+   "group": "Web search",
+   "title": "Information no team tool has",
+   "category": "web_search",
+   "turns": [
+    {
+     "user": "What is the train schedule from Colombo to Kandy?",
+     "answer": "**From the web** (external source, not verified by our team) for *What is the train schedule from Colombo to Kandy*:\n- Sri Lanka Railways – train timetable (mock result): Several trains run daily between Colombo Fort and Kandy; the journey takes about 2.5–3 hours. Check the official timetable before travelling. (https://railway.gov.lk)\n- Travel guide – Colombo to Kandy by train (mock result): Reserved seats in 1st and 2nd class can be booked in advance; 3rd class is unreserved. Morning trains are the most popular.\n- Tourist forum – tips for the Kandy train (mock result): Arrive early at Colombo Fort station, especially if you plan to travel in unreserved 3rd class.",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "<tool_call>\n{\"name\": \"web_search\", \"arguments\": {\"query\": \"What is the train schedule from Colombo to Kandy\", \"max_results\": 3}}\n</tool_call>",
+       "status": "called_tools",
+       "calls": [
+        {
+         "name": "web_search",
+         "arguments": {
+          "query": "What is the train schedule from Colombo to Kandy",
+          "max_results": 3
+         },
+         "schema_errors": []
+        }
+       ],
+       "results": [
+        {
+         "name": "web_search",
+         "result": {
+          "query": "What is the train schedule from Colombo to Kandy",
+          "results": [
+           {
+            "title": "Sri Lanka Railways – train timetable (mock result)",
+            "snippet": "Several trains run daily between Colombo Fort and Kandy; the journey takes about 2.5–3 hours. Check the official timetable before travelling.",
+            "url": "https://railway.gov.lk",
+            "source": "mock web result"
+           },
+           {
+            "title": "Travel guide – Colombo to Kandy by train (mock result)",
+            "snippet": "Reserved seats in 1st and 2nd class can be booked in advance; 3rd class is unreserved. Morning trains are the most popular.",
+            "url": null,
+            "source": "mock web result"
+           },
+           {
+            "title": "Tourist forum – tips for the Kandy train (mock result)",
+            "snippet": "Arrive early at Colombo Fort station, especially if you plan to travel in unreserved 3rd class.",
+            "url": null,
+            "source": "mock web result"
+           }
+          ],
+          "source": "web search (labelled as external)"
+         }
+        }
+       ]
+      },
+      {
+       "round": 2,
+       "model_output": "",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "C01",
+   "group": "Clarify",
+   "title": "A required detail is missing",
+   "category": "clarify",
+   "turns": [
+    {
+     "user": "Find me a hotel.",
+     "answer": "Sure! Which town or area in Sri Lanka would you like to stay in? If you also tell me your dates, budget and how many people are travelling, I can find better matches.",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "Sure! Which town or area in Sri Lanka would you like to stay in? If you also tell me your dates, budget and how many people are travelling, I can find better matches.",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "X01",
+   "group": "Decline",
+   "title": "Off-topic request",
+   "category": "decline",
+   "turns": [
+    {
+     "user": "Write my university essay on tourism in Sri Lanka.",
+     "answer": "Sorry, I can't write essays. I'm a travel assistant for Sri Lanka, so I can help with hotels, reviews, trip plans and travel information.",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "Sorry, I can't write essays. I'm a travel assistant for Sri Lanka, so I can help with hotels, reviews, trip plans and travel information.",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "D03",
+   "group": "Direct answer",
+   "title": "Greeting, no tool needed",
+   "category": "direct_answer",
+   "turns": [
+    {
+     "user": "Hi!",
+     "answer": "Hi! I can find hotels, show what reviews say, plan day-by-day trips and look up travel information for Sri Lanka. Where are you thinking of going?",
+     "trace": [
+      {
+       "round": 1,
+       "model_output": "Hi! I can find hotels, show what reviews say, plan day-by-day trips and look up travel information for Sri Lanka. Where are you thinking of going?",
+       "status": "answer",
+       "calls": [],
+       "results": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "modes": {
+  "question": "Hotels under 25k rupees a night in Ella for 2 adults and 2 kids, close to a hospital",
+  "gold": [
+   {
+    "name": "recommend_hotels",
+    "arguments": {
+     "destination": {
+      "accept": [
+       "Ella"
+      ],
+      "optional": false
+     },
+     "budget_max_lkr": {
+      "accept": [
+       25000
+      ],
+      "optional": false
+     },
+     "adults": {
+      "accept": [
+       2
+      ],
+      "optional": false
+     },
+     "children": {
+      "accept": [
+       2
+      ],
+      "optional": false
+     },
+     "nearby": {
+      "accept": [
+       [
+        "hospital"
+       ]
+      ],
+      "optional": false
+     },
+     "travel_purpose": {
+      "accept": [
+       "family"
+      ],
+      "optional": true
+     }
+    },
+    "free": [
+     "interests",
+     "top_k"
+    ]
+   }
+  ],
+  "rows": [
+   {
+    "mode": "free",
+    "raw": "<tool_call>\n{\"name\": \"recommend_hotels\", \"arguments\": {\"destination\": \"Ella\", \"budget_max_lkr\": 25000, \"adults\": 2, \"children\": 2, \"nearby\": [\"hospital\"]}\n",
+    "parsed": null,
+    "malformed": true,
+    "valid": false,
+    "correct": false,
+    "called": false,
+    "instruction": null,
+    "grammar": false,
+    "generation": "The model writes freely, one token at a time. Nothing checks the format while it writes.",
+    "why": "It forgot the closing } and </tool_call>, so the call cannot be parsed and is never run."
+   },
+   {
+    "mode": "prompt_json",
+    "raw": "<tool_call>\n{\"name\": \"recommend_hotels\", \"arguments\": {\"destination\": \"Ella\", \"budget_max_lkr\": 25000, \"adults\": 4, \"nearby\": [\"hospital\"]}}\n</tool_call>",
+    "parsed": [
+     {
+      "name": "recommend_hotels",
+      "arguments": {
+       "destination": "Ella",
+       "budget_max_lkr": 25000,
+       "adults": 4,
+       "nearby": [
+        "hospital"
+       ]
+      }
+     }
+    ],
+    "malformed": false,
+    "valid": true,
+    "correct": false,
+    "called": true,
+    "instruction": "Answer in exactly one of two ways. (1) If a tool is needed, output ONLY the tool call(s), each as <tool_call>\n{\"name\": <tool name>, \"arguments\": <JSON object>}\n</tool_call>, with valid JSON and only arguments defined in the tool's schema. (2) If no tool fits or none is needed, reply with a short plain answer and no tool call.",
+    "grammar": false,
+    "generation": "The model is asked to follow the format, but nothing enforces it while it writes.",
+    "why": "The format is right, but it wrote adults = 4 instead of 2 adults + 2 children."
+   },
+   {
+    "mode": "grammar",
+    "raw": "<tool_call>\n{\"name\": \"recommend_hotels\", \"arguments\": {\"destination\": \"Ella\", \"budget_max_lkr\": 25000, \"adults\": 2}}\n</tool_call>",
+    "parsed": [
+     {
+      "name": "recommend_hotels",
+      "arguments": {
+       "destination": "Ella",
+       "budget_max_lkr": 25000,
+       "adults": 2
+      }
+     }
+    ],
+    "malformed": false,
+    "valid": true,
+    "correct": false,
+    "called": true,
+    "instruction": null,
+    "grammar": true,
+    "generation": "Same prompt as (a). XGrammar blocks every token that would break the call: only real tool names and schema-valid arguments are allowed.",
+    "why": "The format is guaranteed, but the forced call dropped children and the hospital: valid but wrong (the constraint tax)."
+   },
+   {
+    "mode": "reason_grammar",
+    "raw": "Reasoning: hotel search in Ella for 2 adults and 2 children, max LKR 25,000, near a hospital.\n<tool_call>\n{\"name\": \"recommend_hotels\", \"arguments\": {\"destination\": \"Ella\", \"budget_max_lkr\": 25000, \"adults\": 2, \"children\": 2, \"nearby\": [\"hospital\"]}}\n</tool_call>",
+    "parsed": [
+     {
+      "name": "recommend_hotels",
+      "arguments": {
+       "destination": "Ella",
+       "budget_max_lkr": 25000,
+       "adults": 2,
+       "children": 2,
+       "nearby": [
+        "hospital"
+       ]
+      }
+     }
+    ],
+    "malformed": false,
+    "valid": true,
+    "correct": true,
+    "called": true,
+    "instruction": "First write one short line starting with 'Reasoning:' that says which tool (if any) is needed and why. Then give the tool call(s) or the answer.",
+    "grammar": true,
+    "generation": "The model first writes one free \"Reasoning:\" line. The grammar switches on only at <tool_call>, then forces a valid call.",
+    "why": "Thinking first kept every detail, and the grammar kept the format valid: valid and correct."
+   }
+  ],
+  "system_prompt": "You are a travel assistant for Sri Lanka. Use the tools to answer questions about hotels, reviews, itineraries and travel information. If a request needs no tool, or none of the tools can help, answer directly without calling a tool. Today's date is 2026-10-18."
+ },
+ "testset_size": 150
+}
