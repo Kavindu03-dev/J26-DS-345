@@ -1,23 +1,34 @@
 """
 Loads the hotel data once and keeps it in memory.
 
-Files (made by the preprocessing, model and where-to-book notebooks):
-    <C2_DATA_DIR>/output_clean/hotels_booking.csv          one row per Booking.com hotel (facts, rating, location)
-    <C2_DATA_DIR>/output_clean/hotel_words_facilities.csv  the full facility list per hotel (fac_* columns)
-    <C2_DATA_DIR>/output_clean/model_table.csv             every collected price (one row per hotel + date + guests + site)
-    <C2_DATA_DIR>/output_clean/where_to_book.csv           Booking.com vs Trip.com vs Agoda for each stay
-    <C2_DATA_DIR>/output_clean/hotel_matches.csv           the same hotel on Agoda / Trip.com
-    <C2_DATA_DIR>/models/booking_predictions.csv           fair price for every Booking.com price (hotel not seen)
-    <C2_DATA_DIR>/models/booking_best_model.joblib         the price model (optional: needs scikit-learn 1.5.2)
-    <C2_DATA_DIR>/models/booking_cv_models.joblib          the 3 cross-validation models (optional, for SHAP on
-                                                           training hotels; made by python -m src.c2.unseen_models)
-    <C2_EXTRA_DIR>/sl_hospitals_osm.csv                    hospitals from OpenStreetMap
-    <C2_EXTRA_DIR>/sl_places_osm.csv                       towns and villages from OpenStreetMap
-    <C2_EXTRA_DIR>/hotel_urls.csv                          the hotel's page on each site
-    <C2_DATA_DIR>/output_clean/live/*.csv                  hotels and prices found by the LIVE Booking.com search,
-                                                           and every hotel's photos (added over time; see live/search.py)
+Two data versions (settings.DATA_VERSIONS; C2_DATA_VERSION chooses, default = november when its files are there):
+    november   <clean> = output_clean_v5, <models> = models_v5_lgbm, <prefix> = booking_v5_lgbm
+               46 towns, 2,238 Booking.com hotels (Booking.com only), LightGBM price model
+    september  <clean> = output_clean,    <models> = models,         <prefix> = booking
+               15 towns, Booking.com + Agoda + Trip.com, gradient boosting price model
+
+Files (made by the preprocessing, model and where-to-book notebooks), inside <C2_DATA_DIR>:
+    <clean>/hotels_booking.csv              one row per Booking.com hotel (facts, rating, location)
+    <clean>/hotel_words_facilities.csv      the full facility list per hotel (fac_* columns)
+    <clean>/model_table.csv                 every collected price (one row per hotel + date + guests + site)
+    <clean>/town_centres.csv                november: the centre of each of the 46 towns (the price model's towns)
+    <clean>/where_to_book.csv               september: Booking.com vs Trip.com vs Agoda for each stay
+    <clean>/hotel_matches.csv               the same hotel on Agoda / Trip.com
+    <models>/<prefix>_predictions.csv       fair price for every Booking.com price (hotel not seen)
+    <models>/<prefix>_best_model.joblib     the price model (optional: needs scikit-learn 1.5.2, and lightgbm 4.7.0
+                                            for the november model)
+    <models>/<prefix>_cv_models.joblib      the 3 cross-validation models (optional, for SHAP on training hotels;
+                                            made by python -m src.c2.unseen_models)
+    <C2_EXTRA_DIR>/sl_hospitals_osm.csv     hospitals from OpenStreetMap
+    <C2_EXTRA_DIR>/sl_places_osm.csv        towns and villages from OpenStreetMap
+    <C2_EXTRA_DIR>/hotel_urls.csv           the hotel's page on each site (Booking.com pages not in it are made
+                                            from the hotel id: booking.com/hotel/lk/<id>.html)
+    <clean>/live/*.csv                      hotels and prices found by the LIVE Booking.com search, and every
+                                            hotel's photos (added over time; see live/search.py). Photos saved
+                                            for the other data version are used too.
 """
 import json
+import re
 import threading
 from pathlib import Path
 
@@ -25,7 +36,8 @@ import numpy as np
 import pandas as pd
 
 from . import settings
-from .geo import TownFinder, nearest_hospitals
+from .geo import TownFinder, km, nearest_hospitals
+from .margins import PriceLimits
 
 # Hotel columns the code uses. Missing ones are filled, so a smaller test file also works.
 HOTEL_NUMBER_COLS = [
@@ -77,20 +89,32 @@ def _read(path, **kw):
 
 
 class HotelData:
-    def __init__(self, data_dir=None, extra_dir=None, load_model=True, model_from=None):
+    def __init__(self, data_dir=None, extra_dir=None, load_model=True, model_from=None, version=None,
+                 margins_file=None):
         self.data_dir = Path(data_dir or settings.data_dir())
         self.extra_dir = Path(extra_dir or settings.extra_dir())
         self.notes = []
-        clean = self.data_dir / "output_clean"
-        models = self.data_dir / "models"
+        lay = settings.layout(self.data_dir, version or (model_from.version if model_from is not None else None))
+        self.version, self.prefix = lay["version"], lay["prefix"]
+        self.version_label, self.prices_collected = lay["label"], lay["prices_collected"]
+        clean, models = lay["clean"], lay["models"]
+        self.clean_dir, self.models_dir = clean, models
+        # Good deal / Looks high limits per town (price_margins.csv; without it the fixed 30% rule)
+        self.limits = PriceLimits(margins_file or settings.price_margins_file(models))
+        self.notes.append(self.limits.note)
         self.live_dir = clean / "live"
         live = lambda name, **kw: _read(self.live_dir / name, **kw)
 
         hotels = _read(clean / "hotels_booking.csv")
         stays = _read(clean / "model_table.csv")
         if hotels is None or stays is None:
-            raise DataMissing(f"Hotel data not found in {self.data_dir}. Set C2_DATA_DIR to the hotel_preprocessing "
-                              "folder (the one with output_clean/ and models/).")
+            raise DataMissing(f"Hotel data not found in {clean}. Set C2_DATA_DIR to the hotel_preprocessing folder "
+                              "(the one with output_clean_v5/ + models_v5_lgbm/, or output_clean/ + models/), or "
+                              "C2_DATA_VERSION=september / november.")
+        # the towns of the price model and their centres (november; september uses the middle of each town's hotels)
+        self.centres = _read(clean / "town_centres.csv")
+        if self.centres is not None:
+            self.centres = self.centres.dropna(subset=["centre_lat", "centre_lng"]).set_index("town")
         hotels_live = live("hotels_booking_live.csv")
         self.live_found = {}                     # booking_hotel_id -> when the live search found it
         if hotels_live is not None and len(hotels_live):
@@ -111,10 +135,10 @@ class HotelData:
         if words is not None:
             keep = ["booking_hotel_id"] + [c for c in FAC_COLS_USED if c in words]
             hotels = hotels.merge(words[keep], on="booking_hotel_id", how="left")
-        for c in FAC_COLS_USED:
-            if c not in hotels:
-                hotels[c] = 0
-            hotels[c] = hotels[c].fillna(0)
+        missing = [c for c in FAC_COLS_USED if c not in hotels]
+        if missing:                              # all at once (one by one makes pandas slow)
+            hotels = pd.concat([hotels, pd.DataFrame(0, index=hotels.index, columns=missing)], axis=1)
+        hotels[FAC_COLS_USED] = hotels[FAC_COLS_USED].fillna(0)
         hotels = hotels.drop_duplicates("booking_hotel_id").set_index("booking_hotel_id", drop=False)
 
         self.hospitals = _read(self.extra_dir / "sl_hospitals_osm.csv")
@@ -124,9 +148,15 @@ class HotelData:
         self.hotels = hotels
 
         places = _read(self.extra_dir / "sl_places_osm.csv")
+        self.towns = TownFinder(places, hotels, self.centres)
         if places is None:
-            self.notes.append("sl_places_osm.csv not found: only our 15 data towns can be searched.")
-        self.towns = TownFinder(places, hotels)
+            self.notes.append(f"sl_places_osm.csv not found: only our {len(self.towns.data_towns)} data towns can be "
+                              "searched.")
+        self._members = {}                       # town -> hotels in it (in_town)
+        self._district_province = {}             # november: district -> province (for live hotels)
+        if {"district", "province"} <= set(hotels.columns):
+            dp = hotels.dropna(subset=["district", "province"])
+            self._district_province = dp.groupby("district").province.agg(lambda s: s.mode().iat[0]).to_dict()
 
         # ---- stays: one Booking.com price per hotel + date + guests, with its fair price and where to book ----
         b = stays[(stays.source_ota == "booking")]
@@ -145,7 +175,7 @@ class HotelData:
                 s[c] = np.nan
         s["guests"] = [guests_text(a, c) for a, c in zip(s.num_adults, s.num_children)]
 
-        pred = _read(models / "booking_predictions.csv")
+        pred = _read(models / f"{self.prefix}_predictions.csv")
         self.typical_rows = None                 # the starting point of the SHAP explanation (see explain.py)
         if pred is not None:
             s = s.merge(pred[["row_id", "fair_price_lkr", "price_vs_fair_pct"]], on="row_id", how="left")
@@ -158,7 +188,7 @@ class HotelData:
         else:
             s["fair_price_lkr"] = np.nan
             s["price_vs_fair_pct"] = np.nan
-            self.notes.append("booking_predictions.csv not found: no fair prices.")
+            self.notes.append(f"{self.prefix}_predictions.csv not found: no fair prices.")
 
         wtb = _read(clean / "where_to_book.csv")
         if wtb is not None:
@@ -173,7 +203,11 @@ class HotelData:
         else:
             for c in ["wtb_tripcom", "wtb_agoda", "wtb_notes", "wtb_advice", "wtb_site"]:
                 s[c] = np.nan
-            self.notes.append("where_to_book.csv not found: only Booking.com prices are shown.")
+            if "agoda" in lay["sites"] or "tripcom" in lay["sites"]:
+                self.notes.append("where_to_book.csv not found: only Booking.com prices are shown.")
+            else:
+                self.notes.append(f"The {lay['prices_collected']} prices are from Booking.com only, so Agoda and "
+                                  "Trip.com prices are not compared.")
         prices_live = live("prices_live.csv")
         self.live_rows = None
         if prices_live is not None and len(prices_live):
@@ -194,30 +228,36 @@ class HotelData:
             urls = pd.concat([urls, urls_live], ignore_index=True)
         if urls is not None:
             self.urls = {(o, i): u for o, i, u in zip(urls.source_ota, urls.hotel_id_on_source, urls.url)}
-        else:
-            self.notes.append("hotel_urls.csv not found: no booking links.")
+        # a Booking.com hotel id is the last part of its page address (booking.com/hotel/lk/<id>.html)
+        for hid in hotels.index:
+            if isinstance(hid, str) and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", hid):
+                self.urls.setdefault(("booking", hid), f"https://www.booking.com/hotel/lk/{hid}.html")
         self.same_hotel = {}                    # booking_hotel_id -> {"tripcom": id, "agoda": id}
         matches = _read(clean / "hotel_matches.csv", dtype={"hotel_id_on_source": str})
         matches_live = live("hotel_matches_live.csv", dtype={"hotel_id_on_source": str})
         if matches is not None and matches_live is not None:
             matches = pd.concat([matches, matches_live], ignore_index=True)
-        if matches is not None:
+        if matches is not None and len(matches) and {"status", "score"} <= set(matches.columns):
             m = matches[matches.status == "matched"].sort_values("score", ascending=False)
             for bid, ota, hid in zip(m.booking_hotel_id, m.source_ota, m.hotel_id_on_source):
                 self.same_hotel.setdefault(bid, {}).setdefault(ota, hid)
 
-        # ---- photos (filled by the live search and the photo step) ----
+        # ---- photos (filled by the live search and the photo step; the other data version's photos too) ----
         self.photos = {}
-        photos = live("hotel_photos.csv", dtype={"booking_hotel_id": str})
-        if photos is not None:
+        other_live = [settings.layout(self.data_dir, v)["clean"] / "live" for v in settings.DATA_VERSIONS if v != self.version]
+        for d in other_live + [self.live_dir]:       # this version's photos last, so they win
+            photos = _read(d / "hotel_photos.csv", dtype={"booking_hotel_id": str})
+            if photos is None:
+                continue
             for hid, g in photos.sort_values(["booking_hotel_id", "position"]).groupby("booking_hotel_id"):
                 self.photos[hid] = g[["photo_url", "thumb_url"]].to_dict("records")
 
         # ---- the price model (optional) ----
-        self.model, self.features = None, None
+        self.model, self.features, self.model_info = None, None, {}
         self.cv, self.cv_note = None, None        # the cross-validation models (optional)
         if model_from is not None and model_from.model is not None:
             self.model, self.features = model_from.model, model_from.features
+            self.model_info = getattr(model_from, "model_info", {})
             self.cv, self.cv_note = model_from.cv, model_from.cv_note
             self._add_word_columns()
         elif load_model:
@@ -263,11 +303,12 @@ class HotelData:
         return None, None, "We don't know which model made this fair price."
 
     def _load_cv_models(self, models):
-        path = models / "booking_cv_models.joblib"
+        path = models / f"{self.prefix}_cv_models.joblib"
         if self.model is None:
             return
         if not path.exists():
-            self.cv_note = "booking_cv_models.joblib not found: SHAP works only for test hotels and live hotels."
+            self.cv_note = (f"{path.name} not found: SHAP works only for test hotels and live hotels "
+                            "(run: python -m src.c2.unseen_models).")
             return
         try:
             import joblib
@@ -283,11 +324,61 @@ class HotelData:
         return hotel_id in self.live_found
 
     def town_centre(self, cluster):
+        if self.centres is not None and cluster in self.centres.index:
+            c = self.centres.loc[cluster]
+            return float(c.centre_lat), float(c.centre_lng)
         g = self.hotels[self.hotels.destination_cluster == cluster]
         if len(g):
             return float(g.latitude.median()), float(g.longitude.median())
         p = self.towns.point(cluster)
         return (p[0], p[1]) if p else None
+
+    def in_town(self, town):
+        """Which hotels are in this data town (True / False per hotel, same order as self.hotels).
+        september: the town Booking.com listed the hotel under.
+        november: the hotel's own town (nearest town centre), or a town Booking.com listed it under if it is within
+        TOWN_MEMBER_KM of that town's centre (for small towns Booking.com also shows hotels 15-50 km away)."""
+        if town in self._members:
+            return self._members[town]
+        h = self.hotels
+        if self.centres is None or "town" not in h:
+            mask = (h.destination_cluster == town).to_numpy()
+        else:
+            searched = h["searched_towns"] if "searched_towns" in h else h.destination_cluster
+            listed = searched.fillna("").astype(str).map(lambda t: town in [x.strip() for x in t.split(";")]).to_numpy()
+            mask = (h["town"] == town).to_numpy()
+            if town in self.centres.index:
+                c = self.centres.loc[town]
+                d = km(float(c.centre_lat), float(c.centre_lng), h.latitude.to_numpy(float), h.longitude.to_numpy(float))
+                mask = mask | (listed & (d <= settings.TOWN_MEMBER_KM))
+            else:
+                mask = mask | listed
+        self._members[town] = mask
+        return mask
+
+    def nearest_town(self, lat, lon):
+        """november: (town, km) of the nearest of the price model's town centres; (None, nan) without centres."""
+        if self.centres is None or not len(self.centres) or lat != lat or lon != lon or lat is None:
+            return None, np.nan
+        d = km(float(lat), float(lon), self.centres.centre_lat.to_numpy(float), self.centres.centre_lng.to_numpy(float))
+        i = int(np.argmin(d))
+        return self.centres.index[i], float(d[i])
+
+    def place_columns(self, lat, lon, address_region, searched_town):
+        """november: the place columns of a live hotel, with the preprocessing_v5 rules (step 4b): own town =
+        nearest town centre, district from the hotel page, province from the district (else from the town)."""
+        if self.centres is None:
+            return {}
+        town, d = self.nearest_town(lat, lon)
+        district = None
+        if isinstance(address_region, str) and address_region.strip():
+            district = re.sub(r"\s*District$", "", address_region.strip())
+        province = self._district_province.get(district)
+        if province is None and town is not None:
+            province = self.centres.province.get(town)
+        return {"town": town, "km_from_town_centre": round(d, 2) if town is not None else np.nan,
+                "kind_of_place": self.centres.kind_of_place.get(town) if town is not None else None,
+                "district": district, "province": province, "searched_towns": searched_town}
 
     def known_chains(self):
         if "chain_group" in self.model_rows:
@@ -295,23 +386,30 @@ class HotelData:
         return set()
 
     def _load_model(self, models):
-        path, info_path = models / "booking_best_model.joblib", models / "booking_best_model_info.json"
+        path = models / f"{self.prefix}_best_model.joblib"
+        info_path = models / f"{self.prefix}_best_model_info.json"
+        self.model_info = {}
         if not path.exists() or not info_path.exists():
             self.notes.append("Price model not found: fair prices for your dates and the what-if amounts are not shown.")
             return
+        needs = "scikit-learn 1.5.2"
         try:
             import joblib
             info = json.loads(info_path.read_text(encoding="utf-8"))
+            needs = f"scikit-learn {info.get('scikit_learn_version', '1.5.2')}" + (
+                f" and lightgbm {info['lightgbm_version']}" if info.get("lightgbm_version") else "")
             self.model = joblib.load(path)
             self.features = info["features"]
+            self.model_info = {k: info.get(k) for k in ("model", "settings", "test_result", "saved")}
             self._add_word_columns()
             missing = [c for c in self.features if c not in self.model_rows.columns]
             if missing:
                 raise ValueError(f"{len(missing)} model columns missing, e.g. {missing[:3]}")
-        except Exception as e:     # wrong scikit-learn version, missing file ...
+        except Exception as e:     # wrong scikit-learn / lightgbm version, missing file ...
             self.model, self.features = None, None
             self.notes.append(f"Price model could not be loaded ({type(e).__name__}: {str(e)[:120]}). "
-                              "It needs scikit-learn 1.5.2. Fair prices from booking_predictions.csv are used instead.")
+                              f"It needs {needs} (pip install -r requirements.txt). Fair prices from "
+                              f"{self.prefix}_predictions.csv are used instead.")
 
 
 _lock = threading.Lock()

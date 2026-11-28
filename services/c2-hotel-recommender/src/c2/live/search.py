@@ -151,7 +151,12 @@ def _predict(data, rows):
 
 
 def _model_town(data, lat, lon, cluster):
-    """destination_clean for the price model: the town if it is one of the 15 research towns, else the nearest."""
+    """destination_clean for the price model.
+    november: the nearest of the model's 46 town centres (the preprocessing_v5 rule: town from the map position).
+    september: the town if it is one of the 15 research towns, else the nearest."""
+    if getattr(data, "centres", None) is not None:
+        town, _ = data.nearest_town(lat, lon)
+        return town if town is not None else (cluster if cluster in data.centres.index else None)
     research = {"Anuradhapura", "Arugam Bay", "Bentota", "Colombo", "Dambulla", "Ella", "Galle", "Jaffna", "Kandy",
                 "Mirissa", "Negombo", "Nuwara Eliya", "Sigiriya", "Trincomalee", "Unawatuna"}
     if cluster in research:
@@ -339,9 +344,15 @@ def _finish(report, data, started, visits, ci=None, co=None, combo=None, cluster
         info, rates = bp.parse_booking_rooms_page(html, (co - ci).days)
         facts = room_facts_raw(info, rates)
         h = hotel_row(hid, name, cluster, details, facts, centre, known_chains)
+        if getattr(data, "centres", None) is not None:      # november: own town, district, province (v5 rules)
+            place = data.place_columns(h["latitude"], h["longitude"], h.get("address_region"), cluster)
+            if place.get("town") is None:                     # no map position: keep the searched town
+                place.pop("km_from_town_centre", None)
+                place["town"] = cluster if cluster in data.centres.index else None
+            h.update(place)
         h["scraped_at_utc"] = scraped
         w = words_row(hid, name, details, word_cols)
-        mtown = _model_town(data, h["latitude"], h["longitude"], cluster)
+        mtown = h.get("town") or _model_town(data, h["latitude"], h["longitude"], cluster)
         r = price_row(card, hotel=h, words=w, checkin=ci, checkout=co, adults=combo[0], children=combo[1],
                       scraped_at=scraped, destination_clean=mtown, room_list_raw=facts["room_types_raw"], row_id=next_id)
         next_id += 1

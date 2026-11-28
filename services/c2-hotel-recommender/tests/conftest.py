@@ -2,10 +2,15 @@
 A tiny made-up dataset (8 hotels) with the same columns as the real files, so the tests run anywhere
 (also in GitHub CI, where the real data is not available).
 """
+import os
+
 import pytest
 
 from src.c2.data import HotelData, set_data
 from tests.helpers import make_files
+
+os.environ["C2_PRICE_MARGINS"] = "off"      # the tests use the fixed 30% rule (tests/test_price_margins.py: the file)
+
 
 @pytest.fixture(scope="session")
 def fixture_dirs(tmp_path_factory):

@@ -6,13 +6,13 @@ the must-haves, the features, the fair price and where to book. It also sends wh
 ```
 tourist sentence
   -> Gap 1  NLP model (hotel-nlp-v2 in Ollama) + rule check  -> structured request (Output 1)
-  -> hotels in the town (our 15 data towns, or hotels within 10-25 km of any other town)
+  -> hotels in the town (our 46 data towns, or hotels within 10-25 km of any other town)
   -> Gap 2  feature check: listing + Component 1 reviews     -> yes / no / not sure (and is it true NOW?)
   -> Gap 5  nearest hospital (OpenStreetMap), lift / steps, wheelchair access
   -> Gap 1  must-haves: a hotel that fails one is removed; "not sure" hotels come last and are marked
   -> Gap 3  fair price (price model) + what you pay for things you don't need or don't get
   -> score  wishes 40% + trusted rating 30% + value 20% + interests 10%  (weights in src/c2/settings.py)
-  -> Gap 4  where to book: Booking.com vs Trip.com vs Agoda, same-deal rules
+  -> Gap 4  where to book: Booking.com vs Trip.com vs Agoda, same-deal rules (September data only)
   -> answer for Component 4 (team contract) + Output 2 for Component 3
 ```
 
@@ -48,9 +48,25 @@ The data folders are found automatically on your laptop (`D:\Research\hotel_prep
 and `D:\Research`). On another computer, set them first:
 
 ```
-$env:C2_DATA_DIR="D:\Research\hotel_preprocessing\hotel_preprocessing"   # output_clean\ and models\
+$env:C2_DATA_DIR="D:\Research\hotel_preprocessing\hotel_preprocessing"   # the folder with output_clean_v5\ etc.
 $env:C2_EXTRA_DIR="D:\Research"        # sl_hospitals_osm.csv, sl_places_osm.csv, hotel_urls.csv
 ```
+
+**Which data and price model.** The service uses the **November 2026 data** when its files are there, else the
+September data:
+
+| | November (default) | September |
+|---|---|---|
+| tables | `output_clean_v5\` | `output_clean\` |
+| price model | `models_v5_lgbm\booking_v5_lgbm_*` (LightGBM, typical error 27.1%) | `models\booking_*` (gradient boosting, 26.1%) |
+| hotels | 2,238 Booking.com hotels in 46 towns | 1,116 hotels in 15 towns |
+| sites | Booking.com only | Booking.com, Agoda, Trip.com (where to book) |
+| prices collected | 20-23 November 2026, 8 check-in dates | 25-27 September 2026, 20 check-in dates |
+
+To go back to September: `$env:C2_DATA_VERSION="september"` (and `"november"` or nothing to come back).
+In the November data a hotel belongs to the town whose centre is nearest (`town`, from `town_centres.csv`), or to
+a town Booking.com listed it under if it is within 10 km of that town's centre. For small towns Booking.com also
+lists hotels 15-50 km away, and those are not shown as "in" that town.
 
 **Demo from a sentence** (Ollama must be running with `hotel-nlp-v2`):
 
@@ -80,12 +96,32 @@ Open http://localhost:8002/docs to try it in the browser.
 Each hotel has the contract fields (`hotel_id, name, rank, score, price{expected_price_lkr, price_status,
 best_platform, offers}, explanation`) plus extras: `latitude, longitude, nights, total_hotel_cost_lkr,
 budget_left_lkr, booking_url, nearest_hospital, must_check, feature_checks, price.what_if, price.breakdown,
-price.explanation, free_cancellation`.
+price.explanation, price.good_value, price.price_limits, free_cancellation`.
 `for_c3` is Output 2 for Component 3. Health needs are in it only when `health_consent` is true, as categories only.
 
-Prices are **per night for all rooms, taxes included**. They were collected on 25-27 September 2026 for 20
-check-in dates. The service uses the collected date closest to the tourist's date in the year, then moves the
+Prices are **per night for all rooms, taxes included**. They were collected on 20-23 November 2026 for 8
+check-in dates (September data: 25-27 September 2026, 20 check-in dates; each answer says which in
+`prices_collected`). The service uses the collected date closest to the tourist's date in the year, then moves the
 price to the tourist's dates with the price model. A price far from the hotel's own usual price is skipped.
+
+## Good deal / Looks high: each town has its own limits
+
+"Potentially Overpriced" and "Good value" use **the hotel's own town's limits** from `price_margins.csv`, not one
+fixed ±30% for the whole country. The weekly cloud pipeline (`hotel-price-weekly`) makes this file again every
+Sunday: for every price, ratio = price / fair price from a model that never saw the hotel; Good deal = the cheapest
+1 in 10 of the town's ratios, Looks high = the dearest 1 in 10. Small towns borrow from their province:
+limit = (n x town + 60 x province) / (n + 60), n = the town's hotels. Example (file built 26 Nov 2026): Kandy,
+Good deal = 45% or more below the fair price, Looks high = 78% or more above.
+
+Where the service looks for the file (first found wins):
+
+1. `$env:C2_PRICE_MARGINS="D:\path\to\price_margins.csv"` (`off` = the fixed 30% rule)
+2. `price_margins.csv` in the price model's folder (e.g. `models_v5_lgbm\`)
+3. `D:\Research\hotel-price-weekly\models\current\price_margins.csv` (run `git pull` there to get the newest)
+
+A town that is not in the file uses its province's, then the whole country's limits; no file at all = the old fixed
+30% rule. Each answer says which was used (`price.price_limits`, and a line in `notes`). Restart `uvicorn` after
+a new file.
 
 ## The hotel finder page (React)
 
@@ -122,7 +158,9 @@ we do with it: *you don't need it* (taken off your fair price), *reviews say it 
 may use it* (stays), *too small to be sure* (under Rs 1,000 or 5%: not shown) or *the hotel doesn't have it*.
 The parts add up to the fair price. Only these 4 facilities are priced: the notebook tested all 14, and for the
 other 10 (spa, gym, air conditioning, airport shuttle, ...) the model can't tell their cost apart from the type
-of hotel.
+of hotel. Checked again with the November model (same test): pool, bar, breakfast and beachfront still pass
+easily (they add money at 98-100% of the prices). Air conditioning (80%) and restaurant (95%) now pass too, but
+they are not priced until `personal_fair_price.ipynb` is run on the November data.
 
 **2. Why the fair price is this number (`GET /hotels/{hotel_id}/price-explanation`).** Exact SHAP in rupees over 11
 groups (town, hotel class and reviews, room, pool, bar, beach, breakfast and meals, other facilities, your dates,
@@ -133,14 +171,16 @@ then kept in memory. Two checks come with every answer: the parts add up to the 
 as the textbook Shapley formula. Without the `shap` package the service uses the textbook formula (same numbers).
 
 **The model that never saw the hotel.** A fair price must come from a model that had not seen the hotel. The
-final model never saw the 222 test hotels and the live hotels, so it explains those. But it learned the 843
-training hotels (its price for them is within about 3.5% of the real price), so for those we use the
-cross-validation model that made their fair price. The training notebook did not save these 3 models, so
-`src/c2/unseen_models.py` makes them again exactly (same rows, same hotel groups, same settings; the check gives
-the same 10,359 fair prices to 0.000000%). The same model also moves the fair price to the tourist's dates.
+final model never saw the test hotels and the live hotels, so it explains those. But it learned the training
+hotels (its price for them is close to the real price), so for those we use the cross-validation model that made
+their fair price. The training notebook did not save these 3 models, so `src/c2/unseen_models.py` makes them
+again exactly (same rows, same hotel groups, same settings). The check: November gives the same 22,562 fair prices
+of the 1,660 training hotels to 0.000000% (September: 10,359 fair prices, 843 hotels). The same model also moves
+the fair price to the tourist's dates.
 
 ```
-python -m src.c2.unseen_models          # once, about 3-10 minutes -> models\booking_cv_models.joblib (do not commit)
+python -m src.c2.unseen_models          # once, 3-10 minutes -> models_v5_lgbm\booking_v5_lgbm_cv_models.joblib
+python -m src.c2.unseen_models --version september      # -> models\booking_cv_models.joblib  (never commit these)
 ```
 
 Without that file, SHAP is shown only for test hotels and live hotels (the page says why for the others).
@@ -156,16 +196,17 @@ Booking.com's own filters (pool, air conditioning, beachfront, breakfast, wheelc
 hotels are shown. Then it reads the hotel pages of **at most 4 hotels that are not already in the CSV files**. The
 reading rules are copied from the team scraper, and the conversion rules are copied from preprocessing.ipynb.
 After that:
-- **Saved:** the new hotels go into `output_clean\live\*.csv` next to the research files (same columns).
+- **Saved:** the new hotels go into `output_clean_v5\live\*.csv` (September data: `output_clean\live\`) next to
+  the research files (same columns; November hotels also get their own town, district and province).
   The next request gets them from the CSV, not from the web.
   - `hotels_booking_live.csv`: facts and facilities
   - `hotel_words_facilities_live.csv`: the full facility list
   - `prices_live.csv`: price for those dates, fair price and where to book
-  - `hotel_photos.csv`: photos of every hotel, including September ones
+  - `hotel_photos.csv`: photos of every hotel (photos saved with the September data are used too)
   - `live_search_log.csv`: what was searched (no request details)
 - **Fair price:** the price model gives the fair price. The new hotel was not in its training data.
-- **Three sites:** Booking.com is live. Agoda and Trip.com are compared when the same hotel is in our September
-  data (same name-matching rule as preprocessing). Their price is moved to the tourist's dates with the price
+- **Three sites (September data only):** Booking.com is live. Agoda and Trip.com are compared when the same hotel
+  is in our September data (same name-matching rule as preprocessing). The November data is Booking.com only. Their price is moved to the tourist's dates with the price
   model and marked "estimate". Agoda and Trip.com are never scraped live.
 - **Photos:** each recommended hotel shows its photos. They come from `hotel_photos.csv`, or are read once from
   the hotel's Booking.com page and saved.
@@ -200,6 +241,7 @@ src/c2/c1_client.py      Component 1: DUMMY / file / http
 src/c2/features.py       Gap 2 + 5: yes / no / not sure for each feature
 src/c2/pricing.py        rooms, dates, fair price, what-if, links, free-cancellation advice
 src/c2/ranker.py         the join: must-haves, score, explanation, where the fair price goes
+src/c2/margins.py        Good deal / Looks high limits per town (price_margins.csv; else the fixed 30% rule)
 src/c2/explain.py        SHAP: why the fair price is this number (exact, 11 groups, in rupees)
 src/c2/unseen_models.py  makes the 3 cross-validation models again (the models that never saw each hotel)
 src/c2/output.py         contract answer + Output 2 for Component 3
@@ -232,12 +274,16 @@ Feature checks use DUMMY C1 reviews, so only the budget and hospital numbers are
 ## Honest limits
 
 - Component 1 scores are made up until Component 1 is ready.
-- The prices are a snapshot (Sep 2026). Each hotel has prices for only some of the 20 dates, so the price for the
+- The prices are a snapshot (Nov 2026). Each hotel has prices for only some of the 8 dates, so the price for the
   tourist's dates is an estimate. A live system would check the sites at search time.
-- We have hotels for 15 towns only. For other towns we search 10-25 km around the town, or say there are no hotels.
+- We have hotels for 46 towns only. For other towns we search 10-25 km around the town, or say there are no hotels.
+- The November data is Booking.com only, so "where to book" compares sites only with the September data.
 - Hospital distance is a straight line, and the nearest hospital may not treat every condition. We say "near a
   hospital", never "safe". This is not medical advice.
-- The price model's typical error is about 26%, so "Potentially Overpriced" is shown only above 30%.
+- The price model's typical error is about 27% (September model: 26%), so a price is called "Potentially
+  Overpriced" only when it is among the dearest 1 in 10 for its town compared with the fair price (Kandy: 78% or
+  more above). The limits come from the weekly cloud model, which is retrained every Sunday from the same LightGBM
+  recipe; this service's fair prices come from the laptop LightGBM model, so the limits are close but not exact.
 - The money for each facility and the SHAP parts are the model's estimates, not the hotel's bill, so we say
   "about" and round to Rs 100. SHAP explains one room; a stay priced as several rooms is the sum of the rooms.
 - The free-cancellation advice uses rough rainy months. It is a first version.

@@ -1,5 +1,6 @@
 """The join: must-haves never broken, review checks, prices, where to book, output for Component 3."""
 import json
+import re
 
 from src.c2.c1_client import DummyC1, FileC1
 from src.c2.output import to_c3
@@ -81,7 +82,7 @@ def test_town_outside_our_data(data):
     result = recommend(make_request(town="Peradeniya"), top_k=3, data=data)
     r = result["results"][0]
     assert r["ranked_hotels"], "Kandy hotels are within 10 km of Peradeniya"
-    assert any("not one of our 15 data towns" in n for n in r["notes"])
+    assert any(re.search(r"not one of our \d+ data towns", n) for n in r["notes"])
 
 
 def test_output_for_component_3(data):

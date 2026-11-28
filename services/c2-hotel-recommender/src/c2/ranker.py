@@ -43,12 +43,13 @@ def _rs(x):
 
 # ---------------- step 1: hotels in or near the town ----------------
 def find_hotels(data, town, top_k):
-    """Hotels for this town and a note. Our 15 data towns use their own hotels; other towns use a radius."""
+    """Hotels for this town and a note. Our data towns use their own hotels (data.in_town); other towns a radius."""
     hotels = data.hotels
     point = data.towns.point(town)
     in_data = data.towns.data_town(town)
+    n_towns = len(data.towns.data_towns)
     if in_data:
-        cand = hotels[hotels.destination_cluster == in_data].copy()
+        cand = hotels[data.in_town(in_data)].copy()
         note = None
     elif point:
         d = km(point[0], point[1], hotels.latitude.to_numpy(float), hotels.longitude.to_numpy(float))
@@ -57,11 +58,14 @@ def find_hotels(data, town, top_k):
             mask = d <= radius
             if mask.sum() >= top_k or radius == settings.SEARCH_RADIUS_KM[-1]:
                 cand = hotels[mask].copy()
-                note = (f"{town} is not one of our 15 data towns. Showing hotels within {radius} km of {town}."
+                note = (f"{town} is not one of our {n_towns} data towns. Showing hotels within {radius} km of {town}."
                         if mask.sum() else
-                        f"{town} is not one of our 15 data towns and we have no hotels within {radius} km of it.")
+                        f"{town} is not one of our {n_towns} data towns and we have no hotels within {radius} km of it.")
                 if not mask.sum():
-                    centres = hotels.groupby("destination_cluster")[["latitude", "longitude"]].median()
+                    if data.centres is not None:
+                        centres = data.centres.rename(columns={"centre_lat": "latitude", "centre_lng": "longitude"})
+                    else:
+                        centres = hotels.groupby("destination_cluster")[["latitude", "longitude"]].median()
                     dist = km(point[0], point[1], centres.latitude.to_numpy(float), centres.longitude.to_numpy(float))
                     i = int(np.argmin(dist))
                     note += f" The nearest town in our data is {centres.index[i]} ({dist[i]:.0f} km)."
@@ -77,6 +81,17 @@ def find_hotels(data, town, top_k):
 
 
 # ---------------- step 2: prices for each hotel ----------------
+def hotel_town(data, hid):
+    """The hotel's own town (for its Good deal / Looks high limits)."""
+    if hid in data.hotels.index:
+        h = data.hotels.loc[hid]
+        for col in ("destination_clean", "destination_cluster"):
+            v = h.get(col)
+            if isinstance(v, str) and v.strip():
+                return v
+    return None
+
+
 def price_hotels(data, cand, rooms, check_in, nights, today, not_needed, checks):
     """For each hotel: the collected price, fair price, your-dates estimate and personal fair price."""
     model = PriceModel(data)
@@ -137,7 +152,10 @@ def price_hotels(data, cand, rooms, check_in, nights, today, not_needed, checks)
         vs_fair = 100 * (booking_seen / fair_seen - 1) if (fair_seen and booking_seen) else None
         your_fair_seen = fair_seen * cut if fair_seen else None
         vs_your_fair = 100 * (booking_seen / your_fair_seen - 1) if (your_fair_seen and booking_seen) else None
-        overpriced = vs_your_fair is not None and vs_your_fair > settings.OVERPRICED_PCT
+        # this town's limits (price_margins.csv): the dearest / cheapest 1 in 10 prices against the fair price
+        limits = data.limits.for_town(hotel_town(data, hid))
+        overpriced = vs_your_fair is not None and vs_your_fair > limits["looks_high_above_pct"]
+        good_value = vs_your_fair is not None and not overpriced and vs_your_fair <= -limits["good_deal_below_pct"]
         price_yours = offers[best_site] * factor
         out[hid] = {
             "seen_checkin": when,
@@ -151,6 +169,8 @@ def price_hotels(data, cand, rooms, check_in, nights, today, not_needed, checks)
             "price_vs_fair_pct": round(vs_fair, 1) if vs_fair is not None else None,
             "price_vs_your_fair_pct": round(vs_your_fair, 1) if vs_your_fair is not None else None,
             "price_status": "Potentially Overpriced" if overpriced else "Within Expected Price Range",
+            "good_value": good_value,
+            "price_limits": limits,                                    # this town's Good deal / Looks high limits
             "what_if": messages,
             "breakdown": breakdown(parts, expected, cut, len(rows)) if (model.ready and expected) else None,
             "caution": few_reviews_caution(review_count(data.hotels.loc[hid])) if (expected and hid in data.hotels.index)
@@ -306,18 +326,24 @@ def explain(h, check, price, must, must_status, wishes, c1, c1_source, budget_ma
         pct = price["price_vs_your_fair_pct"]
         for_you = " for you" if price["what_if"] else ""
         general = price["price_vs_fair_pct"]
+        lim = price.get("price_limits") or {"looks_high_above_pct": settings.OVERPRICED_PCT,
+                                            "good_deal_below_pct": settings.OVERPRICED_PCT, "place": None}
+        high_note = (f" In {lim['place']}, the dearest 1 in 10 prices are {lim['looks_high_above_pct']:.0f}% or more "
+                     "above the fair price." if lim["place"] else "")
+        low_note = (f" In {lim['place']}, the cheapest 1 in 10 prices are {lim['good_deal_below_pct']:.0f}% or more "
+                    "below the fair price." if lim["place"] else "")
         if price["price_status"] == "Potentially Overpriced" and general is not None and \
-                general <= settings.OVERPRICED_PCT:
+                general <= lim["looks_high_above_pct"]:
             s.append(f"Overpriced for you: the price is fair for most guests ({general:+.0f}%), but about "
                      f"{pct:.0f}% above the fair price for you once we remove what you don't need "
-                     f"(about {_rs(price['your_expected_price_lkr'])} a night).")
+                     f"(about {_rs(price['your_expected_price_lkr'])} a night).{high_note}")
         elif price["price_status"] == "Potentially Overpriced":
             s.append(f"Potentially overpriced: about {pct:.0f}% above the fair price{for_you} "
-                     f"(about {_rs(price['your_expected_price_lkr'])} a night).")
-        elif pct is not None and pct <= -30:
+                     f"(about {_rs(price['your_expected_price_lkr'])} a night).{high_note}")
+        elif price.get("good_value"):
             s.append(f"Good value: about {-pct:.0f}% below the fair price{for_you} "
                      f"(about {_rs(price['your_expected_price_lkr'])} a night)" +
-                     (" - unusually low, check the room type before booking." if pct <= -50 else "."))
+                     (" - unusually low, check the room type before booking." if pct <= -50 else ".") + low_note)
         else:
             s.append(f"Price is within the expected range (fair price about "
                      f"{_rs(price['your_expected_price_lkr'] or price['expected_price_lkr'])} a night).")
@@ -463,4 +489,5 @@ def recommend(request, top_k=5, today=None, data=None, c1=None):
                         "ranked_hotels": ranked, "notes": notes})
     return {"results": results, "c1_source": c1.source, "data_notes": data.notes,
             "price_model_used": data.model is not None,
-            "prices_collected": settings.PRICES_COLLECTED}
+            "prices_collected": getattr(data, "prices_collected", settings.PRICES_COLLECTED),
+            "data_version": getattr(data, "version", None)}

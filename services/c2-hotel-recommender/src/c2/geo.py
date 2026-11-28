@@ -33,9 +33,11 @@ def _key(name):
 
 
 class TownFinder:
-    """Finds a point for a town name: our 15 data towns, then OpenStreetMap places, then the manual list."""
+    """Finds a point for a town name: our data towns, then OpenStreetMap places, then the manual list.
+    Data towns: the towns of the price model (november: the 46 of town_centres.csv, at their centre;
+    september: the 15 searched towns, at OpenStreetMap's point or else the middle of their hotels)."""
 
-    def __init__(self, places: pd.DataFrame, hotels: pd.DataFrame):
+    def __init__(self, places: pd.DataFrame, hotels: pd.DataFrame, centres: pd.DataFrame = None):
         self.points = {}
         if places is not None and len(places):
             p = places.copy()
@@ -50,7 +52,12 @@ class TownFinder:
         for name, (lat, lon) in MANUAL_POINTS.items():
             self.points[_key(name)] = (lat, lon, "typed by hand (approximate)")
         # our data towns: the middle of their hotels is used only if OpenStreetMap does not have the town
-        self.data_towns = sorted(hotels["destination_cluster"].dropna().unique()) if len(hotels) else []
+        towns = set(hotels["destination_cluster"].dropna().unique()) if len(hotels) else set()
+        if centres is not None and len(centres):
+            towns |= set(centres.index)
+            for town, c in centres.iterrows():     # the centre the price model uses (km_from_town_centre)
+                self.points[_key(town)] = (float(c.centre_lat), float(c.centre_lng), "town centre in our data")
+        self.data_towns = sorted(towns)
         for town, g in hotels.groupby("destination_cluster"):
             self.points.setdefault(_key(town), (float(g.latitude.median()), float(g.longitude.median()),
                                                 "middle of our hotels"))
