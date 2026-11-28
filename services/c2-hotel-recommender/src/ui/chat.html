@@ -632,10 +632,13 @@ function hotel(h, req, asked) {
   const fair = p.your_expected_price_lkr || p.expected_price_lkr;
   const pct = p.price_vs_your_fair_pct;
   const general = p.price_vs_fair_pct;
-  const onlyForYou = over && general != null && general <= 30;
-  let verdict = onlyForYou ? `Overpriced for you: fair for most guests (${general > 0 ? "+" : ""}${Math.round(general)}%), but ${Math.round(pct)}% above the fair price for you`
-    : over ? `Potentially overpriced: about ${Math.round(pct)}% above the fair price`
-    : (pct != null && pct <= -30 ? `Good value: about ${Math.round(-pct)}% below the fair price` : "Within the expected price range");
+  const lim = p.price_limits || {};                      // this town's limits (price_margins.csv), else 30%
+  const hi = lim.looks_high_above_pct ?? 30, lo = lim.good_deal_below_pct ?? 30;
+  const where = lim.place ? ` (limit in ${esc(lim.place)}: ${Math.round(hi)}% above)` : "";
+  const onlyForYou = over && general != null && general <= hi;
+  let verdict = onlyForYou ? `Overpriced for you: fair for most guests (${general > 0 ? "+" : ""}${Math.round(general)}%), but ${Math.round(pct)}% above the fair price for you${where}`
+    : over ? `Potentially overpriced: about ${Math.round(pct)}% above the fair price${where}`
+    : ((p.good_value ?? (pct != null && pct <= -lo)) ? `Good value: about ${Math.round(-pct)}% below the fair price` : "Within the expected price range");
   const nights = h.nights ? `${h.nights} night${h.nights > 1 ? "s" : ""}: ${rs(h.total_hotel_cost_lkr)}` : "";
   const left = h.budget_left_lkr != null ? `Budget left: ${rs(h.budget_left_lkr)}` : "";
   const est = (o) => h.found_live && o.platform !== "Booking.com" ? " (estimate)" : "";

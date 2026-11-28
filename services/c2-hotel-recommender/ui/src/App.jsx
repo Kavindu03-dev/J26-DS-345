@@ -89,7 +89,7 @@ export default function App() {
       </main>
       <footer className="foot">
         Component 2 of J26-DS-345: personalised hotel ranking and price intelligence.
-        Prices were collected on Booking.com, Agoda and Trip.com in September 2026; hotels found live are newer.
+        Prices were collected on Booking.com in November 2026 (46 towns); hotels found live are newer.
         {" "}<a href="/docs">API page</a>, <a href="/chat">old chat page</a>.
       </footer>
     </div>

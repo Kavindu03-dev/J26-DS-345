@@ -1,11 +1,12 @@
 """
 Prices: which collected price to use, the fair price, the personal fair price (Gap 3), where to book (Gap 4).
 
-The prices were collected for 20 check-in dates (Oct 2026 - Sep 2027), 2-night stays, and 4 guest groups
-(1 adult, 2 adults, 2 adults + 1 child, 2 adults + 2 children). For a tourist's request:
+The prices were collected for 2-night stays and 4 guest groups (1 adult, 2 adults, 2 adults + 1 child,
+2 adults + 2 children): November 2026 data for 8 check-in dates (Dec 2026 - Oct 2027), September 2026 data for
+20 check-in dates (Oct 2026 - Sep 2027). For a tourist's request:
   1. Rooms: the group is split into rooms we have prices for (4 friends -> 2 rooms for 2 adults).
   2. Date: the collected check-in date closest to the tourist's date in the year (season), for every room.
-  3. Fair price: from booking_predictions.csv (the model's price for that hotel, made while the model had NOT seen
+  3. Fair price: from <prefix>_predictions.csv (the model's price for that hotel, made while the model had NOT seen
      the hotel). "Potentially Overpriced" = Booking.com price more than 30% above it.
   4. Your dates: the model that never saw the hotel (the one that made its fair price) is asked again with the
      tourist's own dates (month, weekday, weekend, festival, days before the trip). The ratio moves the collected
@@ -13,7 +14,8 @@ The prices were collected for 20 check-in dates (Oct 2026 - Sep 2027), 2-night s
   5. Where the money goes: the what-if (switch a facility off, predict again) gives the share of the fair price
      for the pool, bar, breakfast and beachfront (the only 4 that can be priced, see personal_fair_price.ipynb).
      Personal fair price: the shares of what the tourist said they don't need, or reviews say is not there, come off.
-  6. Where to book: Booking.com vs Trip.com vs Agoda (same-deal rules from where_to_book.ipynb).
+  6. Where to book: Booking.com vs Trip.com vs Agoda (same-deal rules from where_to_book.ipynb; September data
+     only - the November data is Booking.com only).
 """
 import math
 from datetime import date, timedelta
@@ -134,7 +136,7 @@ def facility_switches(features):
     return {
         "pool": {**{c: 0 for c in _fac_cols(features, "pool")}, "has_pool": 0, "n_pools": 0,
                  "rooms_private_pool": 0, "room_private_pool": 0, "room_pool_view": 0},
-        "bar": {**{c: 0 for c in _fac_cols(features, "_bar")}, "has_bar": 0},
+        "bar": {**{c: 0 for c in _fac_cols(features, "_bar") if "barbecue" not in c}, "has_bar": 0},
         "breakfast": {"breakfast_included": 0, "meal_level": 0, "dinner_included": 0},
         "beachfront": {**{c: 0 for c in _fac_cols(features, "beach")}, "is_beachfront": 0, "has_private_beach": 0},
     }

@@ -1,4 +1,5 @@
 """Test helpers: a tiny made-up dataset (same columns as the real files) and requests in Output 1 format."""
+import numpy as np
 import pandas as pd
 
 DATES = ["2026-12-09", "2027-01-23", "2027-03-09"]
@@ -86,3 +87,48 @@ def make_request(town="Kandy", ci="2027-01-20", nights=2, adults=2, children=0, 
                      "budget_total_lkr": total},
             "hotel": {"budget_max_lkr": bmax, "must": must, "wishes": wishes or {}},
             "health": list(health), "interests": [], "not_needed": list(not_needed)}
+
+
+# ---------------- the November layout (output_clean_v5 + models_v5_lgbm, Booking.com only, 46-town style) ----------------
+CENTRES = [("Kandy", "Central", "cultural", 7.2931, 80.6350), ("Galle", "Southern", "beach", 6.0320, 80.2160),
+           ("Hikkaduwa", "Southern", "beach", 6.1378, 80.1007)]
+DISTRICT = {"Kandy": ("Kandy", "Central"), "Galle": ("Galle", "Southern"), "Hikkaduwa": ("Galle", "Southern")}
+
+
+def make_files_november(root):
+    """The same made-up hotels in the November layout, plus 'x-hikka': Booking.com showed it for Galle, but it is
+    in Hikkaduwa, 17 km from the Galle centre (like the far hotels Booking.com adds for small towns)."""
+    data, extra = make_files(root)
+    clean, models = data / "output_clean", data / "models"
+    clean5, models5 = data / "output_clean_v5", data / "models_v5_lgbm"
+    clean5.mkdir()
+    models5.mkdir()
+    hotels = pd.read_csv(clean / "hotels_booking.csv")
+    stays = pd.read_csv(clean / "model_table.csv")
+    preds = pd.read_csv(models / "booking_predictions.csv")
+    far = hotels[hotels.booking_hotel_id == "g-town"].assign(
+        booking_hotel_id="x-hikka", hotel_name="Hikka Surf Rooms", latitude=6.1390, longitude=80.1010,
+        km_from_town_centre=0.1)
+    hotels = pd.concat([hotels, far], ignore_index=True)
+    hotels["searched_towns"] = hotels.destination_cluster
+    hotels["town"] = np.where(hotels.booking_hotel_id == "x-hikka", "Hikkaduwa", hotels.destination_cluster)
+    hotels["district"] = hotels.town.map(lambda t: DISTRICT[t][0])
+    hotels["province"] = hotels.town.map(lambda t: DISTRICT[t][1])
+    hotels["kind_of_place"] = hotels.town.map({c[0]: c[2] for c in CENTRES})
+    extra_rows = stays[stays.booking_hotel_id == "g-town"].copy()
+    extra_rows["row_id"] = np.arange(len(extra_rows)) + stays.row_id.max() + 1
+    extra_rows["booking_hotel_id"] = extra_rows["hotel_group_id"] = "x-hikka"
+    extra_rows["hotel_name"], extra_rows["destination_clean"] = "Hikka Surf Rooms", "Hikkaduwa"
+    extra_preds = pd.DataFrame({"row_id": extra_rows.row_id, "fair_price_lkr": extra_rows.price_incl_tax_lkr_night,
+                                "price_vs_fair_pct": 0.0})
+    stays = pd.concat([stays, extra_rows], ignore_index=True)
+    stays["destination_cluster"] = stays.booking_hotel_id.map(dict(zip(hotels.booking_hotel_id, hotels.destination_cluster)))
+    hotels.to_csv(clean5 / "hotels_booking.csv", index=False)
+    stays.to_csv(clean5 / "model_table.csv", index=False)
+    pd.concat([preds, extra_preds]).to_csv(models5 / "booking_v5_lgbm_predictions.csv", index=False)
+    pd.DataFrame(columns=["source_ota", "hotel_id_on_source", "hotel_name", "status", "booking_hotel_id"]).to_csv(
+        clean5 / "hotel_matches.csv", index=False)                            # Booking.com only: no matches
+    pd.DataFrame([{"town": t, "province": p, "kind_of_place": k, "centre_lat": lat, "centre_lng": lng,
+                   "hotels_used": 3, "within_km": 1.0} for t, p, k, lat, lng in CENTRES]).to_csv(
+        clean5 / "town_centres.csv", index=False)
+    return data, extra

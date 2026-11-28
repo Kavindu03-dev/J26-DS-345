@@ -3,7 +3,8 @@ Why is the fair price this number? A SHAP explanation in rupees (same method as 
 
     start (average of 20 typical prices)  + town + hotel class + room + pool + ... + your dates  =  the fair price
 
-- 11 groups a tourist understands, not 518 columns (the pool alone is in 15 columns).
+- 11 groups a tourist understands, not hundreds of columns (518 in September, 591 in November; the pool alone
+  is in 15-20 columns).
 - EXACT: with 11 groups there are only 2^11 = 2,048 combinations, so shap.explainers.Exact computes SHAP exactly.
   (The quick shap.TreeExplainer gives wrong numbers for this model: its parts don't add up, because it can't
   handle the category columns town, star band and chain.)
@@ -38,7 +39,7 @@ def group_of(c):
         return "Town and location"
     if ("pool" in c and c != "fac_pool_table") or c == "n_pools":
         return "Pool"
-    if c == "has_bar" or (c.startswith("fac_") and "_bar" in c):
+    if c == "has_bar" or (c.startswith("fac_") and "_bar" in c and "barbecue" not in c):
         return "Bar"
     if "beach" in c and not c.startswith("name_"):
         return "Beach"
@@ -112,14 +113,52 @@ def exact_shap(price, n):
 
 
 # ---------------- one model, ready to explain ----------------
+class _LightGBMTable:
+    """The 'prepare' step of the LightGBM pipeline (category columns -> pandas categories), done as one number
+    table: each category column gets LightGBM's own code for the value (its position in the categories the model
+    was trained with; unknown or missing -> missing). This is exactly what LightGBM does inside predict(), so
+    booster_.predict(table) == pipeline.predict(rows)."""
+
+    def __init__(self, prepare, trees, features):
+        dtype = (getattr(prepare, "kw_args", None) or {}).get("dtype", {})
+        cat_cols = [c for c in features if c in dtype]
+        cats = trees.booster_.pandas_categorical or []
+        if len(cats) != len(cat_cols):
+            raise ValueError("the LightGBM model's category columns do not match the pipeline")
+        self.features, self.cats = list(features), dict(zip(cat_cols, cats))
+
+    def get_feature_names_out(self):
+        return np.array(self.features, dtype=object)
+
+    def transform(self, rows):
+        X = np.empty((len(rows), len(self.features)))
+        for j, c in enumerate(self.features):
+            if c in self.cats:
+                codes = pd.Categorical(rows[c], categories=self.cats[c]).codes.astype(float)
+                codes[codes < 0] = np.nan
+                X[:, j] = codes
+            else:
+                X[:, j] = pd.to_numeric(rows[c], errors="coerce").to_numpy(float)
+        return X
+
+
+def _is_lightgbm(trees):
+    return type(trees).__module__.startswith("lightgbm")
+
+
 class _Ready:
     """The model split into its two steps, its columns put into groups, and the 20 typical prices prepared."""
 
     def __init__(self, model, features, typical_rows):
         steps = getattr(model, "named_steps", {})
         if "prepare" not in steps or "model" not in steps:
-            raise ValueError("SHAP needs the gradient boosting pipeline (steps 'prepare' and 'model').")
+            raise ValueError("SHAP needs the gradient boosting / LightGBM pipeline (steps 'prepare' and 'model').")
         self.prep, self.trees, self.features = steps["prepare"], steps["model"], features
+        if _is_lightgbm(self.trees):
+            self.prep = _LightGBMTable(self.prep, self.trees, features)
+            self._predict = self.trees.booster_.predict
+        else:
+            self._predict = self.trees.predict
         cols = [c.split("__", 1)[1] if "__" in c else c for c in self.prep.get_feature_names_out()]
         groups = {g: np.array([i for i, c in enumerate(cols) if group_of(c) == g]) for g in GROUP_NAMES}
         self.groups = {g: v for g, v in groups.items() if len(v)}          # every column is in one group
@@ -139,7 +178,7 @@ class _Ready:
                 if len(on):
                     cols = self.groups[name]
                     X[np.ix_(on, np.arange(len(bg)), cols)] = x[cols]
-            out[s:s + 64] = np.exp(self.trees.predict(X.reshape(-1, X.shape[2]))).reshape(len(k), -1).mean(axis=1)
+            out[s:s + 64] = np.exp(self._predict(X.reshape(-1, X.shape[2]))).reshape(len(k), -1).mean(axis=1)
         return out
 
 
@@ -270,7 +309,8 @@ def explain_price(data, row_id, changes=None, check_in=None):
             _cache.move_to_end(key)
             return dict(_cache[key], from_cache=True)
     if data.typical_rows is None:
-        return {"available": False, "reason": "booking_predictions.csv not found, so there are no typical prices."}
+        return {"available": False, "reason": f"{getattr(data, 'prefix', 'booking')}_predictions.csv not found, so "
+                                              "there are no typical prices."}
 
     t0 = time.time()
     ready = _ready_for(model, data)

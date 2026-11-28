@@ -51,6 +51,8 @@ def contract_hotel(h):
             "your_expected_price_lkr": p["your_expected_price_lkr"],
             "price_vs_fair_pct": p["price_vs_fair_pct"],
             "price_vs_your_fair_pct": p["price_vs_your_fair_pct"],
+            "good_value": p.get("good_value"),
+            "price_limits": p.get("price_limits"),   # this town's Good deal / Looks high limits (price_margins.csv)
             "what_if": p["what_if"],
             "breakdown": p.get("breakdown"),
             "caution": p.get("caution"),              # very few reviews: the fair price is less certain          # where the fair price goes: pool, bar, breakfast, beach, rest

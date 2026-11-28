@@ -2,8 +2,11 @@
 All settings for Component 2 in one place.
 
 Paths and switches come from environment variables, so nothing personal is written in the code:
-    C2_DATA_DIR   folder with output_clean/ and models/   (the hotel_preprocessing folder)
-    C2_EXTRA_DIR  folder with sl_hospitals_osm.csv, sl_places_osm.csv, hotel_urls.csv
+    C2_DATA_DIR      the hotel_preprocessing folder (with output_clean_v5/ + models_v5_lgbm/, and/or
+                     output_clean/ + models/)
+    C2_DATA_VERSION  november | september | auto (default: november when its files are there, else september)
+    C2_CLEAN_DIR, C2_MODELS_DIR, C2_MODEL_PREFIX   only to point at other folders / file names than the version's
+    C2_EXTRA_DIR     folder with sl_hospitals_osm.csv, sl_places_osm.csv, hotel_urls.csv
     C1_MODE       dummy | file | http   (dummy = made-up review scores until Component 1 is ready)
     C1_FILE       JSON file with Component 1's scores (when C1_MODE=file)
     C1_URL        Component 1's address (when C1_MODE=http)
@@ -35,6 +38,56 @@ def data_dir():
 
 def extra_dir():
     return _pick("C2_EXTRA_DIR", REPO_DIR / "data" / "c2", r"D:\Research")
+
+
+# ---------------- which data and price model ----------------
+# november  = the nationwide collection (20-23 Nov 2026): 46 towns, 2,238 Booking.com hotels, LightGBM model
+#             (preprocessing_v5_nationwide.ipynb + model_training_booking_v5_lightgbm.ipynb)
+# september = the first collection (25-27 Sep 2026): 15 towns, Booking.com + Agoda + Trip.com, gradient boosting
+DATA_VERSIONS = {
+    "november": {"clean": "output_clean_v5", "models": "models_v5_lgbm", "prefix": "booking_v5_lgbm",
+                 "prices_collected": "20-23 November 2026", "sites": ("booking",),
+                 "label": "November 2026 data: 46 towns, Booking.com only, LightGBM price model"},
+    "september": {"clean": "output_clean", "models": "models", "prefix": "booking",
+                  "prices_collected": "25-27 September 2026", "sites": ("booking", "agoda", "tripcom"),
+                  "label": "September 2026 data: 15 towns, Booking.com + Agoda + Trip.com, gradient boosting"},
+}
+
+
+def data_version(base=None):
+    """november or september. C2_DATA_VERSION decides; 'auto' (default) = november if its files are there."""
+    v = os.getenv("C2_DATA_VERSION", "auto").strip().lower()
+    if v in DATA_VERSIONS:
+        return v
+    base = Path(base or data_dir())
+    n = DATA_VERSIONS["november"]
+    if (base / n["clean"] / "model_table.csv").exists() and (base / n["models"] / f"{n['prefix']}_predictions.csv").exists():
+        return "november"
+    return "september"
+
+
+def layout(base=None, version=None):
+    """Folders and file-name start for the chosen data version: {'version', 'clean', 'models', 'prefix', ...}."""
+    base = Path(base or data_dir())
+    v = version if version in DATA_VERSIONS else data_version(base)
+    out = dict(DATA_VERSIONS[v], version=v)
+    out["clean"] = Path(os.getenv("C2_CLEAN_DIR") or base / out["clean"])
+    out["models"] = Path(os.getenv("C2_MODELS_DIR") or base / out["models"])
+    out["prefix"] = os.getenv("C2_MODEL_PREFIX") or out["prefix"]
+    return out
+
+
+WEEKLY_PIPELINE_MARGINS = r"D:\Research\hotel-price-weekly\models\current\price_margins.csv"   # after git pull
+
+
+def price_margins_file(models_dir=None):
+    r"""Good deal / Looks high limits per town. C2_PRICE_MARGINS, else <the price model's folder>/price_margins.csv,
+    else the weekly cloud pipeline's file (updated every Sunday; git pull in D:\Research\hotel-price-weekly).
+    C2_PRICE_MARGINS=off -> no file: the fixed OVERPRICED_PCT rule (the tests use this)."""
+    if os.getenv("C2_PRICE_MARGINS", "").strip().lower() in ("off", "none", "0"):
+        return None
+    own = [Path(models_dir) / "price_margins.csv"] if models_dir else []
+    return _pick("C2_PRICE_MARGINS", *own, WEEKLY_PIPELINE_MARGINS)
 
 
 def c1_mode():
@@ -70,8 +123,9 @@ def live_headless():
 # ---------------- rules and weights (change here, not in the code) ----------------
 NEAR_HOSPITAL_KM = 5.0          # "near a hospital" = nearest hospital within this distance (straight line)
 QUIET_KM_FROM_CENTRE = 2.0      # a hotel this far from the town centre counts as quiet (if no soundproofing listed)
-OVERPRICED_PCT = 30             # price more than 30% above the fair price -> "Potentially Overpriced"
-                                # (the price model's typical error is 26%, so smaller gaps are not shown)
+OVERPRICED_PCT = 30             # ONLY when there is no price_margins.csv: more than 30% above the fair price ->
+                                # "Potentially Overpriced", 30% or more below -> "Good value". With the file, each
+                                # town has its own limits (src/c2/margins.py; the cheapest / dearest 1 in 10 prices)
 WHAT_IF_MIN_RS, WHAT_IF_MIN_PCT = 1000, 5   # show "Rs X is for the pool" only above both (as in what_if_explanations.ipynb)
 # The only facilities whose share of the price is shown. personal_fair_price.ipynb (section 4) tested all 14:
 # only these 4 add money at >= 8 in 10 hotels AND are big enough to show for >= 1 in 10 prices.
@@ -79,7 +133,9 @@ PRICED_FACILITIES = ("pool", "bar", "breakfast", "beachfront")
 FEW_REVIEWS = 5                 # fewer Booking.com reviews than this -> "this fair price is less certain"
 SHAP_BACKGROUND = 20            # SHAP starts from 20 typical prices (one from the middle of each 5% price slice)
 SHAP_CACHE_SIZE = 300           # explanations kept in memory (each takes about 5-20 seconds to make)
-SEARCH_RADIUS_KM = (10, 25)     # towns that are not one of our 15 data towns: hotels within 10 km, else 25 km
+SEARCH_RADIUS_KM = (10, 25)     # towns that are not one of our data towns: hotels within 10 km, else 25 km
+TOWN_MEMBER_KM = 10             # November data: a hotel Booking.com showed for a town counts as "in" that town only
+                                # if it is within 10 km of the town centre (Booking adds far hotels for small towns)
 
 IMPORTANCE_WEIGHT = {"high": 3, "medium": 2, "low": 1}
 SCORE_WEIGHTS = {               # how the final score is made (each part is 0..1)
@@ -107,6 +163,7 @@ RAINY_MONTHS = {
     "hills": {5, 6, 7, 10, 11, 12},
     "east": {11, 12, 1},
     "north_dry_zone": {10, 11, 12},
+    "south_dry_zone": {10, 11, 12},
 }
 TOWN_AREA = {
     "Colombo": "west_south", "Negombo": "west_south", "Bentota": "west_south", "Galle": "west_south",
@@ -117,6 +174,13 @@ TOWN_AREA = {
     "Trincomalee": "east", "Arugam Bay": "east", "Pasikudah": "east", "Batticaloa": "east", "Nilaveli": "east",
     "Jaffna": "north_dry_zone", "Anuradhapura": "north_dry_zone", "Sigiriya": "north_dry_zone",
     "Dambulla": "north_dry_zone", "Polonnaruwa": "north_dry_zone", "Habarana": "north_dry_zone",
+    # the other towns of the November data
+    "Mount Lavinia": "west_south", "Katunayake": "west_south", "Wadduwa": "west_south", "Beruwala": "west_south",
+    "Koggala": "west_south", "Ratnapura": "west_south", "Pinnawala": "west_south",
+    "Matale": "hills", "Badulla": "hills", "Pasikuda": "east",
+    "Tissamaharama": "south_dry_zone", "Hambantota": "south_dry_zone",
+    "Kurunegala": "north_dry_zone", "Chilaw": "north_dry_zone", "Kalpitiya": "north_dry_zone",
+    "Mannar": "north_dry_zone", "Vavuniya": "north_dry_zone",
 }
 
 # Live Booking.com search (src/c2/live/search.py)
@@ -126,5 +190,9 @@ LIVE_TIMEOUT_MS = 30000         # per page
 LIVE_MAX_SECONDS = 120          # the whole live search; hotels not reached by then are skipped
 PHOTOS_PER_HOTEL = 8
 
-PRICES_COLLECTED = "25-27 September 2026"
+PRICES_COLLECTED = DATA_VERSIONS["september"]["prices_collected"]   # the old default; use prices_collected()
+
+
+def prices_collected(version=None):
+    return DATA_VERSIONS[version or data_version()]["prices_collected"]
 RATES_ATTRIBUTION = "Rates By Exchange Rate API (https://www.exchangerate-api.com)"
